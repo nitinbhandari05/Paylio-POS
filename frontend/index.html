@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>POS App</title>
+</head>
+<body>
+
+  <h1>POS System 💻</h1>
+
+  <button onclick="testAPI()">Test Backend</button>
+
+  <script>
+    async function testAPI() {
+      const res = await fetch("http://localhost:3001");
+      const data = await res.text();
+      alert(data);
+    }
+  </script>
+
+</body>
+</html>

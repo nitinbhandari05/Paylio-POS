@@ -1,110 +1,232 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>POS App</title>
+  <title>POS System</title>
   <style>
     body {
+      margin: 0;
       font-family: Arial;
-      text-align: center;
-      background: #f5f5f5;
+      display: flex;
+      height: 100vh;
     }
 
-    .container {
-      background: white;
-      padding: 20px;
-      margin: 50px auto;
-      width: 300px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-
-    input {
-      display: block;
-      width: 90%;
-      margin: 10px auto;
+    /* Sidebar */
+    .sidebar {
+      width: 200px;
+      background: #2c2c2c;
+      color: white;
       padding: 10px;
     }
 
-    button {
-      padding: 10px 20px;
-      margin: 10px;
+    .category {
+      padding: 10px;
+      background: #444;
+      margin: 5px 0;
       cursor: pointer;
-      background: #007bff;
-      color: white;
-      border: none;
+    }
+
+    .category:hover {
+      background: #666;
+    }
+
+    /* Products */
+    .products {
+      flex: 2;
+      padding: 10px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      background: #f5f5f5;
+    }
+
+    .product {
+      background: white;
+      padding: 15px;
+      border: 1px solid #ddd;
+      cursor: pointer;
+      text-align: center;
       border-radius: 5px;
     }
 
-    button:hover {
-      background: #0056b3;
+    /* Cart */
+    .cart {
+      flex: 1;
+      background: #fff;
+      border-left: 2px solid #ddd;
+      display: flex;
+      flex-direction: column;
     }
+
+    .cart-items {
+      flex: 1;
+      padding: 10px;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .total {
+      padding: 10px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .actions {
+      padding: 10px;
+      display: flex;
+      gap: 10px;
+    }
+
+    button {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      cursor: pointer;
+      background: red;
+      color: white;
+      border-radius: 5px;
+    }
+
+    .remove-btn {
+      background: black;
+      padding: 2px 6px;
+      cursor: pointer;
+      color: white;
+      border-radius: 3px;
+    }
+
   </style>
 </head>
+
 <body>
 
-  <div class="container">
-    <h1>POS System 💻</h1>
-
-    <input id="name" placeholder="Product Name" />
-    <input id="price" placeholder="Price" type="number" />
-
-    <button onclick="addProduct()">Add Product</button>
-    <button onclick="testAPI()">Test Backend</button>
-
-    <p id="message"></p>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h3>Categories</h3>
+    <div class="category" onclick="filterCategory('all')">All</div>
+    <div class="category" onclick="filterCategory('chai')">Chai</div>
+    <div class="category" onclick="filterCategory('food')">Food</div>
+    <div class="category" onclick="filterCategory('drink')">Drinks</div>
   </div>
 
-  <script>
-    const BASE_URL = "http://localhost:5000";
-    const token = localStorage.getItem("token"); // better way
+  <!-- Products -->
+  <div class="products" id="products"></div>
 
-    async function addProduct() {
-      const name = document.getElementById("name").value;
-      const price = document.getElementById("price").value;
+  <!-- Cart -->
+  <div class="cart">
+    <div class="cart-items" id="cart"></div>
 
-      if (!name || !price) {
-        return showMessage("❌ Please fill all fields", "red");
-      }
+    <div class="total">
+      Total: ₹<span id="total">0</span>
+    </div>
 
-      try {
-        const res = await fetch(BASE_URL + "/api/products", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": "Bearer " + token
-          },
-          body: JSON.stringify({ name, price })
-        });
+    <div class="actions">
+      <button onclick="checkout()">Pay</button>
+    </div>
+  </div>
 
-        const data = await res.json();
+<script>
+// 🔹 Products with category
+const products = [
+  { id: 1, name: "Adrak Chai", price: 20, category: "chai" },
+  { id: 2, name: "Elaichi Chai", price: 25, category: "chai" },
+  { id: 3, name: "Burger", price: 80, category: "food" },
+  { id: 4, name: "Pizza", price: 150, category: "food" },
+  { id: 5, name: "Cold Drink", price: 40, category: "drink" }
+];
 
-        if (res.ok) {
-          showMessage("✅ Product added successfully", "green");
-        } else {
-          showMessage("❌ " + data.message, "red");
-        }
+let cart = [];
+let filteredProducts = [...products];
 
-      } catch (err) {
-        showMessage("❌ Server error", "red");
-      }
-    }
+// 🔹 Render Products
+function renderProducts() {
+  const container = document.getElementById("products");
+  container.innerHTML = "";
 
-    async function testAPI() {
-      try {
-        const res = await fetch("http://localhost:3001");
-        const data = await res.text();
-        alert(data);
-      } catch (err) {
-        alert("Backend not running!");
-      }
-    }
+  filteredProducts.forEach(p => {
+    const div = document.createElement("div");
+    div.className = "product";
+    div.innerHTML = `${p.name}<br>₹${p.price}`;
+    div.onclick = () => addToCart(p);
+    container.appendChild(div);
+  });
+}
 
-    function showMessage(msg, color) {
-      const el = document.getElementById("message");
-      el.innerText = msg;
-      el.style.color = color;
-    }
-  </script>
+// 🔹 Filter Category
+function filterCategory(cat) {
+  if (cat === "all") {
+    filteredProducts = products;
+  } else {
+    filteredProducts = products.filter(p => p.category === cat);
+  }
+  renderProducts();
+}
+
+// 🔹 Add to Cart (with quantity)
+function addToCart(product) {
+  const existing = cart.find(item => item.id === product.id);
+
+  if (existing) {
+    existing.qty++;
+  } else {
+    cart.push({ ...product, qty: 1 });
+  }
+
+  renderCart();
+}
+
+// 🔹 Remove Item
+function removeItem(id) {
+  cart = cart.filter(item => item.id !== id);
+  renderCart();
+}
+
+// 🔹 Render Cart
+function renderCart() {
+  const cartDiv = document.getElementById("cart");
+  cartDiv.innerHTML = "";
+
+  let total = 0;
+
+  cart.forEach(item => {
+    total += item.price * item.qty;
+
+    const div = document.createElement("div");
+    div.className = "cart-item";
+    div.innerHTML = `
+      ${item.name} x${item.qty} - ₹${item.price * item.qty}
+      <span class="remove-btn" onclick="removeItem(${item.id})">X</span>
+    `;
+    cartDiv.appendChild(div);
+  });
+
+  document.getElementById("total").innerText = total;
+}
+
+// 🔹 Checkout
+function checkout() {
+  if (cart.length === 0) {
+    alert("Cart is empty");
+    return;
+  }
+
+  const invoiceNumber = "INV-" + Date.now();
+  let total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+
+  alert(`Invoice: ${invoiceNumber}\nTotal: ₹${total}`);
+
+  // Reset cart
+  cart = [];
+  renderCart();
+}
+
+// 🔹 Init
+renderProducts();
+
+</script>
 
 </body>
 </html>

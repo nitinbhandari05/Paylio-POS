@@ -2,18 +2,107 @@
 <html>
 <head>
   <title>POS App</title>
+  <style>
+    body {
+      font-family: Arial;
+      text-align: center;
+      background: #f5f5f5;
+    }
+
+    .container {
+      background: white;
+      padding: 20px;
+      margin: 50px auto;
+      width: 300px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    input {
+      display: block;
+      width: 90%;
+      margin: 10px auto;
+      padding: 10px;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin: 10px;
+      cursor: pointer;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+  </style>
 </head>
 <body>
 
-  <h1>POS System 💻</h1>
+  <div class="container">
+    <h1>POS System 💻</h1>
 
-  <button onclick="testAPI()">Test Backend</button>
+    <input id="name" placeholder="Product Name" />
+    <input id="price" placeholder="Price" type="number" />
+
+    <button onclick="addProduct()">Add Product</button>
+    <button onclick="testAPI()">Test Backend</button>
+
+    <p id="message"></p>
+  </div>
 
   <script>
+    const BASE_URL = "http://localhost:5000";
+    const token = localStorage.getItem("token"); // better way
+
+    async function addProduct() {
+      const name = document.getElementById("name").value;
+      const price = document.getElementById("price").value;
+
+      if (!name || !price) {
+        return showMessage("❌ Please fill all fields", "red");
+      }
+
+      try {
+        const res = await fetch(BASE_URL + "/api/products", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + token
+          },
+          body: JSON.stringify({ name, price })
+        });
+
+        const data = await res.json();
+
+        if (res.ok) {
+          showMessage("✅ Product added successfully", "green");
+        } else {
+          showMessage("❌ " + data.message, "red");
+        }
+
+      } catch (err) {
+        showMessage("❌ Server error", "red");
+      }
+    }
+
     async function testAPI() {
-      const res = await fetch("http://localhost:3001");
-      const data = await res.text();
-      alert(data);
+      try {
+        const res = await fetch("http://localhost:3001");
+        const data = await res.text();
+        alert(data);
+      } catch (err) {
+        alert("Backend not running!");
+      }
+    }
+
+    function showMessage(msg, color) {
+      const el = document.getElementById("message");
+      el.innerText = msg;
+      el.style.color = color;
     }
   </script>
 

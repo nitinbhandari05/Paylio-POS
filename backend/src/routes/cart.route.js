@@ -1,6 +1,8 @@
 import express from "express";
 import Cart from "../models/cart.model.js";
 import Order from "../models/order.model.js";
+import { emitRealtime } from "../utils/realtime.js";
+import { buildKotText, queuePrintJob } from "../utils/print.js";
 
 const router = express.Router();
 
@@ -100,6 +102,26 @@ router.post("/:id/checkout", async (req, res) => {
       ...req.body,
       createdBy: req.user?.id || null,
     });
+
+    const kotJob = await queuePrintJob({
+      type: "kot",
+      orderId: order._id,
+      content: buildKotText(order),
+      copies: Number(req.body.kotCopies || 1),
+    });
+
+    emitRealtime("newOrder", order);
+    emitRealtime("kitchen:newKOT", {
+      orderId: order._id,
+      invoiceNumber: order.invoiceNumber,
+      kotNumber: order.kotNumber,
+      status: order.status,
+      items: order.items,
+      createdAt: order.createdAt,
+      tableNo: order.tableNo || "",
+      waiterName: order.waiterName || "",
+    });
+    emitRealtime("print:queued", kotJob);
 
     res.status(201).json({ message: "Order created", order });
   } catch (error) {

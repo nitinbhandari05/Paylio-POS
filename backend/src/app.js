@@ -6,6 +6,7 @@ import cartRoutes from "./routes/cart.route.js";
 import categoryRoutes from "./routes/category.route.js";
 import customerRoutes from "./routes/customer.route.js";
 import orderRoutes from "./routes/order.route.js";
+import orderTrackingRoutes from "./routes/order-tracking.route.js";
 import productRoutes from "./routes/product.route.js";
 import inventoryRoutes from "./routes/inventory.route.js";
 
@@ -36,6 +37,7 @@ app.use("/api/products", productRoutes);
 app.use("/api/inventory", inventoryRoutes);
 app.use("/api/carts", protect, cartRoutes);
 app.use("/api/orders", protect, orderRoutes);
+app.use("/api/order-tracking", orderTrackingRoutes);
 
 // 🔹 Admin Route
 app.get("/api/admin", protect, authorize("admin"), (req, res) => {

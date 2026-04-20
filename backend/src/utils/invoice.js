@@ -42,3 +42,10 @@ export const generateRefundNumber = async () => {
 
   return `RFD-${dateKey}-${String(seq).padStart(4, "0")}`;
 };
+
+export const generateKotNumber = async () => {
+  const dateKey = getDateKey();
+  const seq = await nextCounter("kot", dateKey);
+
+  return `KOT-${dateKey}-${String(seq).padStart(4, "0")}`;
+};

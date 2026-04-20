@@ -3,8 +3,13 @@ import Cart from "../models/cart.model.js";
 import Order from "../models/order.model.js";
 import { emitRealtime } from "../utils/realtime.js";
 import { buildKotText, queuePrintJob } from "../utils/print.js";
+import { requireRoles } from "../middlewares/outlet.middleware.js";
 
 const router = express.Router();
+const resolveOutletId = (req) =>
+  req.headers["x-outlet-id"] || req.query.outletId || req.body.outletId || req.user?.outletId || "main";
+
+router.use(requireRoles("user", "cashier", "waiter", "manager", "admin", "superadmin", "headoffice"));
 
 router.get("/", async (_req, res) => {
   const carts = await Cart.list();
@@ -15,6 +20,7 @@ router.post("/", async (req, res) => {
   try {
     const cart = await Cart.create({
       ...req.body,
+      outletId: resolveOutletId(req),
       createdBy: req.user?.id || null,
     });
 
@@ -100,6 +106,7 @@ router.post("/:id/checkout", async (req, res) => {
   try {
     const order = await Order.createFromCart(req.params.id, {
       ...req.body,
+      outletId: resolveOutletId(req),
       createdBy: req.user?.id || null,
     });
 

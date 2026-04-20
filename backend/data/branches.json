@@ -1,0 +1,15 @@
+[
+  {
+    "_id": "main",
+    "name": "Main Outlet",
+    "code": "MAIN",
+    "address": "",
+    "phone": "",
+    "email": "",
+    "managerName": "",
+    "isHeadOffice": true,
+    "active": true,
+    "createdAt": "2026-04-20T00:00:00.000Z",
+    "updatedAt": "2026-04-20T00:00:00.000Z"
+  }
+]

@@ -2,16 +2,21 @@ import express from "express";
 import Order from "../models/order.model.js";
 import { buildKotText, buildReceiptText, queuePrintJob } from "../utils/print.js";
 import { emitRealtime } from "../utils/realtime.js";
+import { requireRoles } from "../middlewares/outlet.middleware.js";
 
 const router = express.Router();
+const resolveOutletId = (req) =>
+  req.headers["x-outlet-id"] || req.query.outletId || req.body.outletId || req.user?.outletId || "";
+
+router.use(requireRoles("user", "cashier", "waiter", "kitchen", "manager", "admin", "superadmin", "headoffice"));
 
 router.get("/", async (_req, res) => {
-  const orders = await Order.list();
+  const orders = await Order.list({ outletId: resolveOutletId(_req) });
   res.json({ orders });
 });
 
-router.get("/summary", async (_req, res) => {
-  const orders = await Order.list();
+router.get("/summary", async (req, res) => {
+  const orders = await Order.list({ outletId: resolveOutletId(req) });
   const completedOrders = orders.filter((order) => order.status === "completed");
   const refundedOrders = orders.filter((order) => order.status === "refunded");
   const cancelledOrders = orders.filter((order) => order.status === "cancelled");
@@ -46,7 +51,7 @@ router.get("/kitchen/board", async (req, res) => {
     ? statusFilter
     : ["pending", "accepted", "preparing", "ready"];
 
-  const orders = await Order.listKitchenOrders(statuses);
+  const orders = await Order.listKitchenOrders(statuses, resolveOutletId(req));
   res.json({ statuses, orders });
 });
 
@@ -54,6 +59,7 @@ router.post("/from-cart/:cartId", async (req, res) => {
   try {
     const order = await Order.createFromCart(req.params.cartId, {
       ...req.body,
+      outletId: resolveOutletId(req),
       createdBy: req.user?.id || null,
     });
 

@@ -22,6 +22,8 @@ const STATUS_FLOW = [
 
 const FINAL_STATUSES = ["completed", "cancelled", "refunded"];
 const PAYMENT_METHODS = ["cash", "card", "upi", "wallet", "bank", "split"];
+const ORDER_TYPES = ["dinein", "pickup", "delivery", "qr_table", "kiosk"];
+const DELIVERY_STATUSES = ["not_required", "placed", "preparing", "out_for_delivery", "delivered"];
 
 const toNumber = (value, fallback = 0) => {
   const parsed = Number(value);
@@ -67,6 +69,7 @@ const validatePayments = (payments, total) => {
 const changeOrderStock = async (order, type, notePrefix) => {
   for (const item of order.items || []) {
     await Inventory.createMovement({
+      outletId: order.outletId,
       productId: item.productId,
       quantity: item.quantity,
       type,
@@ -105,11 +108,23 @@ const appendStatusTimeline = (order, status, actorId = null) => {
   });
 };
 
+const assertOrderType = (value) => {
+  const orderType = String(value || "dinein").toLowerCase();
+  if (!ORDER_TYPES.includes(orderType)) {
+    throw new Error("Invalid order type");
+  }
+  return orderType;
+};
+
 const sanitizeTrackingPayload = (order) => ({
   invoiceNumber: order.invoiceNumber,
   kotNumber: order.kotNumber,
+  orderType: order.orderType || "dinein",
   status: order.status,
   statusTimeline: order.statusTimeline || [],
+  deliveryStatus: order.deliveryStatus || "not_required",
+  deliveryTimeline: order.deliveryTimeline || [],
+  deliveryAgentName: order.deliveryAgentName || "",
   customerName: order.customerName || "",
   total: order.total,
   createdAt: order.createdAt,
@@ -117,12 +132,22 @@ const sanitizeTrackingPayload = (order) => ({
 });
 
 const Order = {
-  list: async () => store.read(),
+  list: async (query = {}) => {
+    const orders = await store.read();
+    if (query.outletId) {
+      return orders.filter((order) => order.outletId === String(query.outletId));
+    }
+    return orders;
+  },
 
-  listKitchenOrders: async (statuses = ["pending", "accepted", "preparing", "ready"]) => {
+  listKitchenOrders: async (
+    statuses = ["pending", "accepted", "preparing", "ready"],
+    outletId = ""
+  ) => {
     const orders = await store.read();
     return orders
       .filter((order) => statuses.includes(order.status))
+      .filter((order) => (outletId ? order.outletId === String(outletId) : true))
       .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
   },
 
@@ -184,18 +209,30 @@ const Order = {
     const gstAmount = roundMoney(cart.gstAmount || 0);
     const total = roundMoney(cart.total || 0);
     const paymentPayload = validatePayments(payload.payments, total);
+    const orderType = assertOrderType(payload.orderType || "dinein");
+    const deliveryStatus = orderType === "delivery" ? "placed" : "not_required";
 
     const order = {
       _id: randomUUID(),
       invoiceNumber,
       kotNumber,
+      outletId: String(payload.outletId || process.env.DEFAULT_OUTLET_ID || "main"),
+      orderType,
       cartId: cart._id,
       status: "pending",
       statusTimeline: [],
+      deliveryStatus,
+      deliveryTimeline:
+        deliveryStatus === "not_required"
+          ? []
+          : [{ status: deliveryStatus, at: now, by: payload.createdBy || null }],
+      deliveryAgentId: "",
+      deliveryAgentName: "",
       customerId: payload.customerId || cart.customerId || "",
       customerName: payload.customerName || cart.customerName || "",
       customerPhone: payload.customerPhone || cart.customerPhone || "",
       customerEmail: payload.customerEmail || cart.customerEmail || "",
+      deliveryAddress: payload.deliveryAddress || "",
       orderSource: payload.orderSource || "counter",
       tableNo: payload.tableNo || "",
       waiterName: payload.waiterName || "",
@@ -313,6 +350,63 @@ const Order = {
       return null;
     }
     return sanitizeTrackingPayload(order);
+  },
+
+  assignDelivery: async (orderId, payload = {}) => {
+    const orders = await store.read();
+    const index = findOrderIndex(orders, orderId);
+    if (index === -1) {
+      throw new Error("Order not found");
+    }
+
+    const order = orders[index];
+    if (order.orderType !== "delivery") {
+      throw new Error("Delivery assignment is allowed only for delivery orders");
+    }
+
+    order.deliveryAgentId = payload.agentId || "";
+    order.deliveryAgentName = payload.agentName || "";
+    order.updatedAt = new Date().toISOString();
+    orders[index] = order;
+    await store.write(orders);
+    return order;
+  },
+
+  updateDeliveryStatus: async (orderId, status, actorId = null) => {
+    const orders = await store.read();
+    const index = findOrderIndex(orders, orderId);
+    if (index === -1) {
+      throw new Error("Order not found");
+    }
+
+    const order = orders[index];
+    if (order.orderType !== "delivery") {
+      throw new Error("Delivery status is allowed only for delivery orders");
+    }
+
+    const nextStatus = String(status || "").toLowerCase();
+    if (!DELIVERY_STATUSES.includes(nextStatus)) {
+      throw new Error("Invalid delivery status");
+    }
+
+    order.deliveryStatus = nextStatus;
+    order.deliveryTimeline = order.deliveryTimeline || [];
+    order.deliveryTimeline.push({
+      status: nextStatus,
+      at: new Date().toISOString(),
+      by: actorId,
+    });
+
+    if (nextStatus === "delivered" && order.status !== "completed") {
+      order.status = "completed";
+      order.completedAt = new Date().toISOString();
+      appendStatusTimeline(order, "completed", actorId);
+    }
+
+    order.updatedAt = new Date().toISOString();
+    orders[index] = order;
+    await store.write(orders);
+    return order;
   },
 };
 

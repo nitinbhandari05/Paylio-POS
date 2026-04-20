@@ -1,232 +1,854 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>POS System</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Paylio POS - Premium UI</title>
   <style>
+    :root {
+      --primary: #e53935;
+      --text: #111827;
+      --muted: #6b7280;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --border: #e5e7eb;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --radius: 14px;
+      --shadow: 0 8px 24px rgba(17, 24, 39, 0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
-      font-family: Arial;
+      background: linear-gradient(145deg, #eef2ff 0%, #f8fafc 32%, #fff7ed 100%);
+      font-family: "Poppins", "Inter", "Segoe UI", sans-serif;
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    .app {
+      min-height: 100vh;
+      display: grid;
+      grid-template-rows: auto auto 1fr;
+    }
+
+    .topbar {
+      display: grid;
+      grid-template-columns: 1.4fr repeat(4, auto);
+      gap: 12px;
+      align-items: center;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .pill, .search {
+      height: 44px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: #fff;
+      padding: 0 14px;
       display: flex;
-      height: 100vh;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 14px;
     }
 
-    /* Sidebar */
-    .sidebar {
-      width: 200px;
-      background: #2c2c2c;
-      color: white;
-      padding: 10px;
+    .search input {
+      border: none;
+      outline: none;
+      width: 100%;
+      font-size: 14px;
+      font-family: inherit;
+      color: var(--text);
     }
 
-    .category {
-      padding: 10px;
-      background: #444;
-      margin: 5px 0;
+    .tabs {
+      display: flex;
+      gap: 10px;
+      padding: 12px 20px 14px;
+      border-bottom: 1px solid var(--border);
+      background: #fff;
+      position: sticky;
+      top: 77px;
+      z-index: 40;
+    }
+
+    .tab-btn {
+      height: 40px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: #fff;
+      padding: 0 18px;
+      font-size: 14px;
+      font-weight: 600;
       cursor: pointer;
+      color: var(--text);
     }
 
-    .category:hover {
-      background: #666;
+    .tab-btn.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
     }
 
-    /* Products */
-    .products {
-      flex: 2;
+    .view {
+      display: none;
+      padding: 16px;
+      gap: 16px;
+    }
+
+    .view.active {
+      display: grid;
+    }
+
+    .pos-layout {
+      grid-template-columns: 240px 1fr 370px;
+      align-items: start;
+    }
+
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .panel-title {
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border);
+      font-weight: 700;
+    }
+
+    .category-list {
+      padding: 8px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .category-btn {
+      min-height: 44px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #fff;
+      cursor: pointer;
+      text-align: left;
+      padding: 0 12px;
+      font-weight: 600;
+    }
+
+    .category-btn.active {
+      background: #fee2e2;
+      border-color: #fecaca;
+      color: #991b1b;
+    }
+
+    .products-wrap {
+      display: grid;
+      gap: 12px;
+    }
+
+    .quick-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 10px 10px 2px;
+    }
+
+    .chip {
+      min-height: 36px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: #fff;
+      padding: 0 12px;
+      font-size: 13px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 12px;
+      padding: 10px;
+    }
+
+    .product-card {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #fff;
+      padding: 12px;
+      min-height: 132px;
+      display: grid;
+      gap: 8px;
+      cursor: pointer;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(229, 57, 53, 0.12);
+    }
+
+    .product-name {
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .product-meta {
+      font-size: 12px;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .badge {
+      font-size: 11px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      font-weight: 600;
+    }
+
+    .badge.veg {
+      color: #065f46;
+      background: #d1fae5;
+    }
+
+    .badge.nonveg {
+      color: #7f1d1d;
+      background: #fee2e2;
+    }
+
+    .cart-body {
+      max-height: calc(100vh - 320px);
+      overflow: auto;
       padding: 10px;
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
       gap: 10px;
-      background: #f5f5f5;
-    }
-
-    .product {
-      background: white;
-      padding: 15px;
-      border: 1px solid #ddd;
-      cursor: pointer;
-      text-align: center;
-      border-radius: 5px;
-    }
-
-    /* Cart */
-    .cart {
-      flex: 1;
-      background: #fff;
-      border-left: 2px solid #ddd;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .cart-items {
-      flex: 1;
-      padding: 10px;
     }
 
     .cart-item {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .cart-row {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 10px;
+      align-items: center;
+      gap: 8px;
     }
 
-    .total {
-      padding: 10px;
-      font-size: 18px;
-      font-weight: bold;
-    }
-
-    .actions {
-      padding: 10px;
+    .qty-box {
       display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .qty-btn {
+      min-width: 32px;
+      min-height: 32px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: #fff;
+      cursor: pointer;
+    }
+
+    .cart-summary {
+      border-top: 1px solid var(--border);
+      padding: 12px 14px;
+      display: grid;
+      gap: 8px;
+      font-size: 14px;
+    }
+
+    .summary-total {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--primary);
+      border-top: 1px dashed var(--border);
+      padding-top: 10px;
+      margin-top: 2px;
+    }
+
+    .bottom-actions {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      padding: 12px;
+      border-top: 1px solid var(--border);
+      background: #fff;
+      position: sticky;
+      bottom: 0;
+    }
+
+    .btn {
+      min-height: 44px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      font-weight: 700;
+      cursor: pointer;
+      background: #fff;
+    }
+
+    .btn.primary {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #fff;
+    }
+
+    .tables-grid {
+      padding: 12px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
       gap: 10px;
     }
 
-    button {
-      flex: 1;
+    .table-chip {
+      min-height: 56px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      display: grid;
+      place-items: center;
+      font-size: 14px;
+      font-weight: 700;
+      background: #fff;
+    }
+
+    .free { background: #dcfce7; color: #166534; }
+    .occupied { background: #fee2e2; color: #991b1b; }
+    .reserved { background: #fef3c7; color: #92400e; }
+    .ordered { background: #dbeafe; color: #1e40af; }
+
+    .admin-layout {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .stat-card {
+      padding: 16px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .stat-value {
+      font-size: 30px;
+      font-weight: 800;
+      margin-top: 6px;
+    }
+
+    .wide {
+      grid-column: span 2;
+      min-height: 260px;
+    }
+
+    .kitchen-layout {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .k-lane {
+      border: 1px solid #334155;
+      border-radius: 14px;
+      background: #0f172a;
+      color: #e2e8f0;
+      min-height: 540px;
+      overflow: hidden;
+    }
+
+    .k-title {
+      padding: 14px;
+      border-bottom: 1px solid #334155;
+      font-weight: 700;
+    }
+
+    .k-order {
+      margin: 10px;
+      border: 1px solid #334155;
+      border-radius: 10px;
+      background: #1e293b;
       padding: 10px;
-      border: none;
-      cursor: pointer;
-      background: red;
-      color: white;
-      border-radius: 5px;
+      display: grid;
+      gap: 6px;
+      font-size: 14px;
     }
 
-    .remove-btn {
-      background: black;
-      padding: 2px 6px;
-      cursor: pointer;
-      color: white;
-      border-radius: 3px;
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.55);
+      display: none;
+      place-items: center;
+      padding: 16px;
+      z-index: 99;
     }
 
+    .modal.open {
+      display: grid;
+    }
+
+    .modal-card {
+      width: 100%;
+      max-width: 420px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: #fff;
+      box-shadow: 0 20px 40px rgba(17, 24, 39, 0.22);
+      padding: 18px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .field {
+      display: grid;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .field input {
+      height: 42px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0 10px;
+      font-size: 14px;
+      font-family: inherit;
+    }
+
+    .shortcut {
+      font-size: 12px;
+      color: var(--muted);
+      padding: 0 20px 16px;
+    }
+
+    @media (max-width: 1200px) {
+      .pos-layout { grid-template-columns: 1fr; }
+      .admin-layout { grid-template-columns: 1fr 1fr; }
+      .kitchen-layout { grid-template-columns: 1fr; }
+      .topbar { grid-template-columns: 1fr 1fr; }
+      .tabs { top: 133px; }
+    }
   </style>
 </head>
-
 <body>
+  <div class="app">
+    <header class="topbar">
+      <label class="search">
+        <span>🔎</span>
+        <input id="globalSearch" placeholder="Search products, orders, customers..." />
+      </label>
+      <div class="pill">🏪 Main Outlet</div>
+      <div class="pill">👤 Cashier Asha</div>
+      <div class="pill">🕒 Shift Morning</div>
+      <div class="pill">🔔 3 Alerts</div>
+    </header>
 
-  <!-- Sidebar -->
-  <div class="sidebar">
-    <h3>Categories</h3>
-    <div class="category" onclick="filterCategory('all')">All</div>
-    <div class="category" onclick="filterCategory('chai')">Chai</div>
-    <div class="category" onclick="filterCategory('food')">Food</div>
-    <div class="category" onclick="filterCategory('drink')">Drinks</div>
+    <nav class="tabs">
+      <button class="tab-btn active" data-tab="pos">POS Billing</button>
+      <button class="tab-btn" data-tab="admin">Admin Dashboard</button>
+      <button class="tab-btn" data-tab="kitchen">Kitchen Display</button>
+    </nav>
+
+    <main>
+      <section class="view pos-layout active" id="view-pos">
+        <aside class="panel">
+          <div class="panel-title">Categories</div>
+          <div class="category-list" id="categoryList"></div>
+          <div class="panel-title">Tables</div>
+          <div class="tables-grid" id="tablesGrid"></div>
+        </aside>
+
+        <section class="panel products-wrap">
+          <div class="quick-actions">
+            <button class="chip" id="favoritesFilter">⭐ Favorites</button>
+            <button class="chip">🧍 Walk-in</button>
+            <button class="chip">📷 QR Table</button>
+            <button class="chip">🚚 Delivery</button>
+          </div>
+          <div class="product-grid" id="productsGrid"></div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-title">Cart</div>
+          <div class="cart-body" id="cartBody"></div>
+          <div class="cart-summary">
+            <div class="cart-row"><span>Subtotal</span><strong id="subtotalValue">₹0</strong></div>
+            <div class="cart-row"><span>GST (5%)</span><strong id="gstValue">₹0</strong></div>
+            <div class="cart-row"><span>Discount</span><strong id="discountValue">₹0</strong></div>
+            <div class="cart-row summary-total"><span>Total</span><span id="totalValue">₹0</span></div>
+          </div>
+          <div class="bottom-actions">
+            <button class="btn" id="cashBtn">Cash</button>
+            <button class="btn" id="cardBtn">Card</button>
+            <button class="btn" id="upiBtn">UPI</button>
+            <button class="btn" id="holdBtn">Hold</button>
+            <button class="btn" id="printBtn">Print</button>
+            <button class="btn primary" id="payBtn">Pay</button>
+          </div>
+        </section>
+      </section>
+
+      <section class="view admin-layout" id="view-admin">
+        <article class="stat-card">
+          <div class="stat-label">Sales Today</div>
+          <div class="stat-value">₹18,400</div>
+        </article>
+        <article class="stat-card">
+          <div class="stat-label">Orders</div>
+          <div class="stat-value">92</div>
+        </article>
+        <article class="stat-card">
+          <div class="stat-label">Low Stock Items</div>
+          <div class="stat-value">6</div>
+        </article>
+        <article class="stat-card">
+          <div class="stat-label">Active Outlets</div>
+          <div class="stat-value">4</div>
+        </article>
+        <article class="stat-card wide">
+          <div class="panel-title">Outlet Performance</div>
+          <table style="width:100%; border-collapse:collapse; font-size:14px;">
+            <thead>
+              <tr style="text-align:left; color:#6b7280;">
+                <th style="padding:10px;">Outlet</th>
+                <th style="padding:10px;">Orders</th>
+                <th style="padding:10px;">Sales</th>
+                <th style="padding:10px;">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td style="padding:10px;">Main</td><td>42</td><td>₹8,900</td><td style="color:#10b981;">Healthy</td></tr>
+              <tr><td style="padding:10px;">Airport</td><td>20</td><td>₹3,950</td><td style="color:#f59e0b;">Watch</td></tr>
+              <tr><td style="padding:10px;">Tech Park</td><td>16</td><td>₹2,980</td><td style="color:#10b981;">Healthy</td></tr>
+              <tr><td style="padding:10px;">Mall</td><td>14</td><td>₹2,570</td><td style="color:#ef4444;">Low Staff</td></tr>
+            </tbody>
+          </table>
+        </article>
+        <article class="stat-card wide">
+          <div class="panel-title">Live Alerts</div>
+          <ul style="margin: 12px 0 0; padding-left: 18px; color:#374151; line-height:1.7;">
+            <li>Milk stock below threshold in Main Outlet</li>
+            <li>4 orders pending over 12 minutes in Kitchen</li>
+            <li>Card settlement pending for Shift B</li>
+            <li>Delivery delay alert for Order #1204</li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="view kitchen-layout" id="view-kitchen">
+        <div class="k-lane">
+          <div class="k-title">Pending</div>
+          <div class="k-order"><strong>#1209</strong><div>2 Tea</div><div>1 Burger</div><small>5 mins waiting</small></div>
+          <div class="k-order"><strong>#1210</strong><div>1 Pasta</div><div>1 Lime Soda</div><small>3 mins waiting</small></div>
+        </div>
+        <div class="k-lane">
+          <div class="k-title">Preparing</div>
+          <div class="k-order"><strong>#1204</strong><div>1 Pizza</div><div>2 Coffee</div><small>12 mins waiting</small></div>
+        </div>
+        <div class="k-lane">
+          <div class="k-title">Ready</div>
+          <div class="k-order"><strong>#1198</strong><div>3 Tea</div><small>Ready for pickup</small></div>
+          <div class="k-order"><strong>#1201</strong><div>1 Sandwich</div><small>Ready for waiter</small></div>
+        </div>
+      </section>
+    </main>
+    <div class="shortcut">Shortcuts: F1 Search | F2 Cash | F3 Card | F4 Print | ESC Close modal</div>
   </div>
 
-  <!-- Products -->
-  <div class="products" id="products"></div>
-
-  <!-- Cart -->
-  <div class="cart">
-    <div class="cart-items" id="cart"></div>
-
-    <div class="total">
-      Total: ₹<span id="total">0</span>
-    </div>
-
-    <div class="actions">
-      <button onclick="checkout()">Pay</button>
+  <div class="modal" id="paymentModal">
+    <div class="modal-card">
+      <h3 style="margin:0;">Split Payment</h3>
+      <div class="field">
+        <label>Total</label>
+        <input id="paymentTotal" readonly />
+      </div>
+      <div class="field">
+        <label>Cash</label>
+        <input id="cashInput" type="number" min="0" value="0" />
+      </div>
+      <div class="field">
+        <label>Card</label>
+        <input id="cardInput" type="number" min="0" value="0" />
+      </div>
+      <div class="field">
+        <label>UPI</label>
+        <input id="upiInput" type="number" min="0" value="0" />
+      </div>
+      <div class="cart-row">
+        <span>Balance</span>
+        <strong id="balanceValue">₹0</strong>
+      </div>
+      <div style="display:flex; gap:8px;">
+        <button class="btn" id="cancelPayBtn">Cancel</button>
+        <button class="btn primary" id="confirmPayBtn">Confirm Payment</button>
+      </div>
     </div>
   </div>
 
-<script>
-// 🔹 Products with category
-const products = [
-  { id: 1, name: "Adrak Chai", price: 20, category: "chai" },
-  { id: 2, name: "Elaichi Chai", price: 25, category: "chai" },
-  { id: 3, name: "Burger", price: 80, category: "food" },
-  { id: 4, name: "Pizza", price: 150, category: "food" },
-  { id: 5, name: "Cold Drink", price: 40, category: "drink" }
-];
+  <script>
+    const categories = ["All", "Chai", "Food", "Drinks", "Dessert"];
+    const products = [
+      { id: 1, name: "Adrak Chai", price: 20, category: "Chai", type: "veg", favorite: true },
+      { id: 2, name: "Elaichi Chai", price: 25, category: "Chai", type: "veg", favorite: true },
+      { id: 3, name: "Masala Fries", price: 90, category: "Food", type: "veg", favorite: false },
+      { id: 4, name: "Paneer Burger Deluxe", price: 149, category: "Food", type: "veg", favorite: true },
+      { id: 5, name: "Chicken Wrap", price: 180, category: "Food", type: "nonveg", favorite: false },
+      { id: 6, name: "Cold Coffee", price: 120, category: "Drinks", type: "veg", favorite: false },
+      { id: 7, name: "Lemon Soda", price: 60, category: "Drinks", type: "veg", favorite: true },
+      { id: 8, name: "Chocolate Brownie", price: 110, category: "Dessert", type: "veg", favorite: false }
+    ];
 
-let cart = [];
-let filteredProducts = [...products];
+    const tables = [
+      { label: "T1 Free", status: "free" },
+      { label: "T2 Occupied", status: "occupied" },
+      { label: "T3 Reserved", status: "reserved" },
+      { label: "T4 Ordered", status: "ordered" }
+    ];
 
-// 🔹 Render Products
-function renderProducts() {
-  const container = document.getElementById("products");
-  container.innerHTML = "";
+    let selectedCategory = "All";
+    let favoriteOnly = false;
+    let cart = [];
 
-  filteredProducts.forEach(p => {
-    const div = document.createElement("div");
-    div.className = "product";
-    div.innerHTML = `${p.name}<br>₹${p.price}`;
-    div.onclick = () => addToCart(p);
-    container.appendChild(div);
-  });
-}
+    const categoryList = document.getElementById("categoryList");
+    const tablesGrid = document.getElementById("tablesGrid");
+    const productsGrid = document.getElementById("productsGrid");
+    const cartBody = document.getElementById("cartBody");
+    const globalSearch = document.getElementById("globalSearch");
+    const favoritesFilter = document.getElementById("favoritesFilter");
+    const paymentModal = document.getElementById("paymentModal");
+    const paymentTotal = document.getElementById("paymentTotal");
+    const cashInput = document.getElementById("cashInput");
+    const cardInput = document.getElementById("cardInput");
+    const upiInput = document.getElementById("upiInput");
+    const balanceValue = document.getElementById("balanceValue");
 
-// 🔹 Filter Category
-function filterCategory(cat) {
-  if (cat === "all") {
-    filteredProducts = products;
-  } else {
-    filteredProducts = products.filter(p => p.category === cat);
-  }
-  renderProducts();
-}
+    function currency(value) {
+      return `₹${Math.round(value)}`;
+    }
 
-// 🔹 Add to Cart (with quantity)
-function addToCart(product) {
-  const existing = cart.find(item => item.id === product.id);
+    function getTotals() {
+      const subtotal = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+      const gst = subtotal * 0.05;
+      const discount = subtotal > 500 ? 30 : 0;
+      const total = subtotal + gst - discount;
+      return { subtotal, gst, discount, total };
+    }
 
-  if (existing) {
-    existing.qty++;
-  } else {
-    cart.push({ ...product, qty: 1 });
-  }
+    function renderCategories() {
+      categoryList.innerHTML = "";
+      categories.forEach((category) => {
+        const button = document.createElement("button");
+        button.className = `category-btn${category === selectedCategory ? " active" : ""}`;
+        button.textContent = category;
+        button.onclick = () => {
+          selectedCategory = category;
+          renderCategories();
+          renderProducts();
+        };
+        categoryList.appendChild(button);
+      });
+    }
 
-  renderCart();
-}
+    function renderTables() {
+      tablesGrid.innerHTML = "";
+      tables.forEach((table) => {
+        const div = document.createElement("div");
+        div.className = `table-chip ${table.status}`;
+        div.textContent = table.label;
+        tablesGrid.appendChild(div);
+      });
+    }
 
-// 🔹 Remove Item
-function removeItem(id) {
-  cart = cart.filter(item => item.id !== id);
-  renderCart();
-}
+    function renderProducts() {
+      const q = globalSearch.value.trim().toLowerCase();
+      const list = products.filter((item) => {
+        const byCategory = selectedCategory === "All" || item.category === selectedCategory;
+        const byFavorite = !favoriteOnly || item.favorite;
+        const bySearch = !q || item.name.toLowerCase().includes(q);
+        return byCategory && byFavorite && bySearch;
+      });
 
-// 🔹 Render Cart
-function renderCart() {
-  const cartDiv = document.getElementById("cart");
-  cartDiv.innerHTML = "";
+      productsGrid.innerHTML = "";
+      list.forEach((item) => {
+        const card = document.createElement("div");
+        card.className = "product-card";
+        card.innerHTML = `
+          <div class="product-name">${item.name}</div>
+          <div class="product-meta">
+            <strong>${currency(item.price)}</strong>
+            <span class="badge ${item.type}">${item.type === "veg" ? "Veg" : "Non-Veg"}</span>
+          </div>
+          <div class="product-meta">
+            <span>${item.category}</span>
+            <span>Available</span>
+          </div>
+        `;
+        card.onclick = () => addToCart(item);
+        productsGrid.appendChild(card);
+      });
+    }
 
-  let total = 0;
+    function addToCart(item) {
+      const existing = cart.find((entry) => entry.id === item.id);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({ ...item, qty: 1 });
+      }
+      renderCart();
+    }
 
-  cart.forEach(item => {
-    total += item.price * item.qty;
+    function changeQty(id, delta) {
+      cart = cart
+        .map((item) => (item.id === id ? { ...item, qty: item.qty + delta } : item))
+        .filter((item) => item.qty > 0);
+      renderCart();
+    }
 
-    const div = document.createElement("div");
-    div.className = "cart-item";
-    div.innerHTML = `
-      ${item.name} x${item.qty} - ₹${item.price * item.qty}
-      <span class="remove-btn" onclick="removeItem(${item.id})">X</span>
-    `;
-    cartDiv.appendChild(div);
-  });
+    function renderCart() {
+      cartBody.innerHTML = "";
+      if (!cart.length) {
+        cartBody.innerHTML = '<div style="padding:12px; color:#6b7280;">Cart is empty. Add products to begin billing.</div>';
+      }
+      cart.forEach((item) => {
+        const row = document.createElement("div");
+        row.className = "cart-item";
+        row.innerHTML = `
+          <div class="cart-row">
+            <strong>${item.name}</strong>
+            <strong>${currency(item.price * item.qty)}</strong>
+          </div>
+          <div class="cart-row">
+            <span style="font-size:12px; color:#6b7280;">+ note: less spicy</span>
+            <div class="qty-box">
+              <button class="qty-btn" onclick="changeQty(${item.id}, -1)">-</button>
+              <strong>${item.qty}</strong>
+              <button class="qty-btn" onclick="changeQty(${item.id}, 1)">+</button>
+            </div>
+          </div>
+        `;
+        cartBody.appendChild(row);
+      });
 
-  document.getElementById("total").innerText = total;
-}
+      const totals = getTotals();
+      document.getElementById("subtotalValue").textContent = currency(totals.subtotal);
+      document.getElementById("gstValue").textContent = currency(totals.gst);
+      document.getElementById("discountValue").textContent = `-${currency(totals.discount)}`;
+      document.getElementById("totalValue").textContent = currency(totals.total);
+    }
 
-// 🔹 Checkout
-function checkout() {
-  if (cart.length === 0) {
-    alert("Cart is empty");
-    return;
-  }
+    function openPayment() {
+      const totals = getTotals();
+      if (!cart.length) {
+        alert("Cart is empty");
+        return;
+      }
+      paymentModal.classList.add("open");
+      paymentTotal.value = currency(totals.total);
+      cashInput.value = 0;
+      cardInput.value = 0;
+      upiInput.value = 0;
+      updateBalance();
+    }
 
-  const invoiceNumber = "INV-" + Date.now();
-  let total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+    function closePayment() {
+      paymentModal.classList.remove("open");
+    }
 
-  alert(`Invoice: ${invoiceNumber}\nTotal: ₹${total}`);
+    function updateBalance() {
+      const totals = getTotals();
+      const paid = Number(cashInput.value || 0) + Number(cardInput.value || 0) + Number(upiInput.value || 0);
+      balanceValue.textContent = currency(totals.total - paid);
+      balanceValue.style.color = paid >= totals.total ? "#10b981" : "#ef4444";
+    }
 
-  // Reset cart
-  cart = [];
-  renderCart();
-}
+    function confirmPayment() {
+      const totals = getTotals();
+      const paid = Number(cashInput.value || 0) + Number(cardInput.value || 0) + Number(upiInput.value || 0);
+      if (paid < totals.total) {
+        alert("Payment not complete");
+        return;
+      }
+      const invoice = `INV-${Date.now().toString().slice(-6)}`;
+      alert(`Payment success\nInvoice: ${invoice}\nTotal: ${currency(totals.total)}`);
+      cart = [];
+      renderCart();
+      closePayment();
+    }
 
-// 🔹 Init
-renderProducts();
+    function switchTab(tab) {
+      document.querySelectorAll(".tab-btn").forEach((button) => {
+        button.classList.toggle("active", button.dataset.tab === tab);
+      });
+      document.querySelectorAll(".view").forEach((view) => {
+        view.classList.toggle("active", view.id === `view-${tab}`);
+      });
+    }
 
-</script>
+    document.querySelectorAll(".tab-btn").forEach((button) => {
+      button.addEventListener("click", () => switchTab(button.dataset.tab));
+    });
 
+    globalSearch.addEventListener("input", renderProducts);
+    favoritesFilter.addEventListener("click", () => {
+      favoriteOnly = !favoriteOnly;
+      favoritesFilter.style.background = favoriteOnly ? "#fee2e2" : "#fff";
+      favoritesFilter.style.borderColor = favoriteOnly ? "#fecaca" : "var(--border)";
+      renderProducts();
+    });
+
+    document.getElementById("payBtn").addEventListener("click", openPayment);
+    document.getElementById("cashBtn").addEventListener("click", openPayment);
+    document.getElementById("cardBtn").addEventListener("click", openPayment);
+    document.getElementById("upiBtn").addEventListener("click", openPayment);
+    document.getElementById("cancelPayBtn").addEventListener("click", closePayment);
+    document.getElementById("confirmPayBtn").addEventListener("click", confirmPayment);
+    cashInput.addEventListener("input", updateBalance);
+    cardInput.addEventListener("input", updateBalance);
+    upiInput.addEventListener("input", updateBalance);
+
+    window.addEventListener("keydown", (event) => {
+      if (event.key === "F1") {
+        event.preventDefault();
+        globalSearch.focus();
+      } else if (event.key === "F2" || event.key === "F3" || event.key === "F4") {
+        event.preventDefault();
+        openPayment();
+      } else if (event.key === "Escape") {
+        closePayment();
+      }
+    });
+
+    renderCategories();
+    renderTables();
+    renderProducts();
+    renderCart();
+  </script>
 </body>
 </html>

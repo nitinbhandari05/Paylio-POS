@@ -211,6 +211,7 @@ const Cart = {
     const cart = {
       _id: randomUUID(),
       status: "open",
+      outletId: String(payload.outletId || process.env.DEFAULT_OUTLET_ID || "main"),
       ...customer,
       notes: payload.notes || "",
       gstRate: toNumber(payload.gstRate, DEFAULT_GST_RATE),
@@ -290,7 +291,7 @@ const Cart = {
     const unitPrice = toNumber(payload.unitPrice, product.price);
     const existingItem = cart.items.find((item) => item.productId === product._id);
     const nextItemPatch = {
-      gstRate: toNumber(payload.gstRate, product.gstRate || cart.gstRate || DEFAULT_GST_RATE),
+      gstRate: toNumber(payload.gstRate, product.taxRate || cart.gstRate || DEFAULT_GST_RATE),
       discountType: payload.discountType || product.discountType || "flat",
       discountValue: toNumber(payload.discountValue, product.discountValue || 0),
       note: payload.note || "",

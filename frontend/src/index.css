@@ -707,6 +707,12 @@ select {
   font-weight: 700;
 }
 
+.login-form .link-btn {
+  background: transparent;
+  color: #0f172a;
+  border: 1px dashed var(--line);
+}
+
 .login-note {
   color: var(--muted);
   font-size: 12px;

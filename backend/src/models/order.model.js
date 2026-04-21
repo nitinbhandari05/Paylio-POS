@@ -22,7 +22,7 @@ const STATUS_FLOW = [
 
 const FINAL_STATUSES = ["completed", "cancelled", "refunded"];
 const PAYMENT_METHODS = ["cash", "card", "upi", "wallet", "bank", "split"];
-const ORDER_TYPES = ["dinein", "pickup", "delivery", "qr_table", "kiosk"];
+const ORDER_TYPES = ["walkin", "dinein", "pickup", "delivery", "qr_table", "kiosk"];
 const DELIVERY_STATUSES = ["not_required", "placed", "preparing", "out_for_delivery", "delivered"];
 
 const toNumber = (value, fallback = 0) => {

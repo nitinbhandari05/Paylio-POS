@@ -10,6 +10,7 @@ const store = createArrayStore(resolve(__dirname, "../../data/users.json"));
 
 const normalizeEmail = (email) => String(email || "").trim().toLowerCase();
 const normalizePin = (pin) => String(pin || "").trim();
+const normalizePhone = (phone) => String(phone || "").trim();
 
 const User = {
   list: async () => store.read(),
@@ -31,6 +32,11 @@ const User = {
       return users.find((item) => normalizePin(item.pin) === pin) || null;
     }
 
+    if (query.phone) {
+      const phone = normalizePhone(query.phone);
+      return users.find((item) => normalizePhone(item.phone) === phone) || null;
+    }
+
     return users.find((item) =>
       Object.entries(query).every(([key, value]) => item[key] === value)
     ) || null;
@@ -39,13 +45,22 @@ const User = {
   create: async (payload = {}) => {
     const users = await store.read();
     const email = normalizeEmail(payload.email);
-    if (!email) {
-      throw new Error("Email is required");
+    const phone = normalizePhone(payload.phone);
+    if (!email && !phone) {
+      throw new Error("Email or phone is required");
     }
 
-    const existing = users.find((item) => normalizeEmail(item.email) === email);
-    if (existing) {
+    const hasEmailConflict = email
+      ? users.some((item) => normalizeEmail(item.email) === email)
+      : false;
+    if (hasEmailConflict) {
       throw new Error("User already exists");
+    }
+    const hasPhoneConflict = phone
+      ? users.some((item) => normalizePhone(item.phone) === phone)
+      : false;
+    if (hasPhoneConflict) {
+      throw new Error("Phone is already registered");
     }
 
     const now = new Date().toISOString();
@@ -53,6 +68,7 @@ const User = {
       _id: randomUUID(),
       name: payload.name || "",
       email,
+      phone,
       password: payload.password || "",
       pin: normalizePin(payload.pin),
       role: payload.role || "cashier",
@@ -82,6 +98,7 @@ const User = {
     if (payload.name !== undefined) users[index].name = payload.name;
     if (payload.password !== undefined) users[index].password = payload.password;
     if (payload.pin !== undefined) users[index].pin = normalizePin(payload.pin);
+    if (payload.phone !== undefined) users[index].phone = normalizePhone(payload.phone);
     if (payload.role !== undefined) users[index].role = payload.role;
     if (payload.outletId !== undefined) users[index].outletId = payload.outletId;
     if (payload.organizationId !== undefined) users[index].organizationId = payload.organizationId;

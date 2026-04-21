@@ -1,5 +1,5 @@
 import React from "react";
-import { ScanLine, Search, UserRound, TableProperties } from "lucide-react";
+import { Search, UserRound, TableProperties } from "lucide-react";
 import { usePOS } from "../../context/POSContext";
 
 const TABLES = ["T1", "T2", "T3", "T4", "T5", "T6", "T7", "T8"];
@@ -14,15 +14,6 @@ export default function POSHeader() {
     setCustomer,
     table,
     setTable,
-    shift,
-    setShift,
-    waiterName,
-    setWaiterName,
-    barcodeTerm,
-    setBarcodeTerm,
-    addByBarcodeOrSku,
-    cashier,
-    menuStatus,
   } = usePOS();
 
   return (
@@ -36,22 +27,6 @@ export default function POSHeader() {
           placeholder="Search products"
         />
         </div>
-
-      <div className="field icon-field">
-        <ScanLine size={16} />
-        <input
-          value={barcodeTerm}
-          onChange={(e) => setBarcodeTerm(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              const ok = addByBarcodeOrSku(barcodeTerm);
-              if (!ok) window.alert("Barcode/SKU not found");
-              setBarcodeTerm("");
-            }
-          }}
-          placeholder="Scan barcode / SKU"
-        />
-      </div>
 
       <select value={orderType} onChange={(e) => setOrderType(e.target.value)} className="field">
         <option value="dinein">Dine In</option>
@@ -74,22 +49,6 @@ export default function POSHeader() {
           ))}
         </select>
       </div>
-
-      <select value={shift} onChange={(e) => setShift(e.target.value)} className="field">
-        <option>Morning Shift</option>
-        <option>Afternoon Shift</option>
-        <option>Night Shift</option>
-      </select>
-
-      <div className="field icon-field">
-        <UserRound size={16} />
-        <input value={waiterName} onChange={(e) => setWaiterName(e.target.value)} placeholder="Waiter" />
-      </div>
-
-        <div className="field user-field">
-        <strong>{cashier}</strong>
-        <span>{menuStatus}</span>
-        </div>
 
       </header>
     </>

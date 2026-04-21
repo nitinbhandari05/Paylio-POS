@@ -1,0 +1,14 @@
+[
+  {
+    "_id": "6e6785ee-2345-4a0e-ad95-3b47440f3f6c",
+    "purpose": "register",
+    "channel": "phone",
+    "target": "08559084059",
+    "code": "513676",
+    "attempts": 0,
+    "maxAttempts": 5,
+    "requestedAt": "2026-04-21T06:29:52.025Z",
+    "expiresAt": "2026-04-21T06:39:52.025Z",
+    "usedAt": null
+  }
+]

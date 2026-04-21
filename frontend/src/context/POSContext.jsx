@@ -20,6 +20,7 @@ const formatMoney = (value) =>
 
 export function POSProvider({ children }) {
   const [products, setProducts] = useState(DEMO_PRODUCTS);
+  const [masterCategories, setMasterCategories] = useState([]);
   const [menuStatus, setMenuStatus] = useState("Loading menu...");
 
   const [searchTerm, setSearchTerm] = useState("");
@@ -77,38 +78,44 @@ export function POSProvider({ children }) {
     localStorage.setItem(key, JSON.stringify(pending));
   };
 
-  useEffect(() => {
-    const bootstrap = async () => {
-      try {
-        const response = await fetch("/api/public/menu");
-        if (!response.ok) throw new Error("Failed to fetch menu");
+  const loadCatalog = async () => {
+    try {
+      const [menuRes, categoryRes] = await Promise.all([
+        fetch("/api/public/menu"),
+        fetch("/api/categories"),
+      ]);
 
-        const payload = await response.json();
-        const menu = Array.isArray(payload.menu) ? payload.menu : [];
-        const mapped = menu.map((item, idx) => ({
-          id: item._id || `p-${idx}`,
-          productId: item._id || "",
-          name: item.name || "Unnamed",
-          price: Number(item.price || 0),
-          category: item.categoryName || "Uncategorized",
-          sku: item.sku || "",
-          stock: Number(item.stock || 99),
-          type: "veg",
-        }));
+      const menuData = await menuRes.json();
+      const categoryData = await categoryRes.json();
+      const menu = Array.isArray(menuData.menu) ? menuData.menu : [];
+      const mapped = menu.map((item, idx) => ({
+        id: item._id || `p-${idx}`,
+        productId: item._id || "",
+        name: item.name || "Unnamed",
+        price: Number(item.price || 0),
+        category: item.categoryName || "Uncategorized",
+        sku: item.sku || "",
+        stock: Number(item.stock || 99),
+        type: "veg",
+      }));
 
-        if (!mapped.length) {
-          setMenuStatus("Demo menu loaded. Add backend products for live billing.");
-          return;
-        }
+      const categories = Array.isArray(categoryData.categories) ? categoryData.categories : [];
+      setMasterCategories(categories);
 
-        setProducts(mapped);
-        setMenuStatus(`Live menu synced (${mapped.length} items)`);
-      } catch {
-        setMenuStatus("Backend offline. Running in demo mode.");
+      if (!mapped.length) {
+        setMenuStatus("Demo menu loaded. Add backend products for live billing.");
+        return;
       }
-    };
 
-    bootstrap();
+      setProducts(mapped);
+      setMenuStatus(`Live menu synced (${mapped.length} items)`);
+    } catch {
+      setMenuStatus("Backend offline. Running in demo mode.");
+    }
+  };
+
+  useEffect(() => {
+    loadCatalog();
     syncOfflineOrders();
     const onOnline = () => {
       syncOfflineOrders();
@@ -116,6 +123,30 @@ export function POSProvider({ children }) {
     window.addEventListener("online", onOnline);
     return () => window.removeEventListener("online", onOnline);
   }, []);
+
+  const quickAddCategory = async (payload) => {
+    const response = await fetch("/api/categories", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.message || "Unable to create category");
+    await loadCatalog();
+    return data.category;
+  };
+
+  const quickAddProduct = async (payload) => {
+    const response = await fetch("/api/products", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.message || "Unable to create product");
+    await loadCatalog();
+    return data.product;
+  };
 
   const categories = useMemo(() => {
     const base = ["Favorites", ...new Set(products.map((item) => item.category).filter(Boolean))];
@@ -297,6 +328,10 @@ export function POSProvider({ children }) {
   const value = {
     products,
     menuStatus,
+    masterCategories,
+    loadCatalog,
+    quickAddCategory,
+    quickAddProduct,
     categories,
     filteredProducts,
     searchTerm,

@@ -30,6 +30,8 @@ export default function LoginPage({ onLogin }) {
         pin: pin.trim(),
         token: data.token,
         outletId: data.user?.outletId || "main",
+        organizationId: data.user?.organizationId || "org-main",
+        accessibleOutletIds: data.user?.accessibleOutletIds || [data.user?.outletId || "main"],
         loginAt: new Date().toISOString(),
       });
     } catch (error) {

@@ -16,6 +16,8 @@ router.patch("/:id/assignment", requireHeadOffice, async (req, res) => {
     const updated = await User.update(req.params.id, {
       role: req.body.role,
       outletId: req.body.outletId,
+      organizationId: req.body.organizationId,
+      accessibleOutletIds: req.body.accessibleOutletIds,
       isHeadOffice: req.body.isHeadOffice,
       active: req.body.active,
       name: req.body.name,

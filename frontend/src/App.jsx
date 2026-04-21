@@ -7,6 +7,7 @@ import {
   FileBarChart2,
   Settings,
   HandPlatter,
+  Smartphone,
   LogOut,
   Moon,
   Sun,
@@ -20,6 +21,7 @@ import ReportsPage from "./pages/ReportsPage";
 import SettingsPage from "./pages/SettingsPage";
 import WaiterPage from "./pages/WaiterPage";
 import LoginPage from "./pages/LoginPage";
+import OwnerMobilePage from "./pages/OwnerMobilePage";
 import { POSProvider } from "./context/POSContext";
 
 const NAV_ITEMS = [
@@ -28,6 +30,7 @@ const NAV_ITEMS = [
   { id: "inventory", label: "Inventory", icon: Warehouse },
   { id: "tables", label: "Tables", icon: Armchair },
   { id: "waiter", label: "Waiter", icon: HandPlatter },
+  { id: "owner", label: "Owner Mobile", icon: Smartphone },
   { id: "reports", label: "Reports", icon: FileBarChart2 },
   { id: "settings", label: "Settings", icon: Settings },
 ];
@@ -38,6 +41,7 @@ function renderPage(activePage, session, dark, toggleDark, logout) {
   if (activePage === "inventory") return <InventoryPage />;
   if (activePage === "tables") return <TableManagementPage />;
   if (activePage === "waiter") return <WaiterPage session={session} />;
+  if (activePage === "owner") return <OwnerMobilePage session={session} />;
   if (activePage === "reports") return <ReportsPage />;
   return (
     <SettingsPage

@@ -7,6 +7,7 @@ import PromoCode from "../models/promo-code.model.js";
 import Inventory from "../models/inventory.model.js";
 import User from "../models/user.model.js";
 import Branch from "../models/branch.model.js";
+import Subscription from "../models/subscription.model.js";
 import { buildKotText, buildReceiptText, queuePrintJob } from "../utils/print.js";
 import { emitRealtime } from "../utils/realtime.js";
 
@@ -15,30 +16,6 @@ const DEFAULT_OUTLET_ID = process.env.DEFAULT_OUTLET_ID || "main";
 
 const resolveOutlet = (req) =>
   String(req?.query?.outletId || req?.body?.outletId || DEFAULT_OUTLET_ID);
-
-const SUBSCRIPTION_PLANS = [
-  {
-    id: "starter",
-    name: "Starter",
-    monthlyINR: 1499,
-    outletsIncluded: 1,
-    features: ["POS Billing", "Basic Reports", "Inventory Tracking"],
-  },
-  {
-    id: "growth",
-    name: "Growth",
-    monthlyINR: 3999,
-    outletsIncluded: 3,
-    features: ["Everything in Starter", "Kitchen + Waiter Workflow", "Advanced Reports"],
-  },
-  {
-    id: "enterprise",
-    name: "Enterprise",
-    monthlyINR: 9999,
-    outletsIncluded: 999,
-    features: ["Multi Outlet", "Role Policies", "Priority Support", "Custom Integrations"],
-  },
-];
 
 const buildOrderSummary = (orders = []) => {
   const completedOrders = orders.filter((order) => order.status === "completed");
@@ -361,10 +338,11 @@ router.get("/outlets", async (_req, res) => {
 });
 
 router.get("/subscription/plans", async (_req, res) => {
+  const plans = await Subscription.listPlans();
   res.json({
     currency: "INR",
     billingCycle: "monthly",
-    plans: SUBSCRIPTION_PLANS,
+    plans,
   });
 });
 

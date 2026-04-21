@@ -6,6 +6,11 @@
     "pin": "1234",
     "password": "$2b$10$jHIh/HfAewE5nsMJE7D38ueUyezBFtlGNjtAw6FpaThQ66qxUayKm",
     "role": "user",
+    "organizationId": "org-main",
+    "outletId": "main",
+    "accessibleOutletIds": [
+      "main"
+    ],
     "createdAt": "2026-04-14T07:20:20.064Z",
     "updatedAt": "2026-04-14T07:20:20.064Z"
   }

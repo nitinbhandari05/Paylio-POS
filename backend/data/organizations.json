@@ -1,0 +1,14 @@
+[
+  {
+    "_id": "org-main",
+    "name": "Paylio Demo Hospitality Pvt Ltd",
+    "slug": "paylio-demo",
+    "gstin": "",
+    "ownerEmail": "owner@paylio.demo",
+    "timezone": "Asia/Kolkata",
+    "currency": "INR",
+    "active": true,
+    "createdAt": "2026-04-21T00:00:00.000Z",
+    "updatedAt": "2026-04-21T00:00:00.000Z"
+  }
+]

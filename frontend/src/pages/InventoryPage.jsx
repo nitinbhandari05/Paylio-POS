@@ -3,21 +3,42 @@ import React, { useEffect, useState } from "react";
 export default function InventoryPage() {
   const [summary, setSummary] = useState(null);
   const [stock, setStock] = useState([]);
+  const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
+
   const [productId, setProductId] = useState("");
   const [quantity, setQuantity] = useState(1);
   const [type, setType] = useState("in");
 
+  const [newCategory, setNewCategory] = useState({ name: "", description: "" });
+  const [newProduct, setNewProduct] = useState({
+    name: "",
+    sku: "",
+    categoryId: "",
+    price: "",
+    cost: "",
+    lowStockThreshold: "5",
+    unit: "pcs",
+  });
+
   const load = async () => {
     try {
-      const [summaryRes, stockRes] = await Promise.all([
+      const [summaryRes, stockRes, productsRes, categoriesRes] = await Promise.all([
         fetch("/api/public/inventory/summary"),
         fetch("/api/public/inventory/stock"),
+        fetch("/api/products"),
+        fetch("/api/categories"),
       ]);
+
       const summaryData = await summaryRes.json();
       const stockData = await stockRes.json();
+      const productsData = await productsRes.json();
+      const categoriesData = await categoriesRes.json();
 
       if (summaryRes.ok) setSummary(summaryData.summary || null);
       if (stockRes.ok) setStock(Array.isArray(stockData.stock) ? stockData.stock : []);
+      if (productsRes.ok) setProducts(Array.isArray(productsData.products) ? productsData.products : []);
+      if (categoriesRes.ok) setCategories(Array.isArray(categoriesData.categories) ? categoriesData.categories : []);
     } catch {
       // no-op
     }
@@ -48,6 +69,76 @@ export default function InventoryPage() {
     load();
   };
 
+  const submitCategory = async (event) => {
+    event.preventDefault();
+    if (!newCategory.name.trim()) {
+      window.alert("Category name is required");
+      return;
+    }
+
+    const response = await fetch("/api/categories", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: newCategory.name.trim(),
+        description: newCategory.description.trim(),
+      }),
+    });
+
+    const data = await response.json();
+    if (!response.ok) {
+      window.alert(data.message || "Unable to create category");
+      return;
+    }
+
+    setNewCategory({ name: "", description: "" });
+    load();
+  };
+
+  const submitProduct = async (event) => {
+    event.preventDefault();
+    if (!newProduct.name.trim()) {
+      window.alert("Product name is required");
+      return;
+    }
+    if (!newProduct.price) {
+      window.alert("Price is required");
+      return;
+    }
+
+    const response = await fetch("/api/products", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: newProduct.name.trim(),
+        sku: newProduct.sku.trim() || undefined,
+        categoryId: newProduct.categoryId || "",
+        price: Number(newProduct.price || 0),
+        cost: Number(newProduct.cost || 0),
+        lowStockThreshold: Number(newProduct.lowStockThreshold || 5),
+        unit: newProduct.unit || "pcs",
+      }),
+    });
+
+    const data = await response.json();
+    if (!response.ok) {
+      window.alert(data.message || "Unable to create product");
+      return;
+    }
+
+    setNewProduct({
+      name: "",
+      sku: "",
+      categoryId: "",
+      price: "",
+      cost: "",
+      lowStockThreshold: "5",
+      unit: "pcs",
+    });
+
+    load();
+  };
+
   return (
     <section className="module-page">
       <div className="module-header">
@@ -63,12 +154,85 @@ export default function InventoryPage() {
       </div>
 
       <article className="module-card form-card">
+        <h3>Add Category (Self Service)</h3>
+        <form className="inline-form" onSubmit={submitCategory}>
+          <input
+            placeholder="Category name"
+            value={newCategory.name}
+            onChange={(e) => setNewCategory((curr) => ({ ...curr, name: e.target.value }))}
+          />
+          <input
+            placeholder="Description"
+            value={newCategory.description}
+            onChange={(e) => setNewCategory((curr) => ({ ...curr, description: e.target.value }))}
+          />
+          <button type="submit">Add Category</button>
+        </form>
+      </article>
+
+      <article className="module-card form-card">
+        <h3>Add Product (Self Service)</h3>
+        <form className="inline-form" onSubmit={submitProduct}>
+          <input
+            placeholder="Product name"
+            value={newProduct.name}
+            onChange={(e) => setNewProduct((curr) => ({ ...curr, name: e.target.value }))}
+          />
+          <input
+            placeholder="SKU (optional)"
+            value={newProduct.sku}
+            onChange={(e) => setNewProduct((curr) => ({ ...curr, sku: e.target.value }))}
+          />
+          <select
+            value={newProduct.categoryId}
+            onChange={(e) => setNewProduct((curr) => ({ ...curr, categoryId: e.target.value }))}
+          >
+            <option value="">No Category</option>
+            {categories.map((category) => (
+              <option key={category._id} value={category._id}>{category.name}</option>
+            ))}
+          </select>
+          <input
+            type="number"
+            min="0"
+            placeholder="Price"
+            value={newProduct.price}
+            onChange={(e) => setNewProduct((curr) => ({ ...curr, price: e.target.value }))}
+          />
+          <input
+            type="number"
+            min="0"
+            placeholder="Cost"
+            value={newProduct.cost}
+            onChange={(e) => setNewProduct((curr) => ({ ...curr, cost: e.target.value }))}
+          />
+          <input
+            type="number"
+            min="0"
+            placeholder="Low stock"
+            value={newProduct.lowStockThreshold}
+            onChange={(e) => setNewProduct((curr) => ({ ...curr, lowStockThreshold: e.target.value }))}
+          />
+          <select
+            value={newProduct.unit}
+            onChange={(e) => setNewProduct((curr) => ({ ...curr, unit: e.target.value }))}
+          >
+            <option value="pcs">pcs</option>
+            <option value="kg">kg</option>
+            <option value="ltr">ltr</option>
+            <option value="pack">pack</option>
+          </select>
+          <button type="submit">Add Product</button>
+        </form>
+      </article>
+
+      <article className="module-card form-card">
         <h3>Stock In / Out</h3>
         <form className="inline-form" onSubmit={submitMovement}>
           <select value={productId} onChange={(e) => setProductId(e.target.value)}>
             <option value="">Select Product</option>
-            {stock.map((row) => (
-              <option key={row.productId} value={row.productId}>{row.productName}</option>
+            {products.map((row) => (
+              <option key={row._id} value={row._id}>{row.name}</option>
             ))}
           </select>
           <select value={type} onChange={(e) => setType(e.target.value)}>

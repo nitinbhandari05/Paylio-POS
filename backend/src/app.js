@@ -16,10 +16,12 @@ import inventoryRoutes from "./routes/inventory.route.js";
 import staffRoutes from "./routes/staff.route.js";
 import tableRoutes from "./routes/table.route.js";
 import publicOrderRoutes from "./routes/public-order.route.js";
+import saasRoutes from "./routes/saas.route.js";
 
 
 import { protect } from "./middlewares/auth.middleware.js";
 import { authorize } from "./middlewares/role.middleware.js";
+import { requireActiveSubscription } from "./middlewares/subscription.middleware.js";
 
 const app = express();
 
@@ -39,19 +41,20 @@ app.get("/health", (_req, res) => {
 // 🔹 Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/categories", categoryRoutes);
-app.use("/api/branches", protect, branchRoutes);
-app.use("/api/customers", protect, customerRoutes);
+app.use("/api/branches", protect, requireActiveSubscription, branchRoutes);
+app.use("/api/customers", protect, requireActiveSubscription, customerRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/public", publicOrderRoutes);
-app.use("/api/inventory", protect, inventoryRoutes);
-app.use("/api/carts", protect, cartRoutes);
-app.use("/api/orders", protect, orderRoutes);
+app.use("/api/inventory", protect, requireActiveSubscription, inventoryRoutes);
+app.use("/api/carts", protect, requireActiveSubscription, cartRoutes);
+app.use("/api/orders", protect, requireActiveSubscription, orderRoutes);
 app.use("/api/order-tracking", orderTrackingRoutes);
-app.use("/api/tables", protect, tableRoutes);
-app.use("/api/delivery", protect, deliveryRoutes);
-app.use("/api/promos", protect, promoRoutes);
-app.use("/api/head-office", protect, headOfficeRoutes);
-app.use("/api/staff", protect, staffRoutes);
+app.use("/api/tables", protect, requireActiveSubscription, tableRoutes);
+app.use("/api/delivery", protect, requireActiveSubscription, deliveryRoutes);
+app.use("/api/promos", protect, requireActiveSubscription, promoRoutes);
+app.use("/api/head-office", protect, requireActiveSubscription, headOfficeRoutes);
+app.use("/api/staff", protect, requireActiveSubscription, staffRoutes);
+app.use("/api/saas", protect, saasRoutes);
 
 // 🔹 Admin Route
 app.get("/api/admin", protect, authorize("admin"), (req, res) => {

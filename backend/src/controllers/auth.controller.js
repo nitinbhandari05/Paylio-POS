@@ -1,6 +1,7 @@
 import User from "../models/user.model.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import Organization from "../models/organization.model.js";
 
 const getJwtSecret = () => process.env.JWT_SECRET || process.env.ACCESS_TOKEN_SECRET;
 const getJwtExpiry = () => process.env.ACCESS_TOKEN_EXPIRY || "1d";
@@ -14,7 +15,17 @@ const sanitizeUser = (user) => {
 // REGISTER
 export const register = async (req, res) => {
   try {
-    const { name, email, password, pin, role, outletId, isHeadOffice } = req.body;
+    const {
+      name,
+      email,
+      password,
+      pin,
+      role,
+      outletId,
+      organizationId,
+      accessibleOutletIds,
+      isHeadOffice,
+    } = req.body;
 
     if (!name || !email || !password) {
       return res.status(400).json({ message: "name, email, and password are required" });
@@ -34,6 +45,10 @@ export const register = async (req, res) => {
       pin: pin || "",
       role: role || "cashier",
       outletId: outletId || process.env.DEFAULT_OUTLET_ID || "main",
+      organizationId: organizationId || Organization.DEFAULT_ORG_ID,
+      accessibleOutletIds: Array.isArray(accessibleOutletIds)
+        ? accessibleOutletIds
+        : [outletId || process.env.DEFAULT_OUTLET_ID || "main"],
       isHeadOffice: Boolean(isHeadOffice)
     });
 
@@ -76,6 +91,10 @@ export const login = async (req, res) => {
         id: user._id,
         role: user.role,
         outletId: user.outletId || process.env.DEFAULT_OUTLET_ID || "main",
+        organizationId: user.organizationId || Organization.DEFAULT_ORG_ID,
+        accessibleOutletIds:
+          user.accessibleOutletIds ||
+          [user.outletId || process.env.DEFAULT_OUTLET_ID || "main"],
         isHeadOffice: Boolean(user.isHeadOffice)
       },
       jwtSecret,
@@ -117,6 +136,10 @@ export const loginWithPin = async (req, res) => {
         id: user._id,
         role: user.role,
         outletId: user.outletId || process.env.DEFAULT_OUTLET_ID || "main",
+        organizationId: user.organizationId || Organization.DEFAULT_ORG_ID,
+        accessibleOutletIds:
+          user.accessibleOutletIds ||
+          [user.outletId || process.env.DEFAULT_OUTLET_ID || "main"],
         isHeadOffice: Boolean(user.isHeadOffice)
       },
       jwtSecret,

@@ -2,6 +2,7 @@ import { randomUUID } from "node:crypto";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { createArrayStore } from "../utils/localStore.js";
+import Organization from "./organization.model.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -56,6 +57,10 @@ const User = {
       pin: normalizePin(payload.pin),
       role: payload.role || "cashier",
       outletId: payload.outletId || process.env.DEFAULT_OUTLET_ID || "main",
+      organizationId: payload.organizationId || Organization.DEFAULT_ORG_ID,
+      accessibleOutletIds: Array.isArray(payload.accessibleOutletIds)
+        ? payload.accessibleOutletIds
+        : [payload.outletId || process.env.DEFAULT_OUTLET_ID || "main"],
       isHeadOffice: Boolean(payload.isHeadOffice),
       active: payload.active !== undefined ? Boolean(payload.active) : true,
       createdAt: now,
@@ -79,6 +84,12 @@ const User = {
     if (payload.pin !== undefined) users[index].pin = normalizePin(payload.pin);
     if (payload.role !== undefined) users[index].role = payload.role;
     if (payload.outletId !== undefined) users[index].outletId = payload.outletId;
+    if (payload.organizationId !== undefined) users[index].organizationId = payload.organizationId;
+    if (payload.accessibleOutletIds !== undefined) {
+      users[index].accessibleOutletIds = Array.isArray(payload.accessibleOutletIds)
+        ? payload.accessibleOutletIds
+        : [];
+    }
     if (payload.isHeadOffice !== undefined) users[index].isHeadOffice = Boolean(payload.isHeadOffice);
     if (payload.active !== undefined) users[index].active = Boolean(payload.active);
     users[index].updatedAt = new Date().toISOString();

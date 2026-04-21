@@ -1,1 +1,68 @@
-[]
+[
+  {
+    "_id": "stock-masala-tea-main",
+    "outletId": "main",
+    "productId": "prod-masala-tea",
+    "productName": "Masala Tea",
+    "sku": "MASALA-TEA",
+    "quantity": 118,
+    "lowStockThreshold": 10,
+    "updatedAt": "2026-04-21T05:14:05.278Z",
+    "createdAt": "2026-04-21T00:00:00.000Z"
+  },
+  {
+    "_id": "stock-cold-coffee-main",
+    "outletId": "main",
+    "productId": "prod-cold-coffee",
+    "productName": "Cold Coffee",
+    "sku": "COLD-COFFEE",
+    "quantity": 80,
+    "lowStockThreshold": 8,
+    "updatedAt": "2026-04-21T00:00:00.000Z",
+    "createdAt": "2026-04-21T00:00:00.000Z"
+  },
+  {
+    "_id": "stock-veg-burger-main",
+    "outletId": "main",
+    "productId": "prod-veg-burger",
+    "productName": "Veg Burger",
+    "sku": "VEG-BURGER",
+    "quantity": 45,
+    "lowStockThreshold": 6,
+    "updatedAt": "2026-04-21T00:00:00.000Z",
+    "createdAt": "2026-04-21T00:00:00.000Z"
+  },
+  {
+    "_id": "stock-cheese-pizza-main",
+    "outletId": "main",
+    "productId": "prod-cheese-pizza",
+    "productName": "Cheese Pizza",
+    "sku": "CHEESE-PIZZA",
+    "quantity": 32,
+    "lowStockThreshold": 5,
+    "updatedAt": "2026-04-21T00:00:00.000Z",
+    "createdAt": "2026-04-21T00:00:00.000Z"
+  },
+  {
+    "_id": "stock-brownie-main",
+    "outletId": "main",
+    "productId": "prod-brownie",
+    "productName": "Brownie",
+    "sku": "BROWNIE",
+    "quantity": 74,
+    "lowStockThreshold": 10,
+    "updatedAt": "2026-04-21T05:17:22.017Z",
+    "createdAt": "2026-04-21T00:00:00.000Z"
+  },
+  {
+    "_id": "stock-tea-combo-main",
+    "outletId": "main",
+    "productId": "prod-tea-combo",
+    "productName": "Tea Combo",
+    "sku": "TEA-COMBO",
+    "quantity": 27,
+    "lowStockThreshold": 4,
+    "updatedAt": "2026-04-21T05:09:28.433Z",
+    "createdAt": "2026-04-21T00:00:00.000Z"
+  }
+]

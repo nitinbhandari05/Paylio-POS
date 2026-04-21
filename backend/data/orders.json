@@ -1,1 +1,346 @@
-[]
+[
+  {
+    "_id": "3e6e136d-82ac-43e3-9888-6d87cbbefe7b",
+    "invoiceNumber": "INV-20260421-0001",
+    "kotNumber": "KOT-20260421-0001",
+    "outletId": "main",
+    "orderType": "dinein",
+    "cartId": "5d3a6a14-3869-4f18-b82d-855f460f26aa",
+    "status": "pending",
+    "statusTimeline": [
+      {
+        "status": "pending",
+        "at": "2026-04-21T05:09:28.432Z",
+        "by": null
+      }
+    ],
+    "deliveryStatus": "not_required",
+    "deliveryTimeline": [],
+    "deliveryAgentId": "",
+    "deliveryAgentName": "",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "deliveryAddress": "",
+    "orderSource": "counter",
+    "tableNo": "",
+    "waiterName": "",
+    "notes": "",
+    "items": [
+      {
+        "_id": "0bd51055-37d8-4d8b-b016-64f7e5f8101d",
+        "productId": "prod-tea-combo",
+        "name": "Tea Combo",
+        "sku": "TEA-COMBO",
+        "categoryId": "",
+        "categoryName": "Combos",
+        "quantity": 1,
+        "unitPrice": 199,
+        "gstRate": 5,
+        "lineSubtotal": 199,
+        "lineDiscount": 0,
+        "taxableAmount": 199,
+        "gstAmount": 9.95,
+        "lineTotal": 208.95,
+        "note": ""
+      }
+    ],
+    "subtotal": 199,
+    "itemDiscountAmount": 0,
+    "cartDiscountAmount": 0,
+    "discountAmount": 0,
+    "taxableSubtotal": 199,
+    "gstAmount": 9.95,
+    "gstRate": 18,
+    "total": 208.95,
+    "payments": [
+      {
+        "method": "card",
+        "amount": 209,
+        "reference": ""
+      }
+    ],
+    "amountPaid": 209,
+    "paymentStatus": "paid",
+    "changeDue": 0.05,
+    "createdBy": null,
+    "createdAt": "2026-04-21T05:09:28.430Z",
+    "updatedAt": "2026-04-21T05:09:28.430Z",
+    "completedAt": null,
+    "cancelledAt": null,
+    "refundedAt": null,
+    "cancelReason": "",
+    "refundReason": "",
+    "refundNumber": "",
+    "refundAmount": 0
+  },
+  {
+    "_id": "02204509-63b1-403b-9110-930c05a0fbad",
+    "invoiceNumber": "INV-20260421-0002",
+    "kotNumber": "KOT-20260421-0002",
+    "outletId": "main",
+    "orderType": "dinein",
+    "cartId": "814c8e65-5227-4d4a-b223-2c8f812dd443",
+    "status": "pending",
+    "statusTimeline": [
+      {
+        "status": "pending",
+        "at": "2026-04-21T05:10:48.634Z",
+        "by": null
+      }
+    ],
+    "deliveryStatus": "not_required",
+    "deliveryTimeline": [],
+    "deliveryAgentId": "",
+    "deliveryAgentName": "",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "deliveryAddress": "",
+    "orderSource": "counter",
+    "tableNo": "",
+    "waiterName": "",
+    "notes": "",
+    "items": [
+      {
+        "_id": "6eed33d7-cce4-4eb2-8c93-59b9fb68ea7e",
+        "productId": "prod-masala-tea",
+        "name": "Masala Tea",
+        "sku": "MASALA-TEA",
+        "categoryId": "",
+        "categoryName": "Tea",
+        "quantity": 1,
+        "unitPrice": 30,
+        "gstRate": 5,
+        "lineSubtotal": 30,
+        "lineDiscount": 0,
+        "taxableAmount": 30,
+        "gstAmount": 1.5,
+        "lineTotal": 31.5,
+        "note": ""
+      }
+    ],
+    "subtotal": 30,
+    "itemDiscountAmount": 0,
+    "cartDiscountAmount": 0,
+    "discountAmount": 0,
+    "taxableSubtotal": 30,
+    "gstAmount": 1.5,
+    "gstRate": 18,
+    "total": 31.5,
+    "payments": [
+      {
+        "method": "cash",
+        "amount": 32,
+        "reference": ""
+      }
+    ],
+    "amountPaid": 32,
+    "paymentStatus": "paid",
+    "changeDue": 0.5,
+    "createdBy": null,
+    "createdAt": "2026-04-21T05:10:48.632Z",
+    "updatedAt": "2026-04-21T05:10:48.632Z",
+    "completedAt": null,
+    "cancelledAt": null,
+    "refundedAt": null,
+    "cancelReason": "",
+    "refundReason": "",
+    "refundNumber": "",
+    "refundAmount": 0
+  },
+  {
+    "_id": "aa388f5a-a4de-4cc9-86b6-e6e943fd86ad",
+    "invoiceNumber": "INV-20260421-0003",
+    "kotNumber": "KOT-20260421-0003",
+    "outletId": "main",
+    "orderType": "dinein",
+    "cartId": "6925601f-6a81-4ed6-8e41-9748b61444fe",
+    "status": "completed",
+    "statusTimeline": [
+      {
+        "status": "pending",
+        "at": "2026-04-21T05:14:05.277Z",
+        "by": null
+      },
+      {
+        "status": "accepted",
+        "at": "2026-04-21T05:14:22.773Z",
+        "by": null
+      },
+      {
+        "status": "preparing",
+        "at": "2026-04-21T05:14:24.486Z",
+        "by": null
+      },
+      {
+        "status": "ready",
+        "at": "2026-04-21T05:14:33.420Z",
+        "by": null
+      },
+      {
+        "status": "completed",
+        "at": "2026-04-21T05:14:34.952Z",
+        "by": null
+      }
+    ],
+    "deliveryStatus": "not_required",
+    "deliveryTimeline": [],
+    "deliveryAgentId": "",
+    "deliveryAgentName": "",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "deliveryAddress": "",
+    "orderSource": "counter",
+    "tableNo": "",
+    "waiterName": "",
+    "notes": "",
+    "items": [
+      {
+        "_id": "866e5eb9-7972-4e82-a413-3c557a7ede61",
+        "productId": "prod-masala-tea",
+        "name": "Masala Tea",
+        "sku": "MASALA-TEA",
+        "categoryId": "",
+        "categoryName": "Tea",
+        "quantity": 1,
+        "unitPrice": 30,
+        "gstRate": 5,
+        "lineSubtotal": 30,
+        "lineDiscount": 0,
+        "taxableAmount": 30,
+        "gstAmount": 1.5,
+        "lineTotal": 31.5,
+        "note": ""
+      }
+    ],
+    "subtotal": 30,
+    "itemDiscountAmount": 0,
+    "cartDiscountAmount": 0,
+    "discountAmount": 0,
+    "taxableSubtotal": 30,
+    "gstAmount": 1.5,
+    "gstRate": 18,
+    "total": 31.5,
+    "payments": [
+      {
+        "method": "cash",
+        "amount": 32,
+        "reference": ""
+      }
+    ],
+    "amountPaid": 32,
+    "paymentStatus": "paid",
+    "changeDue": 0.5,
+    "createdBy": null,
+    "createdAt": "2026-04-21T05:14:05.275Z",
+    "updatedAt": "2026-04-21T05:14:34.952Z",
+    "completedAt": "2026-04-21T05:14:34.952Z",
+    "cancelledAt": null,
+    "refundedAt": null,
+    "cancelReason": "",
+    "refundReason": "",
+    "refundNumber": "",
+    "refundAmount": 0
+  },
+  {
+    "_id": "903c6781-1997-447a-a066-9d9f46da025e",
+    "invoiceNumber": "INV-20260421-0004",
+    "kotNumber": "KOT-20260421-0004",
+    "outletId": "main",
+    "orderType": "dinein",
+    "cartId": "e35f0cc9-f005-42d1-bea4-a36baa6cb94b",
+    "status": "completed",
+    "statusTimeline": [
+      {
+        "status": "pending",
+        "at": "2026-04-21T05:17:22.011Z",
+        "by": null
+      },
+      {
+        "status": "accepted",
+        "at": "2026-04-21T05:17:26.410Z",
+        "by": null
+      },
+      {
+        "status": "preparing",
+        "at": "2026-04-21T05:17:28.302Z",
+        "by": null
+      },
+      {
+        "status": "ready",
+        "at": "2026-04-21T05:17:29.954Z",
+        "by": null
+      },
+      {
+        "status": "completed",
+        "at": "2026-04-21T05:17:31.404Z",
+        "by": null
+      }
+    ],
+    "deliveryStatus": "not_required",
+    "deliveryTimeline": [],
+    "deliveryAgentId": "",
+    "deliveryAgentName": "",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "deliveryAddress": "",
+    "orderSource": "counter",
+    "tableNo": "",
+    "waiterName": "",
+    "notes": "",
+    "items": [
+      {
+        "_id": "28d5a41d-2341-4181-a537-ba9f6679924e",
+        "productId": "prod-brownie",
+        "name": "Brownie",
+        "sku": "BROWNIE",
+        "categoryId": "",
+        "categoryName": "Dessert",
+        "quantity": 1,
+        "unitPrice": 99,
+        "gstRate": 5,
+        "lineSubtotal": 99,
+        "lineDiscount": 0,
+        "taxableAmount": 99,
+        "gstAmount": 4.95,
+        "lineTotal": 103.95,
+        "note": ""
+      }
+    ],
+    "subtotal": 99,
+    "itemDiscountAmount": 0,
+    "cartDiscountAmount": 0,
+    "discountAmount": 0,
+    "taxableSubtotal": 99,
+    "gstAmount": 4.95,
+    "gstRate": 18,
+    "total": 103.95,
+    "payments": [
+      {
+        "method": "cash",
+        "amount": 104,
+        "reference": ""
+      }
+    ],
+    "amountPaid": 104,
+    "paymentStatus": "paid",
+    "changeDue": 0.05,
+    "createdBy": null,
+    "createdAt": "2026-04-21T05:17:22.008Z",
+    "updatedAt": "2026-04-21T05:17:31.404Z",
+    "completedAt": "2026-04-21T05:17:31.404Z",
+    "cancelledAt": null,
+    "refundedAt": null,
+    "cancelReason": "",
+    "refundReason": "",
+    "refundNumber": "",
+    "refundAmount": 0
+  }
+]

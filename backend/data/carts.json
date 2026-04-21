@@ -15,5 +15,137 @@
     "createdBy": null,
     "createdAt": "2026-04-21T04:30:15.205Z",
     "updatedAt": "2026-04-21T04:30:15.205Z"
+  },
+  {
+    "_id": "5d3a6a14-3869-4f18-b82d-855f460f26aa",
+    "status": "closed",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 18,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [
+      {
+        "_id": "91cf6b0d-73e8-4dbb-b676-24e8c9d671aa",
+        "productId": "prod-tea-combo",
+        "name": "Tea Combo",
+        "sku": "TEA-COMBO",
+        "categoryId": "",
+        "categoryName": "Combos",
+        "quantity": 1,
+        "unitPrice": 199,
+        "cost": 95,
+        "gstRate": 5,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      }
+    ],
+    "createdBy": null,
+    "createdAt": "2026-04-21T05:09:28.423Z",
+    "updatedAt": "2026-04-21T05:09:28.436Z"
+  },
+  {
+    "_id": "814c8e65-5227-4d4a-b223-2c8f812dd443",
+    "status": "closed",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 18,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [
+      {
+        "_id": "b99a6a77-20b0-402f-ac7b-0dec444bc656",
+        "productId": "prod-masala-tea",
+        "name": "Masala Tea",
+        "sku": "MASALA-TEA",
+        "categoryId": "",
+        "categoryName": "Tea",
+        "quantity": 1,
+        "unitPrice": 30,
+        "cost": 12,
+        "gstRate": 5,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      }
+    ],
+    "createdBy": null,
+    "createdAt": "2026-04-21T05:10:48.627Z",
+    "updatedAt": "2026-04-21T05:10:48.637Z"
+  },
+  {
+    "_id": "6925601f-6a81-4ed6-8e41-9748b61444fe",
+    "status": "closed",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 18,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [
+      {
+        "_id": "e6d0bf47-13db-48ac-8a86-2b338e9a48fd",
+        "productId": "prod-masala-tea",
+        "name": "Masala Tea",
+        "sku": "MASALA-TEA",
+        "categoryId": "",
+        "categoryName": "Tea",
+        "quantity": 1,
+        "unitPrice": 30,
+        "cost": 12,
+        "gstRate": 5,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      }
+    ],
+    "createdBy": null,
+    "createdAt": "2026-04-21T05:14:05.269Z",
+    "updatedAt": "2026-04-21T05:14:05.281Z"
+  },
+  {
+    "_id": "e35f0cc9-f005-42d1-bea4-a36baa6cb94b",
+    "status": "closed",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 18,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [
+      {
+        "_id": "6c9bbc6a-d7e9-4a86-b063-fdea5dbc24ba",
+        "productId": "prod-brownie",
+        "name": "Brownie",
+        "sku": "BROWNIE",
+        "categoryId": "",
+        "categoryName": "Dessert",
+        "quantity": 1,
+        "unitPrice": 99,
+        "cost": 40,
+        "gstRate": 5,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      }
+    ],
+    "createdBy": null,
+    "createdAt": "2026-04-21T05:17:21.989Z",
+    "updatedAt": "2026-04-21T05:17:22.020Z"
   }
 ]

@@ -1,1 +1,42 @@
-[]
+[
+  {
+    "_id": "67b0d39e-7d6e-4f38-92ee-e6ce01ef304a",
+    "type": "kot",
+    "orderId": "3e6e136d-82ac-43e3-9888-6d87cbbefe7b",
+    "content": "KOT KOT-20260421-0001\nInvoice INV-20260421-0001\nCustomer Walk-in\n\nItems:\n1 x Tea Combo\n\nStatus: pending",
+    "copies": 1,
+    "status": "queued",
+    "createdAt": "2026-04-21T05:09:28.437Z",
+    "updatedAt": "2026-04-21T05:09:28.437Z"
+  },
+  {
+    "_id": "8ba4708c-53a5-4cb4-ae93-6939ab993bf2",
+    "type": "kot",
+    "orderId": "02204509-63b1-403b-9110-930c05a0fbad",
+    "content": "KOT KOT-20260421-0002\nInvoice INV-20260421-0002\nCustomer Walk-in\n\nItems:\n1 x Masala Tea\n\nStatus: pending",
+    "copies": 1,
+    "status": "queued",
+    "createdAt": "2026-04-21T05:10:48.638Z",
+    "updatedAt": "2026-04-21T05:10:48.638Z"
+  },
+  {
+    "_id": "e93e05ab-6d29-44cc-9bac-b8e45eba5140",
+    "type": "kot",
+    "orderId": "aa388f5a-a4de-4cc9-86b6-e6e943fd86ad",
+    "content": "KOT KOT-20260421-0003\nInvoice INV-20260421-0003\nCustomer Walk-in\n\nItems:\n1 x Masala Tea\n\nStatus: pending",
+    "copies": 1,
+    "status": "queued",
+    "createdAt": "2026-04-21T05:14:05.282Z",
+    "updatedAt": "2026-04-21T05:14:05.282Z"
+  },
+  {
+    "_id": "7cb7d382-c526-4a2c-8956-90b776151452",
+    "type": "kot",
+    "orderId": "903c6781-1997-447a-a066-9d9f46da025e",
+    "content": "KOT KOT-20260421-0004\nInvoice INV-20260421-0004\nCustomer Walk-in\n\nItems:\n1 x Brownie\n\nStatus: pending",
+    "copies": 1,
+    "status": "queued",
+    "createdAt": "2026-04-21T05:17:22.022Z",
+    "updatedAt": "2026-04-21T05:17:22.022Z"
+  }
+]

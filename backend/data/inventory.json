@@ -1,1 +1,62 @@
-[]
+[
+  {
+    "_id": "c10be911-1ea6-4045-a2fb-074267123a0e",
+    "outletId": "main",
+    "productId": "prod-tea-combo",
+    "productName": "Tea Combo",
+    "sku": "TEA-COMBO",
+    "type": "out",
+    "quantity": 1,
+    "beforeStock": 28,
+    "afterStock": 27,
+    "note": "Order sale INV-20260421-0001",
+    "createdBy": null,
+    "createdAt": "2026-04-21T05:09:28.434Z",
+    "updatedAt": "2026-04-21T05:09:28.434Z"
+  },
+  {
+    "_id": "d2a929f2-15ae-434b-8c6a-3c798e455dff",
+    "outletId": "main",
+    "productId": "prod-masala-tea",
+    "productName": "Masala Tea",
+    "sku": "MASALA-TEA",
+    "type": "out",
+    "quantity": 1,
+    "beforeStock": 120,
+    "afterStock": 119,
+    "note": "Order sale INV-20260421-0002",
+    "createdBy": null,
+    "createdAt": "2026-04-21T05:10:48.636Z",
+    "updatedAt": "2026-04-21T05:10:48.636Z"
+  },
+  {
+    "_id": "f57c0563-d2df-4976-a590-1b833d590e5c",
+    "outletId": "main",
+    "productId": "prod-masala-tea",
+    "productName": "Masala Tea",
+    "sku": "MASALA-TEA",
+    "type": "out",
+    "quantity": 1,
+    "beforeStock": 119,
+    "afterStock": 118,
+    "note": "Order sale INV-20260421-0003",
+    "createdBy": null,
+    "createdAt": "2026-04-21T05:14:05.280Z",
+    "updatedAt": "2026-04-21T05:14:05.280Z"
+  },
+  {
+    "_id": "91f15a3e-2e16-408a-85a2-aa11788aeafa",
+    "outletId": "main",
+    "productId": "prod-brownie",
+    "productName": "Brownie",
+    "sku": "BROWNIE",
+    "type": "out",
+    "quantity": 1,
+    "beforeStock": 75,
+    "afterStock": 74,
+    "note": "Order sale INV-20260421-0004",
+    "createdBy": null,
+    "createdAt": "2026-04-21T05:17:22.018Z",
+    "updatedAt": "2026-04-21T05:17:22.018Z"
+  }
+]

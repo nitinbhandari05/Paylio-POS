@@ -20,7 +20,6 @@ const formatMoney = (value) =>
 
 export function POSProvider({ children }) {
   const [products, setProducts] = useState(DEMO_PRODUCTS);
-  const [masterCategories, setMasterCategories] = useState([]);
   const [menuStatus, setMenuStatus] = useState("Loading menu...");
 
   const [searchTerm, setSearchTerm] = useState("");
@@ -80,13 +79,9 @@ export function POSProvider({ children }) {
 
   const loadCatalog = async () => {
     try {
-      const [menuRes, categoryRes] = await Promise.all([
-        fetch("/api/public/menu"),
-        fetch("/api/categories"),
-      ]);
+      const menuRes = await fetch("/api/public/menu");
 
       const menuData = await menuRes.json();
-      const categoryData = await categoryRes.json();
       const menu = Array.isArray(menuData.menu) ? menuData.menu : [];
       const mapped = menu.map((item, idx) => ({
         id: item._id || `p-${idx}`,
@@ -98,9 +93,6 @@ export function POSProvider({ children }) {
         stock: Number(item.stock || 99),
         type: "veg",
       }));
-
-      const categories = Array.isArray(categoryData.categories) ? categoryData.categories : [];
-      setMasterCategories(categories);
 
       if (!mapped.length) {
         setMenuStatus("Demo menu loaded. Add backend products for live billing.");
@@ -123,30 +115,6 @@ export function POSProvider({ children }) {
     window.addEventListener("online", onOnline);
     return () => window.removeEventListener("online", onOnline);
   }, []);
-
-  const quickAddCategory = async (payload) => {
-    const response = await fetch("/api/categories", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
-    const data = await response.json();
-    if (!response.ok) throw new Error(data.message || "Unable to create category");
-    await loadCatalog();
-    return data.category;
-  };
-
-  const quickAddProduct = async (payload) => {
-    const response = await fetch("/api/products", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
-    const data = await response.json();
-    if (!response.ok) throw new Error(data.message || "Unable to create product");
-    await loadCatalog();
-    return data.product;
-  };
 
   const categories = useMemo(() => {
     const base = ["Favorites", ...new Set(products.map((item) => item.category).filter(Boolean))];
@@ -328,10 +296,7 @@ export function POSProvider({ children }) {
   const value = {
     products,
     menuStatus,
-    masterCategories,
     loadCatalog,
-    quickAddCategory,
-    quickAddProduct,
     categories,
     filteredProducts,
     searchTerm,

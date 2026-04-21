@@ -133,5 +133,35 @@
     "createdBy": null,
     "createdAt": "2026-04-21T05:43:08.208Z",
     "updatedAt": "2026-04-21T05:43:08.208Z"
+  },
+  {
+    "_id": "e7dc3880-dab8-4f43-9521-22810a785c2c",
+    "outletId": "main",
+    "productId": "prod-cheese-pizza",
+    "productName": "Cheese Pizza",
+    "sku": "CHEESE-PIZZA",
+    "type": "out",
+    "quantity": 1,
+    "beforeStock": 32,
+    "afterStock": 31,
+    "note": "Order sale INV-20260421-0007",
+    "createdBy": null,
+    "createdAt": "2026-04-21T06:08:19.537Z",
+    "updatedAt": "2026-04-21T06:08:19.537Z"
+  },
+  {
+    "_id": "df3cb9b9-7b66-4292-b22c-651c7823cdae",
+    "outletId": "main",
+    "productId": "prod-masala-tea",
+    "productName": "Masala Tea",
+    "sku": "MASALA-TEA",
+    "type": "out",
+    "quantity": 1,
+    "beforeStock": 120,
+    "afterStock": 119,
+    "note": "Order sale INV-20260421-0008",
+    "createdBy": null,
+    "createdAt": "2026-04-21T06:15:04.850Z",
+    "updatedAt": "2026-04-21T06:15:04.850Z"
   }
 ]

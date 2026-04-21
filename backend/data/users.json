@@ -13,5 +13,22 @@
     ],
     "createdAt": "2026-04-14T07:20:20.064Z",
     "updatedAt": "2026-04-14T07:20:20.064Z"
+  },
+  {
+    "_id": "56d191c9-c63b-41b3-897a-146af4ba94ab",
+    "name": "Nitin",
+    "email": "nitinbhandari@27.g.com",
+    "password": "$2b$10$9b4ENTSCnzIgKJl40mpGAuk/.y/xGq/AWKJB2yQdNAgQzW7qner.2",
+    "pin": "12345",
+    "role": "cashier",
+    "outletId": "main",
+    "organizationId": "org-main",
+    "accessibleOutletIds": [
+      "main"
+    ],
+    "isHeadOffice": false,
+    "active": true,
+    "createdAt": "2026-04-21T06:14:46.408Z",
+    "updatedAt": "2026-04-21T06:14:46.408Z"
   }
 ]

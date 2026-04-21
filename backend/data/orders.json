@@ -559,5 +559,167 @@
     "refundReason": "",
     "refundNumber": "",
     "refundAmount": 0
+  },
+  {
+    "_id": "9002fc27-172a-4d96-a24e-c4c26c50256f",
+    "invoiceNumber": "INV-20260421-0007",
+    "kotNumber": "KOT-20260421-0007",
+    "outletId": "main",
+    "orderType": "dinein",
+    "cartId": "f8902796-93d1-4613-a66b-539f90c6f7f9",
+    "status": "accepted",
+    "statusTimeline": [
+      {
+        "status": "pending",
+        "at": "2026-04-21T06:08:19.534Z",
+        "by": null
+      },
+      {
+        "status": "accepted",
+        "at": "2026-04-21T06:08:19.540Z",
+        "by": null
+      }
+    ],
+    "deliveryStatus": "not_required",
+    "deliveryTimeline": [],
+    "deliveryAgentId": "",
+    "deliveryAgentName": "",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "deliveryAddress": "",
+    "orderSource": "counter",
+    "tableNo": "T1",
+    "waiterName": "kartik",
+    "notes": "",
+    "items": [
+      {
+        "_id": "bf49b4b1-e07f-4daf-bce6-c0ac913f89df",
+        "productId": "prod-cheese-pizza",
+        "name": "Cheese Pizza",
+        "sku": "CHEESE-PIZZA",
+        "categoryId": "",
+        "categoryName": "Pizza",
+        "quantity": 1,
+        "unitPrice": 299,
+        "gstRate": 5,
+        "lineSubtotal": 299,
+        "lineDiscount": 0,
+        "taxableAmount": 299,
+        "gstAmount": 14.95,
+        "lineTotal": 313.95,
+        "note": ""
+      }
+    ],
+    "subtotal": 299,
+    "itemDiscountAmount": 0,
+    "cartDiscountAmount": 0,
+    "discountAmount": 0,
+    "taxableSubtotal": 299,
+    "gstAmount": 14.95,
+    "gstRate": 18,
+    "total": 313.95,
+    "payments": [
+      {
+        "method": "cash",
+        "amount": 314,
+        "reference": ""
+      }
+    ],
+    "amountPaid": 314,
+    "paymentStatus": "paid",
+    "changeDue": 0.05,
+    "createdBy": null,
+    "createdAt": "2026-04-21T06:08:19.532Z",
+    "updatedAt": "2026-04-21T06:08:19.540Z",
+    "completedAt": null,
+    "cancelledAt": null,
+    "refundedAt": null,
+    "cancelReason": "",
+    "refundReason": "",
+    "refundNumber": "",
+    "refundAmount": 0
+  },
+  {
+    "_id": "6c723ee5-91e2-4002-baf0-4db67259ebd3",
+    "invoiceNumber": "INV-20260421-0008",
+    "kotNumber": "KOT-20260421-0008",
+    "outletId": "main",
+    "orderType": "dinein",
+    "cartId": "85fdab9a-4113-4506-9f29-7f41513973e1",
+    "status": "accepted",
+    "statusTimeline": [
+      {
+        "status": "pending",
+        "at": "2026-04-21T06:15:04.847Z",
+        "by": null
+      },
+      {
+        "status": "accepted",
+        "at": "2026-04-21T06:15:04.855Z",
+        "by": null
+      }
+    ],
+    "deliveryStatus": "not_required",
+    "deliveryTimeline": [],
+    "deliveryAgentId": "",
+    "deliveryAgentName": "",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "deliveryAddress": "",
+    "orderSource": "counter",
+    "tableNo": "T1",
+    "waiterName": "Waiter 1",
+    "notes": "",
+    "items": [
+      {
+        "_id": "a0a32d1e-be37-40c1-bbdf-ae4e7a84e40a",
+        "productId": "prod-masala-tea",
+        "name": "Masala Tea",
+        "sku": "MASALA-TEA",
+        "categoryId": "",
+        "categoryName": "Tea",
+        "quantity": 1,
+        "unitPrice": 30,
+        "gstRate": 5,
+        "lineSubtotal": 30,
+        "lineDiscount": 0,
+        "taxableAmount": 30,
+        "gstAmount": 1.5,
+        "lineTotal": 31.5,
+        "note": ""
+      }
+    ],
+    "subtotal": 30,
+    "itemDiscountAmount": 0,
+    "cartDiscountAmount": 0,
+    "discountAmount": 0,
+    "taxableSubtotal": 30,
+    "gstAmount": 1.5,
+    "gstRate": 18,
+    "total": 31.5,
+    "payments": [
+      {
+        "method": "cash",
+        "amount": 32,
+        "reference": ""
+      }
+    ],
+    "amountPaid": 32,
+    "paymentStatus": "paid",
+    "changeDue": 0.5,
+    "createdBy": null,
+    "createdAt": "2026-04-21T06:15:04.844Z",
+    "updatedAt": "2026-04-21T06:15:04.855Z",
+    "completedAt": null,
+    "cancelledAt": null,
+    "refundedAt": null,
+    "cancelReason": "",
+    "refundReason": "",
+    "refundNumber": "",
+    "refundAmount": 0
   }
 ]

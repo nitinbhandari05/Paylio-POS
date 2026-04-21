@@ -35,6 +35,18 @@ const NAV_ITEMS = [
   { id: "settings", label: "Settings", icon: Settings },
 ];
 
+const ROLE_NAV_ACCESS = {
+  admin: ["pos", "admin", "inventory", "tables", "waiter", "owner", "reports", "settings"],
+  manager: ["pos", "inventory", "tables", "waiter", "reports", "settings"],
+  cashier: ["pos", "tables", "settings"],
+  waiter: ["waiter", "tables", "settings"],
+  kitchen: ["settings"],
+  user: ["pos", "settings"],
+};
+
+const getAllowedNav = (role) =>
+  ROLE_NAV_ACCESS[String(role || "").toLowerCase()] || ["pos", "settings"];
+
 function renderPage(activePage, session, dark, toggleDark, logout) {
   if (activePage === "pos") return <POSPage />;
   if (activePage === "admin") return <AdminPage />;
@@ -43,13 +55,18 @@ function renderPage(activePage, session, dark, toggleDark, logout) {
   if (activePage === "waiter") return <WaiterPage session={session} />;
   if (activePage === "owner") return <OwnerMobilePage session={session} />;
   if (activePage === "reports") return <ReportsPage />;
+  if (activePage === "settings") {
+    return (
+      <SettingsPage
+        session={session}
+        dark={dark}
+        onToggleDark={toggleDark}
+        onLogout={logout}
+      />
+    );
+  }
   return (
-    <SettingsPage
-      session={session}
-      dark={dark}
-      onToggleDark={toggleDark}
-      onLogout={logout}
-    />
+    <section className="module-note">You do not have access to this module.</section>
   );
 }
 
@@ -84,6 +101,17 @@ export default function App() {
   };
 
   const roleLabel = useMemo(() => session?.role || "guest", [session]);
+  const allowedNavIds = useMemo(() => getAllowedNav(session?.role), [session?.role]);
+  const visibleNavItems = useMemo(
+    () => NAV_ITEMS.filter((item) => allowedNavIds.includes(item.id)),
+    [allowedNavIds]
+  );
+
+  useEffect(() => {
+    if (!allowedNavIds.includes(activePage)) {
+      setActivePage(allowedNavIds[0] || "settings");
+    }
+  }, [activePage, allowedNavIds]);
 
   if (!session) {
     return <LoginPage onLogin={login} />;
@@ -99,7 +127,7 @@ export default function App() {
           </div>
 
           <nav>
-            {NAV_ITEMS.map((item) => {
+            {visibleNavItems.map((item) => {
               const Icon = item.icon;
               return (
                 <button
@@ -130,7 +158,9 @@ export default function App() {
             </button>
           </header>
 
-          {renderPage(activePage, session, dark, () => setDark((v) => !v), logout)}
+          {allowedNavIds.includes(activePage)
+            ? renderPage(activePage, session, dark, () => setDark((v) => !v), logout)
+            : <section className="module-note">Access denied for your role.</section>}
         </section>
       </div>
     </POSProvider>

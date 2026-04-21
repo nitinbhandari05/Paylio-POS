@@ -213,5 +213,71 @@
     "createdBy": null,
     "createdAt": "2026-04-21T05:43:08.196Z",
     "updatedAt": "2026-04-21T05:43:08.209Z"
+  },
+  {
+    "_id": "f8902796-93d1-4613-a66b-539f90c6f7f9",
+    "status": "closed",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 18,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [
+      {
+        "_id": "6816e805-964d-41e3-a5ec-add0291d3a30",
+        "productId": "prod-cheese-pizza",
+        "name": "Cheese Pizza",
+        "sku": "CHEESE-PIZZA",
+        "categoryId": "",
+        "categoryName": "Pizza",
+        "quantity": 1,
+        "unitPrice": 299,
+        "cost": 165,
+        "gstRate": 5,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      }
+    ],
+    "createdBy": null,
+    "createdAt": "2026-04-21T06:08:19.526Z",
+    "updatedAt": "2026-04-21T06:08:19.539Z"
+  },
+  {
+    "_id": "85fdab9a-4113-4506-9f29-7f41513973e1",
+    "status": "closed",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 18,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [
+      {
+        "_id": "a7ba44a5-d086-4212-9115-7816b363d456",
+        "productId": "prod-masala-tea",
+        "name": "Masala Tea",
+        "sku": "MASALA-TEA",
+        "categoryId": "",
+        "categoryName": "Tea",
+        "quantity": 1,
+        "unitPrice": 30,
+        "cost": 12,
+        "gstRate": 5,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      }
+    ],
+    "createdBy": null,
+    "createdAt": "2026-04-21T06:15:04.836Z",
+    "updatedAt": "2026-04-21T06:15:04.853Z"
   }
 ]

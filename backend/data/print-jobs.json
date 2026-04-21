@@ -58,5 +58,25 @@
     "status": "queued",
     "createdAt": "2026-04-21T05:43:08.211Z",
     "updatedAt": "2026-04-21T05:43:08.211Z"
+  },
+  {
+    "_id": "d9212a21-ebe6-4f57-8bf2-204499acee01",
+    "type": "receipt",
+    "orderId": "9002fc27-172a-4d96-a24e-c4c26c50256f",
+    "content": "Invoice INV-20260421-0007\nKOT KOT-20260421-0007\nCustomer Walk-in\nPhone -\n\n1 x Cheese Pizza @ 299 = 313.95\n\nSubtotal: 299\nDiscount: 0\nGST: 14.95\nTotal: 313.95\nPaid: 314\nChange: 0.05\n\nPayments:\nCASH: 314",
+    "copies": 1,
+    "status": "queued",
+    "createdAt": "2026-04-21T06:08:19.541Z",
+    "updatedAt": "2026-04-21T06:08:19.541Z"
+  },
+  {
+    "_id": "37819633-aa7b-4dfa-982a-3859d794c211",
+    "type": "receipt",
+    "orderId": "6c723ee5-91e2-4002-baf0-4db67259ebd3",
+    "content": "Invoice INV-20260421-0008\nKOT KOT-20260421-0008\nCustomer Walk-in\nPhone -\n\n1 x Masala Tea @ 30 = 31.5\n\nSubtotal: 30\nDiscount: 0\nGST: 1.5\nTotal: 31.5\nPaid: 32\nChange: 0.5\n\nPayments:\nCASH: 32",
+    "copies": 1,
+    "status": "queued",
+    "createdAt": "2026-04-21T06:15:04.856Z",
+    "updatedAt": "2026-04-21T06:15:04.856Z"
   }
 ]

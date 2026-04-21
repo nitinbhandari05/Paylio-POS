@@ -1,12 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { ScanLine, Search, UserRound, TableProperties } from "lucide-react";
 import { usePOS } from "../../context/POSContext";
-import POSQuickAddModal from "./POSQuickAddModal";
 
 const TABLES = ["T1", "T2", "T3", "T4", "T5", "T6", "T7", "T8"];
 
 export default function POSHeader() {
-  const [quickAddMode, setQuickAddMode] = useState("");
   const {
     searchTerm,
     setSearchTerm,
@@ -93,13 +91,7 @@ export default function POSHeader() {
         <span>{menuStatus}</span>
         </div>
 
-        <div className="field quick-actions">
-          <button onClick={() => setQuickAddMode("category")}>+ Category</button>
-          <button onClick={() => setQuickAddMode("product")}>+ Product</button>
-        </div>
       </header>
-
-      {!!quickAddMode && <POSQuickAddModal mode={quickAddMode} onClose={() => setQuickAddMode("")} />}
     </>
   );
 }

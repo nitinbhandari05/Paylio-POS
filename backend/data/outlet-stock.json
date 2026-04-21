@@ -5,9 +5,9 @@
     "productId": "prod-masala-tea",
     "productName": "Masala Tea",
     "sku": "MASALA-TEA",
-    "quantity": 120,
+    "quantity": 119,
     "lowStockThreshold": 10,
-    "updatedAt": "2026-04-21T05:39:44.490Z",
+    "updatedAt": "2026-04-21T06:15:04.848Z",
     "createdAt": "2026-04-21T00:00:00.000Z"
   },
   {
@@ -38,9 +38,9 @@
     "productId": "prod-cheese-pizza",
     "productName": "Cheese Pizza",
     "sku": "CHEESE-PIZZA",
-    "quantity": 32,
+    "quantity": 31,
     "lowStockThreshold": 5,
-    "updatedAt": "2026-04-21T00:00:00.000Z",
+    "updatedAt": "2026-04-21T06:08:19.535Z",
     "createdAt": "2026-04-21T00:00:00.000Z"
   },
   {

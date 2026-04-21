@@ -96,29 +96,6 @@ select {
   color: var(--muted);
 }
 
-.quick-actions {
-  display: inline-flex;
-  gap: 6px;
-  justify-content: center;
-  padding: 6px;
-}
-
-.quick-actions button {
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  padding: 0 10px;
-  min-height: 34px;
-  background: #f9fafb;
-  color: var(--text-dark);
-  font-weight: 700;
-  cursor: pointer;
-}
-
-.quick-actions button:last-child {
-  background: var(--primary-red);
-  color: var(--white);
-  border-color: var(--primary-red);
-}
 
 .pos-layout {
   min-height: 0;
@@ -434,36 +411,6 @@ select {
   border: 0;
 }
 
-.quick-add-card {
-  width: min(560px, 94vw);
-}
-
-.quick-add-form {
-  display: grid;
-  gap: 8px;
-}
-
-.quick-add-form label {
-  display: grid;
-  gap: 4px;
-  font-size: 13px;
-}
-
-.quick-add-form input,
-.quick-add-form select {
-  min-height: 40px;
-  border-radius: 10px;
-  border: 1px solid var(--line);
-  padding: 0 10px;
-  background: transparent;
-  color: var(--text-dark);
-}
-
-.quick-add-inline {
-  display: grid;
-  gap: 8px;
-  grid-template-columns: 1fr 1fr;
-}
 
 @media (max-width: 1260px) {
   .pos-header {
@@ -492,9 +439,6 @@ select {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .quick-add-inline {
-    grid-template-columns: 1fr;
-  }
 }
 
 .screen-switcher {
@@ -702,6 +646,41 @@ select {
 }
 
 .login-card button {
+  background: var(--primary-red);
+  color: #fff;
+  border: 0;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.login-card .screen-switcher {
+  position: static;
+  margin: 0;
+}
+
+.login-form {
+  display: grid;
+  gap: 10px;
+}
+
+.login-form label {
+  display: grid;
+  gap: 6px;
+  font-size: 13px;
+}
+
+.login-form input,
+.login-form select,
+.login-form button {
+  min-height: 44px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  padding: 0 12px;
+  background: transparent;
+  color: var(--text-dark);
+}
+
+.login-form button {
   background: var(--primary-red);
   color: #fff;
   border: 0;

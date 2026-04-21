@@ -1,13 +1,20 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 56" role="img" aria-label="Paylio">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 64" role="img" aria-label="Paylio">
   <defs>
     <linearGradient id="paylioGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#f43f5e"/>
-      <stop offset="100%" stop-color="#fb923c"/>
+      <stop offset="0%" stop-color="#ef4444"/>
+      <stop offset="55%" stop-color="#f97316"/>
+      <stop offset="100%" stop-color="#f59e0b"/>
+    </linearGradient>
+    <linearGradient id="paylioBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
     </linearGradient>
   </defs>
-  <rect width="220" height="56" rx="14" fill="#0f172a"/>
-  <rect x="8" y="8" width="40" height="40" rx="10" fill="url(#paylioGrad)"/>
-  <path d="M20 18h10c6 0 10 3 10 8s-4 8-10 8h-4v8h-6V18zm10 11c3 0 4-1 4-3s-1-3-4-3h-4v6h4z" fill="#fff"/>
-  <text x="58" y="31" fill="#ffffff" font-size="18" font-weight="700" font-family="Manrope, Avenir Next, Segoe UI, Arial, sans-serif">Paylio</text>
-  <text x="58" y="44" fill="#94a3b8" font-size="10" letter-spacing="1.8" font-family="Manrope, Avenir Next, Segoe UI, Arial, sans-serif">CLOUD POS</text>
+  <rect width="240" height="64" rx="16" fill="url(#paylioBg)"/>
+  <rect x="10" y="10" width="44" height="44" rx="12" fill="url(#paylioGrad)"/>
+  <path d="M22 20h10c6 0 10 3 10 8s-4 8-10 8h-4v8h-6V20zm10 11c3 0 4-1 4-3s-1-3-4-3h-4v6h4z" fill="#fff"/>
+  <circle cx="206" cy="18" r="4" fill="#f59e0b" opacity=".9"/>
+  <circle cx="217" cy="27" r="2.5" fill="#f97316" opacity=".9"/>
+  <text x="64" y="35" fill="#ffffff" font-size="22" font-weight="700" font-family="Sora, Manrope, Segoe UI, Arial, sans-serif">Paylio</text>
+  <text x="64" y="49" fill="#94a3b8" font-size="10" letter-spacing="2" font-family="Sora, Manrope, Segoe UI, Arial, sans-serif">PREMIUM CLOUD POS</text>
 </svg>

@@ -134,10 +134,18 @@ const sanitizeTrackingPayload = (order) => ({
 const Order = {
   list: async (query = {}) => {
     const orders = await store.read();
-    if (query.outletId) {
-      return orders.filter((order) => order.outletId === String(query.outletId));
-    }
-    return orders;
+    return orders.filter((order) => {
+      if (query.outletId && order.outletId !== String(query.outletId)) return false;
+      if (query.orderSource && order.orderSource !== String(query.orderSource)) return false;
+      if (
+        query.integrationSource &&
+        String(order.integrationSource || "").toLowerCase() !==
+          String(query.integrationSource).toLowerCase()
+      ) {
+        return false;
+      }
+      return true;
+    });
   },
 
   listKitchenOrders: async (
@@ -160,6 +168,18 @@ const Order = {
 
     if (query.invoiceNumber) {
       return orders.find((item) => item.invoiceNumber === String(query.invoiceNumber)) || null;
+    }
+
+    if (query.externalOrderId) {
+      const targetExternalId = String(query.externalOrderId);
+      const targetSource = String(query.integrationSource || "").toLowerCase();
+      return (
+        orders.find((item) => {
+          if (String(item.externalOrderId || "") !== targetExternalId) return false;
+          if (!targetSource) return true;
+          return String(item.integrationSource || "").toLowerCase() === targetSource;
+        }) || null
+      );
     }
 
     return orders.find((item) =>
@@ -234,6 +254,9 @@ const Order = {
       customerEmail: payload.customerEmail || cart.customerEmail || "",
       deliveryAddress: payload.deliveryAddress || "",
       orderSource: payload.orderSource || "counter",
+      integrationSource: payload.integrationSource || "",
+      externalOrderId: payload.externalOrderId || "",
+      channelMetadata: payload.channelMetadata || {},
       tableNo: payload.tableNo || "",
       waiterName: payload.waiterName || "",
       notes: payload.notes || cart.notes || "",

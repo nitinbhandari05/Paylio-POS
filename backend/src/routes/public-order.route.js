@@ -13,9 +13,30 @@ import { emitRealtime } from "../utils/realtime.js";
 
 const router = express.Router();
 const DEFAULT_OUTLET_ID = process.env.DEFAULT_OUTLET_ID || "main";
+const ONLINE_APP_PROVIDERS = ["swiggy", "zomato", "magicpin", "dunzo", "blinkit"];
 
 const resolveOutlet = (req) =>
   String(req?.query?.outletId || req?.body?.outletId || DEFAULT_OUTLET_ID);
+
+const normalizeProvider = (value) => String(value || "").trim().toLowerCase();
+
+const resolveProductForAppItem = async (item = {}) => {
+  if (item.productId) {
+    return Product.findOne({ _id: String(item.productId) });
+  }
+
+  if (item.sku) {
+    const bySku = await Product.findOne({ sku: String(item.sku) });
+    if (bySku) return bySku;
+  }
+
+  if (item.name) {
+    const byName = await Product.findOne({ name: String(item.name) });
+    if (byName) return byName;
+  }
+
+  return null;
+};
 
 const buildOrderSummary = (orders = []) => {
   const completedOrders = orders.filter((order) => order.status === "completed");
@@ -209,6 +230,165 @@ router.get("/orders/summary", async (req, res) => {
   const outletId = resolveOutlet(req);
   const orders = await Order.list({ outletId });
   res.json({ outletId, summary: buildOrderSummary(orders) });
+});
+
+router.get("/integrations/apps/providers", async (_req, res) => {
+  res.json({
+    providers: ONLINE_APP_PROVIDERS,
+    webhookPath: "/api/public/integrations/apps/orders",
+    requiredFields: ["provider", "externalOrderId", "items"],
+  });
+});
+
+router.get("/integrations/apps/orders", async (req, res) => {
+  const outletId = resolveOutlet(req);
+  const provider = normalizeProvider(req.query.provider || "");
+  const statuses = String(req.query.status || "")
+    .split(",")
+    .map((value) => value.trim().toLowerCase())
+    .filter(Boolean);
+
+  const orders = await Order.list({
+    outletId,
+    integrationSource: provider || undefined,
+  });
+
+  const integrationOrders = orders
+    .filter((order) => Boolean(order.integrationSource))
+    .filter((order) => (statuses.length ? statuses.includes(String(order.status || "").toLowerCase()) : true))
+    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+  res.json({
+    outletId,
+    provider: provider || "all",
+    count: integrationOrders.length,
+    orders: integrationOrders,
+  });
+});
+
+router.post("/integrations/apps/orders", async (req, res) => {
+  try {
+    const expectedWebhookToken = String(process.env.ONLINE_APP_WEBHOOK_TOKEN || "").trim();
+    if (expectedWebhookToken) {
+      const receivedToken = String(req.headers["x-app-webhook-token"] || "").trim();
+      if (!receivedToken || receivedToken !== expectedWebhookToken) {
+        return res.status(401).json({ message: "Invalid webhook token" });
+      }
+    }
+
+    const outletId = resolveOutlet(req);
+    const provider = normalizeProvider(req.body.provider);
+    const externalOrderId = String(req.body.externalOrderId || "").trim();
+    const rawItems = Array.isArray(req.body.items) ? req.body.items : [];
+
+    if (!provider || !ONLINE_APP_PROVIDERS.includes(provider)) {
+      return res.status(400).json({ message: "Valid provider is required" });
+    }
+    if (!externalOrderId) {
+      return res.status(400).json({ message: "externalOrderId is required" });
+    }
+    if (!rawItems.length) {
+      return res.status(400).json({ message: "items are required" });
+    }
+
+    const duplicate = await Order.findOne({
+      externalOrderId,
+      integrationSource: provider,
+    });
+    if (duplicate) {
+      return res.status(409).json({
+        message: "Order already imported",
+        orderId: duplicate._id,
+        invoiceNumber: duplicate.invoiceNumber,
+      });
+    }
+
+    const mappedItems = [];
+    const missingItems = [];
+
+    for (const item of rawItems) {
+      const product = await resolveProductForAppItem(item);
+      if (!product) {
+        missingItems.push({
+          productId: item.productId || "",
+          sku: item.sku || "",
+          name: item.name || "",
+        });
+        continue;
+      }
+
+      mappedItems.push({
+        productId: product._id,
+        quantity: Number(item.quantity || 1),
+        unitPrice: Number(item.unitPrice ?? item.price ?? product.price ?? 0),
+      });
+    }
+
+    if (!mappedItems.length) {
+      return res.status(400).json({
+        message: "None of the incoming app items matched your menu products",
+        missingItems,
+      });
+    }
+
+    const cart = await Cart.create({
+      outletId,
+      customerName: req.body.customerName || req.body.customer?.name || "Online Customer",
+      customerPhone: req.body.customerPhone || req.body.customer?.phone || "",
+      customerEmail: req.body.customerEmail || req.body.customer?.email || "",
+      notes: req.body.notes || "",
+      orderSource: `app_${provider}`,
+      createdBy: null,
+    });
+
+    for (const item of mappedItems) {
+      await Cart.addItem(cart._id, item);
+    }
+
+    const paymentMethod = String(req.body.paymentMethod || "upi").toLowerCase();
+    const importedOrder = await Order.createFromCart(cart._id, {
+      outletId,
+      orderType: "delivery",
+      orderSource: `app_${provider}`,
+      integrationSource: provider,
+      externalOrderId,
+      channelMetadata: {
+        sourcePayloadRef: req.body.sourcePayloadRef || "",
+        appStatus: req.body.appStatus || "placed",
+      },
+      customerName: req.body.customerName || req.body.customer?.name || "Online Customer",
+      customerPhone: req.body.customerPhone || req.body.customer?.phone || "",
+      customerEmail: req.body.customerEmail || req.body.customer?.email || "",
+      deliveryAddress: req.body.deliveryAddress || req.body.customer?.address || "",
+      notes: req.body.notes || "",
+      payments: [{ method: paymentMethod, amount: 0 }],
+      createdBy: null,
+    });
+
+    const acceptedOrder = await Order.updateStatus(importedOrder._id, "accepted", null);
+    const kotJob = await queuePrintJob({
+      type: "kot",
+      orderId: acceptedOrder._id,
+      content: buildKotText(acceptedOrder),
+      copies: Number(req.body.kotCopies || 1),
+    });
+
+    emitRealtime("onlineOrder:new", acceptedOrder);
+    emitRealtime("newOrder", acceptedOrder);
+    emitRealtime("statusChanged", acceptedOrder);
+    emitRealtime("print:queued", kotJob);
+
+    res.status(201).json({
+      message: "Online app order integrated",
+      provider,
+      outletId,
+      order: acceptedOrder,
+      mappedItems: mappedItems.length,
+      missingItems,
+    });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
 });
 
 router.get("/kitchen/board", async (req, res) => {

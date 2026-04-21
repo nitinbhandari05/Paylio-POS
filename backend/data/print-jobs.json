@@ -88,5 +88,15 @@
     "status": "queued",
     "createdAt": "2026-04-21T06:40:04.899Z",
     "updatedAt": "2026-04-21T06:40:04.899Z"
+  },
+  {
+    "_id": "7dabb2fc-8bc3-49a8-a95b-45cc593fef22",
+    "type": "receipt",
+    "orderId": "75008b0f-afb1-469c-8411-abc3234a6aca",
+    "content": "Invoice INV-20260421-0010\nKOT KOT-20260421-0010\nCustomer Walk-in\nPhone -\n\n1 x Cheese Pizza @ 299 = 313.95\n\nSubtotal: 299\nDiscount: 0\nGST: 14.95\nTotal: 313.95\nPaid: 314\nChange: 0.05\n\nPayments:\nCASH: 314",
+    "copies": 1,
+    "status": "queued",
+    "createdAt": "2026-04-21T07:08:31.722Z",
+    "updatedAt": "2026-04-21T07:08:31.722Z"
   }
 ]

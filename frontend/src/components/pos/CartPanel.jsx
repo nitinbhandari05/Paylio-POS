@@ -1,4 +1,5 @@
 import React from "react";
+import { CreditCard, Wallet, Smartphone, ReceiptText } from "lucide-react";
 import { usePOS } from "../../context/POSContext";
 import CartItem from "./CartItem";
 
@@ -11,6 +12,12 @@ export default function CartPanel() {
     total,
     formatMoney,
     clearCart,
+    setDiscount,
+    paymentMethod,
+    setPaymentMethod,
+    holdCurrentOrder,
+    saveOrder,
+    isSaving,
     heldOrders,
     restoreHeldOrder,
   } = usePOS();
@@ -36,9 +43,6 @@ export default function CartPanel() {
         <div className="line"><span>Tax</span><strong>{formatMoney(tax)}</strong></div>
         <div className="line"><span>Discount</span><strong>-{formatMoney(discount)}</strong></div>
         <div className="line total"><span>Total</span><strong>{formatMoney(total)}</strong></div>
-        {!!cartItems.length && (
-          <button className="cart-clear-btn" onClick={clearCart}>Clear Cart</button>
-        )}
       </div>
 
       {!!heldOrders.length && (
@@ -51,6 +55,32 @@ export default function CartPanel() {
           ))}
         </div>
       )}
+
+      <div className="cart-actions">
+        <div className="cart-utility-buttons">
+          <button onClick={holdCurrentOrder} disabled={!cartItems.length}>Hold</button>
+          <button onClick={() => setDiscount(Number(window.prompt("Discount amount", String(discount)) || 0))}>
+            Discount
+          </button>
+          <button className="cart-clear-btn" onClick={clearCart} disabled={!cartItems.length}>Clear</button>
+        </div>
+
+        <div className="cart-pay-methods">
+          <button onClick={() => setPaymentMethod("cash")} className={paymentMethod === "cash" ? "active cash" : "cash"}>
+            <Wallet size={14} /> Cash
+          </button>
+          <button onClick={() => setPaymentMethod("card")} className={paymentMethod === "card" ? "active card" : "card"}>
+            <CreditCard size={14} /> Card
+          </button>
+          <button onClick={() => setPaymentMethod("upi")} className={paymentMethod === "upi" ? "active upi" : "upi"}>
+            <Smartphone size={14} /> UPI
+          </button>
+        </div>
+
+        <button className="cart-save-btn" onClick={saveOrder} disabled={!cartItems.length || isSaving}>
+          <ReceiptText size={16} /> {isSaving ? "Saving..." : "Save & Print"}
+        </button>
+      </div>
     </aside>
   );
 }

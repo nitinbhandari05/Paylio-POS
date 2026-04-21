@@ -853,5 +853,86 @@
     "refundReason": "",
     "refundNumber": "",
     "refundAmount": 0
+  },
+  {
+    "_id": "75008b0f-afb1-469c-8411-abc3234a6aca",
+    "invoiceNumber": "INV-20260421-0010",
+    "kotNumber": "KOT-20260421-0010",
+    "outletId": "main",
+    "orderType": "dinein",
+    "cartId": "5e63c886-d8c2-4bfc-9eb3-aa58327a3e29",
+    "status": "accepted",
+    "statusTimeline": [
+      {
+        "status": "pending",
+        "at": "2026-04-21T07:08:31.713Z",
+        "by": null
+      },
+      {
+        "status": "accepted",
+        "at": "2026-04-21T07:08:31.721Z",
+        "by": null
+      }
+    ],
+    "deliveryStatus": "not_required",
+    "deliveryTimeline": [],
+    "deliveryAgentId": "",
+    "deliveryAgentName": "",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "deliveryAddress": "",
+    "orderSource": "counter",
+    "tableNo": "T3",
+    "waiterName": "Waiter 1",
+    "notes": "",
+    "items": [
+      {
+        "_id": "74155495-7aad-4f8b-abc0-a44c35a5306a",
+        "productId": "prod-cheese-pizza",
+        "name": "Cheese Pizza",
+        "sku": "CHEESE-PIZZA",
+        "categoryId": "",
+        "categoryName": "Pizza",
+        "quantity": 1,
+        "unitPrice": 299,
+        "gstRate": 5,
+        "lineSubtotal": 299,
+        "lineDiscount": 0,
+        "taxableAmount": 299,
+        "gstAmount": 14.95,
+        "lineTotal": 313.95,
+        "note": ""
+      }
+    ],
+    "subtotal": 299,
+    "itemDiscountAmount": 0,
+    "cartDiscountAmount": 0,
+    "discountAmount": 0,
+    "taxableSubtotal": 299,
+    "gstAmount": 14.95,
+    "gstRate": 18,
+    "total": 313.95,
+    "payments": [
+      {
+        "method": "cash",
+        "amount": 314,
+        "reference": ""
+      }
+    ],
+    "amountPaid": 314,
+    "paymentStatus": "paid",
+    "changeDue": 0.05,
+    "createdBy": null,
+    "createdAt": "2026-04-21T07:08:31.710Z",
+    "updatedAt": "2026-04-21T07:08:31.721Z",
+    "completedAt": null,
+    "cancelledAt": null,
+    "refundedAt": null,
+    "cancelReason": "",
+    "refundReason": "",
+    "refundNumber": "",
+    "refundAmount": 0
   }
 ]

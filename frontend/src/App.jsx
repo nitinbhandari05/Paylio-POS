@@ -25,6 +25,7 @@ import LoginPage from "./pages/LoginPage";
 import OwnerMobilePage from "./pages/OwnerMobilePage";
 import HelpSupportPage from "./pages/HelpSupportPage";
 import { POSProvider } from "./context/POSContext";
+import logo from "./assets/logo.svg";
 
 const NAV_ITEMS = [
   { id: "pos", label: "POS", icon: ScanLine },
@@ -126,8 +127,11 @@ export default function App() {
       <div className="saas-shell">
         <aside className="side-nav">
           <div className="brand-block">
-            <h1>Paylio</h1>
-            <p>Restaurant Cloud</p>
+            <img src={logo} alt="Paylio" className="sidebar-logo" />
+            <div>
+              <h1>Paylio</h1>
+              <p>Restaurant Cloud</p>
+            </div>
           </div>
 
           <nav>

@@ -22,6 +22,7 @@
 
   --shadow-soft: 0 10px 30px -24px rgba(15, 23, 42, 0.32);
   --shadow-card: 0 22px 45px -35px rgba(15, 23, 42, 0.42);
+  --shadow-float: 0 24px 55px -36px rgba(13, 23, 42, 0.46);
   --radius-xl: 20px;
   --radius-lg: 14px;
   --radius-md: 11px;
@@ -38,6 +39,7 @@ body {
   background:
     radial-gradient(1200px 500px at -8% -10%, #ffe6e2 0%, transparent 52%),
     radial-gradient(900px 450px at 102% -12%, #ffeccf 0%, transparent 52%),
+    radial-gradient(1400px 460px at 50% -22%, #dbeafe 0%, transparent 50%),
     var(--bg);
 }
 
@@ -63,7 +65,7 @@ button:active {
   min-height: 100vh;
   padding: 16px;
   display: grid;
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows: auto 1fr;
   gap: 14px;
 }
 
@@ -72,6 +74,7 @@ button:active {
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(3px);
 }
 
 .pos-header {
@@ -208,7 +211,7 @@ button:active {
 
 .product-card:hover {
   transform: translateY(-2px);
-  box-shadow: var(--shadow-card);
+  box-shadow: var(--shadow-float);
   border-color: var(--line-strong);
 }
 
@@ -311,8 +314,7 @@ button:active {
 }
 
 .cart-clear-btn {
-  margin-top: 4px;
-  min-height: 36px;
+  min-height: 38px;
   border-radius: 8px;
   border: 1px solid var(--line);
   background: var(--surface-2);
@@ -370,17 +372,23 @@ button:active {
   font-size: 13px;
 }
 
-.payment-bar {
-  position: sticky;
-  bottom: 8px;
+.cart-actions {
+  margin-top: auto;
+  border-top: 1px solid var(--line);
+  padding: 12px;
   display: grid;
   gap: 8px;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-  padding: 10px;
 }
 
-.payment-bar button {
-  min-height: 46px;
+.cart-utility-buttons,
+.cart-pay-methods {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.cart-actions button {
+  min-height: 40px;
   border-radius: 10px;
   border: 1px solid var(--line);
   background: #f8fafe;
@@ -393,24 +401,29 @@ button:active {
   gap: 6px;
 }
 
-.payment-bar .cash,
-.payment-bar .card,
-.payment-bar .upi,
-.payment-bar .primary {
+.cart-pay-methods .cash,
+.cart-pay-methods .card,
+.cart-pay-methods .upi {
   color: #fff;
   border: 0;
 }
 
-.payment-bar .cash { background: linear-gradient(135deg, #16a34a, #22c55e); }
-.payment-bar .card { background: linear-gradient(135deg, #1d4ed8, #2563eb); }
-.payment-bar .upi { background: linear-gradient(135deg, #7c3aed, #8b5cf6); }
-.payment-bar .primary { background: linear-gradient(135deg, var(--brand), var(--brand-2)); }
+.cart-pay-methods .cash { background: linear-gradient(135deg, #16a34a, #22c55e); }
+.cart-pay-methods .card { background: linear-gradient(135deg, #1d4ed8, #2563eb); }
+.cart-pay-methods .upi { background: linear-gradient(135deg, #7c3aed, #8b5cf6); }
 
-.payment-bar button.active {
+.cart-pay-methods button.active {
   box-shadow: inset 0 0 0 3px rgba(255, 255, 255, 0.32);
 }
 
-.payment-bar button:disabled {
+.cart-save-btn {
+  background: linear-gradient(135deg, var(--brand), var(--brand-2)) !important;
+  color: #fff !important;
+  border: 0 !important;
+}
+
+.cart-actions button:disabled,
+.cart-save-btn:disabled {
   opacity: 0.55;
   cursor: not-allowed;
 }
@@ -558,6 +571,14 @@ button:active {
   padding: 12px;
   box-shadow: var(--shadow-soft);
   animation: rise-in 0.32s ease both;
+}
+
+.module-card:hover,
+.kpi:hover,
+.panel:hover,
+.owner-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-float);
 }
 
 .kpi span,
@@ -708,16 +729,31 @@ button:active {
   grid-template-columns: 238px 1fr;
   background: var(--bg);
   color: var(--text);
+  position: relative;
 }
 
 .side-nav {
   border-right: 1px solid #1e293b;
-  background: linear-gradient(180deg, #0f172a 0%, #111827 50%, #1f2937 100%);
+  background:
+    radial-gradient(420px 300px at 0% 0%, rgba(244, 63, 94, 0.2), transparent 60%),
+    linear-gradient(180deg, #0f172a 0%, #111827 50%, #1f2937 100%);
   color: #fff;
   display: grid;
   grid-template-rows: auto 1fr auto;
   gap: 16px;
   padding: 14px;
+}
+
+.brand-block {
+  display: grid;
+  gap: 10px;
+}
+
+.sidebar-logo {
+  width: 100%;
+  max-width: 210px;
+  border-radius: 12px;
+  box-shadow: 0 15px 30px -22px rgba(0, 0, 0, 0.6);
 }
 
 .brand-block h1 {
@@ -747,7 +783,7 @@ button:active {
   align-items: center;
   gap: 8px;
   padding: 0 12px;
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.065);
   color: #f8fafc;
   cursor: pointer;
 }
@@ -755,6 +791,7 @@ button:active {
 .side-nav nav button.active {
   background: linear-gradient(135deg, var(--brand), var(--brand-2));
   border-color: transparent;
+  box-shadow: 0 14px 30px -20px rgba(249, 115, 22, 0.75);
 }
 
 .nav-logout {
@@ -772,11 +809,12 @@ button:active {
   padding: 10px 12px;
   border-radius: 12px;
   border: 1px solid var(--line);
-  background: var(--surface);
+  background: color-mix(in srgb, var(--surface) 86%, #ffffff 14%);
   display: flex;
   align-items: center;
   justify-content: space-between;
   box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(8px);
 }
 
 .shell-top strong {
@@ -806,6 +844,10 @@ button:active {
   cursor: pointer;
 }
 
+.theme-btn {
+  background: linear-gradient(180deg, #ffffff, #f8fafd);
+}
+
 .module-page {
   display: grid;
   gap: 12px;
@@ -824,7 +866,7 @@ button:active {
 .module-note,
 .admin-source {
   border: 1px dashed var(--line-strong);
-  background: var(--surface);
+  background: color-mix(in srgb, var(--surface) 88%, #ffffff 12%);
   border-radius: 10px;
   padding: 10px;
   color: var(--muted);
@@ -1011,6 +1053,7 @@ button:active {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
+  box-shadow: var(--shadow-card);
 }
 
 .owner-hero .eyebrow {
@@ -1067,6 +1110,7 @@ button:active {
   --line-strong: #345071;
   --shadow-soft: 0 16px 30px -26px rgba(0, 0, 0, 0.8);
   --shadow-card: 0 26px 46px -34px rgba(0, 0, 0, 0.85);
+  --shadow-float: 0 26px 54px -34px rgba(0, 0, 0, 0.92);
 }
 
 .dark body,
@@ -1096,7 +1140,7 @@ button:active {
 .dark .field,
 .dark .status-buttons button,
 .dark .held-orders button,
-.dark .payment-bar button,
+.dark .cart-actions button,
 .dark .modal-actions button,
 .dark .table-wrap th,
 .dark .login-form .link-btn {
@@ -1113,8 +1157,9 @@ button:active {
     grid-template-columns: 1fr;
   }
 
-  .payment-bar {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+  .cart-utility-buttons,
+  .cart-pay-methods {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
@@ -1151,7 +1196,6 @@ button:active {
   }
 
   .pos-header,
-  .payment-bar,
   .side-nav nav,
   .module-kpis,
   .kitchen-grid,
@@ -1168,6 +1212,11 @@ button:active {
   .order-row,
   .owner-row {
     grid-template-columns: 1fr;
+  }
+
+  .cart-utility-buttons,
+  .cart-pay-methods {
+    grid-template-columns: 1fr 1fr;
   }
 }
 

@@ -223,5 +223,20 @@
     "createdBy": null,
     "createdAt": "2026-04-21T06:40:04.895Z",
     "updatedAt": "2026-04-21T06:40:04.895Z"
+  },
+  {
+    "_id": "7214482e-86a0-48db-bf11-7a1a4e5e0bb1",
+    "outletId": "main",
+    "productId": "prod-cheese-pizza",
+    "productName": "Cheese Pizza",
+    "sku": "CHEESE-PIZZA",
+    "type": "out",
+    "quantity": 1,
+    "beforeStock": 30,
+    "afterStock": 29,
+    "note": "Order sale INV-20260421-0010",
+    "createdBy": null,
+    "createdAt": "2026-04-21T07:08:31.717Z",
+    "updatedAt": "2026-04-21T07:08:31.717Z"
   }
 ]

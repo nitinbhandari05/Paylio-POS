@@ -3,7 +3,6 @@ import POSHeader from "../components/pos/POSHeader";
 import CategorySidebar from "../components/pos/CategorySidebar";
 import ProductGrid from "../components/pos/ProductGrid";
 import CartPanel from "../components/pos/CartPanel";
-import PaymentBar from "../components/pos/PaymentBar";
 
 export default function POSPage() {
   return (
@@ -15,8 +14,6 @@ export default function POSPage() {
         <ProductGrid />
         <CartPanel />
       </div>
-
-      <PaymentBar />
     </div>
   );
 }

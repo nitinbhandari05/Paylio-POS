@@ -38,9 +38,9 @@
     "productId": "prod-cheese-pizza",
     "productName": "Cheese Pizza",
     "sku": "CHEESE-PIZZA",
-    "quantity": 30,
+    "quantity": 29,
     "lowStockThreshold": 5,
-    "updatedAt": "2026-04-21T06:40:04.891Z",
+    "updatedAt": "2026-04-21T07:08:31.715Z",
     "createdAt": "2026-04-21T00:00:00.000Z"
   },
   {

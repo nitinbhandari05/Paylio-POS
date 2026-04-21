@@ -357,5 +357,38 @@
     "createdBy": null,
     "createdAt": "2026-04-21T06:40:04.868Z",
     "updatedAt": "2026-04-21T06:40:04.897Z"
+  },
+  {
+    "_id": "5e63c886-d8c2-4bfc-9eb3-aa58327a3e29",
+    "status": "closed",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 18,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [
+      {
+        "_id": "de0d3db8-c8d4-4282-9a0e-28543d1e0a10",
+        "productId": "prod-cheese-pizza",
+        "name": "Cheese Pizza",
+        "sku": "CHEESE-PIZZA",
+        "categoryId": "",
+        "categoryName": "Pizza",
+        "quantity": 1,
+        "unitPrice": 299,
+        "cost": 165,
+        "gstRate": 5,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      }
+    ],
+    "createdBy": null,
+    "createdAt": "2026-04-21T07:08:31.701Z",
+    "updatedAt": "2026-04-21T07:08:31.720Z"
   }
 ]

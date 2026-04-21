@@ -78,5 +78,15 @@
     "status": "queued",
     "createdAt": "2026-04-21T06:15:04.856Z",
     "updatedAt": "2026-04-21T06:15:04.856Z"
+  },
+  {
+    "_id": "697a9c14-d510-4d1d-82c1-dc473ca592bd",
+    "type": "receipt",
+    "orderId": "1355995d-ca2e-418d-962e-bad0c69106b3",
+    "content": "Invoice INV-20260421-0009\nKOT KOT-20260421-0009\nCustomer Walk-in\nPhone -\n\n1 x Cold Coffee @ 120 = 126\n1 x Cheese Pizza @ 299 = 313.95\n1 x Tea Combo @ 199 = 208.95\n1 x Brownie @ 99 = 103.95\n\nSubtotal: 717\nDiscount: 0\nGST: 35.85\nTotal: 752.85\nPaid: 753\nChange: 0.15\n\nPayments:\nUPI: 753",
+    "copies": 1,
+    "status": "queued",
+    "createdAt": "2026-04-21T06:40:04.899Z",
+    "updatedAt": "2026-04-21T06:40:04.899Z"
   }
 ]

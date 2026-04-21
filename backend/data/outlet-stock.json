@@ -16,9 +16,9 @@
     "productId": "prod-cold-coffee",
     "productName": "Cold Coffee",
     "sku": "COLD-COFFEE",
-    "quantity": 79,
+    "quantity": 78,
     "lowStockThreshold": 8,
-    "updatedAt": "2026-04-21T05:43:08.206Z",
+    "updatedAt": "2026-04-21T06:40:04.888Z",
     "createdAt": "2026-04-21T00:00:00.000Z"
   },
   {
@@ -38,9 +38,9 @@
     "productId": "prod-cheese-pizza",
     "productName": "Cheese Pizza",
     "sku": "CHEESE-PIZZA",
-    "quantity": 31,
+    "quantity": 30,
     "lowStockThreshold": 5,
-    "updatedAt": "2026-04-21T06:08:19.535Z",
+    "updatedAt": "2026-04-21T06:40:04.891Z",
     "createdAt": "2026-04-21T00:00:00.000Z"
   },
   {
@@ -49,9 +49,9 @@
     "productId": "prod-brownie",
     "productName": "Brownie",
     "sku": "BROWNIE",
-    "quantity": 74,
+    "quantity": 73,
     "lowStockThreshold": 10,
-    "updatedAt": "2026-04-21T05:17:22.017Z",
+    "updatedAt": "2026-04-21T06:40:04.894Z",
     "createdAt": "2026-04-21T00:00:00.000Z"
   },
   {
@@ -60,9 +60,9 @@
     "productId": "prod-tea-combo",
     "productName": "Tea Combo",
     "sku": "TEA-COMBO",
-    "quantity": 27,
+    "quantity": 26,
     "lowStockThreshold": 4,
-    "updatedAt": "2026-04-21T05:09:28.433Z",
+    "updatedAt": "2026-04-21T06:40:04.892Z",
     "createdAt": "2026-04-21T00:00:00.000Z"
   }
 ]

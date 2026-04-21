@@ -279,5 +279,83 @@
     "createdBy": null,
     "createdAt": "2026-04-21T06:15:04.836Z",
     "updatedAt": "2026-04-21T06:15:04.853Z"
+  },
+  {
+    "_id": "4aaba2ab-460b-4f8c-a273-24f78213e4c0",
+    "status": "closed",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 18,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [
+      {
+        "_id": "ff7e91f4-df23-47fc-8726-4171865ec04e",
+        "productId": "prod-cold-coffee",
+        "name": "Cold Coffee",
+        "sku": "COLD-COFFEE",
+        "categoryId": "",
+        "categoryName": "Coffee",
+        "quantity": 1,
+        "unitPrice": 120,
+        "cost": 52,
+        "gstRate": 5,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      },
+      {
+        "_id": "e0d6da17-1536-4cd9-8e37-e2121f24a00b",
+        "productId": "prod-cheese-pizza",
+        "name": "Cheese Pizza",
+        "sku": "CHEESE-PIZZA",
+        "categoryId": "",
+        "categoryName": "Pizza",
+        "quantity": 1,
+        "unitPrice": 299,
+        "cost": 165,
+        "gstRate": 5,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      },
+      {
+        "_id": "f0cce7db-30a4-437f-a9b7-63c7ac2e33c1",
+        "productId": "prod-tea-combo",
+        "name": "Tea Combo",
+        "sku": "TEA-COMBO",
+        "categoryId": "",
+        "categoryName": "Combos",
+        "quantity": 1,
+        "unitPrice": 199,
+        "cost": 95,
+        "gstRate": 5,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      },
+      {
+        "_id": "15553615-4ae1-4556-8989-5954501fb8c8",
+        "productId": "prod-brownie",
+        "name": "Brownie",
+        "sku": "BROWNIE",
+        "categoryId": "",
+        "categoryName": "Dessert",
+        "quantity": 1,
+        "unitPrice": 99,
+        "cost": 40,
+        "gstRate": 5,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      }
+    ],
+    "createdBy": null,
+    "createdAt": "2026-04-21T06:40:04.868Z",
+    "updatedAt": "2026-04-21T06:40:04.897Z"
   }
 ]

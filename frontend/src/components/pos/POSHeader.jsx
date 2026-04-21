@@ -1,5 +1,5 @@
 import React from "react";
-import { Search, UserRound, TableProperties } from "lucide-react";
+import { ScanLine, Search, UserRound, TableProperties } from "lucide-react";
 import { usePOS } from "../../context/POSContext";
 
 const TABLES = ["T1", "T2", "T3", "T4", "T5", "T6", "T7", "T8"];
@@ -16,6 +16,11 @@ export default function POSHeader() {
     setTable,
     shift,
     setShift,
+    waiterName,
+    setWaiterName,
+    barcodeTerm,
+    setBarcodeTerm,
+    addByBarcodeOrSku,
     cashier,
     menuStatus,
   } = usePOS();
@@ -28,6 +33,22 @@ export default function POSHeader() {
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           placeholder="Search products"
+        />
+      </div>
+
+      <div className="field icon-field">
+        <ScanLine size={16} />
+        <input
+          value={barcodeTerm}
+          onChange={(e) => setBarcodeTerm(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              const ok = addByBarcodeOrSku(barcodeTerm);
+              if (!ok) window.alert("Barcode/SKU not found");
+              setBarcodeTerm("");
+            }
+          }}
+          placeholder="Scan barcode / SKU"
         />
       </div>
 
@@ -58,6 +79,11 @@ export default function POSHeader() {
         <option>Afternoon Shift</option>
         <option>Night Shift</option>
       </select>
+
+      <div className="field icon-field">
+        <UserRound size={16} />
+        <input value={waiterName} onChange={(e) => setWaiterName(e.target.value)} placeholder="Waiter" />
+      </div>
 
       <div className="field user-field">
         <strong>{cashier}</strong>

@@ -6,11 +6,31 @@
     "outletId": "main",
     "orderType": "dinein",
     "cartId": "5d3a6a14-3869-4f18-b82d-855f460f26aa",
-    "status": "pending",
+    "status": "completed",
     "statusTimeline": [
       {
         "status": "pending",
         "at": "2026-04-21T05:09:28.432Z",
+        "by": null
+      },
+      {
+        "status": "accepted",
+        "at": "2026-04-21T05:35:41.952Z",
+        "by": null
+      },
+      {
+        "status": "preparing",
+        "at": "2026-04-21T05:35:53.811Z",
+        "by": null
+      },
+      {
+        "status": "ready",
+        "at": "2026-04-21T05:35:56.669Z",
+        "by": null
+      },
+      {
+        "status": "completed",
+        "at": "2026-04-21T05:35:59.885Z",
         "by": null
       }
     ],
@@ -66,8 +86,8 @@
     "changeDue": 0.05,
     "createdBy": null,
     "createdAt": "2026-04-21T05:09:28.430Z",
-    "updatedAt": "2026-04-21T05:09:28.430Z",
-    "completedAt": null,
+    "updatedAt": "2026-04-21T05:35:59.885Z",
+    "completedAt": "2026-04-21T05:35:59.885Z",
     "cancelledAt": null,
     "refundedAt": null,
     "cancelReason": "",
@@ -82,11 +102,31 @@
     "outletId": "main",
     "orderType": "dinein",
     "cartId": "814c8e65-5227-4d4a-b223-2c8f812dd443",
-    "status": "pending",
+    "status": "completed",
     "statusTimeline": [
       {
         "status": "pending",
         "at": "2026-04-21T05:10:48.634Z",
+        "by": null
+      },
+      {
+        "status": "accepted",
+        "at": "2026-04-21T05:35:41.453Z",
+        "by": null
+      },
+      {
+        "status": "preparing",
+        "at": "2026-04-21T05:35:52.956Z",
+        "by": null
+      },
+      {
+        "status": "ready",
+        "at": "2026-04-21T05:35:55.751Z",
+        "by": null
+      },
+      {
+        "status": "completed",
+        "at": "2026-04-21T05:35:59.319Z",
         "by": null
       }
     ],
@@ -142,8 +182,8 @@
     "changeDue": 0.5,
     "createdBy": null,
     "createdAt": "2026-04-21T05:10:48.632Z",
-    "updatedAt": "2026-04-21T05:10:48.632Z",
-    "completedAt": null,
+    "updatedAt": "2026-04-21T05:35:59.319Z",
+    "completedAt": "2026-04-21T05:35:59.319Z",
     "cancelledAt": null,
     "refundedAt": null,
     "cancelReason": "",
@@ -350,11 +390,31 @@
     "outletId": "main",
     "orderType": "dinein",
     "cartId": "614b1ae4-ebb8-4781-a79a-17e68e701568",
-    "status": "pending",
+    "status": "completed",
     "statusTimeline": [
       {
         "status": "pending",
         "at": "2026-04-21T05:25:48.999Z",
+        "by": null
+      },
+      {
+        "status": "accepted",
+        "at": "2026-04-21T05:35:40.100Z",
+        "by": null
+      },
+      {
+        "status": "preparing",
+        "at": "2026-04-21T05:35:52.031Z",
+        "by": null
+      },
+      {
+        "status": "ready",
+        "at": "2026-04-21T05:35:55.042Z",
+        "by": null
+      },
+      {
+        "status": "completed",
+        "at": "2026-04-21T05:35:58.452Z",
         "by": null
       }
     ],
@@ -410,7 +470,88 @@
     "changeDue": 0.5,
     "createdBy": null,
     "createdAt": "2026-04-21T05:25:48.997Z",
-    "updatedAt": "2026-04-21T05:25:48.997Z",
+    "updatedAt": "2026-04-21T05:35:58.452Z",
+    "completedAt": "2026-04-21T05:35:58.452Z",
+    "cancelledAt": null,
+    "refundedAt": null,
+    "cancelReason": "",
+    "refundReason": "",
+    "refundNumber": "",
+    "refundAmount": 0
+  },
+  {
+    "_id": "ed95ee86-de75-45b3-bc3f-4d370315c0e7",
+    "invoiceNumber": "INV-20260421-0006",
+    "kotNumber": "KOT-20260421-0006",
+    "outletId": "main",
+    "orderType": "dinein",
+    "cartId": "3ad574e3-75d5-4dcf-9a67-021ffdc1ce16",
+    "status": "accepted",
+    "statusTimeline": [
+      {
+        "status": "pending",
+        "at": "2026-04-21T05:43:08.205Z",
+        "by": null
+      },
+      {
+        "status": "accepted",
+        "at": "2026-04-21T05:43:08.210Z",
+        "by": null
+      }
+    ],
+    "deliveryStatus": "not_required",
+    "deliveryTimeline": [],
+    "deliveryAgentId": "",
+    "deliveryAgentName": "",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "deliveryAddress": "",
+    "orderSource": "counter",
+    "tableNo": "T1",
+    "waiterName": "Waiter 1",
+    "notes": "",
+    "items": [
+      {
+        "_id": "f00a177f-d4e5-4a37-8c7b-846b6c532fea",
+        "productId": "prod-cold-coffee",
+        "name": "Cold Coffee",
+        "sku": "COLD-COFFEE",
+        "categoryId": "",
+        "categoryName": "Coffee",
+        "quantity": 1,
+        "unitPrice": 120,
+        "gstRate": 5,
+        "lineSubtotal": 120,
+        "lineDiscount": 0,
+        "taxableAmount": 120,
+        "gstAmount": 6,
+        "lineTotal": 126,
+        "note": ""
+      }
+    ],
+    "subtotal": 120,
+    "itemDiscountAmount": 0,
+    "cartDiscountAmount": 0,
+    "discountAmount": 0,
+    "taxableSubtotal": 120,
+    "gstAmount": 6,
+    "gstRate": 18,
+    "total": 126,
+    "payments": [
+      {
+        "method": "cash",
+        "amount": 126,
+        "reference": ""
+      }
+    ],
+    "amountPaid": 126,
+    "paymentStatus": "paid",
+    "changeDue": 0,
+    "createdBy": null,
+    "createdAt": "2026-04-21T05:43:08.203Z",
+    "updatedAt": "2026-04-21T05:43:08.210Z",
     "completedAt": null,
     "cancelledAt": null,
     "refundedAt": null,

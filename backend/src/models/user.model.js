@@ -8,6 +8,7 @@ const __dirname = dirname(__filename);
 const store = createArrayStore(resolve(__dirname, "../../data/users.json"));
 
 const normalizeEmail = (email) => String(email || "").trim().toLowerCase();
+const normalizePin = (pin) => String(pin || "").trim();
 
 const User = {
   list: async () => store.read(),
@@ -22,6 +23,11 @@ const User = {
     if (query.email) {
       const email = normalizeEmail(query.email);
       return users.find((item) => normalizeEmail(item.email) === email) || null;
+    }
+
+    if (query.pin) {
+      const pin = normalizePin(query.pin);
+      return users.find((item) => normalizePin(item.pin) === pin) || null;
     }
 
     return users.find((item) =>
@@ -47,6 +53,7 @@ const User = {
       name: payload.name || "",
       email,
       password: payload.password || "",
+      pin: normalizePin(payload.pin),
       role: payload.role || "cashier",
       outletId: payload.outletId || process.env.DEFAULT_OUTLET_ID || "main",
       isHeadOffice: Boolean(payload.isHeadOffice),
@@ -68,6 +75,8 @@ const User = {
     }
 
     if (payload.name !== undefined) users[index].name = payload.name;
+    if (payload.password !== undefined) users[index].password = payload.password;
+    if (payload.pin !== undefined) users[index].pin = normalizePin(payload.pin);
     if (payload.role !== undefined) users[index].role = payload.role;
     if (payload.outletId !== undefined) users[index].outletId = payload.outletId;
     if (payload.isHeadOffice !== undefined) users[index].isHeadOffice = Boolean(payload.isHeadOffice);

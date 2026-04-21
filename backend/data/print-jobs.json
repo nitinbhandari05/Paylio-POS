@@ -48,5 +48,15 @@
     "status": "queued",
     "createdAt": "2026-04-21T05:25:49.004Z",
     "updatedAt": "2026-04-21T05:25:49.004Z"
+  },
+  {
+    "_id": "f96d76ea-2e43-42b8-b52c-faf9d146d8fb",
+    "type": "receipt",
+    "orderId": "ed95ee86-de75-45b3-bc3f-4d370315c0e7",
+    "content": "Invoice INV-20260421-0006\nKOT KOT-20260421-0006\nCustomer Walk-in\nPhone -\n\n1 x Cold Coffee @ 120 = 126\n\nSubtotal: 120\nDiscount: 0\nGST: 6\nTotal: 126\nPaid: 126\nChange: 0\n\nPayments:\nCASH: 126",
+    "copies": 1,
+    "status": "queued",
+    "createdAt": "2026-04-21T05:43:08.211Z",
+    "updatedAt": "2026-04-21T05:43:08.211Z"
   }
 ]

@@ -180,5 +180,38 @@
     "createdBy": null,
     "createdAt": "2026-04-21T05:25:48.986Z",
     "updatedAt": "2026-04-21T05:25:49.003Z"
+  },
+  {
+    "_id": "3ad574e3-75d5-4dcf-9a67-021ffdc1ce16",
+    "status": "closed",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 18,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [
+      {
+        "_id": "233b7e30-f0be-4b36-8ce4-ff473715c4f7",
+        "productId": "prod-cold-coffee",
+        "name": "Cold Coffee",
+        "sku": "COLD-COFFEE",
+        "categoryId": "",
+        "categoryName": "Coffee",
+        "quantity": 1,
+        "unitPrice": 120,
+        "cost": 52,
+        "gstRate": 5,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      }
+    ],
+    "createdBy": null,
+    "createdAt": "2026-04-21T05:43:08.196Z",
+    "updatedAt": "2026-04-21T05:43:08.209Z"
   }
 ]

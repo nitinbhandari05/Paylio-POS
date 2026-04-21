@@ -29,6 +29,8 @@ export function POSProvider({ children }) {
   const [table, setTable] = useState("T1");
   const [shift, setShift] = useState("Morning Shift");
   const [cashier] = useState("Cashier Asha");
+  const [waiterName, setWaiterName] = useState("Waiter 1");
+  const [barcodeTerm, setBarcodeTerm] = useState("");
 
   const [cartItems, setCartItems] = useState([]);
   const [discount, setDiscount] = useState(0);
@@ -39,6 +41,41 @@ export function POSProvider({ children }) {
   const [isSaving, setIsSaving] = useState(false);
 
   const [heldOrders, setHeldOrders] = useState([]);
+
+  const queueOrderForSync = (payload) => {
+    const key = "paylio-offline-orders";
+    const current = JSON.parse(localStorage.getItem(key) || "[]");
+    current.push({
+      id: `offline-${Date.now()}`,
+      payload,
+      queuedAt: new Date().toISOString(),
+    });
+    localStorage.setItem(key, JSON.stringify(current));
+  };
+
+  const syncOfflineOrders = async () => {
+    const key = "paylio-offline-orders";
+    const current = JSON.parse(localStorage.getItem(key) || "[]");
+    if (!current.length || !navigator.onLine) return;
+
+    const pending = [];
+    for (const row of current) {
+      try {
+        const response = await fetch("/api/public/orders", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(row.payload),
+        });
+        if (!response.ok) {
+          pending.push(row);
+        }
+      } catch {
+        pending.push(row);
+      }
+    }
+
+    localStorage.setItem(key, JSON.stringify(pending));
+  };
 
   useEffect(() => {
     const bootstrap = async () => {
@@ -54,6 +91,7 @@ export function POSProvider({ children }) {
           name: item.name || "Unnamed",
           price: Number(item.price || 0),
           category: item.categoryName || "Uncategorized",
+          sku: item.sku || "",
           stock: Number(item.stock || 99),
           type: "veg",
         }));
@@ -71,6 +109,12 @@ export function POSProvider({ children }) {
     };
 
     bootstrap();
+    syncOfflineOrders();
+    const onOnline = () => {
+      syncOfflineOrders();
+    };
+    window.addEventListener("online", onOnline);
+    return () => window.removeEventListener("online", onOnline);
   }, []);
 
   const categories = useMemo(() => {
@@ -106,6 +150,15 @@ export function POSProvider({ children }) {
       }
       return [...current, { ...product, qty: 1 }];
     });
+  };
+
+  const addByBarcodeOrSku = (code) => {
+    const normalized = String(code || "").trim().toLowerCase();
+    if (!normalized) return false;
+    const matched = products.find((item) => String(item.sku || "").trim().toLowerCase() === normalized);
+    if (!matched) return false;
+    addToCart(matched);
+    return true;
   };
 
   const updateQty = (id, delta) => {
@@ -198,6 +251,7 @@ export function POSProvider({ children }) {
           orderSource: "counter",
           customerName: customer,
           tableNo: orderType === "dinein" ? table : "",
+          waiterName: waiterName || "",
           notes: note,
           items: cartItems.map((item) => ({
             productId: item.productId,
@@ -218,7 +272,23 @@ export function POSProvider({ children }) {
       setPaymentMethod("cash");
       setSplitOpen(false);
     } catch (error) {
-      window.alert(error.message || "Unable to save order");
+      const payload = {
+        outletId: "main",
+        orderType,
+        orderSource: "counter",
+        customerName: customer,
+        tableNo: orderType === "dinein" ? table : "",
+        waiterName: waiterName || "",
+        notes: note,
+        items: cartItems.map((item) => ({
+          productId: item.productId,
+          quantity: item.qty,
+          unitPrice: item.price,
+        })),
+        payments,
+      };
+      queueOrderForSync(payload);
+      window.alert(`Network issue. Order queued offline for auto-sync. (${error.message || "sync pending"})`);
     } finally {
       setIsSaving(false);
     }
@@ -242,6 +312,11 @@ export function POSProvider({ children }) {
     shift,
     setShift,
     cashier,
+    waiterName,
+    setWaiterName,
+    barcodeTerm,
+    setBarcodeTerm,
+    addByBarcodeOrSku,
     cartItems,
     addToCart,
     updateQty,

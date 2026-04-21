@@ -4,7 +4,10 @@ import Cart from "../models/cart.model.js";
 import Order from "../models/order.model.js";
 import Table from "../models/table.model.js";
 import PromoCode from "../models/promo-code.model.js";
-import { buildKotText, queuePrintJob } from "../utils/print.js";
+import Inventory from "../models/inventory.model.js";
+import User from "../models/user.model.js";
+import Branch from "../models/branch.model.js";
+import { buildKotText, buildReceiptText, queuePrintJob } from "../utils/print.js";
 import { emitRealtime } from "../utils/realtime.js";
 
 const router = express.Router();
@@ -12,6 +15,30 @@ const DEFAULT_OUTLET_ID = process.env.DEFAULT_OUTLET_ID || "main";
 
 const resolveOutlet = (req) =>
   String(req?.query?.outletId || req?.body?.outletId || DEFAULT_OUTLET_ID);
+
+const SUBSCRIPTION_PLANS = [
+  {
+    id: "starter",
+    name: "Starter",
+    monthlyINR: 1499,
+    outletsIncluded: 1,
+    features: ["POS Billing", "Basic Reports", "Inventory Tracking"],
+  },
+  {
+    id: "growth",
+    name: "Growth",
+    monthlyINR: 3999,
+    outletsIncluded: 3,
+    features: ["Everything in Starter", "Kitchen + Waiter Workflow", "Advanced Reports"],
+  },
+  {
+    id: "enterprise",
+    name: "Enterprise",
+    monthlyINR: 9999,
+    outletsIncluded: 999,
+    features: ["Multi Outlet", "Role Policies", "Priority Support", "Custom Integrations"],
+  },
+];
 
 const buildOrderSummary = (orders = []) => {
   const completedOrders = orders.filter((order) => order.status === "completed");
@@ -156,32 +183,25 @@ router.post("/orders", async (req, res) => {
       await Table.update(table._id, { status: "occupied" });
     }
 
-    const kotJob = await queuePrintJob({
-      type: "kot",
-      orderId: order._id,
-      content: buildKotText(order),
-      copies: Number(req.body.kotCopies || 1),
+    // Auto-accept POS orders immediately when bill is saved/printed
+    const acceptedOrder = await Order.updateStatus(order._id, "accepted", null);
+
+    const receiptJob = await queuePrintJob({
+      type: "receipt",
+      orderId: acceptedOrder._id,
+      content: buildReceiptText(acceptedOrder),
+      copies: Number(req.body.receiptCopies || 1),
     });
 
-    emitRealtime("newOrder", order);
-    emitRealtime("kitchen:newKOT", {
-      orderId: order._id,
-      invoiceNumber: order.invoiceNumber,
-      kotNumber: order.kotNumber,
-      status: order.status,
-      orderType: order.orderType,
-      items: order.items,
-      createdAt: order.createdAt,
-      tableNo: order.tableNo || "",
-      waiterName: order.waiterName || "",
-    });
-    emitRealtime("print:queued", kotJob);
+    emitRealtime("newOrder", acceptedOrder);
+    emitRealtime("statusChanged", acceptedOrder);
+    emitRealtime("print:queued", receiptJob);
 
     res.status(201).json({
       message: "Order created",
-      order,
+      order: acceptedOrder,
       promo: promoResult,
-      trackingUrl: `/api/order-tracking/${order.invoiceNumber}`,
+      trackingUrl: `/api/order-tracking/${acceptedOrder.invoiceNumber}`,
     });
   } catch (error) {
     res.status(400).json({ message: error.message });
@@ -253,6 +273,180 @@ router.post("/orders/:orderId/print/kot", async (req, res) => {
 
   emitRealtime("print:queued", job);
   res.status(201).json({ message: "KOT print queued", job });
+});
+
+router.post("/orders/:orderId/cancel", async (req, res) => {
+  try {
+    const order = await Order.cancelOrder(req.params.orderId, {
+      reason: req.body.reason || "",
+      by: null,
+    });
+    emitRealtime("statusChanged", order);
+    res.json({ message: "Order cancelled", order });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
+router.post("/orders/:orderId/refund", async (req, res) => {
+  try {
+    const order = await Order.refundOrder(req.params.orderId, {
+      reason: req.body.reason || "",
+      refundAmount: req.body.refundAmount,
+      by: null,
+    });
+    emitRealtime("statusChanged", order);
+    res.json({ message: "Order refunded", order });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
+router.get("/orders/:orderId/receipt", async (req, res) => {
+  const order = await Order.findOne({ _id: req.params.orderId });
+  if (!order) {
+    return res.status(404).json({ message: "Order not found" });
+  }
+  res.json({
+    orderId: order._id,
+    invoiceNumber: order.invoiceNumber,
+    receiptText: buildReceiptText(order),
+    template: "default-thermal-v1",
+    order,
+  });
+});
+
+router.post("/orders/:orderId/print/receipt", async (req, res) => {
+  const order = await Order.findOne({ _id: req.params.orderId });
+  if (!order) {
+    return res.status(404).json({ message: "Order not found" });
+  }
+  const job = await queuePrintJob({
+    type: "receipt",
+    orderId: order._id,
+    content: buildReceiptText(order),
+    copies: Number(req.body.copies || 1),
+  });
+  emitRealtime("print:queued", job);
+  res.status(201).json({ message: "Receipt print queued", job });
+});
+
+router.get("/tables", async (req, res) => {
+  const outletId = resolveOutlet(req);
+  const tables = await Table.list({ outletId });
+  res.json({ outletId, tables });
+});
+
+router.patch("/tables/:tableId/status", async (req, res) => {
+  try {
+    const table = await Table.update(req.params.tableId, { status: req.body.status });
+    if (!table) {
+      return res.status(404).json({ message: "Table not found" });
+    }
+    res.json({ message: "Table status updated", table });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
+router.get("/inventory/summary", async (req, res) => {
+  const outletId = resolveOutlet(req);
+  const summary = await Inventory.summary(outletId);
+  res.json({ summary });
+});
+
+router.get("/outlets", async (_req, res) => {
+  const outlets = await Branch.list();
+  res.json({ outlets });
+});
+
+router.get("/subscription/plans", async (_req, res) => {
+  res.json({
+    currency: "INR",
+    billingCycle: "monthly",
+    plans: SUBSCRIPTION_PLANS,
+  });
+});
+
+router.get("/inventory/stock", async (req, res) => {
+  const outletId = resolveOutlet(req);
+  const stock = await Inventory.listStock(outletId);
+  res.json({ outletId, stock });
+});
+
+router.post("/inventory/movement", async (req, res) => {
+  try {
+    const movement = await Inventory.createMovement({
+      ...req.body,
+      outletId: resolveOutlet(req),
+      createdBy: null,
+    });
+    res.status(201).json({ message: "Movement recorded", movement });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
+router.get("/reports/overview", async (req, res) => {
+  const outletId = resolveOutlet(req);
+  const [orders, inventorySummary, stockRows, staff] = await Promise.all([
+    Order.list({ outletId }),
+    Inventory.summary(outletId),
+    Inventory.listStock(outletId),
+    User.list(),
+  ]);
+
+  const completedOrders = orders.filter((item) => item.status === "completed");
+  const topProductsMap = new Map();
+
+  for (const order of orders) {
+    for (const item of order.items || []) {
+      const key = item.productId || item.name;
+      const current = topProductsMap.get(key) || {
+        productId: item.productId || "",
+        name: item.name || "Unknown",
+        quantity: 0,
+        revenue: 0,
+      };
+      current.quantity += Number(item.quantity || 0);
+      current.revenue += Number(item.lineTotal || item.quantity * item.unitPrice || 0);
+      topProductsMap.set(key, current);
+    }
+  }
+
+  const topProducts = [...topProductsMap.values()]
+    .sort((a, b) => b.quantity - a.quantity)
+    .slice(0, 8);
+
+  const staffCount = staff.filter((user) => (user.outletId || "main") === outletId).length;
+  const recentTrend = orders
+    .slice()
+    .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
+    .slice(-14)
+    .map((order) => ({
+      date: order.createdAt,
+      total: Number(order.total || 0),
+      status: order.status,
+    }));
+
+  res.json({
+    outletId,
+    headline: {
+      orders: orders.length,
+      completedOrders: completedOrders.length,
+      grossRevenue: completedOrders.reduce((sum, order) => sum + Number(order.total || 0), 0),
+      taxes: completedOrders.reduce((sum, order) => sum + Number(order.gstAmount || 0), 0),
+      refunds: orders
+        .filter((order) => order.status === "refunded")
+        .reduce((sum, order) => sum + Number(order.refundAmount || order.total || 0), 0),
+      staffCount,
+      lowStockItems: inventorySummary.lowStockItems?.length || 0,
+      skuCount: stockRows.length,
+      inventoryUnits: inventorySummary.totalUnits || 0,
+    },
+    topProducts,
+    recentTrend,
+  });
 });
 
 router.get("/orders/:invoiceNumber", async (req, res) => {

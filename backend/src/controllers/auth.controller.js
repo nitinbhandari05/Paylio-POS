@@ -14,7 +14,7 @@ const sanitizeUser = (user) => {
 // REGISTER
 export const register = async (req, res) => {
   try {
-    const { name, email, password, role, outletId, isHeadOffice } = req.body;
+    const { name, email, password, pin, role, outletId, isHeadOffice } = req.body;
 
     if (!name || !email || !password) {
       return res.status(400).json({ message: "name, email, and password are required" });
@@ -31,6 +31,7 @@ export const register = async (req, res) => {
       name,
       email,
       password: hashedPassword,
+      pin: pin || "",
       role: role || "cashier",
       outletId: outletId || process.env.DEFAULT_OUTLET_ID || "main",
       isHeadOffice: Boolean(isHeadOffice)
@@ -87,6 +88,46 @@ export const login = async (req, res) => {
       user: sanitizeUser(user)
     });
 
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+// PIN LOGIN (cashier / waiter quick access)
+export const loginWithPin = async (req, res) => {
+  try {
+    const { pin } = req.body;
+
+    if (!pin) {
+      return res.status(400).json({ message: "pin is required" });
+    }
+
+    const user = await User.findOne({ pin: String(pin).trim() });
+    if (!user) {
+      return res.status(400).json({ message: "Invalid PIN" });
+    }
+
+    const jwtSecret = getJwtSecret();
+    if (!jwtSecret) {
+      return res.status(500).json({ message: "JWT secret is not configured" });
+    }
+
+    const token = jwt.sign(
+      {
+        id: user._id,
+        role: user.role,
+        outletId: user.outletId || process.env.DEFAULT_OUTLET_ID || "main",
+        isHeadOffice: Boolean(user.isHeadOffice)
+      },
+      jwtSecret,
+      { expiresIn: getJwtExpiry() }
+    );
+
+    res.json({
+      message: "PIN login successful",
+      token,
+      user: sanitizeUser(user)
+    });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

@@ -3,6 +3,7 @@
     "_id": "0a53838f-fd1f-4c22-8a1c-cd341fdc716b",
     "name": "Nitin",
     "email": "nitin@test.com",
+    "pin": "1234",
     "password": "$2b$10$jHIh/HfAewE5nsMJE7D38ueUyezBFtlGNjtAw6FpaThQ66qxUayKm",
     "role": "user",
     "createdAt": "2026-04-14T07:20:20.064Z",

@@ -5,9 +5,9 @@
     "productId": "prod-masala-tea",
     "productName": "Masala Tea",
     "sku": "MASALA-TEA",
-    "quantity": 117,
+    "quantity": 120,
     "lowStockThreshold": 10,
-    "updatedAt": "2026-04-21T05:25:49.000Z",
+    "updatedAt": "2026-04-21T05:39:44.490Z",
     "createdAt": "2026-04-21T00:00:00.000Z"
   },
   {
@@ -16,9 +16,9 @@
     "productId": "prod-cold-coffee",
     "productName": "Cold Coffee",
     "sku": "COLD-COFFEE",
-    "quantity": 80,
+    "quantity": 79,
     "lowStockThreshold": 8,
-    "updatedAt": "2026-04-21T00:00:00.000Z",
+    "updatedAt": "2026-04-21T05:43:08.206Z",
     "createdAt": "2026-04-21T00:00:00.000Z"
   },
   {

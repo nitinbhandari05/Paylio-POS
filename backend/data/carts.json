@@ -1,1 +1,19 @@
-[]
+[
+  {
+    "_id": "d1f1ad77-a124-4661-8393-8e45c45d1d3a",
+    "status": "open",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 18,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [],
+    "createdBy": null,
+    "createdAt": "2026-04-21T04:30:15.205Z",
+    "updatedAt": "2026-04-21T04:30:15.205Z"
+  }
+]

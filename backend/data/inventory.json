@@ -238,5 +238,20 @@
     "createdBy": null,
     "createdAt": "2026-04-21T07:08:31.717Z",
     "updatedAt": "2026-04-21T07:08:31.717Z"
+  },
+  {
+    "_id": "dde07fa7-6d13-4f01-993a-eb2d113d7e76",
+    "outletId": "main",
+    "productId": "prod-masala-tea",
+    "productName": "Masala Tea",
+    "sku": "MASALA-TEA",
+    "type": "out",
+    "quantity": 1,
+    "beforeStock": 119,
+    "afterStock": 118,
+    "note": "Order sale INV-20260421-0011",
+    "createdBy": null,
+    "createdAt": "2026-04-21T07:17:33.392Z",
+    "updatedAt": "2026-04-21T07:17:33.392Z"
   }
 ]

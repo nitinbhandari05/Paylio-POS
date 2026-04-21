@@ -934,5 +934,89 @@
     "refundReason": "",
     "refundNumber": "",
     "refundAmount": 0
+  },
+  {
+    "_id": "e1245b04-9cdc-4fc9-b6c9-d49aeec3fbec",
+    "invoiceNumber": "INV-20260421-0011",
+    "kotNumber": "KOT-20260421-0011",
+    "outletId": "main",
+    "orderType": "dinein",
+    "cartId": "581dad5f-f502-4318-9240-707fc4af6979",
+    "status": "accepted",
+    "statusTimeline": [
+      {
+        "status": "pending",
+        "at": "2026-04-21T07:17:33.389Z",
+        "by": null
+      },
+      {
+        "status": "accepted",
+        "at": "2026-04-21T07:17:33.395Z",
+        "by": null
+      }
+    ],
+    "deliveryStatus": "not_required",
+    "deliveryTimeline": [],
+    "deliveryAgentId": "",
+    "deliveryAgentName": "",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "deliveryAddress": "",
+    "orderSource": "counter",
+    "integrationSource": "",
+    "externalOrderId": "",
+    "channelMetadata": {},
+    "tableNo": "T1",
+    "waiterName": "Waiter 1",
+    "notes": "",
+    "items": [
+      {
+        "_id": "81585a2d-dd13-4629-a691-cd2a76e95425",
+        "productId": "prod-masala-tea",
+        "name": "Masala Tea",
+        "sku": "MASALA-TEA",
+        "categoryId": "",
+        "categoryName": "Tea",
+        "quantity": 1,
+        "unitPrice": 30,
+        "gstRate": 5,
+        "lineSubtotal": 30,
+        "lineDiscount": 0,
+        "taxableAmount": 30,
+        "gstAmount": 1.5,
+        "lineTotal": 31.5,
+        "note": ""
+      }
+    ],
+    "subtotal": 30,
+    "itemDiscountAmount": 0,
+    "cartDiscountAmount": 0,
+    "discountAmount": 0,
+    "taxableSubtotal": 30,
+    "gstAmount": 1.5,
+    "gstRate": 18,
+    "total": 31.5,
+    "payments": [
+      {
+        "method": "card",
+        "amount": 32,
+        "reference": ""
+      }
+    ],
+    "amountPaid": 32,
+    "paymentStatus": "paid",
+    "changeDue": 0.5,
+    "createdBy": null,
+    "createdAt": "2026-04-21T07:17:33.387Z",
+    "updatedAt": "2026-04-21T07:17:33.395Z",
+    "completedAt": null,
+    "cancelledAt": null,
+    "refundedAt": null,
+    "cancelReason": "",
+    "refundReason": "",
+    "refundNumber": "",
+    "refundAmount": 0
   }
 ]

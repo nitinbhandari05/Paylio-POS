@@ -390,5 +390,38 @@
     "createdBy": null,
     "createdAt": "2026-04-21T07:08:31.701Z",
     "updatedAt": "2026-04-21T07:08:31.720Z"
+  },
+  {
+    "_id": "581dad5f-f502-4318-9240-707fc4af6979",
+    "status": "closed",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 18,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [
+      {
+        "_id": "0b72a350-5451-4175-b54d-46d509b82c1e",
+        "productId": "prod-masala-tea",
+        "name": "Masala Tea",
+        "sku": "MASALA-TEA",
+        "categoryId": "",
+        "categoryName": "Tea",
+        "quantity": 1,
+        "unitPrice": 30,
+        "cost": 12,
+        "gstRate": 5,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      }
+    ],
+    "createdBy": null,
+    "createdAt": "2026-04-21T07:17:33.380Z",
+    "updatedAt": "2026-04-21T07:17:33.394Z"
   }
 ]

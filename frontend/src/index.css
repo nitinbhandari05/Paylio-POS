@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply min-h-screen bg-slate-50 text-slate-900 antialiased;
+  background-image: linear-gradient(135deg, #eef2ff 0%, #f8fafc 35%, #fff7ed 100%);
+}

@@ -342,5 +342,81 @@
     "refundReason": "",
     "refundNumber": "",
     "refundAmount": 0
+  },
+  {
+    "_id": "13d1224d-dafa-4d1a-9378-0c1ee93a37e5",
+    "invoiceNumber": "INV-20260421-0005",
+    "kotNumber": "KOT-20260421-0005",
+    "outletId": "main",
+    "orderType": "dinein",
+    "cartId": "614b1ae4-ebb8-4781-a79a-17e68e701568",
+    "status": "pending",
+    "statusTimeline": [
+      {
+        "status": "pending",
+        "at": "2026-04-21T05:25:48.999Z",
+        "by": null
+      }
+    ],
+    "deliveryStatus": "not_required",
+    "deliveryTimeline": [],
+    "deliveryAgentId": "",
+    "deliveryAgentName": "",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "deliveryAddress": "",
+    "orderSource": "counter",
+    "tableNo": "T1",
+    "waiterName": "",
+    "notes": "",
+    "items": [
+      {
+        "_id": "f3ca7c60-89ed-4c84-a29a-a6086a292885",
+        "productId": "prod-masala-tea",
+        "name": "Masala Tea",
+        "sku": "MASALA-TEA",
+        "categoryId": "",
+        "categoryName": "Tea",
+        "quantity": 1,
+        "unitPrice": 30,
+        "gstRate": 5,
+        "lineSubtotal": 30,
+        "lineDiscount": 0,
+        "taxableAmount": 30,
+        "gstAmount": 1.5,
+        "lineTotal": 31.5,
+        "note": ""
+      }
+    ],
+    "subtotal": 30,
+    "itemDiscountAmount": 0,
+    "cartDiscountAmount": 0,
+    "discountAmount": 0,
+    "taxableSubtotal": 30,
+    "gstAmount": 1.5,
+    "gstRate": 18,
+    "total": 31.5,
+    "payments": [
+      {
+        "method": "cash",
+        "amount": 32,
+        "reference": ""
+      }
+    ],
+    "amountPaid": 32,
+    "paymentStatus": "paid",
+    "changeDue": 0.5,
+    "createdBy": null,
+    "createdAt": "2026-04-21T05:25:48.997Z",
+    "updatedAt": "2026-04-21T05:25:48.997Z",
+    "completedAt": null,
+    "cancelledAt": null,
+    "refundedAt": null,
+    "cancelReason": "",
+    "refundReason": "",
+    "refundNumber": "",
+    "refundAmount": 0
   }
 ]

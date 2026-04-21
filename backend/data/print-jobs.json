@@ -38,5 +38,15 @@
     "status": "queued",
     "createdAt": "2026-04-21T05:17:22.022Z",
     "updatedAt": "2026-04-21T05:17:22.022Z"
+  },
+  {
+    "_id": "3cb69182-3ea5-45b2-84b1-c2ec13f3abca",
+    "type": "kot",
+    "orderId": "13d1224d-dafa-4d1a-9378-0c1ee93a37e5",
+    "content": "KOT KOT-20260421-0005\nInvoice INV-20260421-0005\nCustomer Walk-in\n\nItems:\n1 x Masala Tea\n\nStatus: pending",
+    "copies": 1,
+    "status": "queued",
+    "createdAt": "2026-04-21T05:25:49.004Z",
+    "updatedAt": "2026-04-21T05:25:49.004Z"
   }
 ]

@@ -11,7 +11,7 @@ const router = express.Router();
 const DEFAULT_OUTLET_ID = process.env.DEFAULT_OUTLET_ID || "main";
 
 const resolveOutlet = (req) =>
-  String(req.query.outletId || req.body.outletId || DEFAULT_OUTLET_ID);
+  String(req?.query?.outletId || req?.body?.outletId || DEFAULT_OUTLET_ID);
 
 const buildOrderSummary = (orders = []) => {
   const completedOrders = orders.filter((order) => order.status === "completed");

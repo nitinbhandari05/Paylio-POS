@@ -605,27 +605,46 @@ select {
   display: grid;
   place-items: center;
   padding: 20px;
-  background: radial-gradient(circle at 10% 20%, #ffe7e7 0%, transparent 35%), radial-gradient(circle at 90% 10%, #fff3e0 0%, transparent 35%), var(--gray-bg);
+  background:
+    radial-gradient(circle at 8% 10%, #ffe4e6 0%, transparent 34%),
+    radial-gradient(circle at 86% 16%, #ffedd5 0%, transparent 35%),
+    linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%);
 }
 
 .login-card {
-  width: min(430px, 96vw);
-  border-radius: 18px;
-  border: 1px solid var(--line);
+  width: min(470px, 96vw);
+  border-radius: 20px;
+  border: 1px solid #dbe2ea;
   background: var(--white);
-  box-shadow: var(--shadow);
-  padding: 22px;
+  box-shadow: 0 20px 60px -36px rgba(15, 23, 42, 0.35);
+  padding: 22px 22px 20px;
   display: grid;
+  gap: 14px;
+}
+
+.login-brand {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  align-items: center;
   gap: 12px;
+}
+
+.login-brand img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
 }
 
 .login-card h1 {
   margin: 0;
+  font-size: 26px;
+  line-height: 1.1;
 }
 
 .login-card p {
-  margin: 0;
+  margin: 4px 0 0;
   color: var(--muted);
+  font-size: 13px;
 }
 
 .login-card label {
@@ -681,11 +700,27 @@ select {
 }
 
 .login-form button {
-  background: var(--primary-red);
+  background: linear-gradient(135deg, #e11d48, #f97316);
   color: #fff;
   border: 0;
   cursor: pointer;
   font-weight: 700;
+}
+
+.login-note {
+  color: var(--muted);
+  font-size: 12px;
+  text-align: center;
+}
+
+@media (max-width: 520px) {
+  .login-brand {
+    grid-template-columns: 1fr;
+  }
+
+  .login-brand img {
+    width: min(160px, 100%);
+  }
 }
 
 .saas-shell {

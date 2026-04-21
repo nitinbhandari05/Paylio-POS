@@ -6,6 +6,7 @@ import {
   Armchair,
   FileBarChart2,
   Settings,
+  LifeBuoy,
   HandPlatter,
   Smartphone,
   LogOut,
@@ -22,6 +23,7 @@ import SettingsPage from "./pages/SettingsPage";
 import WaiterPage from "./pages/WaiterPage";
 import LoginPage from "./pages/LoginPage";
 import OwnerMobilePage from "./pages/OwnerMobilePage";
+import HelpSupportPage from "./pages/HelpSupportPage";
 import { POSProvider } from "./context/POSContext";
 
 const NAV_ITEMS = [
@@ -32,16 +34,17 @@ const NAV_ITEMS = [
   { id: "waiter", label: "Waiter", icon: HandPlatter },
   { id: "owner", label: "Owner Mobile", icon: Smartphone },
   { id: "reports", label: "Reports", icon: FileBarChart2 },
+  { id: "support", label: "Help & Support", icon: LifeBuoy },
   { id: "settings", label: "Settings", icon: Settings },
 ];
 
 const ROLE_NAV_ACCESS = {
-  admin: ["pos", "admin", "inventory", "tables", "waiter", "owner", "reports", "settings"],
-  manager: ["pos", "inventory", "tables", "waiter", "reports", "settings"],
-  cashier: ["pos", "tables", "settings"],
-  waiter: ["waiter", "tables", "settings"],
-  kitchen: ["settings"],
-  user: ["pos", "settings"],
+  admin: ["pos", "admin", "inventory", "tables", "waiter", "owner", "reports", "support", "settings"],
+  manager: ["pos", "inventory", "tables", "waiter", "reports", "support", "settings"],
+  cashier: ["pos", "tables", "support", "settings"],
+  waiter: ["waiter", "tables", "support", "settings"],
+  kitchen: ["support", "settings"],
+  user: ["pos", "support", "settings"],
 };
 
 const getAllowedNav = (role) =>
@@ -55,6 +58,7 @@ function renderPage(activePage, session, dark, toggleDark, logout) {
   if (activePage === "waiter") return <WaiterPage session={session} />;
   if (activePage === "owner") return <OwnerMobilePage session={session} />;
   if (activePage === "reports") return <ReportsPage />;
+  if (activePage === "support") return <HelpSupportPage />;
   if (activePage === "settings") {
     return (
       <SettingsPage

@@ -5,11 +5,8 @@ import { usePOS } from "../../context/POSContext";
 export default function PaymentBar() {
   const {
     setDiscount,
-    note,
-    setNote,
     paymentMethod,
     setPaymentMethod,
-    setSplitOpen,
     holdCurrentOrder,
     saveOrder,
     isSaving,
@@ -20,8 +17,6 @@ export default function PaymentBar() {
     <footer className="payment-bar card-shell">
       <button onClick={holdCurrentOrder}>Hold</button>
       <button onClick={() => setDiscount(Number(window.prompt("Discount amount", "0") || 0))}>Discount</button>
-      <button onClick={() => setNote(window.prompt("Order note", note) || "")}>Note</button>
-      <button onClick={() => { setPaymentMethod("split"); setSplitOpen(true); }}>Split</button>
 
       <button onClick={() => setPaymentMethod("cash")} className={paymentMethod === "cash" ? "active cash" : "cash"}>
         <Wallet size={15} /> Cash

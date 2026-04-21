@@ -4,7 +4,6 @@ import CategorySidebar from "../components/pos/CategorySidebar";
 import ProductGrid from "../components/pos/ProductGrid";
 import CartPanel from "../components/pos/CartPanel";
 import PaymentBar from "../components/pos/PaymentBar";
-import PaymentModal from "../components/pos/PaymentModal";
 
 export default function POSPage() {
   return (
@@ -18,7 +17,6 @@ export default function POSPage() {
       </div>
 
       <PaymentBar />
-      <PaymentModal />
     </div>
   );
 }

@@ -34,10 +34,7 @@ export function POSProvider({ children }) {
 
   const [cartItems, setCartItems] = useState([]);
   const [discount, setDiscount] = useState(0);
-  const [note, setNote] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("cash");
-  const [splitOpen, setSplitOpen] = useState(false);
-  const [splitAmounts, setSplitAmounts] = useState({ cash: 0, card: 0, upi: 0 });
   const [isSaving, setIsSaving] = useState(false);
 
   const [heldOrders, setHeldOrders] = useState([]);
@@ -140,6 +137,10 @@ export function POSProvider({ children }) {
   const total = Math.max(0, subtotal + tax - safeDiscount);
 
   const addToCart = (product) => {
+    if (Number(product?.stock || 0) <= 0) {
+      return false;
+    }
+
     setCartItems((current) => {
       const found = current.find((item) => item.id === product.id);
       if (found) {
@@ -149,6 +150,8 @@ export function POSProvider({ children }) {
       }
       return [...current, { ...product, qty: 1 }];
     });
+
+    return true;
   };
 
   const addByBarcodeOrSku = (code) => {
@@ -175,8 +178,6 @@ export function POSProvider({ children }) {
   const clearCart = () => {
     setCartItems([]);
     setDiscount(0);
-    setNote("");
-    setSplitAmounts({ cash: 0, card: 0, upi: 0 });
   };
 
   const holdCurrentOrder = () => {
@@ -189,7 +190,6 @@ export function POSProvider({ children }) {
         customer,
         table,
         orderType,
-        note,
         items: cartItems,
         discount: safeDiscount,
       },
@@ -202,24 +202,13 @@ export function POSProvider({ children }) {
     if (!target) return;
     setCartItems(target.items || []);
     setDiscount(target.discount || 0);
-    setNote(target.note || "");
     setCustomer(target.customer || "Walk-in");
     setTable(target.table || "T1");
     setOrderType(target.orderType || "dinein");
     setHeldOrders((current) => current.filter((item) => item.id !== id));
   };
 
-  const buildPayments = () => {
-    if (paymentMethod !== "split") {
-      return [{ method: paymentMethod, amount: total }];
-    }
-
-    const payments = ["cash", "card", "upi"]
-      .map((method) => ({ method, amount: Number(splitAmounts[method] || 0) }))
-      .filter((row) => row.amount > 0);
-
-    return payments;
-  };
+  const buildPayments = () => [{ method: paymentMethod, amount: total }];
 
   const saveOrder = async () => {
     if (!cartItems.length || isSaving) return;
@@ -251,7 +240,7 @@ export function POSProvider({ children }) {
           customerName: customer,
           tableNo: orderType === "dinein" ? table : "",
           waiterName: waiterName || "",
-          notes: note,
+          notes: "",
           items: cartItems.map((item) => ({
             productId: item.productId,
             quantity: item.qty,
@@ -269,7 +258,6 @@ export function POSProvider({ children }) {
       window.alert(`Order saved: ${data.order?.invoiceNumber || "N/A"}`);
       clearCart();
       setPaymentMethod("cash");
-      setSplitOpen(false);
     } catch (error) {
       const payload = {
         outletId: "main",
@@ -278,7 +266,7 @@ export function POSProvider({ children }) {
         customerName: customer,
         tableNo: orderType === "dinein" ? table : "",
         waiterName: waiterName || "",
-        notes: note,
+        notes: "",
         items: cartItems.map((item) => ({
           productId: item.productId,
           quantity: item.qty,
@@ -323,19 +311,14 @@ export function POSProvider({ children }) {
     removeItem,
     discount: safeDiscount,
     setDiscount,
-    note,
-    setNote,
     subtotal,
     tax,
     total,
     paymentMethod,
     setPaymentMethod,
-    splitOpen,
-    setSplitOpen,
-    splitAmounts,
-    setSplitAmounts,
     isSaving,
     saveOrder,
+    clearCart,
     holdCurrentOrder,
     heldOrders,
     restoreHeldOrder,

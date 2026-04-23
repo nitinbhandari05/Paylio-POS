@@ -279,73 +279,84 @@ export default function LoginPage({ onLogin }) {
 
   return (
     <main className="login-page">
-      <div className="login-card">
-        <div className="login-brand">
-          <img src={logo} alt="Paylio logo" />
-          <div>
-            <h1>Paylio Cloud POS</h1>
-            <p>Restaurant + Retail Management Suite</p>
+      <section className="auth-shell">
+        <aside className="auth-hero">
+          <div className="login-brand">
+            <img src={logo} alt="Paylio logo" />
+            <div>
+              <h1>Paylio Cloud POS</h1>
+              <p>Restaurant + Retail Management Suite</p>
+            </div>
           </div>
-        </div>
 
-        <div className="screen-switcher">
-          <button type="button" className={mode === "login" ? "active" : ""} onClick={() => setMode("login")}>
-            Login
-          </button>
-          <button type="button" className={mode === "register" ? "active" : ""} onClick={() => setMode("register")}>
-            Register
-          </button>
-        </div>
+          <p className="auth-subtitle">
+            One place for billing, kitchen flow, reports, and outlet operations.
+          </p>
 
-        <article className="module-card">
-          <h3>Recommended Roles</h3>
-          <ul className="plain-list">
-            {ROLE_MATRIX.map((role) => (
-              <li key={role.key}>
-                <span>{role.label}</span>
-                <strong>{role.access}</strong>
-              </li>
-            ))}
-          </ul>
-        </article>
+          <article className="module-card auth-roles-card">
+            <h3>Role Access Snapshot</h3>
+            <ul className="plain-list">
+              {ROLE_MATRIX.map((role) => (
+                <li key={role.key}>
+                  <span>{role.label}</span>
+                  <strong>{role.access}</strong>
+                </li>
+              ))}
+            </ul>
+          </article>
+        </aside>
 
-        {mode === "login" ? (
-          <form onSubmit={submitLogin} className="login-form">
-            <label>
-              Email or Phone
-              <input
-                value={loginForm.identifier}
-                onChange={(e) => setLoginForm((curr) => ({ ...curr, identifier: e.target.value }))}
-                placeholder="you@restaurant.com / 9876543210"
-              />
-            </label>
-            <label>
-              Password
-              <input
-                type="password"
-                value={loginForm.password}
-                onChange={(e) => setLoginForm((curr) => ({ ...curr, password: e.target.value }))}
-                placeholder="••••••••"
-              />
-            </label>
-            <label>
-              PIN (optional quick login)
-              <input
-                type="password"
-                value={loginForm.pin}
-                onChange={(e) => setLoginForm((curr) => ({ ...curr, pin: e.target.value }))}
-                placeholder="1234"
-              />
-            </label>
-            <button type="submit" disabled={loading}>{loading ? "Signing in..." : "Login"}</button>
-            <button type="button" className="link-btn" onClick={() => setMode("forgot")}>
-              Forgot password?
+        <div className="auth-panel">
+          <div className="screen-switcher">
+            <button type="button" className={mode === "login" ? "active" : ""} onClick={() => setMode("login")}>
+              Login
             </button>
-          </form>
-        ) : null}
+            <button type="button" className={mode === "register" ? "active" : ""} onClick={() => setMode("register")}>
+              Register
+            </button>
+          </div>
 
-        {mode === "register" ? (
-          <form onSubmit={submitRegister} className="login-form">
+          {mode === "login" ? (
+            <form onSubmit={submitLogin} className="login-form">
+              <h2 className="auth-form-title">Welcome back</h2>
+              <p className="login-note">Login with email/phone + password, or use your quick PIN.</p>
+              <label>
+                Email or Phone
+                <input
+                  value={loginForm.identifier}
+                  onChange={(e) => setLoginForm((curr) => ({ ...curr, identifier: e.target.value }))}
+                  placeholder="you@restaurant.com / 9876543210"
+                />
+              </label>
+              <label>
+                Password
+                <input
+                  type="password"
+                  value={loginForm.password}
+                  onChange={(e) => setLoginForm((curr) => ({ ...curr, password: e.target.value }))}
+                  placeholder="••••••••"
+                />
+              </label>
+              <label>
+                PIN (optional quick login)
+                <input
+                  type="password"
+                  value={loginForm.pin}
+                  onChange={(e) => setLoginForm((curr) => ({ ...curr, pin: e.target.value }))}
+                  placeholder="1234"
+                />
+              </label>
+              <button type="submit" disabled={loading}>{loading ? "Signing in..." : "Login"}</button>
+              <button type="button" className="link-btn" onClick={() => setMode("forgot")}>
+                Forgot password?
+              </button>
+            </form>
+          ) : null}
+
+          {mode === "register" ? (
+            <form onSubmit={submitRegister} className="login-form">
+              <h2 className="auth-form-title">Create staff account</h2>
+              <p className="login-note">Register with OTP verification, then auto-login instantly.</p>
             <label>
               Full Name
               <input
@@ -440,68 +451,71 @@ export default function LoginPage({ onLogin }) {
             <button type="submit" disabled={loading}>
               {loading ? "Creating..." : "Register & Login"}
             </button>
-          </form>
-        ) : null}
+            </form>
+          ) : null}
 
-        {mode === "forgot" ? (
-          <form onSubmit={submitForgotPassword} className="login-form">
-            <label>
-              OTP Channel
-              <select
-                value={forgotForm.channel}
-                onChange={(e) =>
-                  setForgotForm((curr) => ({ ...curr, channel: e.target.value, otpCode: "" }))
-                }
-              >
-                <option value="email">Email OTP</option>
-                <option value="phone">Phone OTP</option>
-              </select>
-            </label>
+          {mode === "forgot" ? (
+            <form onSubmit={submitForgotPassword} className="login-form">
+              <h2 className="auth-form-title">Reset password</h2>
+              <p className="login-note">We will verify your identity with OTP before reset.</p>
+              <label>
+                OTP Channel
+                <select
+                  value={forgotForm.channel}
+                  onChange={(e) =>
+                    setForgotForm((curr) => ({ ...curr, channel: e.target.value, otpCode: "" }))
+                  }
+                >
+                  <option value="email">Email OTP</option>
+                  <option value="phone">Phone OTP</option>
+                </select>
+              </label>
 
-            <label>
-              Email or Phone
-              <input
-                value={forgotForm.target}
-                onChange={(e) => setForgotForm((curr) => ({ ...curr, target: e.target.value }))}
-                placeholder={forgotForm.channel === "email" ? "you@restaurant.com" : "9876543210"}
-              />
-            </label>
+              <label>
+                Email or Phone
+                <input
+                  value={forgotForm.target}
+                  onChange={(e) => setForgotForm((curr) => ({ ...curr, target: e.target.value }))}
+                  placeholder={forgotForm.channel === "email" ? "you@restaurant.com" : "9876543210"}
+                />
+              </label>
 
-            <button type="button" onClick={requestForgotOtp} disabled={loading}>
-              {loading ? "Sending..." : "Send OTP"}
-            </button>
+              <button type="button" onClick={requestForgotOtp} disabled={loading}>
+                {loading ? "Sending..." : "Send OTP"}
+              </button>
 
-            {forgotOtpSent && (
-              <>
-                <label>
-                  OTP Code
-                  <input
-                    value={forgotForm.otpCode}
-                    onChange={(e) => setForgotForm((curr) => ({ ...curr, otpCode: e.target.value }))}
-                    placeholder="Enter 6-digit OTP"
-                  />
-                </label>
-                <label>
-                  New Password
-                  <input
-                    type="password"
-                    value={forgotForm.newPassword}
-                    onChange={(e) => setForgotForm((curr) => ({ ...curr, newPassword: e.target.value }))}
-                    placeholder="New password"
-                  />
-                </label>
-                <button type="submit" disabled={loading}>
-                  {loading ? "Resetting..." : "Reset Password"}
-                </button>
-              </>
-            )}
+              {forgotOtpSent && (
+                <>
+                  <label>
+                    OTP Code
+                    <input
+                      value={forgotForm.otpCode}
+                      onChange={(e) => setForgotForm((curr) => ({ ...curr, otpCode: e.target.value }))}
+                      placeholder="Enter 6-digit OTP"
+                    />
+                  </label>
+                  <label>
+                    New Password
+                    <input
+                      type="password"
+                      value={forgotForm.newPassword}
+                      onChange={(e) => setForgotForm((curr) => ({ ...curr, newPassword: e.target.value }))}
+                      placeholder="New password"
+                    />
+                  </label>
+                  <button type="submit" disabled={loading}>
+                    {loading ? "Resetting..." : "Reset Password"}
+                  </button>
+                </>
+              )}
 
-            <button type="button" className="link-btn" onClick={() => setMode("login")}>
-              Back to login
-            </button>
-          </form>
-        ) : null}
-      </div>
+              <button type="button" className="link-btn" onClick={() => setMode("login")}>
+                Back to login
+              </button>
+            </form>
+          ) : null}
+        </div>
+      </section>
     </main>
   );
 }

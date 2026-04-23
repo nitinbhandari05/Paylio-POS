@@ -7,7 +7,7 @@ const money = (value) =>
     maximumFractionDigits: 0,
   }).format(Number(value || 0));
 
-export default function ReportsPage() {
+export default function ReportsPage({ title = "Reports" }) {
   const [report, setReport] = useState(null);
 
   const load = async () => {
@@ -28,7 +28,7 @@ export default function ReportsPage() {
   return (
     <section className="module-page">
       <div className="module-header">
-        <h2>Reports</h2>
+        <h2>{title}</h2>
         <button onClick={load}>Refresh</button>
       </div>
 

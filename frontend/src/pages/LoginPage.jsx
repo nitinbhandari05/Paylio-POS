@@ -398,6 +398,7 @@ export default function LoginPage({ onLogin }) {
                 <option value="cashier">Cashier</option>
                 <option value="waiter">Waiter</option>
                 <option value="kitchen">Kitchen</option>
+                <option value="accountant">Accountant</option>
               </select>
             </label>
 

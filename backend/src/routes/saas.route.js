@@ -14,12 +14,13 @@ import {
 const router = express.Router();
 
 const ROLE_MATRIX = {
-  owner: ["All organization controls", "Subscription & billing", "Cross-branch analytics"],
+  owner: ["Full control"],
+  manager: ["Operations + reports"],
+  cashier: ["Billing only"],
+  waiter: ["Orders only"],
+  kitchen: ["KOT screen only"],
+  accountant: ["Finance only"],
   admin: ["Branch setup", "Staff assignment", "Catalog + pricing", "Reports"],
-  manager: ["Shift operations", "Table supervision", "Kitchen monitoring"],
-  cashier: ["Billing", "Discounts by policy", "Receipt print"],
-  waiter: ["Table order taking", "KOT updates", "Guest notes"],
-  kitchen: ["KDS workflow", "Prep status updates"],
 };
 
 const toNum = (value) => {

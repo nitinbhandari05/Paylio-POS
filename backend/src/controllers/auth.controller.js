@@ -15,6 +15,7 @@ const ALL_ROLES = new Set([
   "cashier",
   "waiter",
   "kitchen",
+  "accountant",
   "manager",
   "admin",
   "owner",
@@ -37,7 +38,7 @@ const PRIVILEGED_CREATOR_ROLES = new Set([
   "headoffice",
 ]);
 
-const PUBLIC_REGISTER_ROLES = new Set(["user", "cashier", "waiter", "kitchen"]);
+const PUBLIC_REGISTER_ROLES = new Set(["user", "cashier", "waiter", "kitchen", "accountant"]);
 
 const sanitizeUser = (user) => {
   const plainUser = user.toObject ? user.toObject() : user;

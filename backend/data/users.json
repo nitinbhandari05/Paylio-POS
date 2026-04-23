@@ -30,5 +30,41 @@
     "active": true,
     "createdAt": "2026-04-21T06:14:46.408Z",
     "updatedAt": "2026-04-21T06:14:46.408Z"
+  },
+  {
+    "_id": "9408133f-66fc-4df2-b423-c9a8e64a55b0",
+    "name": "Nitin Bhandari",
+    "email": "bhandarinitin93@gmail.com",
+    "phone": "08559084059",
+    "password": "$2b$10$h2BVv0L0I8vZ6aWuX5SgneBd6kD4cmySXC/NYh.Ddm2qH8/5O9TeS",
+    "pin": "12345",
+    "role": "user",
+    "outletId": "main",
+    "organizationId": "org-main",
+    "accessibleOutletIds": [
+      "main"
+    ],
+    "isHeadOffice": false,
+    "active": true,
+    "createdAt": "2026-04-23T07:44:26.633Z",
+    "updatedAt": "2026-04-23T07:44:26.633Z"
+  },
+  {
+    "_id": "0eaf8593-9cd9-4c93-924f-177f3b8df1c6",
+    "name": "Nitin Bhandari",
+    "email": "h@g.com",
+    "phone": "09530552037",
+    "password": "$2b$10$Vu2FY.ry2i17bXvpWy.z4u6tN2awCH5qo5zdPjiZL5fKsIPz6Wk2G",
+    "pin": "1234",
+    "role": "user",
+    "outletId": "main",
+    "organizationId": "org-main",
+    "accessibleOutletIds": [
+      "main"
+    ],
+    "isHeadOffice": false,
+    "active": true,
+    "createdAt": "2026-04-23T07:56:51.174Z",
+    "updatedAt": "2026-04-23T07:56:51.174Z"
   }
 ]

@@ -5,6 +5,8 @@ import {
   Warehouse,
   Armchair,
   FileBarChart2,
+  Wallet,
+  UtensilsCrossed,
   Settings,
   LifeBuoy,
   HandPlatter,
@@ -21,6 +23,7 @@ import TableManagementPage from "./pages/TableManagementPage";
 import ReportsPage from "./pages/ReportsPage";
 import SettingsPage from "./pages/SettingsPage";
 import WaiterPage from "./pages/WaiterPage";
+import KitchenPage from "./pages/KitchenPage";
 import LoginPage from "./pages/LoginPage";
 import OwnerMobilePage from "./pages/OwnerMobilePage";
 import HelpSupportPage from "./pages/HelpSupportPage";
@@ -33,18 +36,22 @@ const NAV_ITEMS = [
   { id: "inventory", label: "Inventory", icon: Warehouse },
   { id: "tables", label: "Tables", icon: Armchair },
   { id: "waiter", label: "Waiter", icon: HandPlatter },
+  { id: "kitchen", label: "Kitchen", icon: UtensilsCrossed },
   { id: "owner", label: "Owner Mobile", icon: Smartphone },
   { id: "reports", label: "Reports", icon: FileBarChart2 },
+  { id: "finance", label: "Finance", icon: Wallet },
   { id: "support", label: "Help & Support", icon: LifeBuoy },
   { id: "settings", label: "Settings", icon: Settings },
 ];
 
 const ROLE_NAV_ACCESS = {
-  admin: ["pos", "admin", "inventory", "tables", "waiter", "owner", "reports", "support", "settings"],
-  manager: ["pos", "inventory", "tables", "waiter", "reports", "support", "settings"],
-  cashier: ["pos", "tables", "support", "settings"],
-  waiter: ["waiter", "tables", "support", "settings"],
-  kitchen: ["support", "settings"],
+  owner: ["pos", "admin", "inventory", "tables", "waiter", "kitchen", "owner", "reports", "finance", "support", "settings"],
+  admin: ["pos", "admin", "inventory", "tables", "waiter", "kitchen", "owner", "reports", "finance", "support", "settings"],
+  manager: ["pos", "inventory", "tables", "waiter", "kitchen", "reports", "support", "settings"],
+  cashier: ["pos"],
+  waiter: ["waiter"],
+  kitchen: ["kitchen"],
+  accountant: ["finance"],
   user: ["pos", "support", "settings"],
 };
 
@@ -57,8 +64,10 @@ function renderPage(activePage, session, dark, toggleDark, logout) {
   if (activePage === "inventory") return <InventoryPage />;
   if (activePage === "tables") return <TableManagementPage />;
   if (activePage === "waiter") return <WaiterPage session={session} />;
+  if (activePage === "kitchen") return <KitchenPage />;
   if (activePage === "owner") return <OwnerMobilePage session={session} />;
   if (activePage === "reports") return <ReportsPage />;
+  if (activePage === "finance") return <ReportsPage title="Finance Reports" />;
   if (activePage === "support") return <HelpSupportPage />;
   if (activePage === "settings") {
     return (

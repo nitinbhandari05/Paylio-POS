@@ -1,9 +1,20 @@
 import React, { useState } from "react";
 
+const ROLE_CAPABILITY = {
+  owner: "Full control",
+  manager: "Operations + reports",
+  cashier: "Billing only",
+  waiter: "Orders only",
+  kitchen: "KOT screen only",
+  accountant: "Finance only",
+};
+
 export default function SettingsPage({ session, dark, onToggleDark, onLogout }) {
   const [sms, setSms] = useState(true);
   const [whatsapp, setWhatsapp] = useState(true);
   const [loyalty, setLoyalty] = useState(true);
+  const role = String(session?.role || "").toLowerCase();
+  const capability = ROLE_CAPABILITY[role] || "Standard access";
 
   return (
     <section className="module-page">
@@ -16,6 +27,7 @@ export default function SettingsPage({ session, dark, onToggleDark, onLogout }) 
           <h3>Account</h3>
           <p>Name: {session?.name}</p>
           <p>Role: {session?.role}</p>
+          <p>Mode: {capability}</p>
           <button onClick={onLogout}>Logout</button>
         </article>
 

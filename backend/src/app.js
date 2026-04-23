@@ -17,6 +17,7 @@ import staffRoutes from "./routes/staff.route.js";
 import tableRoutes from "./routes/table.route.js";
 import publicOrderRoutes from "./routes/public-order.route.js";
 import saasRoutes from "./routes/saas.route.js";
+import platformRoutes from "./routes/platform.route.js";
 
 
 import { protect } from "./middlewares/auth.middleware.js";
@@ -55,6 +56,7 @@ app.use("/api/promos", protect, requireActiveSubscription, promoRoutes);
 app.use("/api/head-office", protect, requireActiveSubscription, headOfficeRoutes);
 app.use("/api/staff", protect, requireActiveSubscription, staffRoutes);
 app.use("/api/saas", protect, saasRoutes);
+app.use("/api/platform", protect, platformRoutes);
 
 // 🔹 Admin Route
 app.get("/api/admin", protect, authorize("admin"), (req, res) => {

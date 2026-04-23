@@ -3,42 +3,46 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import Organization from "../models/organization.model.js";
 import OtpToken from "../models/otp-token.model.js";
+import { normalizeRole as normalizeRoleFromConfig, ROLES } from "../config/rbac.config.js";
 
 const getJwtSecret = () => process.env.JWT_SECRET || process.env.ACCESS_TOKEN_SECRET;
 const getJwtExpiry = () => process.env.ACCESS_TOKEN_EXPIRY || "1d";
-const normalizeRole = (role) => String(role || "").trim().toLowerCase();
+const normalizeRole = (role) => normalizeRoleFromConfig(role);
 const normalizeEmail = (value) => String(value || "").trim().toLowerCase();
 const normalizePhone = (value) => String(value || "").trim();
 
-const ALL_ROLES = new Set([
-  "user",
-  "cashier",
-  "waiter",
-  "kitchen",
-  "accountant",
-  "manager",
-  "admin",
-  "owner",
-  "superadmin",
-  "headoffice",
-]);
+const ALL_ROLES = new Set([...ROLES, "admin", "owner", "kitchen", "delivery", "headoffice", "user"]);
 
 const PRIVILEGED_TARGET_ROLES = new Set([
+  "brandowner",
+  "franchiseowner",
+  "outletowner",
   "manager",
+  "superadmin",
   "admin",
   "owner",
-  "superadmin",
   "headoffice",
 ]);
 
 const PRIVILEGED_CREATOR_ROLES = new Set([
+  "brandowner",
+  "franchiseowner",
+  "outletowner",
+  "superadmin",
   "admin",
   "owner",
-  "superadmin",
   "headoffice",
 ]);
 
-const PUBLIC_REGISTER_ROLES = new Set(["user", "cashier", "waiter", "kitchen", "accountant"]);
+const PUBLIC_REGISTER_ROLES = new Set([
+  "user",
+  "cashier",
+  "waiter",
+  "kitchen",
+  "chef",
+  "deliverystaff",
+  "accountant",
+]);
 
 const sanitizeUser = (user) => {
   const plainUser = user.toObject ? user.toObject() : user;
@@ -126,7 +130,7 @@ export const register = async (req, res) => {
     const isPrivilegedTargetRole = PRIVILEGED_TARGET_ROLES.has(requestedRole);
     if (isPrivilegedTargetRole && !isActorPrivileged) {
       return res.status(403).json({
-        message: "Only admin-level users can create manager/admin accounts",
+        message: "Only admin-level users can create privileged roles",
       });
     }
 

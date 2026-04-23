@@ -6,16 +6,6 @@ const phonePattern = /^\+?[0-9]{10,15}$/;
 
 const isPhone = (value) => phonePattern.test(String(value || "").trim());
 
-const ROLE_MATRIX = [
-  { key: "superadmin", label: "Super Admin", access: "All clients, outlets, billing, support tools" },
-  { key: "owner", label: "Owner", access: "Full outlet access, reports, staff, products, finance, settings" },
-  { key: "manager", label: "Manager", access: "Orders, refund approval, inventory, shifts, limited reports, tables" },
-  { key: "cashier", label: "Cashier", access: "POS billing, discounts, invoice print, today's orders" },
-  { key: "waiter", label: "Waiter", access: "Create table orders, update table status, request bill" },
-  { key: "kitchen", label: "Kitchen Staff", access: "Kitchen screen only, preparing/ready updates" },
-  { key: "accountant", label: "Accountant", access: "GST reports, expenses, profit/loss, exports" },
-];
-
 const REGISTER_ROLE_OPTIONS = [
   { value: "cashier", label: "Cashier" },
   { value: "waiter", label: "Waiter" },
@@ -279,242 +269,249 @@ export default function LoginPage({ onLogin }) {
 
   return (
     <main className="login-page">
-      <section className="auth-shell">
-        <aside className="auth-hero">
-          <div className="login-brand">
-            <img src={logo} alt="Paylio logo" />
-            <div>
-              <h1>Paylio Cloud POS</h1>
-              <p>Restaurant + Retail Management Suite</p>
+      <section className="auth-stage">
+        <header className="auth-topbar">
+          <img src={logo} alt="Paylio logo" />
+          <strong>Paylio POS</strong>
+        </header>
+
+        <div className="auth-shell">
+          <aside className="auth-hero">
+            <div className="auth-illustration">
+              <div className="auth-blob" />
+              <div className="auth-person">
+                <span className="head" />
+                <span className="body" />
+                <span className="laptop" />
+              </div>
             </div>
-          </div>
+            <h1>Welcome!</h1>
+            <p className="auth-subtitle">Run your restaurant faster with smart billing and operations.</p>
+            <div className="auth-left-points">
+              <p>Lightning-fast billing for rush hours</p>
+              <p>Live kitchen + table coordination</p>
+              <p>Outlet-wise analytics and controls</p>
+            </div>
+          </aside>
 
-          <p className="auth-subtitle">
-            One place for billing, kitchen flow, reports, and outlet operations.
-          </p>
-
-          <article className="module-card auth-roles-card">
-            <h3>Role Access Snapshot</h3>
-            <ul className="plain-list">
-              {ROLE_MATRIX.map((role) => (
-                <li key={role.key}>
-                  <span>{role.label}</span>
-                  <strong>{role.access}</strong>
-                </li>
-              ))}
-            </ul>
-          </article>
-        </aside>
-
-        <div className="auth-panel">
-          <div className="screen-switcher">
-            <button type="button" className={mode === "login" ? "active" : ""} onClick={() => setMode("login")}>
-              Login
-            </button>
-            <button type="button" className={mode === "register" ? "active" : ""} onClick={() => setMode("register")}>
-              Register
-            </button>
-          </div>
-
-          {mode === "login" ? (
-            <form onSubmit={submitLogin} className="login-form">
-              <h2 className="auth-form-title">Welcome back</h2>
-              <p className="login-note">Login with email/phone + password, or use your quick PIN.</p>
-              <label>
-                Email or Phone
-                <input
-                  value={loginForm.identifier}
-                  onChange={(e) => setLoginForm((curr) => ({ ...curr, identifier: e.target.value }))}
-                  placeholder="you@restaurant.com / 9876543210"
-                />
-              </label>
-              <label>
-                Password
-                <input
-                  type="password"
-                  value={loginForm.password}
-                  onChange={(e) => setLoginForm((curr) => ({ ...curr, password: e.target.value }))}
-                  placeholder="••••••••"
-                />
-              </label>
-              <label>
-                PIN (optional quick login)
-                <input
-                  type="password"
-                  value={loginForm.pin}
-                  onChange={(e) => setLoginForm((curr) => ({ ...curr, pin: e.target.value }))}
-                  placeholder="1234"
-                />
-              </label>
-              <button type="submit" disabled={loading}>{loading ? "Signing in..." : "Login"}</button>
-              <button type="button" className="link-btn" onClick={() => setMode("forgot")}>
-                Forgot password?
+          <div className="auth-panel">
+            <div className="screen-switcher">
+              <button type="button" className={mode === "login" ? "active" : ""} onClick={() => setMode("login")}>
+                Login
               </button>
-            </form>
-          ) : null}
-
-          {mode === "register" ? (
-            <form onSubmit={submitRegister} className="login-form">
-              <h2 className="auth-form-title">Create staff account</h2>
-              <p className="login-note">Register with OTP verification, then auto-login instantly.</p>
-            <label>
-              Full Name
-              <input
-                value={registerForm.name}
-                onChange={(e) => setRegisterForm((curr) => ({ ...curr, name: e.target.value }))}
-                placeholder="Staff name"
-              />
-            </label>
-
-            <label>
-              OTP Channel
-              <select
-                value={registerForm.otpChannel}
-                onChange={(e) => setRegisterForm((curr) => ({ ...curr, otpChannel: e.target.value, otpCode: "" }))}
-              >
-                <option value="email">Email OTP</option>
-                <option value="phone">Phone OTP</option>
-              </select>
-            </label>
-
-            <label>
-              Email
-              <input
-                type="email"
-                value={registerForm.email}
-                onChange={(e) => setRegisterForm((curr) => ({ ...curr, email: e.target.value }))}
-                placeholder="you@restaurant.com"
-              />
-            </label>
-
-            <label>
-              Phone
-              <input
-                value={registerForm.phone}
-                onChange={(e) => setRegisterForm((curr) => ({ ...curr, phone: e.target.value }))}
-                placeholder="9876543210"
-              />
-            </label>
-
-            <button type="button" onClick={requestRegisterOtp} disabled={loading}>
-              {loading ? "Sending..." : "Send OTP"}
-            </button>
-
-            {registerOtpSent && (
-              <label>
-                OTP Code
-                <input
-                  value={registerForm.otpCode}
-                  onChange={(e) => setRegisterForm((curr) => ({ ...curr, otpCode: e.target.value }))}
-                  placeholder="Enter 6-digit OTP"
-                />
-              </label>
-            )}
-
-            <label>
-              Password
-              <input
-                type="password"
-                value={registerForm.password}
-                onChange={(e) => setRegisterForm((curr) => ({ ...curr, password: e.target.value }))}
-                placeholder="Minimum 6+"
-              />
-            </label>
-
-            <label>
-              PIN (optional for quick login)
-              <input
-                type="password"
-                value={registerForm.pin}
-                onChange={(e) => setRegisterForm((curr) => ({ ...curr, pin: e.target.value }))}
-                placeholder="1234"
-              />
-            </label>
-
-            <label>
-              Role
-              <select
-                value={registerForm.role}
-                onChange={(e) => setRegisterForm((curr) => ({ ...curr, role: e.target.value }))}
-              >
-                {REGISTER_ROLE_OPTIONS.map((role) => (
-                  <option key={role.value} value={role.value} disabled={role.disabled}>
-                    {role.label}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <p className="login-note">
-              Manager, Owner, and Super Admin accounts can only be created by an existing admin-level account.
-            </p>
-
-            <button type="submit" disabled={loading}>
-              {loading ? "Creating..." : "Register & Login"}
-            </button>
-            </form>
-          ) : null}
-
-          {mode === "forgot" ? (
-            <form onSubmit={submitForgotPassword} className="login-form">
-              <h2 className="auth-form-title">Reset password</h2>
-              <p className="login-note">We will verify your identity with OTP before reset.</p>
-              <label>
-                OTP Channel
-                <select
-                  value={forgotForm.channel}
-                  onChange={(e) =>
-                    setForgotForm((curr) => ({ ...curr, channel: e.target.value, otpCode: "" }))
-                  }
-                >
-                  <option value="email">Email OTP</option>
-                  <option value="phone">Phone OTP</option>
-                </select>
-              </label>
-
-              <label>
-                Email or Phone
-                <input
-                  value={forgotForm.target}
-                  onChange={(e) => setForgotForm((curr) => ({ ...curr, target: e.target.value }))}
-                  placeholder={forgotForm.channel === "email" ? "you@restaurant.com" : "9876543210"}
-                />
-              </label>
-
-              <button type="button" onClick={requestForgotOtp} disabled={loading}>
-                {loading ? "Sending..." : "Send OTP"}
+              <button type="button" className={mode === "register" ? "active" : ""} onClick={() => setMode("register")}>
+                Register
               </button>
+            </div>
 
-              {forgotOtpSent && (
-                <>
+            <article className="auth-card">
+              {mode === "login" ? (
+                <form onSubmit={submitLogin} className="login-form">
+                  <h2 className="auth-form-title">Sign In</h2>
+                  <p className="login-note">to access account</p>
                   <label>
-                    OTP Code
+                    Email or Phone
                     <input
-                      value={forgotForm.otpCode}
-                      onChange={(e) => setForgotForm((curr) => ({ ...curr, otpCode: e.target.value }))}
-                      placeholder="Enter 6-digit OTP"
+                      value={loginForm.identifier}
+                      onChange={(e) => setLoginForm((curr) => ({ ...curr, identifier: e.target.value }))}
+                      placeholder="Email address or mobile number"
                     />
                   </label>
                   <label>
-                    New Password
+                    Password
                     <input
                       type="password"
-                      value={forgotForm.newPassword}
-                      onChange={(e) => setForgotForm((curr) => ({ ...curr, newPassword: e.target.value }))}
-                      placeholder="New password"
+                      value={loginForm.password}
+                      onChange={(e) => setLoginForm((curr) => ({ ...curr, password: e.target.value }))}
+                      placeholder="Enter password"
                     />
                   </label>
-                  <button type="submit" disabled={loading}>
-                    {loading ? "Resetting..." : "Reset Password"}
+                  <label>
+                    PIN (optional quick login)
+                    <input
+                      type="password"
+                      value={loginForm.pin}
+                      onChange={(e) => setLoginForm((curr) => ({ ...curr, pin: e.target.value }))}
+                      placeholder="1234"
+                    />
+                  </label>
+                  <button type="submit" disabled={loading}>{loading ? "Signing in..." : "Continue"}</button>
+                  <button type="button" className="link-btn" onClick={() => setMode("forgot")}>
+                    Forgot password?
                   </button>
-                </>
-              )}
+                  <p className="auth-helper-text">New in Paylio? <strong>Contact Us</strong></p>
+                </form>
+              ) : null}
 
-              <button type="button" className="link-btn" onClick={() => setMode("login")}>
-                Back to login
-              </button>
-            </form>
-          ) : null}
+              {mode === "register" ? (
+                <form onSubmit={submitRegister} className="login-form">
+                  <h2 className="auth-form-title">Create Account</h2>
+                  <p className="login-note">Register staff with OTP verification</p>
+                  <label>
+                    Full Name
+                    <input
+                      value={registerForm.name}
+                      onChange={(e) => setRegisterForm((curr) => ({ ...curr, name: e.target.value }))}
+                      placeholder="Staff name"
+                    />
+                  </label>
+
+                  <label>
+                    OTP Channel
+                    <select
+                      value={registerForm.otpChannel}
+                      onChange={(e) => setRegisterForm((curr) => ({ ...curr, otpChannel: e.target.value, otpCode: "" }))}
+                    >
+                      <option value="email">Email OTP</option>
+                      <option value="phone">Phone OTP</option>
+                    </select>
+                  </label>
+
+                  <label>
+                    Email
+                    <input
+                      type="email"
+                      value={registerForm.email}
+                      onChange={(e) => setRegisterForm((curr) => ({ ...curr, email: e.target.value }))}
+                      placeholder="you@restaurant.com"
+                    />
+                  </label>
+
+                  <label>
+                    Phone
+                    <input
+                      value={registerForm.phone}
+                      onChange={(e) => setRegisterForm((curr) => ({ ...curr, phone: e.target.value }))}
+                      placeholder="9876543210"
+                    />
+                  </label>
+
+                  <button type="button" onClick={requestRegisterOtp} disabled={loading}>
+                    {loading ? "Sending..." : "Send OTP"}
+                  </button>
+
+                  {registerOtpSent && (
+                    <label>
+                      OTP Code
+                      <input
+                        value={registerForm.otpCode}
+                        onChange={(e) => setRegisterForm((curr) => ({ ...curr, otpCode: e.target.value }))}
+                        placeholder="Enter 6-digit OTP"
+                      />
+                    </label>
+                  )}
+
+                  <label>
+                    Password
+                    <input
+                      type="password"
+                      value={registerForm.password}
+                      onChange={(e) => setRegisterForm((curr) => ({ ...curr, password: e.target.value }))}
+                      placeholder="Minimum 6+"
+                    />
+                  </label>
+
+                  <label>
+                    PIN (optional for quick login)
+                    <input
+                      type="password"
+                      value={registerForm.pin}
+                      onChange={(e) => setRegisterForm((curr) => ({ ...curr, pin: e.target.value }))}
+                      placeholder="1234"
+                    />
+                  </label>
+
+                  <label>
+                    Role
+                    <select
+                      value={registerForm.role}
+                      onChange={(e) => setRegisterForm((curr) => ({ ...curr, role: e.target.value }))}
+                    >
+                      {REGISTER_ROLE_OPTIONS.map((role) => (
+                        <option key={role.value} value={role.value} disabled={role.disabled}>
+                          {role.label}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                  <p className="login-note">
+                    Manager, Owner, and Super Admin accounts can only be created by an existing admin-level account.
+                  </p>
+
+                  <button type="submit" disabled={loading}>
+                    {loading ? "Creating..." : "Register & Login"}
+                  </button>
+                </form>
+              ) : null}
+
+              {mode === "forgot" ? (
+                <form onSubmit={submitForgotPassword} className="login-form">
+                  <h2 className="auth-form-title">Reset Password</h2>
+                  <p className="login-note">We will verify your identity with OTP before reset.</p>
+                  <label>
+                    OTP Channel
+                    <select
+                      value={forgotForm.channel}
+                      onChange={(e) =>
+                        setForgotForm((curr) => ({ ...curr, channel: e.target.value, otpCode: "" }))
+                      }
+                    >
+                      <option value="email">Email OTP</option>
+                      <option value="phone">Phone OTP</option>
+                    </select>
+                  </label>
+
+                  <label>
+                    Email or Phone
+                    <input
+                      value={forgotForm.target}
+                      onChange={(e) => setForgotForm((curr) => ({ ...curr, target: e.target.value }))}
+                      placeholder={forgotForm.channel === "email" ? "you@restaurant.com" : "9876543210"}
+                    />
+                  </label>
+
+                  <button type="button" onClick={requestForgotOtp} disabled={loading}>
+                    {loading ? "Sending..." : "Send OTP"}
+                  </button>
+
+                  {forgotOtpSent && (
+                    <>
+                      <label>
+                        OTP Code
+                        <input
+                          value={forgotForm.otpCode}
+                          onChange={(e) => setForgotForm((curr) => ({ ...curr, otpCode: e.target.value }))}
+                          placeholder="Enter 6-digit OTP"
+                        />
+                      </label>
+                      <label>
+                        New Password
+                        <input
+                          type="password"
+                          value={forgotForm.newPassword}
+                          onChange={(e) => setForgotForm((curr) => ({ ...curr, newPassword: e.target.value }))}
+                          placeholder="New password"
+                        />
+                      </label>
+                      <button type="submit" disabled={loading}>
+                        {loading ? "Resetting..." : "Reset Password"}
+                      </button>
+                    </>
+                  )}
+
+                  <button type="button" className="link-btn" onClick={() => setMode("login")}>
+                    Back to login
+                  </button>
+                </form>
+              ) : null}
+            </article>
+          </div>
         </div>
+
+        <footer className="auth-footer">
+          <span>@2026 Paylio Pvt. Ltd.</span>
+          <span>Privacy | Terms & Conditions</span>
+        </footer>
       </section>
     </main>
   );

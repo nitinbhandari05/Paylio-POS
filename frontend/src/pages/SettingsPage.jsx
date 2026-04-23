@@ -1,20 +1,54 @@
 import React, { useState } from "react";
 
+const normalizeRole = (role) => {
+  const base = String(role || "").trim().toLowerCase().replace(/[_-]+/g, " ");
+  if (base === "super admin" || base === "superadmin") return "superadmin";
+  if (base === "kitchen staff" || base === "kitchenstaff") return "kitchen";
+  return base.replace(/\s+/g, "");
+};
+
 const ROLE_CAPABILITY = {
-  owner: "Full control",
-  manager: "Operations + reports",
-  cashier: "Billing only",
-  waiter: "Orders only",
-  kitchen: "KOT screen only",
-  accountant: "Finance only",
+  superadmin: {
+    title: "For your SaaS company",
+    allow: ["All clients", "All outlets", "Subscription billing", "Support tools"],
+  },
+  owner: {
+    title: "Business owner",
+    allow: ["Full outlet access", "Reports", "Staff management", "Products", "Finance", "Settings"],
+  },
+  manager: {
+    title: "Outlet manager",
+    allow: ["Orders", "Refund approval", "Inventory", "Staff shifts", "Reports (limited)", "Table management"],
+  },
+  cashier: {
+    title: "Billing desk user",
+    allow: ["POS billing", "Apply allowed discounts", "Print invoice", "View today's orders"],
+    deny: ["Cannot delete products", "Cannot see payroll", "Cannot change settings"],
+  },
+  waiter: {
+    title: "Waiter",
+    allow: ["Create table orders", "Update table status", "Request bill"],
+    deny: ["No sales reports"],
+  },
+  kitchen: {
+    title: "Kitchen staff",
+    allow: ["Kitchen screen only", "Update status (Preparing / Ready)"],
+  },
+  accountant: {
+    title: "Accountant",
+    allow: ["GST reports", "Expenses", "Profit/loss", "Exports"],
+  },
 };
 
 export default function SettingsPage({ session, dark, onToggleDark, onLogout }) {
   const [sms, setSms] = useState(true);
   const [whatsapp, setWhatsapp] = useState(true);
   const [loyalty, setLoyalty] = useState(true);
-  const role = String(session?.role || "").toLowerCase();
-  const capability = ROLE_CAPABILITY[role] || "Standard access";
+  const role = normalizeRole(session?.role);
+  const profile = ROLE_CAPABILITY[role] || {
+    title: "Standard access",
+    allow: ["POS access", "Basic support"],
+  };
 
   return (
     <section className="module-page">
@@ -27,7 +61,15 @@ export default function SettingsPage({ session, dark, onToggleDark, onLogout }) 
           <h3>Account</h3>
           <p>Name: {session?.name}</p>
           <p>Role: {session?.role}</p>
-          <p>Mode: {capability}</p>
+          <p>Mode: {profile.title}</p>
+          <ul className="plain-list">
+            {profile.allow.map((item) => (
+              <li key={item}>✔ {item}</li>
+            ))}
+            {(profile.deny || []).map((item) => (
+              <li key={item}>❌ {item}</li>
+            ))}
+          </ul>
           <button onClick={onLogout}>Logout</button>
         </article>
 

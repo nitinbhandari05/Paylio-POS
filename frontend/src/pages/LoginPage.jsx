@@ -6,6 +6,26 @@ const phonePattern = /^\+?[0-9]{10,15}$/;
 
 const isPhone = (value) => phonePattern.test(String(value || "").trim());
 
+const ROLE_MATRIX = [
+  { key: "superadmin", label: "Super Admin", access: "All clients, outlets, billing, support tools" },
+  { key: "owner", label: "Owner", access: "Full outlet access, reports, staff, products, finance, settings" },
+  { key: "manager", label: "Manager", access: "Orders, refund approval, inventory, shifts, limited reports, tables" },
+  { key: "cashier", label: "Cashier", access: "POS billing, discounts, invoice print, today's orders" },
+  { key: "waiter", label: "Waiter", access: "Create table orders, update table status, request bill" },
+  { key: "kitchen", label: "Kitchen Staff", access: "Kitchen screen only, preparing/ready updates" },
+  { key: "accountant", label: "Accountant", access: "GST reports, expenses, profit/loss, exports" },
+];
+
+const REGISTER_ROLE_OPTIONS = [
+  { value: "cashier", label: "Cashier" },
+  { value: "waiter", label: "Waiter" },
+  { value: "kitchen", label: "Kitchen Staff" },
+  { value: "accountant", label: "Accountant" },
+  { value: "manager", label: "Manager (Admin only)", disabled: true },
+  { value: "owner", label: "Owner (Admin only)", disabled: true },
+  { value: "superadmin", label: "Super Admin (Admin only)", disabled: true },
+];
+
 export default function LoginPage({ onLogin }) {
   const [mode, setMode] = useState("login");
   const [loading, setLoading] = useState(false);
@@ -277,6 +297,18 @@ export default function LoginPage({ onLogin }) {
           </button>
         </div>
 
+        <article className="module-card">
+          <h3>Recommended Roles</h3>
+          <ul className="plain-list">
+            {ROLE_MATRIX.map((role) => (
+              <li key={role.key}>
+                <span>{role.label}</span>
+                <strong>{role.access}</strong>
+              </li>
+            ))}
+          </ul>
+        </article>
+
         {mode === "login" ? (
           <form onSubmit={submitLogin} className="login-form">
             <label>
@@ -394,13 +426,16 @@ export default function LoginPage({ onLogin }) {
                 value={registerForm.role}
                 onChange={(e) => setRegisterForm((curr) => ({ ...curr, role: e.target.value }))}
               >
-                <option value="user">User</option>
-                <option value="cashier">Cashier</option>
-                <option value="waiter">Waiter</option>
-                <option value="kitchen">Kitchen</option>
-                <option value="accountant">Accountant</option>
+                {REGISTER_ROLE_OPTIONS.map((role) => (
+                  <option key={role.value} value={role.value} disabled={role.disabled}>
+                    {role.label}
+                  </option>
+                ))}
               </select>
             </label>
+            <p className="login-note">
+              Manager, Owner, and Super Admin accounts can only be created by an existing admin-level account.
+            </p>
 
             <button type="submit" disabled={loading}>
               {loading ? "Creating..." : "Register & Login"}

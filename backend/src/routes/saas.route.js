@@ -14,12 +14,13 @@ import {
 const router = express.Router();
 
 const ROLE_MATRIX = {
-  owner: ["Full control"],
-  manager: ["Operations + reports"],
-  cashier: ["Billing only"],
-  waiter: ["Orders only"],
-  kitchen: ["KOT screen only"],
-  accountant: ["Finance only"],
+  superadmin: ["All clients", "All outlets", "Subscription billing", "Support tools"],
+  owner: ["Full outlet access", "Reports", "Staff management", "Products", "Finance", "Settings"],
+  manager: ["Orders", "Refund approval", "Inventory", "Staff shifts", "Reports (limited)", "Table management"],
+  cashier: ["POS billing", "Apply allowed discounts", "Print invoice", "View today's orders"],
+  waiter: ["Create table orders", "Update table status", "Request bill"],
+  kitchen: ["Kitchen screen only", "Update status (Preparing / Ready)"],
+  accountant: ["GST reports", "Expenses", "Profit/loss", "Exports"],
   admin: ["Branch setup", "Staff assignment", "Catalog + pricing", "Reports"],
 };
 

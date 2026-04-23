@@ -44,19 +44,28 @@ const NAV_ITEMS = [
   { id: "settings", label: "Settings", icon: Settings },
 ];
 
+const normalizeRole = (role) => {
+  const base = String(role || "").trim().toLowerCase().replace(/[_-]+/g, " ");
+  if (base === "super admin" || base === "superadmin") return "superadmin";
+  if (base === "kitchen staff" || base === "kitchenstaff") return "kitchen";
+  return base.replace(/\s+/g, "");
+};
+
 const ROLE_NAV_ACCESS = {
+  superadmin: ["pos", "admin", "inventory", "tables", "waiter", "kitchen", "owner", "reports", "finance", "support", "settings"],
+  headoffice: ["pos", "admin", "inventory", "tables", "waiter", "kitchen", "owner", "reports", "finance", "support", "settings"],
   owner: ["pos", "admin", "inventory", "tables", "waiter", "kitchen", "owner", "reports", "finance", "support", "settings"],
   admin: ["pos", "admin", "inventory", "tables", "waiter", "kitchen", "owner", "reports", "finance", "support", "settings"],
-  manager: ["pos", "inventory", "tables", "waiter", "kitchen", "reports", "support", "settings"],
+  manager: ["pos", "inventory", "tables", "waiter", "reports"],
   cashier: ["pos"],
-  waiter: ["waiter"],
+  waiter: ["waiter", "tables"],
   kitchen: ["kitchen"],
   accountant: ["finance"],
   user: ["pos", "support", "settings"],
 };
 
 const getAllowedNav = (role) =>
-  ROLE_NAV_ACCESS[String(role || "").toLowerCase()] || ["pos", "settings"];
+  ROLE_NAV_ACCESS[normalizeRole(role)] || ["pos", "settings"];
 
 function renderPage(activePage, session, dark, toggleDark, logout) {
   if (activePage === "pos") return <POSPage />;

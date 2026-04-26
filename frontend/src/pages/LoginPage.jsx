@@ -277,20 +277,32 @@ export default function LoginPage({ onLogin }) {
 
         <div className="auth-shell">
           <aside className="auth-hero">
-            <div className="auth-illustration">
-              <div className="auth-blob" />
-              <div className="auth-person">
-                <span className="head" />
-                <span className="body" />
-                <span className="laptop" />
-              </div>
+            <div className="auth-hero-badge">Paylio AI + POS + ERP</div>
+            <h1>Operate Every Outlet From One System</h1>
+            <p className="auth-subtitle">Faster billing, cleaner workflows, and smarter decisions for modern restaurant teams.</p>
+            <div className="auth-kpi-grid">
+              <article>
+                <strong>&lt;1s</strong>
+                <span>Billing response</span>
+              </article>
+              <article>
+                <strong>100+</strong>
+                <span>Business reports</span>
+              </article>
+              <article>
+                <strong>10 roles</strong>
+                <span>Secure access control</span>
+              </article>
             </div>
-            <h1>Welcome!</h1>
-            <p className="auth-subtitle">Run your restaurant faster with smart billing and operations.</p>
             <div className="auth-left-points">
-              <p>Lightning-fast billing for rush hours</p>
-              <p>Live kitchen + table coordination</p>
-              <p>Outlet-wise analytics and controls</p>
+              <p>Outlet onboarding wizard with GST, users, menu, and inventory setup</p>
+              <p>Realtime sync across POS, kitchen, orders, and central dashboard</p>
+              <p>AI suggestions for stock, staffing, pricing, and peak hour planning</p>
+            </div>
+            <div className="auth-journey">
+              <span>1. Configure</span>
+              <span>2. Go Live</span>
+              <span>3. Scale</span>
             </div>
           </aside>
 

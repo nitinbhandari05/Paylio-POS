@@ -18,6 +18,8 @@ const formatMoney = (value) =>
     maximumFractionDigits: 0,
   }).format(Number(value || 0));
 
+const normalizeLookup = (value) => String(value || "").trim().toLowerCase();
+
 export function POSProvider({ children }) {
   const [products, setProducts] = useState(DEMO_PRODUCTS);
   const [menuStatus, setMenuStatus] = useState("Loading menu...");
@@ -210,14 +212,74 @@ export function POSProvider({ children }) {
 
   const buildPayments = () => [{ method: paymentMethod, amount: total }];
 
+  const resolveBackendItems = async (items = []) => {
+    const unsynced = items.filter((item) => !item.productId);
+    if (!unsynced.length) return items;
+
+    let catalog = [];
+    try {
+      const listRes = await fetch("/api/products");
+      const listData = await listRes.json();
+      catalog = Array.isArray(listData.products) ? listData.products : [];
+    } catch {
+      // handled by create fallback below
+    }
+
+    const byKey = new Map();
+    for (const product of catalog) {
+      const nameKey = normalizeLookup(product.name);
+      const skuKey = normalizeLookup(product.sku);
+      if (nameKey) byKey.set(`name:${nameKey}`, product);
+      if (skuKey) byKey.set(`sku:${skuKey}`, product);
+    }
+
+    const resolved = [];
+    for (const item of items) {
+      if (item.productId) {
+        resolved.push(item);
+        continue;
+      }
+
+      const nameKey = normalizeLookup(item.name);
+      const skuKey = normalizeLookup(item.sku);
+      let matched = byKey.get(`sku:${skuKey}`) || byKey.get(`name:${nameKey}`);
+
+      if (!matched) {
+        const createRes = await fetch("/api/products", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: item.name,
+            sku: item.sku || `demo-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+            price: Number(item.price || 0),
+            cost: 0,
+            lowStockThreshold: 5,
+            unit: "pcs",
+          }),
+        });
+        const createData = await createRes.json();
+        if (!createRes.ok || !createData?.product?._id) {
+          throw new Error(createData.message || `Unable to sync product "${item.name}"`);
+        }
+        matched = createData.product;
+        byKey.set(`name:${nameKey}`, matched);
+        if (matched.sku) byKey.set(`sku:${normalizeLookup(matched.sku)}`, matched);
+      }
+
+      resolved.push({
+        ...item,
+        productId: matched._id,
+        id: matched._id,
+        sku: matched.sku || item.sku || "",
+        name: matched.name || item.name,
+      });
+    }
+
+    return resolved;
+  };
+
   const saveOrder = async () => {
     if (!cartItems.length || isSaving) return;
-
-    const hasUnsyncedItems = cartItems.some((item) => !item.productId);
-    if (hasUnsyncedItems) {
-      window.alert("Live billing requires backend products. Demo items cannot be billed.");
-      return;
-    }
 
     const payments = buildPayments();
     const paidAmount = payments.reduce((sum, row) => sum + Number(row.amount || 0), 0);
@@ -227,8 +289,11 @@ export function POSProvider({ children }) {
       return;
     }
 
+    let resolvedItems = cartItems;
     try {
       setIsSaving(true);
+      resolvedItems = await resolveBackendItems(cartItems);
+      setCartItems(resolvedItems);
 
       const response = await fetch("/api/public/orders", {
         method: "POST",
@@ -241,7 +306,7 @@ export function POSProvider({ children }) {
           tableNo: orderType === "dinein" ? table : "",
           waiterName: waiterName || "",
           notes: "",
-          items: cartItems.map((item) => ({
+          items: resolvedItems.map((item) => ({
             productId: item.productId,
             quantity: item.qty,
             unitPrice: item.price,
@@ -267,7 +332,7 @@ export function POSProvider({ children }) {
         tableNo: orderType === "dinein" ? table : "",
         waiterName: waiterName || "",
         notes: "",
-        items: cartItems.map((item) => ({
+        items: resolvedItems.map((item) => ({
           productId: item.productId,
           quantity: item.qty,
           unitPrice: item.price,

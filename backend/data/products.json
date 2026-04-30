@@ -1,0 +1,50 @@
+[
+  {
+    "_id": "6ca0d0f2-3cea-4284-b9a1-44a8c18cf80a",
+    "name": "Masala Tea",
+    "sku": "demo-1777534315144-8uso",
+    "categoryId": "",
+    "categoryName": "",
+    "description": "",
+    "price": 30,
+    "cost": 0,
+    "taxRate": 18,
+    "unit": "pcs",
+    "lowStockThreshold": 5,
+    "active": true,
+    "createdAt": "2026-04-30T07:31:55.152Z",
+    "updatedAt": "2026-04-30T07:31:55.152Z"
+  },
+  {
+    "_id": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
+    "name": "Veg Burger",
+    "sku": "demo-1777534315156-me2u",
+    "categoryId": "",
+    "categoryName": "",
+    "description": "",
+    "price": 149,
+    "cost": 0,
+    "taxRate": 18,
+    "unit": "pcs",
+    "lowStockThreshold": 5,
+    "active": true,
+    "createdAt": "2026-04-30T07:31:55.162Z",
+    "updatedAt": "2026-04-30T07:31:55.162Z"
+  },
+  {
+    "_id": "a8a3312c-fd87-47dc-aec3-78ec71b5863a",
+    "name": "Tea Combo",
+    "sku": "demo-1777534315163-9asx",
+    "categoryId": "",
+    "categoryName": "",
+    "description": "",
+    "price": 199,
+    "cost": 0,
+    "taxRate": 18,
+    "unit": "pcs",
+    "lowStockThreshold": 5,
+    "active": true,
+    "createdAt": "2026-04-30T07:31:55.169Z",
+    "updatedAt": "2026-04-30T07:31:55.169Z"
+  }
+]

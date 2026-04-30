@@ -277,32 +277,22 @@ export default function LoginPage({ onLogin }) {
 
         <div className="auth-shell">
           <aside className="auth-hero">
-            <div className="auth-hero-badge">Paylio AI + POS + ERP</div>
-            <h1>Operate Every Outlet From One System</h1>
-            <p className="auth-subtitle">Faster billing, cleaner workflows, and smarter decisions for modern restaurant teams.</p>
-            <div className="auth-kpi-grid">
-              <article>
-                <strong>&lt;1s</strong>
-                <span>Billing response</span>
-              </article>
-              <article>
-                <strong>100+</strong>
-                <span>Business reports</span>
-              </article>
-              <article>
-                <strong>10 roles</strong>
-                <span>Secure access control</span>
-              </article>
+            <div className="auth-hero-badge">Premium POS Workspace</div>
+            <div className="auth-illustration-wrap">
+              <div className="auth-illustration" aria-hidden="true">
+                <span className="art-head" />
+                <span className="art-body" />
+                <span className="art-laptop" />
+                <span className="art-cup" />
+                <span className="art-base" />
+              </div>
             </div>
-            <div className="auth-left-points">
-              <p>Outlet onboarding wizard with GST, users, menu, and inventory setup</p>
-              <p>Realtime sync across POS, kitchen, orders, and central dashboard</p>
-              <p>AI suggestions for stock, staffing, pricing, and peak hour planning</p>
-            </div>
+            <h1>Welcome!</h1>
+            <p className="auth-subtitle">Fast billing and clean operations for modern restaurant teams.</p>
             <div className="auth-journey">
-              <span>1. Configure</span>
-              <span>2. Go Live</span>
-              <span>3. Scale</span>
+              <span>Secure Login</span>
+              <span>Realtime Sync</span>
+              <span>24x7 Access</span>
             </div>
           </aside>
 

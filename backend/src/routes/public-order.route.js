@@ -60,9 +60,17 @@ const buildOrderSummary = (orders = []) => {
     const orderType = String(order.orderType || "dinein").toLowerCase();
     orderTypeBreakdown[orderType] = (orderTypeBreakdown[orderType] || 0) + 1;
     if (["cancelled", "refunded"].includes(String(order.status || "").toLowerCase())) continue;
-    for (const payment of order.payments || []) {
+
+    const payments = Array.isArray(order.payments) ? order.payments : [];
+    const totalPaid = payments.reduce((sum, p) => sum + Number(p.amount || 0), 0);
+    const orderTotal = Number(order.total || 0);
+    const cappedPaid = Math.max(0, Math.min(totalPaid, orderTotal));
+    const scale = totalPaid > 0 ? cappedPaid / totalPaid : 0;
+
+    for (const payment of payments) {
       const method = String(payment.method || "unknown").toLowerCase();
-      paymentBreakdown[method] = (paymentBreakdown[method] || 0) + Number(payment.amount || 0);
+      const normalizedAmount = Number(payment.amount || 0) * scale;
+      paymentBreakdown[method] = (paymentBreakdown[method] || 0) + normalizedAmount;
     }
   }
 

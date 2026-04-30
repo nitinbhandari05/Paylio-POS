@@ -20,9 +20,14 @@ const computeSummary = (orders) => {
   const paymentBreakdown = {};
   for (const order of orders) {
     if (["cancelled", "refunded"].includes(String(order.status || "").toLowerCase())) continue;
-    for (const payment of order.payments || []) {
+    const payments = Array.isArray(order.payments) ? order.payments : [];
+    const totalPaid = payments.reduce((sum, payment) => sum + Number(payment.amount || 0), 0);
+    const cappedPaid = Math.max(0, Math.min(totalPaid, Number(order.total || 0)));
+    const scale = totalPaid > 0 ? cappedPaid / totalPaid : 0;
+
+    for (const payment of payments) {
       const method = String(payment.method || "unknown").toLowerCase();
-      paymentBreakdown[method] = (paymentBreakdown[method] || 0) + Number(payment.amount || 0);
+      paymentBreakdown[method] = (paymentBreakdown[method] || 0) + Number(payment.amount || 0) * scale;
     }
   }
 

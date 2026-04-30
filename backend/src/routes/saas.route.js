@@ -65,14 +65,17 @@ router.get("/owner-dashboard", requireActiveSubscription, async (req, res) => {
     .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
     .slice(0, 20);
 
+  const billedOrders = orders.filter(
+    (order) => !["cancelled", "refunded"].includes(String(order.status || "").toLowerCase())
+  );
   const completed = orders.filter((order) => order.status === "completed");
   const refunded = orders.filter((order) => order.status === "refunded");
   const pendingKitchen = orders.filter((order) =>
     ["pending", "accepted", "preparing"].includes(String(order.status || "").toLowerCase())
   ).length;
 
-  const totalSales = completed.reduce((sum, order) => sum + toNum(order.total), 0);
-  const totalTax = completed.reduce((sum, order) => sum + toNum(order.gstAmount), 0);
+  const totalSales = billedOrders.reduce((sum, order) => sum + toNum(order.total), 0);
+  const totalTax = billedOrders.reduce((sum, order) => sum + toNum(order.gstAmount), 0);
   const totalRefunds = refunded.reduce(
     (sum, order) => sum + toNum(order.refundAmount || order.total),
     0
@@ -81,9 +84,19 @@ router.get("/owner-dashboard", requireActiveSubscription, async (req, res) => {
   const salesByOutlet = new Map();
   for (const order of orders) {
     const outletId = order.outletId || "main";
-    const current = salesByOutlet.get(outletId) || { outletId, orders: 0, revenue: 0 };
+    const current = salesByOutlet.get(outletId) || {
+      outletId,
+      orders: 0,
+      revenue: 0,
+      refunds: 0,
+      netRevenue: 0,
+    };
     current.orders += 1;
-    if (order.status === "completed") current.revenue += toNum(order.total);
+    if (!["cancelled", "refunded"].includes(String(order.status || "").toLowerCase())) {
+      current.revenue += toNum(order.total);
+    }
+    if (order.status === "refunded") current.refunds += toNum(order.refundAmount || order.total);
+    current.netRevenue = current.revenue - current.refunds;
     salesByOutlet.set(outletId, current);
   }
 
@@ -93,7 +106,7 @@ router.get("/owner-dashboard", requireActiveSubscription, async (req, res) => {
       ...row,
       name: branchNameMap.get(row.outletId) || row.outletId,
     }))
-    .sort((a, b) => b.revenue - a.revenue);
+    .sort((a, b) => b.netRevenue - a.netRevenue);
 
   res.json({
     generatedAt: new Date().toISOString(),

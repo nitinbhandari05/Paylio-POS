@@ -48,5 +48,35 @@
     "status": "queued",
     "createdAt": "2026-04-30T18:04:40.056Z",
     "updatedAt": "2026-04-30T18:04:40.056Z"
+  },
+  {
+    "_id": "c2d7a5de-a4bf-4c8a-807d-0a3f515b62d9",
+    "type": "receipt",
+    "orderId": "83072ebc-0fe1-4a36-8b29-b98547ba97b7",
+    "content": "Invoice INV-20260430-0123\nKOT KOT-20260430-0126\nCustomer Walk-in\nPhone -\n\n1 x Masala Tea @ 30 = 35.4\n\nSubtotal: 30\nDiscount: 0\nGST: 5.4\nTotal: 35.4\nPaid: 32\nChange: 0\n\nPayments:\nCASH: 32",
+    "copies": 1,
+    "status": "queued",
+    "createdAt": "2026-04-30T18:24:27.075Z",
+    "updatedAt": "2026-04-30T18:24:27.075Z"
+  },
+  {
+    "_id": "8a772abc-d1f9-4c7d-9784-2e651cc58ef6",
+    "type": "receipt",
+    "orderId": "54ca611f-5c7e-40f7-a715-54c698626ffc",
+    "content": "Invoice INV-20260430-0125\nKOT KOT-20260430-0128\nCustomer Walk-in\nPhone -\n\n5 x Masala Tea @ 30 = 177\n\nSubtotal: 150\nDiscount: 0\nGST: 27\nTotal: 177\nPaid: 158\nChange: 0\n\nPayments:\nCASH: 158",
+    "copies": 1,
+    "status": "queued",
+    "createdAt": "2026-04-30T18:27:32.031Z",
+    "updatedAt": "2026-04-30T18:27:32.031Z"
+  },
+  {
+    "_id": "33f9f210-ea5a-4361-9ec8-c3a0ce2da1f6",
+    "type": "receipt",
+    "orderId": "5656b745-77aa-46ad-b34d-f074d64a03ae",
+    "content": "Invoice INV-20260430-0167\nKOT KOT-20260430-0174\nCustomer Walk-in\nPhone -\n\n1 x Masala Tea @ 30 = 35.4\n\nSubtotal: 30\nDiscount: 0\nGST: 5.4\nTotal: 35.4\nPaid: 31.5\nChange: 0\n\nPayments:\nCASH: 31.5",
+    "copies": 1,
+    "status": "queued",
+    "createdAt": "2026-04-30T18:32:10.035Z",
+    "updatedAt": "2026-04-30T18:32:10.035Z"
   }
 ]

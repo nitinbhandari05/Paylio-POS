@@ -15,10 +15,13 @@ const formatMoney = (value) =>
   new Intl.NumberFormat("en-IN", {
     style: "currency",
     currency: "INR",
-    maximumFractionDigits: 0,
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
   }).format(Number(value || 0));
 
 const normalizeLookup = (value) => String(value || "").trim().toLowerCase();
+const round2 = (value) => Math.round((Number(value || 0) + Number.EPSILON) * 100) / 100;
+const GST_RATE_PERCENT = 5;
 
 export function POSProvider({ children }) {
   const [products, setProducts] = useState(DEMO_PRODUCTS);
@@ -136,12 +139,13 @@ export function POSProvider({ children }) {
   }, [products, selectedCategory, searchTerm]);
 
   const subtotal = useMemo(
-    () => cartItems.reduce((sum, item) => sum + item.price * item.qty, 0),
+    () => round2(cartItems.reduce((sum, item) => sum + Number(item.price || 0) * Number(item.qty || 0), 0)),
     [cartItems]
   );
-  const tax = Math.round(subtotal * 0.05);
-  const safeDiscount = Math.max(0, Number(discount || 0));
-  const total = Math.max(0, subtotal + tax - safeDiscount);
+  const safeDiscount = Math.max(0, round2(Number(discount || 0)));
+  const taxableSubtotal = Math.max(0, round2(subtotal - safeDiscount));
+  const tax = round2((taxableSubtotal * GST_RATE_PERCENT) / 100);
+  const total = Math.max(0, round2(taxableSubtotal + tax));
 
   const addToCart = (product) => {
     if (Number(product?.stock || 0) <= 0) {
@@ -386,6 +390,7 @@ export function POSProvider({ children }) {
           tableNo: orderType === "dinein" ? table : "",
           waiterName: waiterName || "",
           notes: "",
+          discountAmount: safeDiscount,
           items: resolvedItems.map((item) => ({
             productId: item.productId,
             quantity: item.qty,
@@ -423,6 +428,7 @@ export function POSProvider({ children }) {
         tableNo: orderType === "dinein" ? table : "",
         waiterName: waiterName || "",
         notes: "",
+        discountAmount: safeDiscount,
         items: resolvedItems.map((item) => ({
           productId: item.productId,
           quantity: item.qty,

@@ -8,16 +8,18 @@ const money = (value) =>
   }).format(Number(value || 0));
 
 const computeSummary = (orders) => {
+  const billed = orders.filter((o) => !["cancelled", "refunded"].includes(String(o.status || "").toLowerCase()));
   const completed = orders.filter((o) => o.status === "completed");
   const refunded = orders.filter((o) => o.status === "refunded");
   const cancelled = orders.filter((o) => o.status === "cancelled");
 
-  const totalSales = completed.reduce((sum, o) => sum + Number(o.total || 0), 0);
-  const totalTax = completed.reduce((sum, o) => sum + Number(o.gstAmount || 0), 0);
+  const totalSales = billed.reduce((sum, o) => sum + Number(o.total || 0), 0);
+  const totalTax = billed.reduce((sum, o) => sum + Number(o.gstAmount || 0), 0);
   const totalRefunds = refunded.reduce((sum, o) => sum + Number(o.refundAmount || o.total || 0), 0);
 
   const paymentBreakdown = {};
   for (const order of orders) {
+    if (["cancelled", "refunded"].includes(String(order.status || "").toLowerCase())) continue;
     for (const payment of order.payments || []) {
       const method = String(payment.method || "unknown").toLowerCase();
       paymentBreakdown[method] = (paymentBreakdown[method] || 0) + Number(payment.amount || 0);
@@ -33,7 +35,7 @@ const computeSummary = (orders) => {
     totalTax,
     totalRefunds,
     netSales: totalSales - totalRefunds,
-    avgOrderValue: orders.length ? totalSales / orders.length : 0,
+    avgOrderValue: billed.length ? totalSales / billed.length : 0,
     paymentBreakdown,
   };
 };

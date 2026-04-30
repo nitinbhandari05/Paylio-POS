@@ -1,39 +1,6 @@
 [
   {
-    "_id": "abc9b8ce-d0b2-406c-ac71-8fa1579daabc",
-    "status": "closed",
-    "outletId": "main",
-    "customerId": "",
-    "customerName": "Walk-in",
-    "customerPhone": "",
-    "customerEmail": "",
-    "notes": "",
-    "gstRate": 18,
-    "discountType": "flat",
-    "discountValue": 0,
-    "items": [
-      {
-        "_id": "1cc908c1-3782-4399-a760-e48621799e58",
-        "productId": "6ca0d0f2-3cea-4284-b9a1-44a8c18cf80a",
-        "name": "Masala Tea",
-        "sku": "demo-1777534315144-8uso",
-        "categoryId": "",
-        "categoryName": "",
-        "quantity": 1,
-        "unitPrice": 30,
-        "cost": 0,
-        "gstRate": 18,
-        "discountType": "flat",
-        "discountValue": 0,
-        "note": ""
-      }
-    ],
-    "createdBy": null,
-    "createdAt": "2026-04-30T18:01:19.914Z",
-    "updatedAt": "2026-04-30T18:01:19.923Z"
-  },
-  {
-    "_id": "76ee6bcd-e23e-4a99-9c54-f53df5c63cc9",
+    "_id": "05ea0537-ef59-436f-b227-2d9095793938",
     "status": "open",
     "outletId": "main",
     "customerId": "",
@@ -46,7 +13,7 @@
     "discountValue": 0,
     "items": [
       {
-        "_id": "496accf6-3370-433e-b5df-be94ac53f86d",
+        "_id": "cdad24ed-7799-47c4-a37b-0d26dd2a8b11",
         "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
         "name": "Veg Burger",
         "sku": "demo-1777534315156-me2u",
@@ -62,11 +29,1049 @@
       }
     ],
     "createdBy": null,
-    "createdAt": "2026-04-30T18:01:19.924Z",
-    "updatedAt": "2026-04-30T18:01:19.925Z"
+    "createdAt": "2026-04-30T18:21:34.158Z",
+    "updatedAt": "2026-04-30T18:21:34.161Z"
   },
   {
-    "_id": "5922e3ef-03e1-4982-953b-de81fe457d47",
+    "_id": "90d86d60-d416-4364-b0a4-7977186152db",
+    "status": "open",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 18,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [
+      {
+        "_id": "410f76db-dc89-49d3-bdfc-18afcb5eadaa",
+        "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
+        "name": "Veg Burger",
+        "sku": "demo-1777534315156-me2u",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 149,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      }
+    ],
+    "createdBy": null,
+    "createdAt": "2026-04-30T18:21:34.176Z",
+    "updatedAt": "2026-04-30T18:21:34.178Z"
+  },
+  {
+    "_id": "0f7d7745-894e-4384-ae53-b8de33119adb",
+    "status": "open",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 18,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [
+      {
+        "_id": "933b382e-56ae-45f4-b327-a141874eb927",
+        "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
+        "name": "Veg Burger",
+        "sku": "demo-1777534315156-me2u",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 149,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      }
+    ],
+    "createdBy": null,
+    "createdAt": "2026-04-30T18:21:34.182Z",
+    "updatedAt": "2026-04-30T18:21:34.183Z"
+  },
+  {
+    "_id": "2af644fc-9d3f-4112-a4c7-7c63446cb068",
+    "status": "open",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 18,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [
+      {
+        "_id": "3a441bf9-6196-45c2-902e-465d5d777f26",
+        "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
+        "name": "Veg Burger",
+        "sku": "demo-1777534315156-me2u",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 149,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      }
+    ],
+    "createdBy": null,
+    "createdAt": "2026-04-30T18:21:34.184Z",
+    "updatedAt": "2026-04-30T18:21:34.186Z"
+  },
+  {
+    "_id": "7566b100-2727-43c3-9897-f54dd3d9178e",
+    "status": "open",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 18,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [
+      {
+        "_id": "1a78f928-51ab-4fce-8844-8f8674550b1f",
+        "productId": "6ca0d0f2-3cea-4284-b9a1-44a8c18cf80a",
+        "name": "Masala Tea",
+        "sku": "demo-1777534315144-8uso",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 30,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      }
+    ],
+    "createdBy": null,
+    "createdAt": "2026-04-30T18:24:07.168Z",
+    "updatedAt": "2026-04-30T18:24:07.172Z"
+  },
+  {
+    "_id": "d822b1b8-fc63-4b44-a7f3-beb52dbbec16",
+    "status": "closed",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 18,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [
+      {
+        "_id": "4cd24e7b-2201-4c38-86b6-78146482f938",
+        "productId": "6ca0d0f2-3cea-4284-b9a1-44a8c18cf80a",
+        "name": "Masala Tea",
+        "sku": "demo-1777534315144-8uso",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 30,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      }
+    ],
+    "createdBy": null,
+    "createdAt": "2026-04-30T18:24:27.059Z",
+    "updatedAt": "2026-04-30T18:24:27.072Z"
+  },
+  {
+    "_id": "5f50cdc9-8e76-4f0c-bf4b-9d3212877511",
+    "status": "open",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Nitin",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 18,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [
+      {
+        "_id": "2ff758a7-47ab-4868-9e0b-96425ccca238",
+        "productId": "6ca0d0f2-3cea-4284-b9a1-44a8c18cf80a",
+        "name": "Masala Tea",
+        "sku": "demo-1777534315144-8uso",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 30,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      },
+      {
+        "_id": "b89b7d91-f214-4d82-a2ad-29860078d508",
+        "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
+        "name": "Veg Burger",
+        "sku": "demo-1777534315156-me2u",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 149,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      },
+      {
+        "_id": "b0575a7c-cc38-40ac-92f9-6d92637557ae",
+        "productId": "a8a3312c-fd87-47dc-aec3-78ec71b5863a",
+        "name": "Tea Combo",
+        "sku": "demo-1777534315163-9asx",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 199,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      }
+    ],
+    "createdBy": null,
+    "createdAt": "2026-04-30T18:27:32.004Z",
+    "updatedAt": "2026-04-30T18:27:32.014Z"
+  },
+  {
+    "_id": "084f3210-8dd2-4cc3-943a-f9175582df44",
+    "status": "closed",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 18,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [
+      {
+        "_id": "bb9cd28f-5949-4bb8-844d-7faf73778093",
+        "productId": "6ca0d0f2-3cea-4284-b9a1-44a8c18cf80a",
+        "name": "Masala Tea",
+        "sku": "demo-1777534315144-8uso",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 5,
+        "unitPrice": 30,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      }
+    ],
+    "createdBy": null,
+    "createdAt": "2026-04-30T18:27:32.025Z",
+    "updatedAt": "2026-04-30T18:27:32.029Z"
+  },
+  {
+    "_id": "4fb8bf64-bcc7-4ff8-857a-a1609809ac38",
+    "status": "open",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 18,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [
+      {
+        "_id": "dd0fd284-7287-4de2-b99f-3482c70c900b",
+        "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
+        "name": "Veg Burger",
+        "sku": "demo-1777534315156-me2u",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 149,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      }
+    ],
+    "createdBy": null,
+    "createdAt": "2026-04-30T18:27:32.037Z",
+    "updatedAt": "2026-04-30T18:27:32.038Z"
+  },
+  {
+    "_id": "a6a67a7d-31c5-46c7-b282-ffa30598c873",
+    "status": "open",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 18,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [
+      {
+        "_id": "d32d9583-8fb2-465d-b9b0-6eeb2ebcd022",
+        "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
+        "name": "Veg Burger",
+        "sku": "demo-1777534315156-me2u",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 149,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      }
+    ],
+    "createdBy": null,
+    "createdAt": "2026-04-30T18:27:32.045Z",
+    "updatedAt": "2026-04-30T18:27:32.046Z"
+  },
+  {
+    "_id": "0eb42a89-62fd-4394-9562-df2ea6d4b28d",
+    "status": "open",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Nitin",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 18,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [
+      {
+        "_id": "9e61c7bc-6bb4-4e5b-a446-937aeba3c341",
+        "productId": "6ca0d0f2-3cea-4284-b9a1-44a8c18cf80a",
+        "name": "Masala Tea",
+        "sku": "demo-1777534315144-8uso",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 30,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      },
+      {
+        "_id": "7eff7463-31dc-465b-9571-ae817a633461",
+        "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
+        "name": "Veg Burger",
+        "sku": "demo-1777534315156-me2u",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 149,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      },
+      {
+        "_id": "5b6ef129-a9ef-49ac-b4d5-dacde59c166b",
+        "productId": "a8a3312c-fd87-47dc-aec3-78ec71b5863a",
+        "name": "Tea Combo",
+        "sku": "demo-1777534315163-9asx",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 199,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      }
+    ],
+    "createdBy": null,
+    "createdAt": "2026-04-30T18:27:59.292Z",
+    "updatedAt": "2026-04-30T18:27:59.299Z"
+  },
+  {
+    "_id": "5882668a-d4cc-4a15-9369-a4f873eaebd3",
+    "status": "open",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 18,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [
+      {
+        "_id": "53250b3b-a888-4ef0-8dee-03f4170ab86d",
+        "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
+        "name": "Veg Burger",
+        "sku": "demo-1777534315156-me2u",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 149,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      }
+    ],
+    "createdBy": null,
+    "createdAt": "2026-04-30T18:27:59.304Z",
+    "updatedAt": "2026-04-30T18:27:59.305Z"
+  },
+  {
+    "_id": "0fc6b4fd-ca09-4ae1-ad75-82e995687a05",
+    "status": "open",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 18,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [
+      {
+        "_id": "4f25a0c9-3e29-4413-bac9-19f0479dbb4f",
+        "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
+        "name": "Veg Burger",
+        "sku": "demo-1777534315156-me2u",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 149,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      }
+    ],
+    "createdBy": null,
+    "createdAt": "2026-04-30T18:27:59.308Z",
+    "updatedAt": "2026-04-30T18:27:59.309Z"
+  },
+  {
+    "_id": "e02685c9-5383-41d7-a3d4-e5bc4c903d67",
+    "status": "open",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Nitin",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 18,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [
+      {
+        "_id": "e353aa18-8a4a-49f0-aa64-8177eed08575",
+        "productId": "6ca0d0f2-3cea-4284-b9a1-44a8c18cf80a",
+        "name": "Masala Tea",
+        "sku": "demo-1777534315144-8uso",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 30,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      },
+      {
+        "_id": "8c37c2be-96dd-416d-884c-da0a0a735e6e",
+        "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
+        "name": "Veg Burger",
+        "sku": "demo-1777534315156-me2u",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 149,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      },
+      {
+        "_id": "72868116-3482-46c1-af31-0efea2d66ad9",
+        "productId": "a8a3312c-fd87-47dc-aec3-78ec71b5863a",
+        "name": "Tea Combo",
+        "sku": "demo-1777534315163-9asx",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 199,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      }
+    ],
+    "createdBy": null,
+    "createdAt": "2026-04-30T18:29:40.126Z",
+    "updatedAt": "2026-04-30T18:29:40.135Z"
+  },
+  {
+    "_id": "8dd14dfe-feb4-4edf-9e03-491877fbe37e",
+    "status": "open",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 18,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [
+      {
+        "_id": "fca8f02e-97f8-47f3-b497-84bf9f26e5fb",
+        "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
+        "name": "Veg Burger",
+        "sku": "demo-1777534315156-me2u",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 149,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      }
+    ],
+    "createdBy": null,
+    "createdAt": "2026-04-30T18:29:40.150Z",
+    "updatedAt": "2026-04-30T18:29:40.151Z"
+  },
+  {
+    "_id": "5ad3f3e9-a28e-4b2c-b5fc-364efa7edaf9",
+    "status": "open",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 18,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [
+      {
+        "_id": "7ea566e6-a4d9-47bb-90be-33b88a164a98",
+        "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
+        "name": "Veg Burger",
+        "sku": "demo-1777534315156-me2u",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 149,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      }
+    ],
+    "createdBy": null,
+    "createdAt": "2026-04-30T18:29:40.157Z",
+    "updatedAt": "2026-04-30T18:29:40.158Z"
+  },
+  {
+    "_id": "6bdc5653-6aaa-414b-a851-526f8ae7f09c",
+    "status": "open",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Nitin",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 18,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [
+      {
+        "_id": "61f5dc6d-2657-45a3-8189-acbc536f2947",
+        "productId": "6ca0d0f2-3cea-4284-b9a1-44a8c18cf80a",
+        "name": "Masala Tea",
+        "sku": "demo-1777534315144-8uso",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 30,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      },
+      {
+        "_id": "b8c6e052-d48d-4f47-a954-49542e0e6250",
+        "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
+        "name": "Veg Burger",
+        "sku": "demo-1777534315156-me2u",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 149,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      },
+      {
+        "_id": "eeb18dc5-caf7-48d3-8348-9dc79ce6a2b0",
+        "productId": "a8a3312c-fd87-47dc-aec3-78ec71b5863a",
+        "name": "Tea Combo",
+        "sku": "demo-1777534315163-9asx",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 199,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      }
+    ],
+    "createdBy": null,
+    "createdAt": "2026-04-30T18:29:48.714Z",
+    "updatedAt": "2026-04-30T18:29:48.729Z"
+  },
+  {
+    "_id": "1aec54fc-636d-4295-a480-2ab93b94b813",
+    "status": "open",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 18,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [
+      {
+        "_id": "8629dbd1-0930-4230-b806-9c4ad90d08d9",
+        "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
+        "name": "Veg Burger",
+        "sku": "demo-1777534315156-me2u",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 149,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      }
+    ],
+    "createdBy": null,
+    "createdAt": "2026-04-30T18:29:48.725Z",
+    "updatedAt": "2026-04-30T18:29:48.728Z"
+  },
+  {
+    "_id": "7398ef8a-0eb6-4013-8e2b-416244d15c70",
+    "status": "open",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 18,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [
+      {
+        "_id": "1997f59b-11b4-462b-989d-e7adef000116",
+        "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
+        "name": "Veg Burger",
+        "sku": "demo-1777534315156-me2u",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 149,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      }
+    ],
+    "createdBy": null,
+    "createdAt": "2026-04-30T18:29:48.740Z",
+    "updatedAt": "2026-04-30T18:29:48.743Z"
+  },
+  {
+    "_id": "69659c46-f39f-4fb0-8cb6-554408aaef4c",
+    "status": "open",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 18,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [
+      {
+        "_id": "229c8df3-00af-41c8-8275-1f4d5331c75a",
+        "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
+        "name": "Veg Burger",
+        "sku": "demo-1777534315156-me2u",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 149,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      }
+    ],
+    "createdBy": null,
+    "createdAt": "2026-04-30T18:29:48.747Z",
+    "updatedAt": "2026-04-30T18:29:48.749Z"
+  },
+  {
+    "_id": "b85cf740-f5e1-443b-b1fc-423bad6aaf97",
+    "status": "open",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 18,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [
+      {
+        "_id": "83985455-3244-42df-86c4-a624c8767c98",
+        "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
+        "name": "Veg Burger",
+        "sku": "demo-1777534315156-me2u",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 149,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      }
+    ],
+    "createdBy": null,
+    "createdAt": "2026-04-30T18:29:48.754Z",
+    "updatedAt": "2026-04-30T18:29:48.755Z"
+  },
+  {
+    "_id": "70b439f4-5dca-467e-830c-0e27b93da8ec",
+    "status": "open",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Nitin",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 18,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [
+      {
+        "_id": "8b1dcb81-387f-422a-9b10-d554fef825db",
+        "productId": "6ca0d0f2-3cea-4284-b9a1-44a8c18cf80a",
+        "name": "Masala Tea",
+        "sku": "demo-1777534315144-8uso",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 30,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      },
+      {
+        "_id": "67086619-7332-4506-90ae-a019a5e7f601",
+        "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
+        "name": "Veg Burger",
+        "sku": "demo-1777534315156-me2u",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 149,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      },
+      {
+        "_id": "f4700c50-8875-4a7b-9eeb-66b697a1fe1b",
+        "productId": "a8a3312c-fd87-47dc-aec3-78ec71b5863a",
+        "name": "Tea Combo",
+        "sku": "demo-1777534315163-9asx",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 199,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      }
+    ],
+    "createdBy": null,
+    "createdAt": "2026-04-30T18:29:49.608Z",
+    "updatedAt": "2026-04-30T18:29:49.621Z"
+  },
+  {
+    "_id": "7ecece6a-81eb-4881-b437-b466fae078bd",
+    "status": "open",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 18,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [
+      {
+        "_id": "91dfa224-08ea-4b23-9958-fc3344f78259",
+        "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
+        "name": "Veg Burger",
+        "sku": "demo-1777534315156-me2u",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 149,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      }
+    ],
+    "createdBy": null,
+    "createdAt": "2026-04-30T18:29:49.618Z",
+    "updatedAt": "2026-04-30T18:29:49.620Z"
+  },
+  {
+    "_id": "ef52fba3-4f3d-496b-92ea-00e397388d79",
+    "status": "open",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 18,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [
+      {
+        "_id": "2445843a-810c-4cd2-aa35-371b9afabdb5",
+        "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
+        "name": "Veg Burger",
+        "sku": "demo-1777534315156-me2u",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 149,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      }
+    ],
+    "createdBy": null,
+    "createdAt": "2026-04-30T18:29:49.626Z",
+    "updatedAt": "2026-04-30T18:29:49.627Z"
+  },
+  {
+    "_id": "2168a866-bc77-4564-b974-15c3c0e45e99",
+    "status": "open",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 18,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [
+      {
+        "_id": "03825991-b6b8-4eb2-a456-c6f80014b3d4",
+        "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
+        "name": "Veg Burger",
+        "sku": "demo-1777534315156-me2u",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 149,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      }
+    ],
+    "createdBy": null,
+    "createdAt": "2026-04-30T18:29:49.633Z",
+    "updatedAt": "2026-04-30T18:29:49.634Z"
+  },
+  {
+    "_id": "cf0ab7c8-d20a-4efb-8a4c-43033e9c72e3",
+    "status": "open",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 18,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [
+      {
+        "_id": "d22300a2-080c-460c-9e89-b68e5a5a4899",
+        "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
+        "name": "Veg Burger",
+        "sku": "demo-1777534315156-me2u",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 149,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      }
+    ],
+    "createdBy": null,
+    "createdAt": "2026-04-30T18:29:49.640Z",
+    "updatedAt": "2026-04-30T18:29:49.641Z"
+  },
+  {
+    "_id": "ffef7cc7-cb85-43bb-aeca-0e2baa434e14",
+    "status": "open",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Nitin",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 18,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [
+      {
+        "_id": "039af378-9594-4492-9067-6b57671e2114",
+        "productId": "6ca0d0f2-3cea-4284-b9a1-44a8c18cf80a",
+        "name": "Masala Tea",
+        "sku": "demo-1777534315144-8uso",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 30,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      },
+      {
+        "_id": "d1f7b658-fd55-4296-bbb3-89da2b335f52",
+        "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
+        "name": "Veg Burger",
+        "sku": "demo-1777534315156-me2u",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 149,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      },
+      {
+        "_id": "7f087662-fd1e-465a-a5cb-2b09eba06304",
+        "productId": "a8a3312c-fd87-47dc-aec3-78ec71b5863a",
+        "name": "Tea Combo",
+        "sku": "demo-1777534315163-9asx",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 199,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      }
+    ],
+    "createdBy": null,
+    "createdAt": "2026-04-30T18:29:50.087Z",
+    "updatedAt": "2026-04-30T18:29:50.100Z"
+  },
+  {
+    "_id": "74332520-b71a-457b-a37b-839e4bf2ced6",
     "status": "open",
     "outletId": "main",
     "customerId": "",
@@ -79,11 +1084,11 @@
     "discountValue": 0,
     "items": [],
     "createdBy": null,
-    "createdAt": "2026-04-30T18:01:19.930Z",
-    "updatedAt": "2026-04-30T18:01:19.930Z"
+    "createdAt": "2026-04-30T18:29:50.098Z",
+    "updatedAt": "2026-04-30T18:29:50.098Z"
   },
   {
-    "_id": "b9712de7-89ce-4f26-84c9-e48d473739b7",
+    "_id": "d250e4f9-4047-430e-b2d4-ba005d0beea2",
     "status": "open",
     "outletId": "main",
     "customerId": "",
@@ -96,7 +1101,7 @@
     "discountValue": 0,
     "items": [
       {
-        "_id": "35de43c9-ba12-4d57-927d-f61f0bf4314c",
+        "_id": "10ddefa5-0b90-43e2-8ea3-c00b40922e82",
         "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
         "name": "Veg Burger",
         "sku": "demo-1777534315156-me2u",
@@ -112,11 +1117,11 @@
       }
     ],
     "createdBy": null,
-    "createdAt": "2026-04-30T18:01:19.932Z",
-    "updatedAt": "2026-04-30T18:01:19.933Z"
+    "createdAt": "2026-04-30T18:29:50.101Z",
+    "updatedAt": "2026-04-30T18:29:50.102Z"
   },
   {
-    "_id": "51e55b37-ebac-4aff-b036-f0728d54cd0a",
+    "_id": "4cbdc81c-da95-4e1e-9e9b-51d5bc43315d",
     "status": "open",
     "outletId": "main",
     "customerId": "",
@@ -129,7 +1134,7 @@
     "discountValue": 0,
     "items": [
       {
-        "_id": "aaf8dbf4-3c74-4a7f-b329-a0883d2064d3",
+        "_id": "a086c59e-5f4f-4ce9-9b03-9c2e81e0818e",
         "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
         "name": "Veg Burger",
         "sku": "demo-1777534315156-me2u",
@@ -145,11 +1150,11 @@
       }
     ],
     "createdBy": null,
-    "createdAt": "2026-04-30T18:01:19.938Z",
-    "updatedAt": "2026-04-30T18:01:19.939Z"
+    "createdAt": "2026-04-30T18:29:50.116Z",
+    "updatedAt": "2026-04-30T18:29:50.117Z"
   },
   {
-    "_id": "41817d87-7ac7-4a4c-8c0a-05c764683f67",
+    "_id": "a193f285-a4e3-4a06-86f5-cbd96a8acc1b",
     "status": "open",
     "outletId": "main",
     "customerId": "",
@@ -162,7 +1167,7 @@
     "discountValue": 0,
     "items": [
       {
-        "_id": "c0f0dcda-9158-4a01-b80a-44fa73eef7ee",
+        "_id": "e793b888-ca50-48ca-949b-da56ef63bce5",
         "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
         "name": "Veg Burger",
         "sku": "demo-1777534315156-me2u",
@@ -178,11 +1183,11 @@
       }
     ],
     "createdBy": null,
-    "createdAt": "2026-04-30T18:01:19.945Z",
-    "updatedAt": "2026-04-30T18:01:19.946Z"
+    "createdAt": "2026-04-30T18:29:50.128Z",
+    "updatedAt": "2026-04-30T18:29:50.129Z"
   },
   {
-    "_id": "a30092b6-3961-489f-87bf-9bdb53de98b6",
+    "_id": "694d6a33-8c80-4bf5-a242-87bf96aeabaa",
     "status": "open",
     "outletId": "main",
     "customerId": "",
@@ -195,7 +1200,7 @@
     "discountValue": 0,
     "items": [
       {
-        "_id": "15d9ad8a-5b51-4b5c-aa28-8e6e0776c83a",
+        "_id": "b9022ffc-ad20-451a-8075-aab4e361fe13",
         "productId": "6ca0d0f2-3cea-4284-b9a1-44a8c18cf80a",
         "name": "Masala Tea",
         "sku": "demo-1777534315144-8uso",
@@ -210,7 +1215,7 @@
         "note": ""
       },
       {
-        "_id": "b3f9f60e-386d-48a3-a85f-f56570a42f88",
+        "_id": "518563e2-6c19-4359-98ec-a62025a532a4",
         "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
         "name": "Veg Burger",
         "sku": "demo-1777534315156-me2u",
@@ -225,7 +1230,7 @@
         "note": ""
       },
       {
-        "_id": "02379122-ca56-4897-977e-4bf225a31ec2",
+        "_id": "c7813644-1501-488b-bdfb-1d8b7403c0e1",
         "productId": "a8a3312c-fd87-47dc-aec3-78ec71b5863a",
         "name": "Tea Combo",
         "sku": "demo-1777534315163-9asx",
@@ -241,11 +1246,143 @@
       }
     ],
     "createdBy": null,
-    "createdAt": "2026-04-30T18:04:39.739Z",
-    "updatedAt": "2026-04-30T18:04:39.748Z"
+    "createdAt": "2026-04-30T18:29:50.477Z",
+    "updatedAt": "2026-04-30T18:29:50.484Z"
   },
   {
-    "_id": "c2a73fe5-bc0f-44c6-a133-867803dd0611",
+    "_id": "84ce22a0-39b2-4422-b66f-d2dbd2bc7c2f",
+    "status": "open",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 18,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [
+      {
+        "_id": "7996e94c-7ec5-49d1-951c-42fcca0d048b",
+        "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
+        "name": "Veg Burger",
+        "sku": "demo-1777534315156-me2u",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 149,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      }
+    ],
+    "createdBy": null,
+    "createdAt": "2026-04-30T18:29:50.482Z",
+    "updatedAt": "2026-04-30T18:29:50.483Z"
+  },
+  {
+    "_id": "10ecc614-694c-4695-bb12-7bb2b2c7227f",
+    "status": "open",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 18,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [
+      {
+        "_id": "b0bf81a2-1334-4df1-93db-b2b01b3b31eb",
+        "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
+        "name": "Veg Burger",
+        "sku": "demo-1777534315156-me2u",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 149,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      }
+    ],
+    "createdBy": null,
+    "createdAt": "2026-04-30T18:29:50.487Z",
+    "updatedAt": "2026-04-30T18:29:50.489Z"
+  },
+  {
+    "_id": "de181093-2de2-4ee5-b168-0946df133ced",
+    "status": "open",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 18,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [
+      {
+        "_id": "64a933a9-b21e-4be2-adaa-beba696d62c9",
+        "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
+        "name": "Veg Burger",
+        "sku": "demo-1777534315156-me2u",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 149,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      }
+    ],
+    "createdBy": null,
+    "createdAt": "2026-04-30T18:29:50.493Z",
+    "updatedAt": "2026-04-30T18:29:50.494Z"
+  },
+  {
+    "_id": "2f48e197-70d9-4625-92c9-c3c63ecf05b8",
+    "status": "open",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 18,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [
+      {
+        "_id": "353ba9ae-dfc5-4bec-8ed5-192d891c0675",
+        "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
+        "name": "Veg Burger",
+        "sku": "demo-1777534315156-me2u",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 149,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      }
+    ],
+    "createdBy": null,
+    "createdAt": "2026-04-30T18:29:50.507Z",
+    "updatedAt": "2026-04-30T18:29:50.510Z"
+  },
+  {
+    "_id": "87532602-242b-4a41-af37-5ff08f0c5ef2",
     "status": "open",
     "outletId": "main",
     "customerId": "",
@@ -258,7 +1395,7 @@
     "discountValue": 0,
     "items": [
       {
-        "_id": "79c0e2ef-d588-47f2-908b-fdffa3d51eda",
+        "_id": "4ef6b5dd-943e-4020-9495-680ae15f77c1",
         "productId": "6ca0d0f2-3cea-4284-b9a1-44a8c18cf80a",
         "name": "Masala Tea",
         "sku": "demo-1777534315144-8uso",
@@ -273,7 +1410,7 @@
         "note": ""
       },
       {
-        "_id": "60e8659d-c9d7-4916-9dd6-13b194cc9954",
+        "_id": "d7dc87b2-86c2-44d7-a3df-4b72475c7227",
         "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
         "name": "Veg Burger",
         "sku": "demo-1777534315156-me2u",
@@ -288,7 +1425,7 @@
         "note": ""
       },
       {
-        "_id": "2f19be3c-ed55-44aa-8b46-d1fe94a9d557",
+        "_id": "0a5e2df3-4b99-4c08-becf-0702f1543f45",
         "productId": "a8a3312c-fd87-47dc-aec3-78ec71b5863a",
         "name": "Tea Combo",
         "sku": "demo-1777534315163-9asx",
@@ -304,11 +1441,77 @@
       }
     ],
     "createdBy": null,
-    "createdAt": "2026-04-30T18:04:39.746Z",
-    "updatedAt": "2026-04-30T18:04:39.750Z"
+    "createdAt": "2026-04-30T18:30:37.668Z",
+    "updatedAt": "2026-04-30T18:30:37.674Z"
   },
   {
-    "_id": "423b3d6e-e97e-4d2b-9903-de54ff322034",
+    "_id": "aab11aaa-1796-4782-929c-e12438ce7cc7",
+    "status": "open",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 18,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [
+      {
+        "_id": "4c28f23d-ad47-4d3c-a76c-b60016d267f5",
+        "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
+        "name": "Veg Burger",
+        "sku": "demo-1777534315156-me2u",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 149,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      }
+    ],
+    "createdBy": null,
+    "createdAt": "2026-04-30T18:30:37.680Z",
+    "updatedAt": "2026-04-30T18:30:37.681Z"
+  },
+  {
+    "_id": "b972ec5d-4056-4f8d-814b-37e327ee5e9b",
+    "status": "open",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 18,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [
+      {
+        "_id": "4eebf064-3cfd-4f9b-a2aa-31449f24d984",
+        "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
+        "name": "Veg Burger",
+        "sku": "demo-1777534315156-me2u",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 149,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      }
+    ],
+    "createdBy": null,
+    "createdAt": "2026-04-30T18:30:37.684Z",
+    "updatedAt": "2026-04-30T18:30:37.685Z"
+  },
+  {
+    "_id": "e89dac1d-3862-419f-af3d-8ae1919ccf75",
     "status": "open",
     "outletId": "main",
     "customerId": "",
@@ -321,7 +1524,7 @@
     "discountValue": 0,
     "items": [
       {
-        "_id": "034c1558-2e80-4949-9ae5-c707b7d39c36",
+        "_id": "cfc39c96-e81d-40b7-acd4-3c228db3a9ee",
         "productId": "6ca0d0f2-3cea-4284-b9a1-44a8c18cf80a",
         "name": "Masala Tea",
         "sku": "demo-1777534315144-8uso",
@@ -336,7 +1539,7 @@
         "note": ""
       },
       {
-        "_id": "f734dd08-ac2a-4fd9-aac1-2fba941f8389",
+        "_id": "0016e56d-0fed-45ec-b354-ed9c7b8c2841",
         "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
         "name": "Veg Burger",
         "sku": "demo-1777534315156-me2u",
@@ -351,7 +1554,7 @@
         "note": ""
       },
       {
-        "_id": "279ba88b-5d24-4344-8730-b630755e63ab",
+        "_id": "eb819100-1444-4d4e-a33c-2b11861587a4",
         "productId": "a8a3312c-fd87-47dc-aec3-78ec71b5863a",
         "name": "Tea Combo",
         "sku": "demo-1777534315163-9asx",
@@ -367,11 +1570,566 @@
       }
     ],
     "createdBy": null,
-    "createdAt": "2026-04-30T18:04:39.761Z",
-    "updatedAt": "2026-04-30T18:04:39.764Z"
+    "createdAt": "2026-04-30T18:31:52.178Z",
+    "updatedAt": "2026-04-30T18:31:52.188Z"
   },
   {
-    "_id": "cbee36cf-19a3-40c0-bea5-f8a540382b13",
+    "_id": "0f9be4b7-f56c-4b53-bfea-b09d4983fd72",
+    "status": "open",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 18,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [
+      {
+        "_id": "45cf7231-e4eb-4a0c-ab02-f90dc9709545",
+        "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
+        "name": "Veg Burger",
+        "sku": "demo-1777534315156-me2u",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 149,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      }
+    ],
+    "createdBy": null,
+    "createdAt": "2026-04-30T18:31:52.186Z",
+    "updatedAt": "2026-04-30T18:31:52.187Z"
+  },
+  {
+    "_id": "cc0d716e-0093-468b-84de-64b271f8da22",
+    "status": "open",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 18,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [
+      {
+        "_id": "a845cfdd-bb19-4f05-9ede-062c704d2890",
+        "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
+        "name": "Veg Burger",
+        "sku": "demo-1777534315156-me2u",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 149,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      }
+    ],
+    "createdBy": null,
+    "createdAt": "2026-04-30T18:31:52.195Z",
+    "updatedAt": "2026-04-30T18:31:52.197Z"
+  },
+  {
+    "_id": "d9d28510-be27-41f2-a70f-9ddf93d16c74",
+    "status": "open",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 18,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [
+      {
+        "_id": "20b1e8b4-79a8-4a88-901f-6432b945b45b",
+        "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
+        "name": "Veg Burger",
+        "sku": "demo-1777534315156-me2u",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 149,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      }
+    ],
+    "createdBy": null,
+    "createdAt": "2026-04-30T18:31:52.205Z",
+    "updatedAt": "2026-04-30T18:31:52.207Z"
+  },
+  {
+    "_id": "a1784ac7-e5a5-4667-a09e-dfbb5883c42e",
+    "status": "open",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 18,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [
+      {
+        "_id": "828cfdc4-9ddf-4e7c-9d65-6fd14d93151f",
+        "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
+        "name": "Veg Burger",
+        "sku": "demo-1777534315156-me2u",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 149,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      }
+    ],
+    "createdBy": null,
+    "createdAt": "2026-04-30T18:31:52.218Z",
+    "updatedAt": "2026-04-30T18:31:52.220Z"
+  },
+  {
+    "_id": "f8dd2940-96f2-46ea-b41f-6d066e1b0c2c",
+    "status": "open",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Nitin",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 18,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [
+      {
+        "_id": "a025af68-79f7-4b5d-a11d-b7c215b40ac7",
+        "productId": "6ca0d0f2-3cea-4284-b9a1-44a8c18cf80a",
+        "name": "Masala Tea",
+        "sku": "demo-1777534315144-8uso",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 30,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      },
+      {
+        "_id": "73a36f7e-e60e-49b0-ad27-df8220fd96e7",
+        "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
+        "name": "Veg Burger",
+        "sku": "demo-1777534315156-me2u",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 149,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      },
+      {
+        "_id": "19cde426-52fd-4a4f-abf6-b4e584215e0a",
+        "productId": "a8a3312c-fd87-47dc-aec3-78ec71b5863a",
+        "name": "Tea Combo",
+        "sku": "demo-1777534315163-9asx",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 199,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      }
+    ],
+    "createdBy": null,
+    "createdAt": "2026-04-30T18:31:52.453Z",
+    "updatedAt": "2026-04-30T18:31:52.463Z"
+  },
+  {
+    "_id": "049980d7-4d73-43be-bc9c-bc020a15e1d7",
+    "status": "open",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 18,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [
+      {
+        "_id": "bf9c90a2-e30e-4768-b460-cc53397b6152",
+        "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
+        "name": "Veg Burger",
+        "sku": "demo-1777534315156-me2u",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 149,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      }
+    ],
+    "createdBy": null,
+    "createdAt": "2026-04-30T18:31:52.461Z",
+    "updatedAt": "2026-04-30T18:31:52.463Z"
+  },
+  {
+    "_id": "e91d2046-b237-4a9e-b838-bbe0839ee4de",
+    "status": "open",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 18,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [
+      {
+        "_id": "76a4a2ad-bddd-43d4-ad5d-2e3484af1f73",
+        "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
+        "name": "Veg Burger",
+        "sku": "demo-1777534315156-me2u",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 149,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      }
+    ],
+    "createdBy": null,
+    "createdAt": "2026-04-30T18:31:52.467Z",
+    "updatedAt": "2026-04-30T18:31:52.468Z"
+  },
+  {
+    "_id": "6eafffbb-52e9-472e-a684-3454a407ec27",
+    "status": "open",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 18,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [
+      {
+        "_id": "446aac0f-1365-45a1-a9b3-006688af47e2",
+        "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
+        "name": "Veg Burger",
+        "sku": "demo-1777534315156-me2u",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 149,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      }
+    ],
+    "createdBy": null,
+    "createdAt": "2026-04-30T18:31:52.472Z",
+    "updatedAt": "2026-04-30T18:31:52.474Z"
+  },
+  {
+    "_id": "79563c5b-bc35-4c7d-a4ee-af2abcf93073",
+    "status": "open",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 18,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [
+      {
+        "_id": "bd8e8ea5-fb6e-4c87-bbbd-6ce03ccb50f1",
+        "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
+        "name": "Veg Burger",
+        "sku": "demo-1777534315156-me2u",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 149,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      }
+    ],
+    "createdBy": null,
+    "createdAt": "2026-04-30T18:31:52.485Z",
+    "updatedAt": "2026-04-30T18:31:52.487Z"
+  },
+  {
+    "_id": "0ecccc85-5d38-4aab-bd29-13e014c9486d",
+    "status": "open",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Nitin",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 18,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [
+      {
+        "_id": "b70e18e5-af73-4edf-87e2-056460693b96",
+        "productId": "6ca0d0f2-3cea-4284-b9a1-44a8c18cf80a",
+        "name": "Masala Tea",
+        "sku": "demo-1777534315144-8uso",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 30,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      },
+      {
+        "_id": "deffb47e-9995-4bbc-87cc-e44d67b0a352",
+        "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
+        "name": "Veg Burger",
+        "sku": "demo-1777534315156-me2u",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 149,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      },
+      {
+        "_id": "38acaa85-a607-4616-9968-31a7c91c7401",
+        "productId": "a8a3312c-fd87-47dc-aec3-78ec71b5863a",
+        "name": "Tea Combo",
+        "sku": "demo-1777534315163-9asx",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 199,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      }
+    ],
+    "createdBy": null,
+    "createdAt": "2026-04-30T18:31:53.273Z",
+    "updatedAt": "2026-04-30T18:31:53.288Z"
+  },
+  {
+    "_id": "ddd757fd-12dd-43f1-a7a6-4ef9191c7091",
+    "status": "open",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 18,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [
+      {
+        "_id": "c8b5c20c-a63d-430f-988f-294ab0a090ff",
+        "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
+        "name": "Veg Burger",
+        "sku": "demo-1777534315156-me2u",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 149,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      }
+    ],
+    "createdBy": null,
+    "createdAt": "2026-04-30T18:31:53.284Z",
+    "updatedAt": "2026-04-30T18:31:53.287Z"
+  },
+  {
+    "_id": "6af78401-13c2-4959-8f1d-5bc9ec136769",
+    "status": "open",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 18,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [
+      {
+        "_id": "0c587643-e5ab-40be-ad50-e62a18c6376f",
+        "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
+        "name": "Veg Burger",
+        "sku": "demo-1777534315156-me2u",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 149,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      }
+    ],
+    "createdBy": null,
+    "createdAt": "2026-04-30T18:31:53.293Z",
+    "updatedAt": "2026-04-30T18:31:53.295Z"
+  },
+  {
+    "_id": "d3b19490-a767-4e1c-9fc8-d5e664e6ab99",
+    "status": "open",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 18,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [
+      {
+        "_id": "54d0654d-bcef-4c41-b8c6-348360955cbe",
+        "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
+        "name": "Veg Burger",
+        "sku": "demo-1777534315156-me2u",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 149,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      }
+    ],
+    "createdBy": null,
+    "createdAt": "2026-04-30T18:31:53.299Z",
+    "updatedAt": "2026-04-30T18:31:53.300Z"
+  },
+  {
+    "_id": "2b2f3054-24f5-4621-875a-981ab981e269",
+    "status": "open",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 18,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [
+      {
+        "_id": "bd115d6f-6401-459e-bffe-04b85f7b6ce6",
+        "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
+        "name": "Veg Burger",
+        "sku": "demo-1777534315156-me2u",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 149,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      }
+    ],
+    "createdBy": null,
+    "createdAt": "2026-04-30T18:31:53.306Z",
+    "updatedAt": "2026-04-30T18:31:53.307Z"
+  },
+  {
+    "_id": "495f6097-a9ff-489e-a86e-d7610a11f2cc",
+    "status": "open",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 18,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [
+      {
+        "_id": "6fd5c553-f917-452d-9f43-370076115630",
+        "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
+        "name": "Veg Burger",
+        "sku": "demo-1777534315156-me2u",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 149,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      }
+    ],
+    "createdBy": null,
+    "createdAt": "2026-04-30T18:32:02.515Z",
+    "updatedAt": "2026-04-30T18:32:02.519Z"
+  },
+  {
+    "_id": "044dd37a-862b-487f-b176-6084a773ac6e",
     "status": "closed",
     "outletId": "main",
     "customerId": "",
@@ -384,205 +2142,7 @@
     "discountValue": 0,
     "items": [
       {
-        "_id": "63daccfc-385f-46b6-abfb-fc1fa0a42ed4",
-        "productId": "6ca0d0f2-3cea-4284-b9a1-44a8c18cf80a",
-        "name": "Masala Tea",
-        "sku": "demo-1777534315144-8uso",
-        "categoryId": "",
-        "categoryName": "",
-        "quantity": 5,
-        "unitPrice": 30,
-        "cost": 0,
-        "gstRate": 18,
-        "discountType": "flat",
-        "discountValue": 0,
-        "note": ""
-      }
-    ],
-    "createdBy": null,
-    "createdAt": "2026-04-30T18:04:39.766Z",
-    "updatedAt": "2026-04-30T18:04:39.773Z"
-  },
-  {
-    "_id": "a52750de-1bd8-48f1-8cf3-c43b309456ab",
-    "status": "open",
-    "outletId": "main",
-    "customerId": "",
-    "customerName": "Walk-in",
-    "customerPhone": "",
-    "customerEmail": "",
-    "notes": "",
-    "gstRate": 18,
-    "discountType": "flat",
-    "discountValue": 0,
-    "items": [
-      {
-        "_id": "86998e5c-5fef-44dc-bfe4-9c365a104a4a",
-        "productId": "6ca0d0f2-3cea-4284-b9a1-44a8c18cf80a",
-        "name": "Masala Tea",
-        "sku": "demo-1777534315144-8uso",
-        "categoryId": "",
-        "categoryName": "",
-        "quantity": 5,
-        "unitPrice": 30,
-        "cost": 0,
-        "gstRate": 18,
-        "discountType": "flat",
-        "discountValue": 0,
-        "note": ""
-      }
-    ],
-    "createdBy": null,
-    "createdAt": "2026-04-30T18:04:39.776Z",
-    "updatedAt": "2026-04-30T18:04:39.777Z"
-  },
-  {
-    "_id": "e5db81af-5749-47df-9c75-fe00cd39d3de",
-    "status": "open",
-    "outletId": "main",
-    "customerId": "",
-    "customerName": "Walk-in",
-    "customerPhone": "",
-    "customerEmail": "",
-    "notes": "",
-    "gstRate": 18,
-    "discountType": "flat",
-    "discountValue": 0,
-    "items": [
-      {
-        "_id": "eb1deec6-a2e7-416b-9dfe-aefd5f8bbda6",
-        "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
-        "name": "Veg Burger",
-        "sku": "demo-1777534315156-me2u",
-        "categoryId": "",
-        "categoryName": "",
-        "quantity": 1,
-        "unitPrice": 149,
-        "cost": 0,
-        "gstRate": 18,
-        "discountType": "flat",
-        "discountValue": 0,
-        "note": ""
-      }
-    ],
-    "createdBy": null,
-    "createdAt": "2026-04-30T18:04:39.780Z",
-    "updatedAt": "2026-04-30T18:04:39.784Z"
-  },
-  {
-    "_id": "c01dcbd1-d112-47be-990b-e30dc4e41864",
-    "status": "open",
-    "outletId": "main",
-    "customerId": "",
-    "customerName": "Walk-in",
-    "customerPhone": "",
-    "customerEmail": "",
-    "notes": "",
-    "gstRate": 18,
-    "discountType": "flat",
-    "discountValue": 0,
-    "items": [
-      {
-        "_id": "ebc61592-7ac1-4783-848e-fe6d8d5fc073",
-        "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
-        "name": "Veg Burger",
-        "sku": "demo-1777534315156-me2u",
-        "categoryId": "",
-        "categoryName": "",
-        "quantity": 1,
-        "unitPrice": 149,
-        "cost": 0,
-        "gstRate": 18,
-        "discountType": "flat",
-        "discountValue": 0,
-        "note": ""
-      }
-    ],
-    "createdBy": null,
-    "createdAt": "2026-04-30T18:04:39.790Z",
-    "updatedAt": "2026-04-30T18:04:39.791Z"
-  },
-  {
-    "_id": "2e4b73d5-b51e-4d75-b8a6-b439ee7808d5",
-    "status": "open",
-    "outletId": "main",
-    "customerId": "",
-    "customerName": "Walk-in",
-    "customerPhone": "",
-    "customerEmail": "",
-    "notes": "",
-    "gstRate": 18,
-    "discountType": "flat",
-    "discountValue": 0,
-    "items": [
-      {
-        "_id": "349b71d8-8d36-455c-b7b7-f89b000f0242",
-        "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
-        "name": "Veg Burger",
-        "sku": "demo-1777534315156-me2u",
-        "categoryId": "",
-        "categoryName": "",
-        "quantity": 1,
-        "unitPrice": 149,
-        "cost": 0,
-        "gstRate": 18,
-        "discountType": "flat",
-        "discountValue": 0,
-        "note": ""
-      }
-    ],
-    "createdBy": null,
-    "createdAt": "2026-04-30T18:04:39.801Z",
-    "updatedAt": "2026-04-30T18:04:39.802Z"
-  },
-  {
-    "_id": "db2f00a3-625e-4a1c-93c3-44d56458d55a",
-    "status": "open",
-    "outletId": "main",
-    "customerId": "",
-    "customerName": "Walk-in",
-    "customerPhone": "",
-    "customerEmail": "",
-    "notes": "",
-    "gstRate": 18,
-    "discountType": "flat",
-    "discountValue": 0,
-    "items": [
-      {
-        "_id": "ed182960-d86d-4a93-bb10-3db904587526",
-        "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
-        "name": "Veg Burger",
-        "sku": "demo-1777534315156-me2u",
-        "categoryId": "",
-        "categoryName": "",
-        "quantity": 1,
-        "unitPrice": 149,
-        "cost": 0,
-        "gstRate": 18,
-        "discountType": "flat",
-        "discountValue": 0,
-        "note": ""
-      }
-    ],
-    "createdBy": null,
-    "createdAt": "2026-04-30T18:04:39.817Z",
-    "updatedAt": "2026-04-30T18:04:39.819Z"
-  },
-  {
-    "_id": "1c9ea185-525a-4834-89a5-b8b13934eb9d",
-    "status": "closed",
-    "outletId": "main",
-    "customerId": "",
-    "customerName": "Nitin",
-    "customerPhone": "",
-    "customerEmail": "",
-    "notes": "",
-    "gstRate": 18,
-    "discountType": "flat",
-    "discountValue": 0,
-    "items": [
-      {
-        "_id": "d8a3a3cf-04ca-4cc9-9889-5c0ec148b7a0",
+        "_id": "da53317c-1c68-476c-a7c0-cf495cb0fa86",
         "productId": "6ca0d0f2-3cea-4284-b9a1-44a8c18cf80a",
         "name": "Masala Tea",
         "sku": "demo-1777534315144-8uso",
@@ -598,11 +2158,11 @@
       }
     ],
     "createdBy": null,
-    "createdAt": "2026-04-30T18:04:40.043Z",
-    "updatedAt": "2026-04-30T18:04:40.055Z"
+    "createdAt": "2026-04-30T18:32:10.014Z",
+    "updatedAt": "2026-04-30T18:32:10.031Z"
   },
   {
-    "_id": "af8833f3-7b38-4ccc-88e8-84c434fbc570",
+    "_id": "bf3bbd2a-d16f-486b-846b-d6d702cb50e9",
     "status": "open",
     "outletId": "main",
     "customerId": "",
@@ -615,37 +2175,7 @@
     "discountValue": 0,
     "items": [
       {
-        "_id": "54a7751f-f6ee-4733-92d9-bd5da866bc8b",
-        "productId": "6ca0d0f2-3cea-4284-b9a1-44a8c18cf80a",
-        "name": "Masala Tea",
-        "sku": "demo-1777534315144-8uso",
-        "categoryId": "",
-        "categoryName": "",
-        "quantity": 1,
-        "unitPrice": 30,
-        "cost": 0,
-        "gstRate": 18,
-        "discountType": "flat",
-        "discountValue": 0,
-        "note": ""
-      },
-      {
-        "_id": "d27c1c84-62da-4dc8-a264-510fd27c37e9",
-        "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
-        "name": "Veg Burger",
-        "sku": "demo-1777534315156-me2u",
-        "categoryId": "",
-        "categoryName": "",
-        "quantity": 1,
-        "unitPrice": 149,
-        "cost": 0,
-        "gstRate": 18,
-        "discountType": "flat",
-        "discountValue": 0,
-        "note": ""
-      },
-      {
-        "_id": "70cb0709-e04a-4b28-8dc9-0f5c58cd9fa1",
+        "_id": "17ab4380-6a3c-4687-a9b2-3704e4aa9465",
         "productId": "a8a3312c-fd87-47dc-aec3-78ec71b5863a",
         "name": "Tea Combo",
         "sku": "demo-1777534315163-9asx",
@@ -661,11 +2191,143 @@
       }
     ],
     "createdBy": null,
-    "createdAt": "2026-04-30T18:04:40.048Z",
-    "updatedAt": "2026-04-30T18:04:40.053Z"
+    "createdAt": "2026-04-30T18:34:12.434Z",
+    "updatedAt": "2026-04-30T18:34:12.458Z"
   },
   {
-    "_id": "77cadc5f-67d6-4348-987e-70cd4965b3e5",
+    "_id": "ca12c866-d08a-4635-8560-5cf8a4684599",
+    "status": "open",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 18,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [
+      {
+        "_id": "e3cd5234-87c7-4b75-97bb-9c963d0bf344",
+        "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
+        "name": "Veg Burger",
+        "sku": "demo-1777534315156-me2u",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 149,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      }
+    ],
+    "createdBy": null,
+    "createdAt": "2026-04-30T18:34:12.446Z",
+    "updatedAt": "2026-04-30T18:34:12.451Z"
+  },
+  {
+    "_id": "5f28badf-db77-4702-82fe-c3a4400d0e63",
+    "status": "open",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 18,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [
+      {
+        "_id": "16c7297c-ab5f-4ad5-9fab-b67514ccea95",
+        "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
+        "name": "Veg Burger",
+        "sku": "demo-1777534315156-me2u",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 149,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      }
+    ],
+    "createdBy": null,
+    "createdAt": "2026-04-30T18:34:12.463Z",
+    "updatedAt": "2026-04-30T18:34:12.465Z"
+  },
+  {
+    "_id": "bcace156-b7d0-4409-9ab1-a319e11d5b2b",
+    "status": "open",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 18,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [
+      {
+        "_id": "925263b6-bdab-4438-83ad-e4ae70e5bb93",
+        "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
+        "name": "Veg Burger",
+        "sku": "demo-1777534315156-me2u",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 149,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      }
+    ],
+    "createdBy": null,
+    "createdAt": "2026-04-30T18:34:12.467Z",
+    "updatedAt": "2026-04-30T18:34:12.472Z"
+  },
+  {
+    "_id": "b0d4c00b-fcb5-4673-8c8f-8c1c4d2df1da",
+    "status": "open",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 18,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [
+      {
+        "_id": "688c393d-a3b3-484a-b6b8-671890885e6e",
+        "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
+        "name": "Veg Burger",
+        "sku": "demo-1777534315156-me2u",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 149,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      }
+    ],
+    "createdBy": null,
+    "createdAt": "2026-04-30T18:34:12.482Z",
+    "updatedAt": "2026-04-30T18:34:12.484Z"
+  },
+  {
+    "_id": "c0b66709-b496-422e-ace2-44d45f13626c",
     "status": "open",
     "outletId": "main",
     "customerId": "",
@@ -678,7 +2340,7 @@
     "discountValue": 0,
     "items": [
       {
-        "_id": "885362e9-1111-4841-8aab-9ca94d772e8a",
+        "_id": "85de5fe6-394a-48a1-b618-8ad072ff105c",
         "productId": "6ca0d0f2-3cea-4284-b9a1-44a8c18cf80a",
         "name": "Masala Tea",
         "sku": "demo-1777534315144-8uso",
@@ -693,7 +2355,7 @@
         "note": ""
       },
       {
-        "_id": "cfde4bdd-069c-49f1-94e6-1841b72e4e44",
+        "_id": "8187ee1b-854d-450c-aa0a-b20ba54e6e3f",
         "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
         "name": "Veg Burger",
         "sku": "demo-1777534315156-me2u",
@@ -708,7 +2370,7 @@
         "note": ""
       },
       {
-        "_id": "2f083112-ead1-499e-8110-96c981c60b77",
+        "_id": "5658792f-a17b-406c-a4ed-153ea17ae48b",
         "productId": "a8a3312c-fd87-47dc-aec3-78ec71b5863a",
         "name": "Tea Combo",
         "sku": "demo-1777534315163-9asx",
@@ -724,11 +2386,11 @@
       }
     ],
     "createdBy": null,
-    "createdAt": "2026-04-30T18:04:40.058Z",
-    "updatedAt": "2026-04-30T18:04:40.060Z"
+    "createdAt": "2026-04-30T18:34:12.905Z",
+    "updatedAt": "2026-04-30T18:34:12.923Z"
   },
   {
-    "_id": "fb56a266-5edd-4be9-b115-fb0ed1ed77e9",
+    "_id": "12f4565a-daf7-444d-9248-a5a6a9f22d22",
     "status": "open",
     "outletId": "main",
     "customerId": "",
@@ -741,73 +2403,7 @@
     "discountValue": 0,
     "items": [
       {
-        "_id": "d33fc59d-86b9-49ef-89c6-b9e43188aa51",
-        "productId": "6ca0d0f2-3cea-4284-b9a1-44a8c18cf80a",
-        "name": "Masala Tea",
-        "sku": "demo-1777534315144-8uso",
-        "categoryId": "",
-        "categoryName": "",
-        "quantity": 5,
-        "unitPrice": 30,
-        "cost": 0,
-        "gstRate": 18,
-        "discountType": "flat",
-        "discountValue": 0,
-        "note": ""
-      }
-    ],
-    "createdBy": null,
-    "createdAt": "2026-04-30T18:04:40.061Z",
-    "updatedAt": "2026-04-30T18:04:40.063Z"
-  },
-  {
-    "_id": "9c0b883c-cce7-485d-b03d-64d98c5ff4e0",
-    "status": "open",
-    "outletId": "main",
-    "customerId": "",
-    "customerName": "Walk-in",
-    "customerPhone": "",
-    "customerEmail": "",
-    "notes": "",
-    "gstRate": 18,
-    "discountType": "flat",
-    "discountValue": 0,
-    "items": [
-      {
-        "_id": "c7de94be-24c3-4412-8298-5c328b09928a",
-        "productId": "6ca0d0f2-3cea-4284-b9a1-44a8c18cf80a",
-        "name": "Masala Tea",
-        "sku": "demo-1777534315144-8uso",
-        "categoryId": "",
-        "categoryName": "",
-        "quantity": 5,
-        "unitPrice": 30,
-        "cost": 0,
-        "gstRate": 18,
-        "discountType": "flat",
-        "discountValue": 0,
-        "note": ""
-      }
-    ],
-    "createdBy": null,
-    "createdAt": "2026-04-30T18:04:40.072Z",
-    "updatedAt": "2026-04-30T18:04:40.073Z"
-  },
-  {
-    "_id": "b7958ad0-cc44-4ff6-ac36-5a1f4b1c207f",
-    "status": "open",
-    "outletId": "main",
-    "customerId": "",
-    "customerName": "Walk-in",
-    "customerPhone": "",
-    "customerEmail": "",
-    "notes": "",
-    "gstRate": 18,
-    "discountType": "flat",
-    "discountValue": 0,
-    "items": [
-      {
-        "_id": "feef08e0-dd70-46a7-b9d3-72cdc4a043d4",
+        "_id": "500d4e58-400a-47e6-902a-45444398210a",
         "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
         "name": "Veg Burger",
         "sku": "demo-1777534315156-me2u",
@@ -823,11 +2419,11 @@
       }
     ],
     "createdBy": null,
-    "createdAt": "2026-04-30T18:04:40.078Z",
-    "updatedAt": "2026-04-30T18:04:40.079Z"
+    "createdAt": "2026-04-30T18:34:12.919Z",
+    "updatedAt": "2026-04-30T18:34:12.922Z"
   },
   {
-    "_id": "e09b1ad5-8acf-4376-b31c-94de58136c72",
+    "_id": "da3ecee4-42cb-424f-bb19-7035456c3736",
     "status": "open",
     "outletId": "main",
     "customerId": "",
@@ -840,7 +2436,7 @@
     "discountValue": 0,
     "items": [
       {
-        "_id": "64e722d3-999e-497f-9a75-90fe327dc70c",
+        "_id": "cfd7de76-4669-4d89-9fc6-12de4a53b75e",
         "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
         "name": "Veg Burger",
         "sku": "demo-1777534315156-me2u",
@@ -856,11 +2452,11 @@
       }
     ],
     "createdBy": null,
-    "createdAt": "2026-04-30T18:04:40.080Z",
-    "updatedAt": "2026-04-30T18:04:40.081Z"
+    "createdAt": "2026-04-30T18:34:12.929Z",
+    "updatedAt": "2026-04-30T18:34:12.931Z"
   },
   {
-    "_id": "b35ff504-99b7-42b6-8b15-26d77417a29e",
+    "_id": "e154ea03-97dc-484d-a485-661e35ed6a3b",
     "status": "open",
     "outletId": "main",
     "customerId": "",
@@ -873,7 +2469,7 @@
     "discountValue": 0,
     "items": [
       {
-        "_id": "a5b887c7-d02f-443b-b4bf-451bbe6386fc",
+        "_id": "d7f1cf6f-a645-4ecd-bb81-1b90c6efeb51",
         "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
         "name": "Veg Burger",
         "sku": "demo-1777534315156-me2u",
@@ -889,11 +2485,11 @@
       }
     ],
     "createdBy": null,
-    "createdAt": "2026-04-30T18:04:40.085Z",
-    "updatedAt": "2026-04-30T18:04:40.086Z"
+    "createdAt": "2026-04-30T18:34:12.936Z",
+    "updatedAt": "2026-04-30T18:34:12.937Z"
   },
   {
-    "_id": "dad4e66d-e2d7-4c7d-80cc-1ffc8e7d5e8e",
+    "_id": "4cf0985d-f5f8-4958-972c-e08a2ee5b714",
     "status": "open",
     "outletId": "main",
     "customerId": "",
@@ -906,7 +2502,7 @@
     "discountValue": 0,
     "items": [
       {
-        "_id": "d06d39d2-d9c1-48d7-bfd9-70ead8ac5cf0",
+        "_id": "dbeb042d-8bec-4ca0-85fd-7a0b52355d14",
         "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
         "name": "Veg Burger",
         "sku": "demo-1777534315156-me2u",
@@ -922,11 +2518,11 @@
       }
     ],
     "createdBy": null,
-    "createdAt": "2026-04-30T18:04:40.088Z",
-    "updatedAt": "2026-04-30T18:04:40.089Z"
+    "createdAt": "2026-04-30T18:34:12.944Z",
+    "updatedAt": "2026-04-30T18:34:12.949Z"
   },
   {
-    "_id": "2669447f-89dc-4be6-a9b6-9b952a720244",
+    "_id": "8c37823c-c813-43ec-97e4-1f3015e16dd1",
     "status": "open",
     "outletId": "main",
     "customerId": "",
@@ -939,37 +2535,7 @@
     "discountValue": 0,
     "items": [
       {
-        "_id": "b792da51-49a6-457e-a5b1-93aeb55c8ac5",
-        "productId": "6ca0d0f2-3cea-4284-b9a1-44a8c18cf80a",
-        "name": "Masala Tea",
-        "sku": "demo-1777534315144-8uso",
-        "categoryId": "",
-        "categoryName": "",
-        "quantity": 1,
-        "unitPrice": 30,
-        "cost": 0,
-        "gstRate": 18,
-        "discountType": "flat",
-        "discountValue": 0,
-        "note": ""
-      },
-      {
-        "_id": "df1caf2f-a3ff-4b5a-9e8b-f2d15c2af802",
-        "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
-        "name": "Veg Burger",
-        "sku": "demo-1777534315156-me2u",
-        "categoryId": "",
-        "categoryName": "",
-        "quantity": 1,
-        "unitPrice": 149,
-        "cost": 0,
-        "gstRate": 18,
-        "discountType": "flat",
-        "discountValue": 0,
-        "note": ""
-      },
-      {
-        "_id": "307d97ec-4cf7-44b7-9857-a9699a468d8c",
+        "_id": "fe312fd0-ecc2-443c-ae81-cfa59408dfea",
         "productId": "a8a3312c-fd87-47dc-aec3-78ec71b5863a",
         "name": "Tea Combo",
         "sku": "demo-1777534315163-9asx",
@@ -985,11 +2551,11 @@
       }
     ],
     "createdBy": null,
-    "createdAt": "2026-04-30T18:04:40.720Z",
-    "updatedAt": "2026-04-30T18:04:40.726Z"
+    "createdAt": "2026-04-30T18:34:44.197Z",
+    "updatedAt": "2026-04-30T18:34:44.211Z"
   },
   {
-    "_id": "57f8bfdc-8a63-4cc0-864f-f6a0b6d1dc93",
+    "_id": "cec002d5-d841-41fd-86bc-099439c0f02e",
     "status": "open",
     "outletId": "main",
     "customerId": "",
@@ -1002,73 +2568,7 @@
     "discountValue": 0,
     "items": [
       {
-        "_id": "b2b65769-5606-4f3e-b8db-2a0c863263fb",
-        "productId": "6ca0d0f2-3cea-4284-b9a1-44a8c18cf80a",
-        "name": "Masala Tea",
-        "sku": "demo-1777534315144-8uso",
-        "categoryId": "",
-        "categoryName": "",
-        "quantity": 5,
-        "unitPrice": 30,
-        "cost": 0,
-        "gstRate": 18,
-        "discountType": "flat",
-        "discountValue": 0,
-        "note": ""
-      }
-    ],
-    "createdBy": null,
-    "createdAt": "2026-04-30T18:04:40.731Z",
-    "updatedAt": "2026-04-30T18:04:40.732Z"
-  },
-  {
-    "_id": "6f7789b2-f04a-4585-8c2d-602c95b53fdb",
-    "status": "open",
-    "outletId": "main",
-    "customerId": "",
-    "customerName": "Walk-in",
-    "customerPhone": "",
-    "customerEmail": "",
-    "notes": "",
-    "gstRate": 18,
-    "discountType": "flat",
-    "discountValue": 0,
-    "items": [
-      {
-        "_id": "119dbf2e-bee1-49ec-ba77-330f14a4bd7b",
-        "productId": "6ca0d0f2-3cea-4284-b9a1-44a8c18cf80a",
-        "name": "Masala Tea",
-        "sku": "demo-1777534315144-8uso",
-        "categoryId": "",
-        "categoryName": "",
-        "quantity": 5,
-        "unitPrice": 30,
-        "cost": 0,
-        "gstRate": 18,
-        "discountType": "flat",
-        "discountValue": 0,
-        "note": ""
-      }
-    ],
-    "createdBy": null,
-    "createdAt": "2026-04-30T18:04:40.734Z",
-    "updatedAt": "2026-04-30T18:04:40.735Z"
-  },
-  {
-    "_id": "e89ac90f-4fad-4614-b451-3c47e87a518f",
-    "status": "open",
-    "outletId": "main",
-    "customerId": "",
-    "customerName": "Walk-in",
-    "customerPhone": "",
-    "customerEmail": "",
-    "notes": "",
-    "gstRate": 18,
-    "discountType": "flat",
-    "discountValue": 0,
-    "items": [
-      {
-        "_id": "15581258-c509-4eb1-8ff0-b25422d0786d",
+        "_id": "f994e6fa-3cdc-402b-9ddc-a8f081c78401",
         "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
         "name": "Veg Burger",
         "sku": "demo-1777534315156-me2u",
@@ -1084,11 +2584,11 @@
       }
     ],
     "createdBy": null,
-    "createdAt": "2026-04-30T18:04:40.796Z",
-    "updatedAt": "2026-04-30T18:04:40.798Z"
+    "createdAt": "2026-04-30T18:34:44.207Z",
+    "updatedAt": "2026-04-30T18:34:44.209Z"
   },
   {
-    "_id": "fbd4b24a-bb7a-4733-85d5-77c5f60256d1",
+    "_id": "827dde0c-e7e2-4d9e-b84f-748dd2bd13b5",
     "status": "open",
     "outletId": "main",
     "customerId": "",
@@ -1101,7 +2601,7 @@
     "discountValue": 0,
     "items": [
       {
-        "_id": "b5e51783-c529-4418-8ae8-e5b558ad5cb4",
+        "_id": "4d1a3471-c345-485d-b9de-9cb3eb24d90f",
         "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
         "name": "Veg Burger",
         "sku": "demo-1777534315156-me2u",
@@ -1117,11 +2617,11 @@
       }
     ],
     "createdBy": null,
-    "createdAt": "2026-04-30T18:04:40.797Z",
-    "updatedAt": "2026-04-30T18:04:40.798Z"
+    "createdAt": "2026-04-30T18:34:44.216Z",
+    "updatedAt": "2026-04-30T18:34:44.218Z"
   },
   {
-    "_id": "946c5e38-c4ca-45cf-a3e8-8826674446af",
+    "_id": "28414213-39b2-4948-ac89-057d5b456813",
     "status": "open",
     "outletId": "main",
     "customerId": "",
@@ -1134,7 +2634,7 @@
     "discountValue": 0,
     "items": [
       {
-        "_id": "4fe16ff0-d477-420d-947e-455945b4c0ed",
+        "_id": "28bd81d0-a085-4743-bf2c-0a302ce27c51",
         "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
         "name": "Veg Burger",
         "sku": "demo-1777534315156-me2u",
@@ -1150,11 +2650,11 @@
       }
     ],
     "createdBy": null,
-    "createdAt": "2026-04-30T18:04:40.806Z",
-    "updatedAt": "2026-04-30T18:04:40.808Z"
+    "createdAt": "2026-04-30T18:34:44.221Z",
+    "updatedAt": "2026-04-30T18:34:44.224Z"
   },
   {
-    "_id": "e45fb453-dc92-4083-8152-7633f611a77c",
+    "_id": "72dd8e9d-afa0-43be-a0bf-4e99cc6c50ad",
     "status": "open",
     "outletId": "main",
     "customerId": "",
@@ -1167,7 +2667,7 @@
     "discountValue": 0,
     "items": [
       {
-        "_id": "a6283052-c8c4-456d-92d1-80375f5b343d",
+        "_id": "dc0d2732-4334-4d2e-80c4-ce06c1575ddd",
         "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
         "name": "Veg Burger",
         "sku": "demo-1777534315156-me2u",
@@ -1183,11 +2683,11 @@
       }
     ],
     "createdBy": null,
-    "createdAt": "2026-04-30T18:04:40.807Z",
-    "updatedAt": "2026-04-30T18:04:40.808Z"
+    "createdAt": "2026-04-30T18:34:44.233Z",
+    "updatedAt": "2026-04-30T18:34:44.234Z"
   },
   {
-    "_id": "e0c59beb-6914-40d1-9db7-2d7935977d30",
+    "_id": "8b40c7dd-0760-4c24-b7df-4ab531436a17",
     "status": "open",
     "outletId": "main",
     "customerId": "",
@@ -1200,7 +2700,7 @@
     "discountValue": 0,
     "items": [
       {
-        "_id": "c2866381-4d79-4066-aac0-ddf71c90200b",
+        "_id": "977196aa-2d3d-487a-bab0-90fd364b3487",
         "productId": "6ca0d0f2-3cea-4284-b9a1-44a8c18cf80a",
         "name": "Masala Tea",
         "sku": "demo-1777534315144-8uso",
@@ -1215,7 +2715,7 @@
         "note": ""
       },
       {
-        "_id": "ac657bc8-4800-4058-8b1c-5b6e352a7d40",
+        "_id": "cd4ba1c8-cbf7-4cdf-abf3-0ef8f0e8c089",
         "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
         "name": "Veg Burger",
         "sku": "demo-1777534315156-me2u",
@@ -1230,7 +2730,7 @@
         "note": ""
       },
       {
-        "_id": "0a4e1b35-0079-422a-b178-00bd6755ecb3",
+        "_id": "f109323f-0e05-4ad9-9e27-a8f178aaf21a",
         "productId": "a8a3312c-fd87-47dc-aec3-78ec71b5863a",
         "name": "Tea Combo",
         "sku": "demo-1777534315163-9asx",
@@ -1246,11 +2746,11 @@
       }
     ],
     "createdBy": null,
-    "createdAt": "2026-04-30T18:06:13.021Z",
-    "updatedAt": "2026-04-30T18:06:13.040Z"
+    "createdAt": "2026-04-30T18:34:44.502Z",
+    "updatedAt": "2026-04-30T18:34:44.510Z"
   },
   {
-    "_id": "2def8e07-1c56-4566-af27-f8d7a4ab9736",
+    "_id": "597904dc-7b01-4e52-923b-6bd03a8e2016",
     "status": "open",
     "outletId": "main",
     "customerId": "",
@@ -1263,73 +2763,7 @@
     "discountValue": 0,
     "items": [
       {
-        "_id": "d189e1c5-9214-4759-992f-99368fbf05c6",
-        "productId": "6ca0d0f2-3cea-4284-b9a1-44a8c18cf80a",
-        "name": "Masala Tea",
-        "sku": "demo-1777534315144-8uso",
-        "categoryId": "",
-        "categoryName": "",
-        "quantity": 5,
-        "unitPrice": 30,
-        "cost": 0,
-        "gstRate": 18,
-        "discountType": "flat",
-        "discountValue": 0,
-        "note": ""
-      }
-    ],
-    "createdBy": null,
-    "createdAt": "2026-04-30T18:06:13.050Z",
-    "updatedAt": "2026-04-30T18:06:13.051Z"
-  },
-  {
-    "_id": "f536082d-9a14-403b-8b8a-a6e0a0c70726",
-    "status": "open",
-    "outletId": "main",
-    "customerId": "",
-    "customerName": "Walk-in",
-    "customerPhone": "",
-    "customerEmail": "",
-    "notes": "",
-    "gstRate": 18,
-    "discountType": "flat",
-    "discountValue": 0,
-    "items": [
-      {
-        "_id": "8551370b-72cf-49f6-a552-4d7b2fcd2338",
-        "productId": "6ca0d0f2-3cea-4284-b9a1-44a8c18cf80a",
-        "name": "Masala Tea",
-        "sku": "demo-1777534315144-8uso",
-        "categoryId": "",
-        "categoryName": "",
-        "quantity": 5,
-        "unitPrice": 30,
-        "cost": 0,
-        "gstRate": 18,
-        "discountType": "flat",
-        "discountValue": 0,
-        "note": ""
-      }
-    ],
-    "createdBy": null,
-    "createdAt": "2026-04-30T18:06:13.053Z",
-    "updatedAt": "2026-04-30T18:06:13.054Z"
-  },
-  {
-    "_id": "bf2253be-05fc-436f-a1ed-a4ad89ce41fc",
-    "status": "open",
-    "outletId": "main",
-    "customerId": "",
-    "customerName": "Walk-in",
-    "customerPhone": "",
-    "customerEmail": "",
-    "notes": "",
-    "gstRate": 18,
-    "discountType": "flat",
-    "discountValue": 0,
-    "items": [
-      {
-        "_id": "81d2924b-ca0b-4035-8a93-ffe927e7fc76",
+        "_id": "1772bb5e-57de-4287-8db1-52a56b64672d",
         "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
         "name": "Veg Burger",
         "sku": "demo-1777534315156-me2u",
@@ -1345,11 +2779,11 @@
       }
     ],
     "createdBy": null,
-    "createdAt": "2026-04-30T18:06:13.058Z",
-    "updatedAt": "2026-04-30T18:06:13.059Z"
+    "createdAt": "2026-04-30T18:34:44.508Z",
+    "updatedAt": "2026-04-30T18:34:44.510Z"
   },
   {
-    "_id": "9185125a-5115-4fb8-873f-3c18a5b86418",
+    "_id": "e0ee40d0-1f8c-4c15-9fd4-81005aa6ab61",
     "status": "open",
     "outletId": "main",
     "customerId": "",
@@ -1362,7 +2796,7 @@
     "discountValue": 0,
     "items": [
       {
-        "_id": "4ca08ac4-813d-411a-b76e-c502bb63ce8c",
+        "_id": "8ce67ff4-d263-4649-a042-390a071a94ad",
         "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
         "name": "Veg Burger",
         "sku": "demo-1777534315156-me2u",
@@ -1378,11 +2812,11 @@
       }
     ],
     "createdBy": null,
-    "createdAt": "2026-04-30T18:06:13.062Z",
-    "updatedAt": "2026-04-30T18:06:13.063Z"
+    "createdAt": "2026-04-30T18:34:44.514Z",
+    "updatedAt": "2026-04-30T18:34:44.516Z"
   },
   {
-    "_id": "8b31cb21-db57-48cb-bb1a-6409ba92ec18",
+    "_id": "2b33e810-0416-4e06-84f4-8a89c4e29ccb",
     "status": "open",
     "outletId": "main",
     "customerId": "",
@@ -1395,7 +2829,7 @@
     "discountValue": 0,
     "items": [
       {
-        "_id": "e2ec71a3-234e-467e-b20a-66101dc41dd5",
+        "_id": "128a00e4-ee07-4145-94fb-63e817172548",
         "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
         "name": "Veg Burger",
         "sku": "demo-1777534315156-me2u",
@@ -1411,11 +2845,11 @@
       }
     ],
     "createdBy": null,
-    "createdAt": "2026-04-30T18:06:13.066Z",
-    "updatedAt": "2026-04-30T18:06:13.067Z"
+    "createdAt": "2026-04-30T18:34:44.523Z",
+    "updatedAt": "2026-04-30T18:34:44.527Z"
   },
   {
-    "_id": "2d523c8f-4f07-4aa8-a4e2-87b9fbd31497",
+    "_id": "d01f017a-c1b3-4a10-bc3d-d86d71768d12",
     "status": "open",
     "outletId": "main",
     "customerId": "",
@@ -1428,7 +2862,7 @@
     "discountValue": 0,
     "items": [
       {
-        "_id": "f980e416-fbf8-4ec2-b3c9-522d2b251604",
+        "_id": "9c3cb37c-6aae-43b7-8675-95b979c4f41d",
         "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
         "name": "Veg Burger",
         "sku": "demo-1777534315156-me2u",
@@ -1444,235 +2878,7 @@
       }
     ],
     "createdBy": null,
-    "createdAt": "2026-04-30T18:06:13.071Z",
-    "updatedAt": "2026-04-30T18:06:13.072Z"
-  },
-  {
-    "_id": "fc30817c-779b-4427-abbd-0cc24aa0a4e1",
-    "status": "open",
-    "outletId": "main",
-    "customerId": "",
-    "customerName": "Nitin",
-    "customerPhone": "",
-    "customerEmail": "",
-    "notes": "",
-    "gstRate": 18,
-    "discountType": "flat",
-    "discountValue": 0,
-    "items": [
-      {
-        "_id": "3fd1f26c-68c2-4f96-8898-540533c0a8f3",
-        "productId": "6ca0d0f2-3cea-4284-b9a1-44a8c18cf80a",
-        "name": "Masala Tea",
-        "sku": "demo-1777534315144-8uso",
-        "categoryId": "",
-        "categoryName": "",
-        "quantity": 1,
-        "unitPrice": 30,
-        "cost": 0,
-        "gstRate": 18,
-        "discountType": "flat",
-        "discountValue": 0,
-        "note": ""
-      },
-      {
-        "_id": "273d2e40-ef63-40f1-aee2-655a88470a49",
-        "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
-        "name": "Veg Burger",
-        "sku": "demo-1777534315156-me2u",
-        "categoryId": "",
-        "categoryName": "",
-        "quantity": 1,
-        "unitPrice": 149,
-        "cost": 0,
-        "gstRate": 18,
-        "discountType": "flat",
-        "discountValue": 0,
-        "note": ""
-      },
-      {
-        "_id": "e7c8c316-6002-414a-b702-21fa644e138d",
-        "productId": "a8a3312c-fd87-47dc-aec3-78ec71b5863a",
-        "name": "Tea Combo",
-        "sku": "demo-1777534315163-9asx",
-        "categoryId": "",
-        "categoryName": "",
-        "quantity": 1,
-        "unitPrice": 199,
-        "cost": 0,
-        "gstRate": 18,
-        "discountType": "flat",
-        "discountValue": 0,
-        "note": ""
-      }
-    ],
-    "createdBy": null,
-    "createdAt": "2026-04-30T18:08:29.474Z",
-    "updatedAt": "2026-04-30T18:08:29.488Z"
-  },
-  {
-    "_id": "1d0cc2e8-540e-4a75-828e-d7212aef1cc7",
-    "status": "open",
-    "outletId": "main",
-    "customerId": "",
-    "customerName": "Walk-in",
-    "customerPhone": "",
-    "customerEmail": "",
-    "notes": "",
-    "gstRate": 18,
-    "discountType": "flat",
-    "discountValue": 0,
-    "items": [
-      {
-        "_id": "2b2a7bd1-cdb5-431f-b7f4-efa421c5473b",
-        "productId": "6ca0d0f2-3cea-4284-b9a1-44a8c18cf80a",
-        "name": "Masala Tea",
-        "sku": "demo-1777534315144-8uso",
-        "categoryId": "",
-        "categoryName": "",
-        "quantity": 5,
-        "unitPrice": 30,
-        "cost": 0,
-        "gstRate": 18,
-        "discountType": "flat",
-        "discountValue": 0,
-        "note": ""
-      }
-    ],
-    "createdBy": null,
-    "createdAt": "2026-04-30T18:08:29.497Z",
-    "updatedAt": "2026-04-30T18:08:29.499Z"
-  },
-  {
-    "_id": "31a1daf9-9b8a-4957-b542-1f262476389c",
-    "status": "open",
-    "outletId": "main",
-    "customerId": "",
-    "customerName": "Walk-in",
-    "customerPhone": "",
-    "customerEmail": "",
-    "notes": "",
-    "gstRate": 18,
-    "discountType": "flat",
-    "discountValue": 0,
-    "items": [
-      {
-        "_id": "99ec91bd-ed4b-423e-946f-742059d4c94b",
-        "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
-        "name": "Veg Burger",
-        "sku": "demo-1777534315156-me2u",
-        "categoryId": "",
-        "categoryName": "",
-        "quantity": 1,
-        "unitPrice": 149,
-        "cost": 0,
-        "gstRate": 18,
-        "discountType": "flat",
-        "discountValue": 0,
-        "note": ""
-      }
-    ],
-    "createdBy": null,
-    "createdAt": "2026-04-30T18:08:29.507Z",
-    "updatedAt": "2026-04-30T18:08:29.508Z"
-  },
-  {
-    "_id": "85d08022-b143-4463-9684-c3a1526b1816",
-    "status": "open",
-    "outletId": "main",
-    "customerId": "",
-    "customerName": "Walk-in",
-    "customerPhone": "",
-    "customerEmail": "",
-    "notes": "",
-    "gstRate": 18,
-    "discountType": "flat",
-    "discountValue": 0,
-    "items": [
-      {
-        "_id": "dfcc26c6-ed2f-4f57-864f-a0d927863f9a",
-        "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
-        "name": "Veg Burger",
-        "sku": "demo-1777534315156-me2u",
-        "categoryId": "",
-        "categoryName": "",
-        "quantity": 1,
-        "unitPrice": 149,
-        "cost": 0,
-        "gstRate": 18,
-        "discountType": "flat",
-        "discountValue": 0,
-        "note": ""
-      }
-    ],
-    "createdBy": null,
-    "createdAt": "2026-04-30T18:08:29.512Z",
-    "updatedAt": "2026-04-30T18:08:29.513Z"
-  },
-  {
-    "_id": "ac27652b-0725-42d7-9bb7-e910960aed16",
-    "status": "open",
-    "outletId": "main",
-    "customerId": "",
-    "customerName": "Walk-in",
-    "customerPhone": "",
-    "customerEmail": "",
-    "notes": "",
-    "gstRate": 18,
-    "discountType": "flat",
-    "discountValue": 0,
-    "items": [
-      {
-        "_id": "5e45f04c-e032-45f5-94b1-7c8e769d1f4a",
-        "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
-        "name": "Veg Burger",
-        "sku": "demo-1777534315156-me2u",
-        "categoryId": "",
-        "categoryName": "",
-        "quantity": 1,
-        "unitPrice": 149,
-        "cost": 0,
-        "gstRate": 18,
-        "discountType": "flat",
-        "discountValue": 0,
-        "note": ""
-      }
-    ],
-    "createdBy": null,
-    "createdAt": "2026-04-30T18:08:29.516Z",
-    "updatedAt": "2026-04-30T18:08:29.517Z"
-  },
-  {
-    "_id": "5bba3b17-141a-4a23-8bc2-1d115182b8a2",
-    "status": "open",
-    "outletId": "main",
-    "customerId": "",
-    "customerName": "Walk-in",
-    "customerPhone": "",
-    "customerEmail": "",
-    "notes": "",
-    "gstRate": 18,
-    "discountType": "flat",
-    "discountValue": 0,
-    "items": [
-      {
-        "_id": "b1c7382f-746d-41a0-9b6e-9eac78f74fef",
-        "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
-        "name": "Veg Burger",
-        "sku": "demo-1777534315156-me2u",
-        "categoryId": "",
-        "categoryName": "",
-        "quantity": 1,
-        "unitPrice": 149,
-        "cost": 0,
-        "gstRate": 18,
-        "discountType": "flat",
-        "discountValue": 0,
-        "note": ""
-      }
-    ],
-    "createdBy": null,
-    "createdAt": "2026-04-30T18:08:29.520Z",
-    "updatedAt": "2026-04-30T18:08:29.521Z"
+    "createdAt": "2026-04-30T18:34:44.542Z",
+    "updatedAt": "2026-04-30T18:34:44.545Z"
   }
 ]

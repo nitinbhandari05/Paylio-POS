@@ -74,7 +74,7 @@ export default function OwnerMobilePage({ session }) {
                   <div key={outlet.outletId} className="owner-row">
                     <p>{outlet.name}</p>
                     <span>{outlet.orders} orders</span>
-                    <strong>{money(outlet.revenue)}</strong>
+                    <strong>{money(outlet.netRevenue ?? outlet.revenue)}</strong>
                   </div>
                 ))}
               </div>

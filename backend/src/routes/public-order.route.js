@@ -41,11 +41,14 @@ const resolveProductForAppItem = async (item = {}) => {
 };
 
 const buildOrderSummary = (orders = []) => {
+  const billedOrders = orders.filter(
+    (order) => !["cancelled", "refunded"].includes(String(order.status || "").toLowerCase())
+  );
   const completedOrders = orders.filter((order) => order.status === "completed");
   const refundedOrders = orders.filter((order) => order.status === "refunded");
   const cancelledOrders = orders.filter((order) => order.status === "cancelled");
-  const totalSales = completedOrders.reduce((sum, order) => sum + Number(order.total || 0), 0);
-  const totalTax = completedOrders.reduce((sum, order) => sum + Number(order.gstAmount || 0), 0);
+  const totalSales = billedOrders.reduce((sum, order) => sum + Number(order.total || 0), 0);
+  const totalTax = billedOrders.reduce((sum, order) => sum + Number(order.gstAmount || 0), 0);
   const totalRefunds = refundedOrders.reduce(
     (sum, order) => sum + Number(order.refundAmount || order.total || 0),
     0
@@ -56,6 +59,7 @@ const buildOrderSummary = (orders = []) => {
   for (const order of orders) {
     const orderType = String(order.orderType || "dinein").toLowerCase();
     orderTypeBreakdown[orderType] = (orderTypeBreakdown[orderType] || 0) + 1;
+    if (["cancelled", "refunded"].includes(String(order.status || "").toLowerCase())) continue;
     for (const payment of order.payments || []) {
       const method = String(payment.method || "unknown").toLowerCase();
       paymentBreakdown[method] = (paymentBreakdown[method] || 0) + Number(payment.amount || 0);
@@ -71,7 +75,7 @@ const buildOrderSummary = (orders = []) => {
     totalTax,
     totalRefunds,
     netSales: totalSales - totalRefunds,
-    avgOrderValue: orders.length ? totalSales / orders.length : 0,
+    avgOrderValue: billedOrders.length ? totalSales / billedOrders.length : 0,
     paymentBreakdown,
     orderTypeBreakdown,
   };
@@ -153,7 +157,7 @@ router.post("/orders", async (req, res) => {
       customerEmail: req.body.customerEmail || "",
       notes: req.body.notes || "",
       discountType: "flat",
-      discountValue: 0,
+      discountValue: Math.max(0, Number(req.body.discountAmount || 0)),
       orderSource: req.body.orderSource || "online",
       createdBy: null,
     });

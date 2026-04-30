@@ -10,7 +10,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const store = createArrayStore(resolve(__dirname, "../../data/carts.json"));
 
-const DEFAULT_GST_RATE = Number(process.env.GST_RATE || 18);
+const DEFAULT_GST_RATE = Number(process.env.GST_RATE || 5);
 
 const toNumber = (value, fallback = 0) => {
   const parsed = Number(value);

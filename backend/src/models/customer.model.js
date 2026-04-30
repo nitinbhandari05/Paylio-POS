@@ -33,6 +33,15 @@ const Customer = {
 
   find: async () => store.read(),
 
+  findOne: async (query = {}) => {
+    const rows = await store.read();
+    return (
+      rows.find((row) =>
+        Object.entries(query).every(([key, value]) => row[key] === value)
+      ) || null
+    );
+  },
+
   findById: async (id) => {
     const rows = await store.read();
     return rows.find((row) => row._id === String(id)) || null;
@@ -59,4 +68,3 @@ const Customer = {
 };
 
 export default Customer;
-

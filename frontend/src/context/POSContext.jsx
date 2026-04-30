@@ -37,6 +37,11 @@ export function POSProvider({ children }) {
   const [cartItems, setCartItems] = useState([]);
   const [discount, setDiscount] = useState(0);
   const [paymentMethod, setPaymentMethod] = useState("cash");
+  const [paymentMode, setPaymentMode] = useState("single");
+  const [splitPayments, setSplitPayments] = useState([
+    { method: "cash", amount: "" },
+    { method: "upi", amount: "" },
+  ]);
   const [isSaving, setIsSaving] = useState(false);
 
   const [heldOrders, setHeldOrders] = useState([]);
@@ -180,6 +185,11 @@ export function POSProvider({ children }) {
   const clearCart = () => {
     setCartItems([]);
     setDiscount(0);
+    setPaymentMode("single");
+    setSplitPayments([
+      { method: "cash", amount: "" },
+      { method: "upi", amount: "" },
+    ]);
   };
 
   const holdCurrentOrder = () => {
@@ -210,7 +220,77 @@ export function POSProvider({ children }) {
     setHeldOrders((current) => current.filter((item) => item.id !== id));
   };
 
-  const buildPayments = () => [{ method: paymentMethod, amount: total }];
+  const splitCurrentBill = () => {
+    if (!cartItems.length) return;
+    const partA = [];
+    const partB = [];
+    for (const item of cartItems) {
+      const qty = Number(item.qty || 0);
+      const qtyA = Math.ceil(qty / 2);
+      const qtyB = Math.floor(qty / 2);
+      if (qtyA > 0) partA.push({ ...item, qty: qtyA });
+      if (qtyB > 0) partB.push({ ...item, qty: qtyB });
+    }
+
+    if (!partB.length) {
+      window.alert("Add more quantity to split this bill.");
+      return;
+    }
+
+    setCartItems(partA);
+    setHeldOrders((current) => [
+      ...current,
+      {
+        id: `hold-${Date.now()}`,
+        createdAt: new Date().toISOString(),
+        customer: `${customer} (Split B)`,
+        table,
+        orderType,
+        items: partB,
+        discount: 0,
+      },
+    ]);
+    setDiscount(0);
+  };
+
+  const mergeHeldOrder = (id) => {
+    const target = heldOrders.find((item) => item.id === id);
+    if (!target) return;
+
+    const merged = [...cartItems];
+    for (const item of target.items || []) {
+      const idx = merged.findIndex(
+        (curr) =>
+          String(curr.productId || "") === String(item.productId || "") &&
+          String(curr.name || "").toLowerCase() === String(item.name || "").toLowerCase()
+      );
+      if (idx === -1) {
+        merged.push({ ...item });
+      } else {
+        merged[idx] = {
+          ...merged[idx],
+          qty: Number(merged[idx].qty || 0) + Number(item.qty || 0),
+        };
+      }
+    }
+
+    setCartItems(merged);
+    setDiscount((curr) => Number(curr || 0) + Number(target.discount || 0));
+    setHeldOrders((current) => current.filter((item) => item.id !== id));
+  };
+
+  const buildPayments = () => {
+    if (paymentMode !== "split") {
+      return [{ method: paymentMethod, amount: total }];
+    }
+
+    return splitPayments
+      .map((row) => ({
+        method: row.method,
+        amount: Number(row.amount || 0),
+      }))
+      .filter((row) => row.amount > 0);
+  };
 
   const resolveBackendItems = async (items = []) => {
     const unsynced = items.filter((item) => !item.productId);
@@ -300,7 +380,7 @@ export function POSProvider({ children }) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           outletId: "main",
-          orderType,
+          orderType: orderType === "takeaway" ? "pickup" : orderType,
           orderSource: "counter",
           customerName: customer,
           tableNo: orderType === "dinein" ? table : "",
@@ -326,7 +406,7 @@ export function POSProvider({ children }) {
     } catch (error) {
       const payload = {
         outletId: "main",
-        orderType,
+        orderType: orderType === "takeaway" ? "pickup" : orderType,
         orderSource: "counter",
         customerName: customer,
         tableNo: orderType === "dinein" ? table : "",
@@ -381,12 +461,18 @@ export function POSProvider({ children }) {
     total,
     paymentMethod,
     setPaymentMethod,
+    paymentMode,
+    setPaymentMode,
+    splitPayments,
+    setSplitPayments,
     isSaving,
     saveOrder,
     clearCart,
     holdCurrentOrder,
+    splitCurrentBill,
     heldOrders,
     restoreHeldOrder,
+    mergeHeldOrder,
     formatMoney,
   };
 

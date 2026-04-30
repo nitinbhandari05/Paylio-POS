@@ -362,6 +362,16 @@ button:active {
   cursor: pointer;
 }
 
+.held-order-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 6px;
+}
+
+.held-order-row .merge-btn {
+  min-width: 72px;
+}
+
 .empty-block {
   border: 1px dashed var(--line-strong);
   border-radius: 10px;
@@ -385,6 +395,22 @@ button:active {
   display: grid;
   gap: 8px;
   grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.cart-utility-buttons {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.payment-mode-switch {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.payment-mode-switch .active {
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  color: #fff;
+  border-color: transparent;
 }
 
 .cart-actions button {
@@ -420,6 +446,26 @@ button:active {
   background: linear-gradient(135deg, var(--brand), var(--brand-2)) !important;
   color: #fff !important;
   border: 0 !important;
+}
+
+.split-payments {
+  display: grid;
+  gap: 8px;
+}
+
+.split-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.split-row select,
+.split-row input {
+  min-height: 40px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+  padding: 0 10px;
 }
 
 .cart-actions button:disabled,

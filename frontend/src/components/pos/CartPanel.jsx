@@ -15,11 +15,17 @@ export default function CartPanel() {
     setDiscount,
     paymentMethod,
     setPaymentMethod,
+    paymentMode,
+    setPaymentMode,
+    splitPayments,
+    setSplitPayments,
     holdCurrentOrder,
+    splitCurrentBill,
     saveOrder,
     isSaving,
     heldOrders,
     restoreHeldOrder,
+    mergeHeldOrder,
   } = usePOS();
 
   const itemCount = cartItems.reduce((sum, item) => sum + Number(item.qty || 0), 0);
@@ -49,9 +55,14 @@ export default function CartPanel() {
         <div className="held-orders">
           <h4>Held Orders</h4>
           {heldOrders.slice(-3).map((order) => (
-            <button key={order.id} onClick={() => restoreHeldOrder(order.id)}>
-              {order.customer} · {order.table} · {order.items.length} items
-            </button>
+            <div key={order.id} className="held-order-row">
+              <button onClick={() => restoreHeldOrder(order.id)}>
+                {order.customer} · {order.table} · {order.items.length} items
+              </button>
+              <button type="button" className="merge-btn" onClick={() => mergeHeldOrder(order.id)}>
+                Merge
+              </button>
+            </div>
           ))}
         </div>
       )}
@@ -59,10 +70,20 @@ export default function CartPanel() {
       <div className="cart-actions">
         <div className="cart-utility-buttons">
           <button onClick={holdCurrentOrder} disabled={!cartItems.length}>Hold</button>
+          <button onClick={splitCurrentBill} disabled={!cartItems.length}>Split 50/50</button>
           <button onClick={() => setDiscount(Number(window.prompt("Discount amount", String(discount)) || 0))}>
             Discount
           </button>
           <button className="cart-clear-btn" onClick={clearCart} disabled={!cartItems.length}>Clear</button>
+        </div>
+
+        <div className="payment-mode-switch">
+          <button type="button" className={paymentMode === "single" ? "active" : ""} onClick={() => setPaymentMode("single")}>
+            Single Pay
+          </button>
+          <button type="button" className={paymentMode === "split" ? "active" : ""} onClick={() => setPaymentMode("split")}>
+            Split Pay
+          </button>
         </div>
 
         <div className="cart-pay-methods">
@@ -76,6 +97,39 @@ export default function CartPanel() {
             <Smartphone size={14} /> UPI
           </button>
         </div>
+
+        {paymentMode === "split" && (
+          <div className="split-payments">
+            {splitPayments.map((row, idx) => (
+              <div className="split-row" key={`${row.method}-${idx}`}>
+                <select
+                  value={row.method}
+                  onChange={(e) =>
+                    setSplitPayments((current) =>
+                      current.map((item, index) => (index === idx ? { ...item, method: e.target.value } : item))
+                    )
+                  }
+                >
+                  <option value="cash">Cash</option>
+                  <option value="upi">UPI</option>
+                  <option value="card">Card</option>
+                  <option value="wallet">Wallet</option>
+                </select>
+                <input
+                  type="number"
+                  min="0"
+                  placeholder="Amount"
+                  value={row.amount}
+                  onChange={(e) =>
+                    setSplitPayments((current) =>
+                      current.map((item, index) => (index === idx ? { ...item, amount: e.target.value } : item))
+                    )
+                  }
+                />
+              </div>
+            ))}
+          </div>
+        )}
 
         <button className="cart-save-btn" onClick={saveOrder} disabled={!cartItems.length || isSaving}>
           <ReceiptText size={16} /> {isSaving ? "Saving..." : "Save & Print"}

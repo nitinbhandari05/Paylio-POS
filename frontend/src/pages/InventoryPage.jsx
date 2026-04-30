@@ -20,25 +20,39 @@ export default function InventoryPage() {
     lowStockThreshold: "5",
     unit: "pcs",
   });
+  const [recipes, setRecipes] = useState([]);
+  const [dailyReport, setDailyReport] = useState(null);
+  const [recipeForm, setRecipeForm] = useState({
+    productId: "",
+    ingredientId: "",
+    ingredientQty: "1",
+    wastagePercent: "0",
+  });
 
   const load = async () => {
     try {
-      const [summaryRes, stockRes, productsRes, categoriesRes] = await Promise.all([
+      const [summaryRes, stockRes, productsRes, categoriesRes, recipesRes, reportRes] = await Promise.all([
         fetch("/api/public/inventory/summary"),
         fetch("/api/public/inventory/stock"),
         fetch("/api/products"),
         fetch("/api/categories"),
+        fetch("/api/public/recipes"),
+        fetch("/api/public/inventory/daily-report"),
       ]);
 
       const summaryData = await summaryRes.json();
       const stockData = await stockRes.json();
       const productsData = await productsRes.json();
       const categoriesData = await categoriesRes.json();
+      const recipesData = await recipesRes.json();
+      const reportData = await reportRes.json();
 
       if (summaryRes.ok) setSummary(summaryData.summary || null);
       if (stockRes.ok) setStock(Array.isArray(stockData.stock) ? stockData.stock : []);
       if (productsRes.ok) setProducts(Array.isArray(productsData.products) ? productsData.products : []);
       if (categoriesRes.ok) setCategories(Array.isArray(categoriesData.categories) ? categoriesData.categories : []);
+      if (recipesRes.ok) setRecipes(Array.isArray(recipesData.recipes) ? recipesData.recipes : []);
+      if (reportRes.ok) setDailyReport(reportData.report || null);
     } catch {
       // no-op
     }
@@ -138,6 +152,51 @@ export default function InventoryPage() {
 
     load();
   };
+
+  const submitRecipe = async (event) => {
+    event.preventDefault();
+    if (!recipeForm.productId || !recipeForm.ingredientId) {
+      window.alert("Select product and ingredient");
+      return;
+    }
+    if (recipeForm.productId === recipeForm.ingredientId) {
+      window.alert("Product and ingredient cannot be same");
+      return;
+    }
+    const quantity = Number(recipeForm.ingredientQty || 0);
+    if (quantity <= 0) {
+      window.alert("Ingredient quantity must be greater than 0");
+      return;
+    }
+
+    const existing = recipes.find((row) => row.productId === recipeForm.productId);
+    const ingredients = Array.isArray(existing?.ingredients) ? [...existing.ingredients] : [];
+    const idx = ingredients.findIndex((row) => row.itemId === recipeForm.ingredientId);
+    if (idx === -1) {
+      ingredients.push({ itemId: recipeForm.ingredientId, quantity, unit: "unit" });
+    } else {
+      ingredients[idx] = { ...ingredients[idx], quantity };
+    }
+
+    const response = await fetch("/api/public/recipes", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        productId: recipeForm.productId,
+        ingredients,
+        wastagePercent: Number(recipeForm.wastagePercent || 0),
+      }),
+    });
+    const data = await response.json();
+    if (!response.ok) {
+      window.alert(data.message || "Unable to save recipe");
+      return;
+    }
+    setRecipeForm((curr) => ({ ...curr, ingredientQty: "1" }));
+    load();
+  };
+
+  const productById = new Map(products.map((row) => [row._id, row]));
 
   return (
     <section className="module-page">
@@ -244,6 +303,47 @@ export default function InventoryPage() {
         </form>
       </article>
 
+      <article className="module-card form-card">
+        <h3>Recipe Mapping (Auto Raw Material Deduction)</h3>
+        <form className="inline-form" onSubmit={submitRecipe}>
+          <select
+            value={recipeForm.productId}
+            onChange={(e) => setRecipeForm((curr) => ({ ...curr, productId: e.target.value }))}
+          >
+            <option value="">Menu Product</option>
+            {products.map((row) => (
+              <option key={row._id} value={row._id}>{row.name}</option>
+            ))}
+          </select>
+          <select
+            value={recipeForm.ingredientId}
+            onChange={(e) => setRecipeForm((curr) => ({ ...curr, ingredientId: e.target.value }))}
+          >
+            <option value="">Raw Ingredient Product</option>
+            {products.map((row) => (
+              <option key={row._id} value={row._id}>{row.name}</option>
+            ))}
+          </select>
+          <input
+            type="number"
+            min="0.01"
+            step="0.01"
+            placeholder="Qty per bill item"
+            value={recipeForm.ingredientQty}
+            onChange={(e) => setRecipeForm((curr) => ({ ...curr, ingredientQty: e.target.value }))}
+          />
+          <input
+            type="number"
+            min="0"
+            step="0.1"
+            placeholder="Wastage %"
+            value={recipeForm.wastagePercent}
+            onChange={(e) => setRecipeForm((curr) => ({ ...curr, wastagePercent: e.target.value }))}
+          />
+          <button type="submit">Save Recipe</button>
+        </form>
+      </article>
+
       <article className="module-card">
         <h3>Current Stock</h3>
         <div className="table-wrap">
@@ -270,6 +370,40 @@ export default function InventoryPage() {
               {!stock.length && (
                 <tr>
                   <td colSpan="5" className="muted">No stock rows yet.</td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
+      </article>
+
+      <article className="module-card">
+        <h3>Daily Stock Report</h3>
+        <p className="muted">
+          Date: {dailyReport?.date || "--"} | In: {dailyReport?.totals?.stockIn ?? 0} | Out: {dailyReport?.totals?.stockOut ?? 0}
+        </p>
+        <div className="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Stock In</th>
+                <th>Stock Out</th>
+                <th>Net</th>
+              </tr>
+            </thead>
+            <tbody>
+              {(dailyReport?.items || []).map((row) => (
+                <tr key={`${row.productId}-${row.productName}`}>
+                  <td>{row.productName || productById.get(row.productId)?.name || "Unknown"}</td>
+                  <td>{row.stockIn}</td>
+                  <td>{row.stockOut}</td>
+                  <td>{row.net}</td>
+                </tr>
+              ))}
+              {!dailyReport?.items?.length && (
+                <tr>
+                  <td colSpan="4" className="muted">No movements for selected day.</td>
                 </tr>
               )}
             </tbody>

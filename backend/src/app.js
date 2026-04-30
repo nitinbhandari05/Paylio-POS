@@ -18,6 +18,7 @@ import tableRoutes from "./routes/table.route.js";
 import publicOrderRoutes from "./routes/public-order.route.js";
 import saasRoutes from "./routes/saas.route.js";
 import platformRoutes from "./routes/platform.route.js";
+import recipeRoutes from "./routes/recipe.route.js";
 
 
 import { protect } from "./middlewares/auth.middleware.js";
@@ -45,6 +46,7 @@ app.use("/api/categories", categoryRoutes);
 app.use("/api/branches", protect, requireActiveSubscription, branchRoutes);
 app.use("/api/customers", protect, requireActiveSubscription, customerRoutes);
 app.use("/api/products", productRoutes);
+app.use("/api/recipes", recipeRoutes);
 app.use("/api/public", publicOrderRoutes);
 app.use("/api/inventory", protect, requireActiveSubscription, inventoryRoutes);
 app.use("/api/carts", protect, requireActiveSubscription, cartRoutes);

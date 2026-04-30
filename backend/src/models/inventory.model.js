@@ -194,6 +194,46 @@ const Inventory = {
 
     return [...grouped.values()];
   },
+
+  dailyReport: async (outletId, date = new Date().toISOString().slice(0, 10)) => {
+    const outlet = normalizeOutlet(outletId);
+    const day = String(date || "").slice(0, 10);
+    const movements = (await Inventory.list({ outletId: outlet })).filter((movement) =>
+      String(movement.createdAt || "").startsWith(day)
+    );
+
+    const productMap = new Map();
+    for (const movement of movements) {
+      const key = movement.productId;
+      const current = productMap.get(key) || {
+        productId: movement.productId,
+        productName: movement.productName,
+        sku: movement.sku,
+        stockIn: 0,
+        stockOut: 0,
+      };
+      if (movement.type === "in") current.stockIn += Number(movement.quantity || 0);
+      if (movement.type === "out") current.stockOut += Number(movement.quantity || 0);
+      productMap.set(key, current);
+    }
+
+    return {
+      outletId: outlet,
+      date: day,
+      items: [...productMap.values()].map((row) => ({
+        ...row,
+        net: row.stockIn - row.stockOut,
+      })),
+      totals: {
+        stockIn: movements
+          .filter((row) => row.type === "in")
+          .reduce((sum, row) => sum + Number(row.quantity || 0), 0),
+        stockOut: movements
+          .filter((row) => row.type === "out")
+          .reduce((sum, row) => sum + Number(row.quantity || 0), 0),
+      },
+    };
+  },
 };
 
 export default Inventory;

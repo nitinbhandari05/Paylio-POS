@@ -31,6 +31,7 @@ export default function POSHeader() {
       <select value={orderType} onChange={(e) => setOrderType(e.target.value)} className="field">
         <option value="dinein">Dine In</option>
         <option value="delivery">Delivery</option>
+        <option value="takeaway">Takeaway</option>
         <option value="pickup">Pickup</option>
       </select>
 

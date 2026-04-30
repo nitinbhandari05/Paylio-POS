@@ -6,6 +6,7 @@ import { roundMoney } from "../utils/format.js";
 import { generateInvoiceNumber, generateKotNumber, generateRefundNumber } from "../utils/invoice.js";
 import Cart from "./cart.model.js";
 import Inventory from "./inventory.model.js";
+import Recipe from "./recipe.model.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -75,6 +76,28 @@ const changeOrderStock = async (order, type, notePrefix) => {
       type,
       note: `${notePrefix} ${order.invoiceNumber}`,
     });
+
+    const recipe = await Recipe.findOne({
+      outletId: order.outletId,
+      productId: item.productId,
+    });
+    if (!recipe || !Array.isArray(recipe.ingredients) || !recipe.ingredients.length) {
+      continue;
+    }
+
+    const wastageFactor = 1 + Number(recipe.wastagePercent || 0) / 100;
+    for (const ingredient of recipe.ingredients) {
+      const baseQty = Number(item.quantity || 0) * Number(ingredient.quantity || 0);
+      const movementQty = Math.max(0, baseQty * wastageFactor);
+      if (!movementQty || !ingredient.itemId || ingredient.itemId === item.productId) continue;
+      await Inventory.createMovement({
+        outletId: order.outletId,
+        productId: ingredient.itemId,
+        quantity: movementQty,
+        type,
+        note: `Recipe ${notePrefix} ${order.invoiceNumber} (${item.name})`,
+      });
+    }
   }
 };
 

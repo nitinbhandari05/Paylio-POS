@@ -1536,6 +1536,10 @@ button:active {
   background: rgba(17, 27, 47, 0.86);
 }
 
+.dark .login-form label {
+  color: #c9d8ee;
+}
+
 .dark .auth-subtitle,
 .dark .login-note,
 .dark .auth-helper-text,
@@ -1543,6 +1547,24 @@ button:active {
 .dark .module-note,
 .dark .muted {
   color: var(--muted);
+}
+
+.dark .login-form input,
+.dark .login-form select {
+  border-color: #3a5478;
+  background: linear-gradient(180deg, #17253e, #132035);
+  color: #edf3ff;
+}
+
+.dark .login-form input::placeholder {
+  color: #8da4c4;
+}
+
+.dark .login-form input:focus,
+.dark .login-form select:focus {
+  border-color: #7db2ff;
+  box-shadow: 0 0 0 4px rgba(125, 178, 255, 0.28);
+  background: #172842;
 }
 
 .dark .table-wrap,
@@ -1557,9 +1579,20 @@ button:active {
   color: #d8e4f6;
 }
 
+.dark .table-wrap td,
+.dark .table-wrap td strong,
+.dark .table-wrap td em,
+.dark .table-wrap td span {
+  color: #d7e4f8;
+}
+
 .dark .plain-list li {
   border-color: var(--line);
   background: rgba(21, 34, 58, 0.72);
+}
+
+.dark .plain-list li strong {
+  color: #f4f8ff;
 }
 
 .dark .product-card {
@@ -1591,6 +1624,35 @@ button:active {
 .dark .ghost-icon,
 .dark .cart-line.sub span {
   color: var(--muted);
+}
+
+.dark .modal-card {
+  background: #111b2f;
+  border-color: var(--line);
+}
+
+.dark .modal-actions .primary {
+  background: linear-gradient(135deg, #0ea5e9, #2563eb);
+}
+
+.dark .modal-actions .plain {
+  background: #1a2a45;
+}
+
+.dark .admin-note.error {
+  border-color: rgba(248, 113, 113, 0.55);
+  background: rgba(127, 29, 29, 0.34);
+  color: #fecaca;
+}
+
+.dark .ticket-top span,
+.dark .ticket-card p,
+.dark .owner-footnote {
+  color: #9fb0ca;
+}
+
+.dark input[type="checkbox"] {
+  accent-color: #3b82f6;
 }
 
 .dark .login-page {

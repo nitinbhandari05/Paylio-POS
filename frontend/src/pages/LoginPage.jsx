@@ -12,6 +12,11 @@ export default function LoginPage({ onLogin }) {
   const [loading, setLoading] = useState(false);
   const [registerOtpSent, setRegisterOtpSent] = useState(false);
   const [forgotOtpSent, setForgotOtpSent] = useState(false);
+  const [showLoginPassword, setShowLoginPassword] = useState(false);
+  const [showRegisterPassword, setShowRegisterPassword] = useState(false);
+  const [showForgotPassword, setShowForgotPassword] = useState(false);
+  const [showLoginPin, setShowLoginPin] = useState(false);
+  const [showRegisterPin, setShowRegisterPin] = useState(false);
 
   const [loginForm, setLoginForm] = useState({
     identifier: "",
@@ -297,20 +302,26 @@ export default function LoginPage({ onLogin }) {
                   <label>
                     Password
                     <input
-                      type="password"
+                      type={showLoginPassword ? "text" : "password"}
                       value={loginForm.password}
                       onChange={(e) => setLoginForm((curr) => ({ ...curr, password: e.target.value }))}
                       placeholder="Enter password"
                     />
+                    <button type="button" className="link-btn" onClick={() => setShowLoginPassword((v) => !v)}>
+                      {showLoginPassword ? "Hide password" : "Show password"}
+                    </button>
                   </label>
                   <label>
                     PIN (optional quick login)
                     <input
-                      type="password"
+                      type={showLoginPin ? "text" : "password"}
                       value={loginForm.pin}
                       onChange={(e) => setLoginForm((curr) => ({ ...curr, pin: e.target.value }))}
                       placeholder="1234"
                     />
+                    <button type="button" className="link-btn" onClick={() => setShowLoginPin((v) => !v)}>
+                      {showLoginPin ? "Hide PIN" : "Show PIN"}
+                    </button>
                   </label>
                   <button type="submit" disabled={loading}>{loading ? "Signing in..." : "Continue"}</button>
                   <button type="button" className="link-btn" onClick={() => setMode("forgot")}>
@@ -381,21 +392,27 @@ export default function LoginPage({ onLogin }) {
                   <label>
                     Password
                     <input
-                      type="password"
+                      type={showRegisterPassword ? "text" : "password"}
                       value={registerForm.password}
                       onChange={(e) => setRegisterForm((curr) => ({ ...curr, password: e.target.value }))}
                       placeholder="Minimum 6+"
                     />
+                    <button type="button" className="link-btn" onClick={() => setShowRegisterPassword((v) => !v)}>
+                      {showRegisterPassword ? "Hide password" : "Show password"}
+                    </button>
                   </label>
 
                   <label>
                     PIN (optional for quick login)
                     <input
-                      type="password"
+                      type={showRegisterPin ? "text" : "password"}
                       value={registerForm.pin}
                       onChange={(e) => setRegisterForm((curr) => ({ ...curr, pin: e.target.value }))}
                       placeholder="1234"
                     />
+                    <button type="button" className="link-btn" onClick={() => setShowRegisterPin((v) => !v)}>
+                      {showRegisterPin ? "Hide PIN" : "Show PIN"}
+                    </button>
                   </label>
 
                   <button type="submit" disabled={loading}>
@@ -447,11 +464,14 @@ export default function LoginPage({ onLogin }) {
                       <label>
                         New Password
                         <input
-                          type="password"
+                          type={showForgotPassword ? "text" : "password"}
                           value={forgotForm.newPassword}
                           onChange={(e) => setForgotForm((curr) => ({ ...curr, newPassword: e.target.value }))}
                           placeholder="New password"
                         />
+                        <button type="button" className="link-btn" onClick={() => setShowForgotPassword((v) => !v)}>
+                          {showForgotPassword ? "Hide password" : "Show password"}
+                        </button>
                       </label>
                       <button type="submit" disabled={loading}>
                         {loading ? "Resetting..." : "Reset Password"}

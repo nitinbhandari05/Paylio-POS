@@ -3690,5 +3690,38 @@
     "createdBy": null,
     "createdAt": "2026-04-30T07:55:13.970Z",
     "updatedAt": "2026-04-30T07:55:13.972Z"
+  },
+  {
+    "_id": "384f11b5-bfd1-49f5-9b45-bf009fd2e22b",
+    "status": "open",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 18,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [
+      {
+        "_id": "f032fa42-488c-4632-bb98-565d95e52631",
+        "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
+        "name": "Veg Burger",
+        "sku": "demo-1777534315156-me2u",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 149,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      }
+    ],
+    "createdBy": null,
+    "createdAt": "2026-04-30T07:55:52.217Z",
+    "updatedAt": "2026-04-30T07:55:52.224Z"
   }
 ]

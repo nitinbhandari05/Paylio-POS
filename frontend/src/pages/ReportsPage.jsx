@@ -9,15 +9,37 @@ const money = (value) =>
 
 export default function ReportsPage({ title = "Reports" }) {
   const [report, setReport] = useState(null);
+  const [staffActivity, setStaffActivity] = useState([]);
+  const [outletComparison, setOutletComparison] = useState([]);
+  const [crmSummary, setCrmSummary] = useState(null);
+  const [aiAnalytics, setAiAnalytics] = useState(null);
 
   const load = async () => {
     try {
-      const response = await fetch("/api/public/reports/overview");
-      const data = await response.json();
-      if (!response.ok) throw new Error(data.message || "Reports failed");
-      setReport(data);
+      const [overviewRes, staffRes, outletRes, crmRes, aiRes] = await Promise.all([
+        fetch("/api/public/reports/overview"),
+        fetch("/api/public/reports/staff-activity"),
+        fetch("/api/public/reports/outlet-comparison"),
+        fetch("/api/public/crm/summary"),
+        fetch("/api/public/ai/analytics"),
+      ]);
+      const overviewData = await overviewRes.json();
+      const staffData = await staffRes.json();
+      const outletData = await outletRes.json();
+      const crmData = await crmRes.json();
+      const aiData = await aiRes.json();
+      if (!overviewRes.ok) throw new Error(overviewData.message || "Reports failed");
+      setReport(overviewData);
+      setStaffActivity(Array.isArray(staffData.staffActivity) ? staffData.staffActivity : []);
+      setOutletComparison(Array.isArray(outletData.outlets) ? outletData.outlets : []);
+      setCrmSummary(crmData.summary || null);
+      setAiAnalytics(aiRes.ok ? aiData : null);
     } catch {
       setReport(null);
+      setStaffActivity([]);
+      setOutletComparison([]);
+      setCrmSummary(null);
+      setAiAnalytics(null);
     }
   };
 
@@ -41,6 +63,8 @@ export default function ReportsPage({ title = "Reports" }) {
             <article className="module-card"><span>Revenue</span><strong>{money(report.headline.grossRevenue)}</strong></article>
             <article className="module-card"><span>Taxes</span><strong>{money(report.headline.taxes)}</strong></article>
             <article className="module-card"><span>Staff</span><strong>{report.headline.staffCount}</strong></article>
+            <article className="module-card"><span>Repeat Customers</span><strong>{crmSummary?.repeatCustomers ?? 0}</strong></article>
+            <article className="module-card"><span>Loyalty Points</span><strong>{crmSummary?.loyaltyPointsIssued ?? 0}</strong></article>
           </div>
 
           <div className="reports-grid">
@@ -68,6 +92,49 @@ export default function ReportsPage({ title = "Reports" }) {
               </ul>
             </article>
           </div>
+
+          <div className="reports-grid">
+            <article className="module-card">
+              <h3>Staff Activity</h3>
+              <ul className="plain-list">
+                {staffActivity.slice(0, 8).map((row) => (
+                  <li key={`${row.name}-${row.role}`}>
+                    <span>{row.name} ({row.role})</span>
+                    <strong>{row.ordersHandled} orders · {money(row.salesHandled)}</strong>
+                  </li>
+                ))}
+                {!staffActivity.length && <li><span>No staff activity yet.</span><strong>-</strong></li>}
+              </ul>
+            </article>
+
+            <article className="module-card">
+              <h3>Outlet Comparison</h3>
+              <ul className="plain-list">
+                {outletComparison.slice(0, 8).map((row) => (
+                  <li key={row.outletId}>
+                    <span>{row.outletName}</span>
+                    <strong>{money(row.netRevenue)} · {row.orders} orders</strong>
+                  </li>
+                ))}
+                {!outletComparison.length && <li><span>No outlet data yet.</span><strong>-</strong></li>}
+              </ul>
+            </article>
+          </div>
+
+          <article className="module-card">
+            <h3>AI Analytics</h3>
+            <p className="muted">
+              Predicted Peak Hour: {aiAnalytics?.metrics?.predictedPeakHour || "--"} | Avg Order: {money(aiAnalytics?.metrics?.avgOrderValue || 0)}
+            </p>
+            <ul className="plain-list">
+              {(aiAnalytics?.insights || []).map((row) => (
+                <li key={row.id}>
+                  <span>{row.id}</span>
+                  <strong>{row.text}</strong>
+                </li>
+              ))}
+            </ul>
+          </article>
         </>
       )}
     </section>

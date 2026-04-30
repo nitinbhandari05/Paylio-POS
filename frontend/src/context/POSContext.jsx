@@ -404,6 +404,17 @@ export function POSProvider({ children }) {
       clearCart();
       setPaymentMethod("cash");
     } catch (error) {
+      const message = String(error?.message || "");
+      const isStockError = /insufficient stock/i.test(message);
+      const isValidationError =
+        isStockError ||
+        /product not found|quantity must be|invalid|unsupported|payment amount/i.test(message);
+
+      if (isValidationError) {
+        window.alert(message || "Unable to save order");
+        return;
+      }
+
       const payload = {
         outletId: "main",
         orderType: orderType === "takeaway" ? "pickup" : orderType,
@@ -420,7 +431,7 @@ export function POSProvider({ children }) {
         payments,
       };
       queueOrderForSync(payload);
-      window.alert(`Network issue. Order queued offline for auto-sync. (${error.message || "sync pending"})`);
+      window.alert(`Network issue. Order queued offline for auto-sync. (${message || "sync pending"})`);
     } finally {
       setIsSaving(false);
     }

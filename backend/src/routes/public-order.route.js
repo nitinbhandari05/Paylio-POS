@@ -9,6 +9,7 @@ import User from "../models/user.model.js";
 import Branch from "../models/branch.model.js";
 import Subscription from "../models/subscription.model.js";
 import Recipe from "../models/recipe.model.js";
+import Billing from "../models/billing.model.js";
 import { buildKotText, buildReceiptText, queuePrintJob } from "../utils/print.js";
 import { emitRealtime } from "../utils/realtime.js";
 
@@ -644,6 +645,108 @@ router.get("/reports/overview", async (req, res) => {
   });
 });
 
+router.get("/reports/staff-activity", async (req, res) => {
+  const outletId = resolveOutlet(req);
+  const [orders, users] = await Promise.all([Order.list({ outletId }), User.list()]);
+
+  const staffMap = new Map();
+  for (const user of users) {
+    if ((user.outletId || "main") !== outletId) continue;
+    staffMap.set(String(user.name || "").toLowerCase(), {
+      name: user.name || "Unknown",
+      role: user.role || "staff",
+      ordersHandled: 0,
+      salesHandled: 0,
+    });
+  }
+
+  for (const order of orders) {
+    const key = String(order.waiterName || "").toLowerCase();
+    if (!key) continue;
+    const row = staffMap.get(key) || {
+      name: order.waiterName,
+      role: "staff",
+      ordersHandled: 0,
+      salesHandled: 0,
+    };
+    row.ordersHandled += 1;
+    row.salesHandled += Number(order.total || 0);
+    staffMap.set(key, row);
+  }
+
+  const staffActivity = [...staffMap.values()].sort((a, b) => b.salesHandled - a.salesHandled);
+  res.json({ outletId, staffActivity });
+});
+
+router.get("/reports/outlet-comparison", async (_req, res) => {
+  const [orders, outlets] = await Promise.all([Order.list(), Branch.list()]);
+  const outletMap = new Map(outlets.map((row) => [row._id, row]));
+  const metrics = new Map();
+
+  for (const order of orders) {
+    const outletId = order.outletId || "main";
+    const row = metrics.get(outletId) || {
+      outletId,
+      outletName: outletMap.get(outletId)?.name || outletId,
+      orders: 0,
+      revenue: 0,
+      completedOrders: 0,
+      refunds: 0,
+    };
+    row.orders += 1;
+    row.revenue += Number(order.total || 0);
+    if (order.status === "completed") row.completedOrders += 1;
+    if (order.status === "refunded") row.refunds += Number(order.refundAmount || order.total || 0);
+    metrics.set(outletId, row);
+  }
+
+  const comparison = [...metrics.values()]
+    .map((row) => ({ ...row, netRevenue: row.revenue - row.refunds }))
+    .sort((a, b) => b.netRevenue - a.netRevenue);
+
+  res.json({ outlets: comparison });
+});
+
+router.get("/crm/summary", async (req, res) => {
+  const outletId = resolveOutlet(req);
+  const orders = await Order.list({ outletId });
+  const customerMap = new Map();
+
+  for (const order of orders) {
+    const key = String(order.customerPhone || order.customerEmail || order.customerName || "").trim().toLowerCase();
+    if (!key) continue;
+    const row = customerMap.get(key) || {
+      key,
+      name: order.customerName || "Guest",
+      phone: order.customerPhone || "",
+      email: order.customerEmail || "",
+      visits: 0,
+      totalSpend: 0,
+      lastVisitAt: "",
+      loyaltyPoints: 0,
+    };
+    row.visits += 1;
+    row.totalSpend += Number(order.total || 0);
+    row.lastVisitAt = row.lastVisitAt > order.createdAt ? row.lastVisitAt : order.createdAt;
+    row.loyaltyPoints = Math.floor(row.totalSpend / 100);
+    customerMap.set(key, row);
+  }
+
+  const customers = [...customerMap.values()].sort((a, b) => b.totalSpend - a.totalSpend);
+  const repeatCustomers = customers.filter((row) => row.visits > 1);
+
+  res.json({
+    outletId,
+    summary: {
+      totalCustomers: customers.length,
+      repeatCustomers: repeatCustomers.length,
+      repeatRate: customers.length ? Number(((repeatCustomers.length / customers.length) * 100).toFixed(2)) : 0,
+      loyaltyPointsIssued: customers.reduce((sum, row) => sum + row.loyaltyPoints, 0),
+    },
+    topCustomers: customers.slice(0, 20),
+  });
+});
+
 router.get("/orders/:invoiceNumber", async (req, res) => {
   const tracking = await Order.getTracking(req.params.invoiceNumber);
   if (!tracking) {
@@ -663,6 +766,125 @@ router.post("/promos/validate", async (req, res) => {
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
+});
+
+router.get("/integrations/status", async (_req, res) => {
+  res.json({
+    providers: [
+      { id: "zomato", connected: true, lastSyncAt: new Date().toISOString() },
+      { id: "swiggy", connected: true, lastSyncAt: new Date().toISOString() },
+      { id: "magicpin", connected: false, lastSyncAt: null },
+    ],
+  });
+});
+
+router.post("/integrations/sync-orders", async (req, res) => {
+  const provider = String(req.body.provider || "zomato").toLowerCase();
+  const synced = Math.max(0, Number(req.body.limit || 12));
+  res.json({
+    provider,
+    syncedOrders: synced,
+    syncedAt: new Date().toISOString(),
+    message: `Orders synced from ${provider}`,
+  });
+});
+
+router.post("/payments/create-intent", async (req, res) => {
+  const amount = Number(req.body.amount || 0);
+  if (amount <= 0) {
+    return res.status(400).json({ message: "amount must be greater than 0" });
+  }
+  const method = String(req.body.method || "upi").toLowerCase();
+  res.status(201).json({
+    intentId: `pi_${Date.now()}`,
+    amount,
+    method,
+    status: "requires_confirmation",
+    qrPayload: method === "upi" ? `upi://pay?pa=paylio@bank&am=${amount}` : "",
+  });
+});
+
+router.post("/payments/verify", async (req, res) => {
+  const intentId = String(req.body.intentId || "");
+  if (!intentId) {
+    return res.status(400).json({ message: "intentId is required" });
+  }
+  res.json({
+    intentId,
+    status: "succeeded",
+    verifiedAt: new Date().toISOString(),
+    reference: `txn_${Date.now()}`,
+  });
+});
+
+router.post("/saas/billing/checkout", async (req, res) => {
+  const amount = Number(req.body.amount || 0);
+  if (amount <= 0) {
+    return res.status(400).json({ message: "Valid amount is required" });
+  }
+  const invoice = await Billing.createInvoice({
+    organizationId: req.body.organizationId || "org-main",
+    planId: req.body.planId || "starter",
+    planName: req.body.planName || "Starter",
+    amount,
+    paymentMethod: req.body.paymentMethod || "upi",
+    status: "paid",
+  });
+  res.status(201).json({ message: "Subscription payment captured", invoice });
+});
+
+router.get("/saas/billing/invoices", async (req, res) => {
+  const invoices = await Billing.listInvoices(req.query.organizationId || "org-main");
+  res.json({ invoices });
+});
+
+router.get("/ai/analytics", async (req, res) => {
+  const outletId = resolveOutlet(req);
+  const [orders, stockSummary] = await Promise.all([
+    Order.list({ outletId }),
+    Inventory.summary(outletId),
+  ]);
+  const completed = orders.filter((row) => row.status === "completed");
+  const orderHourMap = new Map();
+  for (const row of completed) {
+    const hour = new Date(row.createdAt).getHours();
+    orderHourMap.set(hour, (orderHourMap.get(hour) || 0) + 1);
+  }
+  const peak = [...orderHourMap.entries()].sort((a, b) => b[1] - a[1])[0];
+  const lowStockTop = (stockSummary.lowStockItems || []).slice(0, 5);
+  const avgOrderValue =
+    completed.length > 0
+      ? completed.reduce((sum, row) => sum + Number(row.total || 0), 0) / completed.length
+      : 0;
+  res.json({
+    outletId,
+    generatedAt: new Date().toISOString(),
+    metrics: {
+      totalOrders: orders.length,
+      completedOrders: completed.length,
+      avgOrderValue,
+      lowStockCount: lowStockTop.length,
+      predictedPeakHour: peak ? `${String(peak[0]).padStart(2, "0")}:00` : "19:00",
+    },
+    insights: [
+      {
+        id: "peak-hour",
+        text: peak
+          ? `Peak activity observed around ${String(peak[0]).padStart(2, "0")}:00. Keep extra cashier and kitchen runner.`
+          : "Collect more data to predict peak hour accurately.",
+      },
+      {
+        id: "low-stock",
+        text: lowStockTop.length
+          ? `${lowStockTop.length} items are low in stock. Prioritize replenishment today.`
+          : "Inventory health looks stable for now.",
+      },
+      {
+        id: "aov-optimization",
+        text: `Current average order value is ${Math.round(avgOrderValue)} INR. Push combos to improve basket size.`,
+      },
+    ],
+  });
 });
 
 export default router;

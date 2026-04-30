@@ -9,5 +9,16 @@
     "lowStockThreshold": 5,
     "updatedAt": "2026-04-30T07:31:55.183Z",
     "createdAt": "2026-04-30T07:31:55.183Z"
+  },
+  {
+    "_id": "3b303858-8586-4c31-ba9c-f1b01fa9672f",
+    "outletId": "main",
+    "productId": "b16f11ba-e31a-4b4c-b111-c73db5ed2643",
+    "productName": "Veg Burger",
+    "sku": "demo-1777534315156-me2u",
+    "quantity": 0,
+    "lowStockThreshold": 5,
+    "updatedAt": "2026-04-30T07:48:17.215Z",
+    "createdAt": "2026-04-30T07:48:17.215Z"
   }
 ]

@@ -1,1 +1,12 @@
-[]
+[
+  {
+    "_id": "919d0d6e-c775-4fc0-8c78-14f179da700d",
+    "type": "receipt",
+    "orderId": "888fbbe8-c3a0-4954-af58-47411c229149",
+    "content": "Invoice INV-20260430-0071\nKOT KOT-20260430-0072\nCustomer Walk-in\nPhone -\n\n1 x Masala Tea @ 30 = 35.4\n\nSubtotal: 30\nDiscount: 0\nGST: 5.4\nTotal: 35.4\nPaid: 32\nChange: 0\n\nPayments:\nCASH: 32",
+    "copies": 1,
+    "status": "queued",
+    "createdAt": "2026-04-30T17:58:11.691Z",
+    "updatedAt": "2026-04-30T17:58:11.691Z"
+  }
+]

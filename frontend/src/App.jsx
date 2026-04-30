@@ -44,28 +44,7 @@ const NAV_ITEMS = [
   { id: "settings", label: "Settings", icon: Settings },
 ];
 
-const normalizeRole = (role) => {
-  const base = String(role || "").trim().toLowerCase().replace(/[_-]+/g, " ");
-  if (base === "super admin" || base === "superadmin") return "superadmin";
-  if (base === "kitchen staff" || base === "kitchenstaff") return "kitchen";
-  return base.replace(/\s+/g, "");
-};
-
-const ROLE_NAV_ACCESS = {
-  superadmin: ["pos", "admin", "inventory", "tables", "waiter", "kitchen", "owner", "reports", "finance", "support", "settings"],
-  headoffice: ["pos", "admin", "inventory", "tables", "waiter", "kitchen", "owner", "reports", "finance", "support", "settings"],
-  owner: ["pos", "admin", "inventory", "tables", "waiter", "kitchen", "owner", "reports", "finance", "support", "settings"],
-  admin: ["pos", "admin", "inventory", "tables", "waiter", "kitchen", "owner", "reports", "finance", "support", "settings"],
-  manager: ["pos", "inventory", "tables", "waiter", "reports"],
-  cashier: ["pos"],
-  waiter: ["waiter", "tables"],
-  kitchen: ["kitchen"],
-  accountant: ["finance"],
-  user: ["pos", "support", "settings"],
-};
-
-const getAllowedNav = (role) =>
-  ROLE_NAV_ACCESS[normalizeRole(role)] || ["pos", "settings"];
+const getAllowedNav = () => NAV_ITEMS.map((item) => item.id);
 
 function renderPage(activePage, session, dark, toggleDark, logout) {
   if (activePage === "pos") return <POSPage />;
@@ -123,8 +102,7 @@ export default function App() {
     localStorage.removeItem("paylio-token");
   };
 
-  const roleLabel = useMemo(() => session?.role || "guest", [session]);
-  const allowedNavIds = useMemo(() => getAllowedNav(session?.role), [session?.role]);
+  const allowedNavIds = useMemo(() => getAllowedNav(), []);
   const visibleNavItems = useMemo(
     () => NAV_ITEMS.filter((item) => allowedNavIds.includes(item.id)),
     [allowedNavIds]
@@ -173,7 +151,7 @@ export default function App() {
           <header className="shell-top">
             <div>
               <strong>{session.name}</strong>
-              <span><ShieldCheck size={14} /> {roleLabel}</span>
+              <span><ShieldCheck size={14} /> Staff</span>
             </div>
             <button onClick={() => setDark((v) => !v)} className="theme-btn">
               {dark ? <Sun size={16} /> : <Moon size={16} />} {dark ? "Light" : "Dark"}

@@ -1,1 +1,32 @@
-[]
+[
+  {
+    "_id": "05f1e442-8c03-48d1-b268-410045f99db9",
+    "outletId": "main",
+    "productId": "6ca0d0f2-3cea-4284-b9a1-44a8c18cf80a",
+    "productName": "Masala Tea",
+    "sku": "demo-1777534315144-8uso",
+    "type": "in",
+    "quantity": 20,
+    "beforeStock": 0,
+    "afterStock": 20,
+    "note": "",
+    "createdBy": null,
+    "createdAt": "2026-04-30T17:58:01.050Z",
+    "updatedAt": "2026-04-30T17:58:01.050Z"
+  },
+  {
+    "_id": "80fdfd97-f074-4805-8adf-b7ec8936b0ac",
+    "outletId": "main",
+    "productId": "6ca0d0f2-3cea-4284-b9a1-44a8c18cf80a",
+    "productName": "Masala Tea",
+    "sku": "demo-1777534315144-8uso",
+    "type": "out",
+    "quantity": 1,
+    "beforeStock": 20,
+    "afterStock": 19,
+    "note": "Order sale INV-20260430-0071",
+    "createdBy": null,
+    "createdAt": "2026-04-30T17:58:11.685Z",
+    "updatedAt": "2026-04-30T17:58:11.685Z"
+  }
+]

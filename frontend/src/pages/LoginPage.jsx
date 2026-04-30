@@ -7,16 +7,6 @@ const phonePattern = /^\+?[0-9]{10,15}$/;
 
 const isPhone = (value) => phonePattern.test(String(value || "").trim());
 
-const REGISTER_ROLE_OPTIONS = [
-  { value: "cashier", label: "Cashier" },
-  { value: "waiter", label: "Waiter" },
-  { value: "kitchen", label: "Kitchen Staff" },
-  { value: "accountant", label: "Accountant" },
-  { value: "manager", label: "Manager (Admin only)", disabled: true },
-  { value: "owner", label: "Owner (Admin only)", disabled: true },
-  { value: "superadmin", label: "Super Admin (Admin only)", disabled: true },
-];
-
 export default function LoginPage({ onLogin }) {
   const [mode, setMode] = useState("login");
   const [loading, setLoading] = useState(false);
@@ -35,7 +25,6 @@ export default function LoginPage({ onLogin }) {
     phone: "",
     password: "",
     pin: "",
-    role: "cashier",
     otpChannel: "email",
     otpCode: "",
   });
@@ -49,7 +38,7 @@ export default function LoginPage({ onLogin }) {
 
   const normalizeSession = (data) => ({
     name: data.user?.name || "Staff",
-    role: data.user?.role || "cashier",
+    role: "user",
     token: data.token,
     outletId: data.user?.outletId || "main",
     organizationId: data.user?.organizationId || "org-main",
@@ -170,7 +159,7 @@ export default function LoginPage({ onLogin }) {
           phone,
           password: registerForm.password,
           pin: registerForm.pin.trim(),
-          role: registerForm.role,
+          role: "user",
           otpChannel: registerForm.otpChannel,
           otpCode: registerForm.otpCode.trim(),
         }),
@@ -415,23 +404,6 @@ export default function LoginPage({ onLogin }) {
                       placeholder="1234"
                     />
                   </label>
-
-                  <label>
-                    Role
-                    <select
-                      value={registerForm.role}
-                      onChange={(e) => setRegisterForm((curr) => ({ ...curr, role: e.target.value }))}
-                    >
-                      {REGISTER_ROLE_OPTIONS.map((role) => (
-                        <option key={role.value} value={role.value} disabled={role.disabled}>
-                          {role.label}
-                        </option>
-                      ))}
-                    </select>
-                  </label>
-                  <p className="login-note">
-                    Manager, Owner, and Super Admin accounts can only be created by an existing admin-level account.
-                  </p>
 
                   <button type="submit" disabled={loading}>
                     {loading ? "Creating..." : "Register & Login"}

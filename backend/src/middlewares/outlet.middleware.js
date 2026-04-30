@@ -26,23 +26,9 @@ export const resolveOutletContext = (req, _res, next) => {
 };
 
 export const requireRoles = (...roles) => {
-  const allowed = roles.map((role) => normalizeRole(role));
-  return (req, res, next) => {
-    const role = normalizeRole(req.user?.role);
-    if (!allowed.includes(role)) {
-      return res.status(403).json({ message: "Forbidden: role not allowed" });
-    }
-    next();
-  };
+  return (_req, _res, next) => next();
 };
 
 export const requireHeadOffice = (req, res, next) => {
-  const role = normalizeRole(req.user?.role);
-  const isHeadOfficeRole = ["admin", "headoffice", "superadmin"].includes(role);
-  const isHeadOfficeUser = Boolean(req.user?.isHeadOffice);
-
-  if (!isHeadOfficeRole && !isHeadOfficeUser) {
-    return res.status(403).json({ message: "Head office access required" });
-  }
   next();
 };

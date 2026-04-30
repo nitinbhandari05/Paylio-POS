@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import logo from "../assets/logo.svg";
+import logo from "../assets/logo-paylio-pos.png";
+import loginHeroImage from "../assets/login-hero.png";
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const phonePattern = /^\+?[0-9]{10,15}$/;
@@ -272,20 +273,12 @@ export default function LoginPage({ onLogin }) {
       <section className="auth-stage">
         <header className="auth-topbar">
           <img src={logo} alt="Paylio logo" />
-          <strong>Paylio POS</strong>
         </header>
 
         <div className="auth-shell">
           <aside className="auth-hero">
-            <div className="auth-hero-badge">Premium POS Workspace</div>
             <div className="auth-illustration-wrap">
-              <div className="auth-illustration" aria-hidden="true">
-                <span className="art-head" />
-                <span className="art-body" />
-                <span className="art-laptop" />
-                <span className="art-cup" />
-                <span className="art-base" />
-              </div>
+              <img src={loginHeroImage} alt="Paylio welcome" className="auth-illustration" />
             </div>
             <h1>Welcome!</h1>
             <p className="auth-subtitle">Fast billing and clean operations for modern restaurant teams.</p>

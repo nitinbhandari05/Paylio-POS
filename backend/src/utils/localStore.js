@@ -1,4 +1,4 @@
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { copyFile, mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname } from "node:path";
 
 const ensureFile = async (filePath, defaultValue = "[]\n") => {
@@ -21,8 +21,16 @@ export const createArrayStore = (filePath) => ({
     await ensureFile(filePath);
 
     const raw = await readFile(filePath, "utf8");
-    const data = raw.trim() ? JSON.parse(raw) : [];
-    return Array.isArray(data) ? data : [];
+    try {
+      const data = raw.trim() ? JSON.parse(raw) : [];
+      return Array.isArray(data) ? data : [];
+    } catch {
+      // Preserve corrupted payload for debugging, then self-heal to keep runtime stable.
+      const backupPath = `${filePath}.corrupt-${Date.now()}.bak`;
+      await copyFile(filePath, backupPath);
+      await writeFile(filePath, "[]\n", "utf8");
+      return [];
+    }
   },
   write: async (items) => {
     await ensureFile(filePath);

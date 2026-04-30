@@ -20,5 +20,16 @@
     "lowStockThreshold": 5,
     "updatedAt": "2026-04-30T07:48:17.215Z",
     "createdAt": "2026-04-30T07:48:17.215Z"
+  },
+  {
+    "_id": "080ad315-8dd6-4c42-8bc8-446eb286eb53",
+    "outletId": "main",
+    "productId": "a8a3312c-fd87-47dc-aec3-78ec71b5863a",
+    "productName": "Tea Combo",
+    "sku": "demo-1777534315163-9asx",
+    "quantity": 0,
+    "lowStockThreshold": 5,
+    "updatedAt": "2026-04-30T17:46:34.159Z",
+    "createdAt": "2026-04-30T17:46:34.159Z"
   }
 ]

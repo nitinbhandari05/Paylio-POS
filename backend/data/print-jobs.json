@@ -8,5 +8,45 @@
     "status": "queued",
     "createdAt": "2026-04-30T17:58:11.691Z",
     "updatedAt": "2026-04-30T17:58:11.691Z"
+  },
+  {
+    "_id": "6f62fe35-bc0c-44c4-8867-e0f252690841",
+    "type": "receipt",
+    "orderId": "597a2ff9-5899-44d3-a1e4-fea9dd0f0b56",
+    "content": "Invoice INV-20260430-0075\nKOT KOT-20260430-0076\nCustomer Walk-in\nPhone -\n\n5 x Masala Tea @ 30 = 177\n\nSubtotal: 150\nDiscount: 0\nGST: 27\nTotal: 177\nPaid: 158\nChange: 0\n\nPayments:\nCASH: 158",
+    "copies": 1,
+    "status": "queued",
+    "createdAt": "2026-04-30T18:01:19.916Z",
+    "updatedAt": "2026-04-30T18:01:19.916Z"
+  },
+  {
+    "_id": "88cc1b66-3ff5-4f92-a8d5-6aaa8ccda696",
+    "type": "receipt",
+    "orderId": "87909fc1-22ee-436b-b29d-d16ae1cf64a3",
+    "content": "Invoice INV-20260430-0076\nKOT KOT-20260430-0077\nCustomer Walk-in\nPhone -\n\n1 x Masala Tea @ 30 = 35.4\n\nSubtotal: 30\nDiscount: 0\nGST: 5.4\nTotal: 35.4\nPaid: 32\nChange: 0\n\nPayments:\nCASH: 16\nUPI: 16",
+    "copies": 1,
+    "status": "queued",
+    "createdAt": "2026-04-30T18:01:19.925Z",
+    "updatedAt": "2026-04-30T18:01:19.925Z"
+  },
+  {
+    "_id": "030b7c7e-f016-43f8-800a-d6ea64f2f1b6",
+    "type": "receipt",
+    "orderId": "26c208f9-c0cf-4058-8d98-af24a7d3a2b7",
+    "content": "Invoice INV-20260430-0084\nKOT KOT-20260430-0085\nCustomer Walk-in\nPhone -\n\n5 x Masala Tea @ 30 = 177\n\nSubtotal: 150\nDiscount: 0\nGST: 27\nTotal: 177\nPaid: 158\nChange: 0\n\nPayments:\nCASH: 158",
+    "copies": 1,
+    "status": "queued",
+    "createdAt": "2026-04-30T18:04:39.774Z",
+    "updatedAt": "2026-04-30T18:04:39.774Z"
+  },
+  {
+    "_id": "409fe112-f74d-4154-945c-fdb18343897c",
+    "type": "receipt",
+    "orderId": "7810e3d4-0681-4561-a577-b8a3e7220b09",
+    "content": "Invoice INV-20260430-0090\nKOT KOT-20260430-0091\nCustomer Nitin\nPhone -\n\n1 x Masala Tea @ 30 = 35.4\n\nSubtotal: 30\nDiscount: 0\nGST: 5.4\nTotal: 35.4\nPaid: 397\nChange: 361.6\n\nPayments:\nCASH: 397",
+    "copies": 1,
+    "status": "queued",
+    "createdAt": "2026-04-30T18:04:40.056Z",
+    "updatedAt": "2026-04-30T18:04:40.056Z"
   }
 ]

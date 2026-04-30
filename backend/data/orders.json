@@ -97,5 +97,430 @@
     "refundReason": "",
     "refundNumber": "",
     "refundAmount": 0
+  },
+  {
+    "_id": "1fa680ee-477d-4011-b39a-e1ba244a5ff3",
+    "invoiceNumber": "INV-20260430-0073",
+    "kotNumber": "KOT-20260430-0074",
+    "outletId": "main",
+    "orderType": "dinein",
+    "cartId": "32007f74-68f7-48e8-b32c-edc4a91de6b8",
+    "status": "pending",
+    "statusTimeline": [
+      {
+        "status": "pending",
+        "at": "2026-04-30T18:01:19.883Z",
+        "by": null
+      }
+    ],
+    "deliveryStatus": "not_required",
+    "deliveryTimeline": [],
+    "deliveryAgentId": "",
+    "deliveryAgentName": "",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "deliveryAddress": "",
+    "orderSource": "counter",
+    "integrationSource": "",
+    "externalOrderId": "",
+    "channelMetadata": {},
+    "tableNo": "T1",
+    "waiterName": "Waiter 1",
+    "notes": "",
+    "items": [
+      {
+        "_id": "786d45e3-e93c-4ae9-9bea-12c89fd24875",
+        "productId": "6ca0d0f2-3cea-4284-b9a1-44a8c18cf80a",
+        "name": "Masala Tea",
+        "sku": "demo-1777534315144-8uso",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 30,
+        "gstRate": 18,
+        "lineSubtotal": 30,
+        "lineDiscount": 0,
+        "taxableAmount": 30,
+        "gstAmount": 5.4,
+        "lineTotal": 35.4,
+        "note": ""
+      }
+    ],
+    "subtotal": 30,
+    "itemDiscountAmount": 0,
+    "cartDiscountAmount": 0,
+    "discountAmount": 0,
+    "taxableSubtotal": 30,
+    "gstAmount": 5.4,
+    "gstRate": 18,
+    "total": 35.4,
+    "payments": [
+      {
+        "method": "cash",
+        "amount": 16,
+        "reference": ""
+      },
+      {
+        "method": "upi",
+        "amount": 16,
+        "reference": ""
+      }
+    ],
+    "amountPaid": 32,
+    "paymentStatus": "partially_paid",
+    "changeDue": 0,
+    "createdBy": null,
+    "createdAt": "2026-04-30T18:01:19.878Z",
+    "updatedAt": "2026-04-30T18:01:19.878Z",
+    "completedAt": null,
+    "cancelledAt": null,
+    "refundedAt": null,
+    "cancelReason": "",
+    "refundReason": "",
+    "refundNumber": "",
+    "refundAmount": 0
+  },
+  {
+    "_id": "597a2ff9-5899-44d3-a1e4-fea9dd0f0b56",
+    "invoiceNumber": "INV-20260430-0075",
+    "kotNumber": "KOT-20260430-0076",
+    "outletId": "main",
+    "orderType": "dinein",
+    "cartId": "76b58930-8d53-48c5-a854-dee2a03ddc60",
+    "status": "accepted",
+    "statusTimeline": [
+      {
+        "status": "pending",
+        "at": "2026-04-30T18:01:19.908Z",
+        "by": null
+      },
+      {
+        "status": "accepted",
+        "at": "2026-04-30T18:01:19.914Z",
+        "by": null
+      }
+    ],
+    "deliveryStatus": "not_required",
+    "deliveryTimeline": [],
+    "deliveryAgentId": "",
+    "deliveryAgentName": "",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "deliveryAddress": "",
+    "orderSource": "counter",
+    "integrationSource": "",
+    "externalOrderId": "",
+    "channelMetadata": {},
+    "tableNo": "T1",
+    "waiterName": "Waiter 1",
+    "notes": "",
+    "items": [
+      {
+        "_id": "a15e00a5-49ee-4c3b-9a7e-92346277f5c6",
+        "productId": "6ca0d0f2-3cea-4284-b9a1-44a8c18cf80a",
+        "name": "Masala Tea",
+        "sku": "demo-1777534315144-8uso",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 5,
+        "unitPrice": 30,
+        "gstRate": 18,
+        "lineSubtotal": 150,
+        "lineDiscount": 0,
+        "taxableAmount": 150,
+        "gstAmount": 27,
+        "lineTotal": 177,
+        "note": ""
+      }
+    ],
+    "subtotal": 150,
+    "itemDiscountAmount": 0,
+    "cartDiscountAmount": 0,
+    "discountAmount": 0,
+    "taxableSubtotal": 150,
+    "gstAmount": 27,
+    "gstRate": 18,
+    "total": 177,
+    "payments": [
+      {
+        "method": "cash",
+        "amount": 158,
+        "reference": ""
+      }
+    ],
+    "amountPaid": 158,
+    "paymentStatus": "partially_paid",
+    "changeDue": 0,
+    "createdBy": null,
+    "createdAt": "2026-04-30T18:01:19.907Z",
+    "updatedAt": "2026-04-30T18:01:19.914Z",
+    "completedAt": null,
+    "cancelledAt": null,
+    "refundedAt": null,
+    "cancelReason": "",
+    "refundReason": "",
+    "refundNumber": "",
+    "refundAmount": 0
+  },
+  {
+    "_id": "87909fc1-22ee-436b-b29d-d16ae1cf64a3",
+    "invoiceNumber": "INV-20260430-0076",
+    "kotNumber": "KOT-20260430-0077",
+    "outletId": "main",
+    "orderType": "dinein",
+    "cartId": "abc9b8ce-d0b2-406c-ac71-8fa1579daabc",
+    "status": "accepted",
+    "statusTimeline": [
+      {
+        "status": "pending",
+        "at": "2026-04-30T18:01:19.919Z",
+        "by": null
+      },
+      {
+        "status": "accepted",
+        "at": "2026-04-30T18:01:19.925Z",
+        "by": null
+      }
+    ],
+    "deliveryStatus": "not_required",
+    "deliveryTimeline": [],
+    "deliveryAgentId": "",
+    "deliveryAgentName": "",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "deliveryAddress": "",
+    "orderSource": "counter",
+    "integrationSource": "",
+    "externalOrderId": "",
+    "channelMetadata": {},
+    "tableNo": "T1",
+    "waiterName": "Waiter 1",
+    "notes": "",
+    "items": [
+      {
+        "_id": "c28cf1b7-af66-49a4-a32e-b5bcc66f0095",
+        "productId": "6ca0d0f2-3cea-4284-b9a1-44a8c18cf80a",
+        "name": "Masala Tea",
+        "sku": "demo-1777534315144-8uso",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 30,
+        "gstRate": 18,
+        "lineSubtotal": 30,
+        "lineDiscount": 0,
+        "taxableAmount": 30,
+        "gstAmount": 5.4,
+        "lineTotal": 35.4,
+        "note": ""
+      }
+    ],
+    "subtotal": 30,
+    "itemDiscountAmount": 0,
+    "cartDiscountAmount": 0,
+    "discountAmount": 0,
+    "taxableSubtotal": 30,
+    "gstAmount": 5.4,
+    "gstRate": 18,
+    "total": 35.4,
+    "payments": [
+      {
+        "method": "cash",
+        "amount": 16,
+        "reference": ""
+      },
+      {
+        "method": "upi",
+        "amount": 16,
+        "reference": ""
+      }
+    ],
+    "amountPaid": 32,
+    "paymentStatus": "partially_paid",
+    "changeDue": 0,
+    "createdBy": null,
+    "createdAt": "2026-04-30T18:01:19.916Z",
+    "updatedAt": "2026-04-30T18:01:19.925Z",
+    "completedAt": null,
+    "cancelledAt": null,
+    "refundedAt": null,
+    "cancelReason": "",
+    "refundReason": "",
+    "refundNumber": "",
+    "refundAmount": 0
+  },
+  {
+    "_id": "26c208f9-c0cf-4058-8d98-af24a7d3a2b7",
+    "invoiceNumber": "INV-20260430-0084",
+    "kotNumber": "KOT-20260430-0085",
+    "outletId": "main",
+    "orderType": "dinein",
+    "cartId": "cbee36cf-19a3-40c0-bea5-f8a540382b13",
+    "status": "accepted",
+    "statusTimeline": [
+      {
+        "status": "pending",
+        "at": "2026-04-30T18:04:39.769Z",
+        "by": null
+      },
+      {
+        "status": "accepted",
+        "at": "2026-04-30T18:04:39.773Z",
+        "by": null
+      }
+    ],
+    "deliveryStatus": "not_required",
+    "deliveryTimeline": [],
+    "deliveryAgentId": "",
+    "deliveryAgentName": "",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "deliveryAddress": "",
+    "orderSource": "counter",
+    "integrationSource": "",
+    "externalOrderId": "",
+    "channelMetadata": {},
+    "tableNo": "T1",
+    "waiterName": "Waiter 1",
+    "notes": "",
+    "items": [
+      {
+        "_id": "d7ca4eb7-0079-484b-8aae-926ca02acce4",
+        "productId": "6ca0d0f2-3cea-4284-b9a1-44a8c18cf80a",
+        "name": "Masala Tea",
+        "sku": "demo-1777534315144-8uso",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 5,
+        "unitPrice": 30,
+        "gstRate": 18,
+        "lineSubtotal": 150,
+        "lineDiscount": 0,
+        "taxableAmount": 150,
+        "gstAmount": 27,
+        "lineTotal": 177,
+        "note": ""
+      }
+    ],
+    "subtotal": 150,
+    "itemDiscountAmount": 0,
+    "cartDiscountAmount": 0,
+    "discountAmount": 0,
+    "taxableSubtotal": 150,
+    "gstAmount": 27,
+    "gstRate": 18,
+    "total": 177,
+    "payments": [
+      {
+        "method": "cash",
+        "amount": 158,
+        "reference": ""
+      }
+    ],
+    "amountPaid": 158,
+    "paymentStatus": "partially_paid",
+    "changeDue": 0,
+    "createdBy": null,
+    "createdAt": "2026-04-30T18:04:39.769Z",
+    "updatedAt": "2026-04-30T18:04:39.773Z",
+    "completedAt": null,
+    "cancelledAt": null,
+    "refundedAt": null,
+    "cancelReason": "",
+    "refundReason": "",
+    "refundNumber": "",
+    "refundAmount": 0
+  },
+  {
+    "_id": "7810e3d4-0681-4561-a577-b8a3e7220b09",
+    "invoiceNumber": "INV-20260430-0090",
+    "kotNumber": "KOT-20260430-0091",
+    "outletId": "main",
+    "orderType": "dinein",
+    "cartId": "1c9ea185-525a-4834-89a5-b8b13934eb9d",
+    "status": "accepted",
+    "statusTimeline": [
+      {
+        "status": "pending",
+        "at": "2026-04-30T18:04:40.053Z",
+        "by": null
+      },
+      {
+        "status": "accepted",
+        "at": "2026-04-30T18:04:40.056Z",
+        "by": null
+      }
+    ],
+    "deliveryStatus": "not_required",
+    "deliveryTimeline": [],
+    "deliveryAgentId": "",
+    "deliveryAgentName": "",
+    "customerId": "",
+    "customerName": "Nitin",
+    "customerPhone": "",
+    "customerEmail": "",
+    "deliveryAddress": "",
+    "orderSource": "counter",
+    "integrationSource": "",
+    "externalOrderId": "",
+    "channelMetadata": {},
+    "tableNo": "T3",
+    "waiterName": "Waiter 1",
+    "notes": "",
+    "items": [
+      {
+        "_id": "c046d23d-fea8-4514-8a5f-0f4774d6ae2e",
+        "productId": "6ca0d0f2-3cea-4284-b9a1-44a8c18cf80a",
+        "name": "Masala Tea",
+        "sku": "demo-1777534315144-8uso",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 30,
+        "gstRate": 18,
+        "lineSubtotal": 30,
+        "lineDiscount": 0,
+        "taxableAmount": 30,
+        "gstAmount": 5.4,
+        "lineTotal": 35.4,
+        "note": ""
+      }
+    ],
+    "subtotal": 30,
+    "itemDiscountAmount": 0,
+    "cartDiscountAmount": 0,
+    "discountAmount": 0,
+    "taxableSubtotal": 30,
+    "gstAmount": 5.4,
+    "gstRate": 18,
+    "total": 35.4,
+    "payments": [
+      {
+        "method": "cash",
+        "amount": 397,
+        "reference": ""
+      }
+    ],
+    "amountPaid": 397,
+    "paymentStatus": "paid",
+    "changeDue": 361.6,
+    "createdBy": null,
+    "createdAt": "2026-04-30T18:04:40.052Z",
+    "updatedAt": "2026-04-30T18:04:40.056Z",
+    "completedAt": null,
+    "cancelledAt": null,
+    "refundedAt": null,
+    "cancelReason": "",
+    "refundReason": "",
+    "refundNumber": "",
+    "refundAmount": 0
   }
 ]

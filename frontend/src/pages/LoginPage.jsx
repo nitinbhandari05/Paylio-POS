@@ -269,13 +269,6 @@ export default function LoginPage({ onLogin }) {
             <div className="auth-illustration-wrap">
               <img src={loginHeroImage} alt="Paylio welcome" className="auth-illustration" />
             </div>
-            <h1>Welcome!</h1>
-            <p className="auth-subtitle">Fast billing and clean operations for modern restaurant teams.</p>
-            <div className="auth-journey">
-              <span>Secure Login</span>
-              <span>Realtime Sync</span>
-              <span>24x7 Access</span>
-            </div>
           </aside>
 
           <div className="auth-panel">

@@ -1404,6 +1404,21 @@ button:active {
   background: var(--surface);
 }
 
+.dark .card-shell,
+.dark .module-card,
+.dark .panel,
+.dark .kpi,
+.dark .ticket-card,
+.dark .owner-card,
+.dark .auth-card,
+.dark .auth-hero,
+.dark .screen-switcher,
+.dark .shell-top,
+.dark .table-card {
+  border-color: var(--line);
+  box-shadow: var(--shadow-soft);
+}
+
 .dark .module-note,
 .dark .admin-source,
 .dark .admin-note {
@@ -1424,6 +1439,30 @@ button:active {
 .dark .login-form .link-btn {
   background: var(--surface-2);
   color: var(--text);
+}
+
+.dark .side-nav {
+  border-right-color: #314661;
+  background:
+    radial-gradient(430px 310px at 0% 0%, rgba(14, 165, 233, 0.25), transparent 60%),
+    linear-gradient(180deg, #0c1526 0%, #0f1b31 55%, #14243d 100%);
+}
+
+.dark .side-nav nav button,
+.dark .nav-logout {
+  border-color: rgba(226, 232, 240, 0.12);
+  background: rgba(255, 255, 255, 0.05);
+  color: #eaf2ff;
+}
+
+.dark .side-nav nav button:hover,
+.dark .nav-logout:hover {
+  background: rgba(255, 255, 255, 0.11);
+}
+
+.dark .shell-top {
+  background: rgba(17, 27, 47, 0.86);
+  border-color: var(--line);
 }
 
 .dark .field {
@@ -1449,6 +1488,19 @@ button:active {
 .dark .inline-form input::placeholder,
 .dark .modal-card input::placeholder {
   color: #8fa5c4;
+}
+
+.dark .module-header h2,
+.dark .module-card h3,
+.dark .card-title,
+.dark .cart-title-row span,
+.dark .auth-form-title {
+  color: #f4f8ff;
+}
+
+.dark .line.total span,
+.dark .line.total strong {
+  color: #f8fbff;
 }
 
 .dark .field:focus-within,
@@ -1493,6 +1545,36 @@ button:active {
   color: var(--muted);
 }
 
+.dark .table-wrap,
+.dark .table-wrap table,
+.dark .table-wrap th,
+.dark .table-wrap td {
+  border-color: var(--line);
+}
+
+.dark .table-wrap th {
+  background: #182741;
+  color: #d8e4f6;
+}
+
+.dark .plain-list li {
+  border-color: var(--line);
+  background: rgba(21, 34, 58, 0.72);
+}
+
+.dark .product-card {
+  border-color: var(--line);
+  background: linear-gradient(180deg, #15223a 0%, #111b2f 100%);
+}
+
+.dark .product-card:hover {
+  border-color: #4f709c;
+}
+
+.dark .product-card span {
+  color: #fb7185;
+}
+
 .dark .cart-item,
 .dark .qty-controller button,
 .dark .split-row input,
@@ -1509,6 +1591,18 @@ button:active {
 .dark .ghost-icon,
 .dark .cart-line.sub span {
   color: var(--muted);
+}
+
+.dark .login-page {
+  background:
+    radial-gradient(880px 440px at 5% 12%, rgba(14, 165, 233, 0.2), transparent 60%),
+    radial-gradient(760px 420px at 96% 80%, rgba(244, 63, 94, 0.16), transparent 62%),
+    linear-gradient(145deg, #071224 0%, #0a1629 44%, #0f1c31 100%);
+}
+
+.dark .auth-footer {
+  border-top-color: rgba(239, 68, 68, 0.45);
+  color: #b8c7dc;
 }
 
 @media (max-width: 1260px) {

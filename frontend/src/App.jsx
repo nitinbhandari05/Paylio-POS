@@ -5,7 +5,6 @@ import {
   Warehouse,
   Armchair,
   FileBarChart2,
-  Wallet,
   UtensilsCrossed,
   Settings,
   LifeBuoy,
@@ -36,7 +35,6 @@ const NAV_ITEMS = [
   { id: "waiter", label: "Waiter", icon: HandPlatter },
   { id: "kitchen", label: "Kitchen", icon: UtensilsCrossed },
   { id: "reports", label: "Reports", icon: FileBarChart2 },
-  { id: "finance", label: "Finance", icon: Wallet },
   { id: "support", label: "Help & Support", icon: LifeBuoy },
   { id: "settings", label: "Settings", icon: Settings },
 ];
@@ -51,7 +49,6 @@ function renderPage(activePage, session, dark, toggleDark, logout) {
   if (activePage === "waiter") return <WaiterPage session={session} />;
   if (activePage === "kitchen") return <KitchenPage />;
   if (activePage === "reports") return <ReportsPage />;
-  if (activePage === "finance") return <ReportsPage title="Finance Reports" />;
   if (activePage === "support") return <HelpSupportPage />;
   if (activePage === "settings") {
     return (

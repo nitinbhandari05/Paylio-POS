@@ -1,1 +1,68 @@
-[]
+[
+  {
+    "_id": "41b47a23-c074-450c-acb6-75d7e514aa05",
+    "status": "open",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 18,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [
+      {
+        "_id": "2dfef289-6379-473a-8934-47dc11d08fea",
+        "productId": "2ede59b3-eb55-4239-95c4-c5f4e6a03855",
+        "name": "Masala Tea",
+        "sku": "demo-1777797808317-5r2y",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 30,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      }
+    ],
+    "createdBy": null,
+    "createdAt": "2026-05-03T08:43:28.352Z",
+    "updatedAt": "2026-05-03T08:43:28.355Z"
+  },
+  {
+    "_id": "b38d9fe0-c868-4852-a15f-200257232b14",
+    "status": "closed",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 18,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [
+      {
+        "_id": "4f40adc3-f0c3-43ef-94c6-dd05ebe833df",
+        "productId": "2ede59b3-eb55-4239-95c4-c5f4e6a03855",
+        "name": "Masala Tea",
+        "sku": "demo-1777797808317-5r2y",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 30,
+        "cost": 0,
+        "gstRate": 18,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      }
+    ],
+    "createdBy": null,
+    "createdAt": "2026-05-03T08:43:46.185Z",
+    "updatedAt": "2026-05-03T08:43:46.197Z"
+  }
+]

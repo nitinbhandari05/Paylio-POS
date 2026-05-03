@@ -1,1 +1,13 @@
-[]
+[
+  {
+    "_id": "4397fbe8-b931-4a32-8639-bbdef6da94a4",
+    "outletId": "main",
+    "productId": "2ede59b3-eb55-4239-95c4-c5f4e6a03855",
+    "productName": "Masala Tea",
+    "sku": "demo-1777797808317-5r2y",
+    "quantity": 19,
+    "lowStockThreshold": 5,
+    "updatedAt": "2026-05-03T08:43:46.193Z",
+    "createdAt": "2026-05-03T08:43:28.359Z"
+  }
+]

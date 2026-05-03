@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import logo from "../assets/logo-paylio-pos.png";
+import logo from "../assets/logo.svg";
 import loginHeroImage from "../assets/login-hero.png";
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

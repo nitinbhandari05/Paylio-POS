@@ -4,7 +4,8 @@ const money = (value) =>
   new Intl.NumberFormat("en-IN", {
     style: "currency",
     currency: "INR",
-    maximumFractionDigits: 0,
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
   }).format(Number(value || 0));
 
 export default function ReportsPage({ title = "Reports" }) {
@@ -65,6 +66,52 @@ export default function ReportsPage({ title = "Reports" }) {
             <article className="module-card"><span>Staff</span><strong>{report.headline.staffCount}</strong></article>
             <article className="module-card"><span>Repeat Customers</span><strong>{crmSummary?.repeatCustomers ?? 0}</strong></article>
             <article className="module-card"><span>Loyalty Points</span><strong>{crmSummary?.loyaltyPointsIssued ?? 0}</strong></article>
+          </div>
+
+          <div className="reports-grid">
+            <article className="module-card">
+              <h3>Today Snapshot ({report.daily?.date || "--"})</h3>
+              <ul className="plain-list">
+                <li>
+                  <span>Orders</span>
+                  <strong>{report.daily?.orders ?? 0}</strong>
+                </li>
+                <li>
+                  <span>Revenue</span>
+                  <strong>{money(report.daily?.grossRevenue || 0)}</strong>
+                </li>
+                <li>
+                  <span>Tax</span>
+                  <strong>{money(report.daily?.taxes || 0)}</strong>
+                </li>
+                <li>
+                  <span>Refunds</span>
+                  <strong>{money(report.daily?.refunds || 0)}</strong>
+                </li>
+                <li>
+                  <span>Avg Order Value</span>
+                  <strong>{money(report.daily?.avgOrderValue || 0)}</strong>
+                </li>
+              </ul>
+            </article>
+
+            <article className="module-card">
+              <h3>Today Hourly Revenue</h3>
+              <ul className="plain-list">
+                {(report.daily?.hourlyRevenue || [])
+                  .filter((row) => Number(row.orders || 0) > 0)
+                  .slice(-8)
+                  .map((row) => (
+                    <li key={row.hour}>
+                      <span>{row.hour}</span>
+                      <strong>{money(row.revenue)} · {row.orders} orders</strong>
+                    </li>
+                  ))}
+                {!(report.daily?.hourlyRevenue || []).some((row) => Number(row.orders || 0) > 0) && (
+                  <li><span>No sales recorded today yet.</span><strong>-</strong></li>
+                )}
+              </ul>
+            </article>
           </div>
 
           <div className="reports-grid">

@@ -604,10 +604,12 @@ router.get("/reports/overview", async (req, res) => {
     User.list(),
   ]);
 
-  const completedOrders = orders.filter((item) => item.status === "completed");
+  const billedOrders = orders.filter(
+    (item) => !["cancelled", "refunded"].includes(String(item.status || "").toLowerCase())
+  );
   const topProductsMap = new Map();
 
-  for (const order of orders) {
+  for (const order of billedOrders) {
     for (const item of order.items || []) {
       const key = item.productId || item.name;
       const current = topProductsMap.get(key) || {
@@ -637,13 +639,46 @@ router.get("/reports/overview", async (req, res) => {
       status: order.status,
     }));
 
+  const now = new Date();
+  const startOfDay = new Date(now);
+  startOfDay.setHours(0, 0, 0, 0);
+  const endOfDay = new Date(now);
+  endOfDay.setHours(23, 59, 59, 999);
+
+  const todayBilled = billedOrders.filter((order) => {
+    const createdAt = new Date(order.createdAt || "");
+    if (Number.isNaN(createdAt.getTime())) return false;
+    return createdAt >= startOfDay && createdAt <= endOfDay;
+  });
+
+  const todayRefunds = orders.filter((order) => {
+    if (String(order.status || "").toLowerCase() !== "refunded") return false;
+    const createdAt = new Date(order.createdAt || "");
+    if (Number.isNaN(createdAt.getTime())) return false;
+    return createdAt >= startOfDay && createdAt <= endOfDay;
+  });
+
+  const hourlyRevenue = Array.from({ length: 24 }, (_, hour) => ({
+    hour: `${String(hour).padStart(2, "0")}:00`,
+    orders: 0,
+    revenue: 0,
+  }));
+
+  for (const order of todayBilled) {
+    const createdAt = new Date(order.createdAt || "");
+    const hour = createdAt.getHours();
+    const bucket = hourlyRevenue[hour];
+    bucket.orders += 1;
+    bucket.revenue += Number(order.total || 0);
+  }
+
   res.json({
     outletId,
     headline: {
       orders: orders.length,
-      completedOrders: completedOrders.length,
-      grossRevenue: completedOrders.reduce((sum, order) => sum + Number(order.total || 0), 0),
-      taxes: completedOrders.reduce((sum, order) => sum + Number(order.gstAmount || 0), 0),
+      completedOrders: orders.filter((item) => item.status === "completed").length,
+      grossRevenue: billedOrders.reduce((sum, order) => sum + Number(order.total || 0), 0),
+      taxes: billedOrders.reduce((sum, order) => sum + Number(order.gstAmount || 0), 0),
       refunds: orders
         .filter((order) => order.status === "refunded")
         .reduce((sum, order) => sum + Number(order.refundAmount || order.total || 0), 0),
@@ -654,6 +689,20 @@ router.get("/reports/overview", async (req, res) => {
     },
     topProducts,
     recentTrend,
+    daily: {
+      date: now.toISOString().slice(0, 10),
+      orders: todayBilled.length,
+      grossRevenue: todayBilled.reduce((sum, order) => sum + Number(order.total || 0), 0),
+      taxes: todayBilled.reduce((sum, order) => sum + Number(order.gstAmount || 0), 0),
+      refunds: todayRefunds.reduce(
+        (sum, order) => sum + Number(order.refundAmount || order.total || 0),
+        0
+      ),
+      avgOrderValue: todayBilled.length
+        ? todayBilled.reduce((sum, order) => sum + Number(order.total || 0), 0) / todayBilled.length
+        : 0,
+      hourlyRevenue,
+    },
   });
 });
 
@@ -673,6 +722,7 @@ router.get("/reports/staff-activity", async (req, res) => {
   }
 
   for (const order of orders) {
+    if (["cancelled", "refunded"].includes(String(order.status || "").toLowerCase())) continue;
     const key = String(order.waiterName || "").toLowerCase();
     if (!key) continue;
     const row = staffMap.get(key) || {
@@ -706,7 +756,9 @@ router.get("/reports/outlet-comparison", async (_req, res) => {
       refunds: 0,
     };
     row.orders += 1;
-    row.revenue += Number(order.total || 0);
+    if (!["cancelled", "refunded"].includes(String(order.status || "").toLowerCase())) {
+      row.revenue += Number(order.total || 0);
+    }
     if (order.status === "completed") row.completedOrders += 1;
     if (order.status === "refunded") row.refunds += Number(order.refundAmount || order.total || 0);
     metrics.set(outletId, row);

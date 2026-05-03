@@ -62,7 +62,8 @@ const calculateCart = (cart) => {
     quantity: toNumber(item.quantity, 0),
     unitPrice: toNumber(item.unitPrice, 0),
     discountValue: toNumber(item.discountValue, 0),
-    gstRate: toNumber(item.gstRate, DEFAULT_GST_RATE),
+    // Single GST policy across app: always use configured/default GST.
+    gstRate: DEFAULT_GST_RATE,
   }));
 
   const lineBreakdowns = baseItems.map((item) => {
@@ -125,7 +126,7 @@ const calculateCart = (cart) => {
     const taxableAmount = roundMoney(
       Math.max(0, item.taxableBeforeCartDiscount - cartDiscountShare)
     );
-    const gstRate = toNumber(item.gstRate, DEFAULT_GST_RATE);
+    const gstRate = DEFAULT_GST_RATE;
     const gstAmount = roundMoney((taxableAmount * gstRate) / 100);
     const lineTotal = roundMoney(taxableAmount + gstAmount);
 
@@ -163,7 +164,7 @@ const calculateCart = (cart) => {
     total,
     totalQuantity,
     itemCount: enrichedItems.length,
-    gstRate: toNumber(cart.gstRate, DEFAULT_GST_RATE),
+    gstRate: DEFAULT_GST_RATE,
   };
 };
 
@@ -214,7 +215,7 @@ const Cart = {
       outletId: String(payload.outletId || process.env.DEFAULT_OUTLET_ID || "main"),
       ...customer,
       notes: payload.notes || "",
-      gstRate: toNumber(payload.gstRate, DEFAULT_GST_RATE),
+      gstRate: DEFAULT_GST_RATE,
       discountType: payload.discountType || "flat",
       discountValue: toNumber(payload.discountValue, 0),
       items: [],
@@ -258,9 +259,7 @@ const Cart = {
       cart.discountValue = toNumber(payload.discountValue, cart.discountValue || 0);
     }
 
-    if (payload.gstRate !== undefined) {
-      cart.gstRate = toNumber(payload.gstRate, cart.gstRate || DEFAULT_GST_RATE);
-    }
+    cart.gstRate = DEFAULT_GST_RATE;
 
     cart.updatedAt = new Date().toISOString();
     await saveCart(cart);
@@ -291,8 +290,7 @@ const Cart = {
     const unitPrice = toNumber(payload.unitPrice, product.price);
     const existingItem = cart.items.find((item) => item.productId === product._id);
     const nextItemPatch = {
-      // Prefer cart-level GST for consistent POS billing (fallback to product only when cart rate missing).
-      gstRate: toNumber(payload.gstRate, cart.gstRate || product.taxRate || DEFAULT_GST_RATE),
+      gstRate: DEFAULT_GST_RATE,
       discountType: payload.discountType || product.discountType || "flat",
       discountValue: toNumber(payload.discountValue, product.discountValue || 0),
       note: payload.note || "",
@@ -349,9 +347,7 @@ const Cart = {
       item.unitPrice = toNumber(payload.unitPrice, item.unitPrice);
     }
 
-    if (payload.gstRate !== undefined) {
-      item.gstRate = toNumber(payload.gstRate, item.gstRate);
-    }
+    item.gstRate = DEFAULT_GST_RATE;
 
     if (payload.discountType !== undefined) {
       item.discountType = payload.discountType || "flat";

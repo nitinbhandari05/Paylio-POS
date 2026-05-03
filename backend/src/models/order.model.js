@@ -24,6 +24,7 @@ const FINAL_STATUSES = ["completed", "cancelled", "refunded"];
 const PAYMENT_METHODS = ["cash", "card", "upi", "wallet", "bank", "split"];
 const ORDER_TYPES = ["walkin", "dinein", "pickup", "delivery", "qr_table", "kiosk"];
 const DELIVERY_STATUSES = ["not_required", "placed", "preparing", "out_for_delivery", "delivered"];
+const DEFAULT_GST_RATE = Number(process.env.GST_RATE || 5);
 
 const toNumber = (value, fallback = 0) => {
   const parsed = Number(value);
@@ -203,31 +204,49 @@ const Order = {
     const invoiceNumber = await generateInvoiceNumber();
     const kotNumber = await generateKotNumber();
 
-    const items = cart.items.map((item) => ({
+    const enforcedGstRate = DEFAULT_GST_RATE;
+    const items = cart.items.map((item) => {
+      const quantity = toNumber(item.quantity, 0);
+      const unitPrice = roundMoney(item.unitPrice);
+      const lineSubtotal = roundMoney(item.lineSubtotal || quantity * unitPrice);
+      const lineDiscount = roundMoney(item.lineDiscount || 0);
+      const taxableAmount = roundMoney(
+        Math.max(0, item.taxableAmount ?? lineSubtotal - lineDiscount)
+      );
+      const gstAmount = roundMoney((taxableAmount * enforcedGstRate) / 100);
+      const lineTotal = roundMoney(taxableAmount + gstAmount);
+      return {
       _id: randomUUID(),
       productId: item.productId,
       name: item.name,
       sku: item.sku,
       categoryId: item.categoryId,
       categoryName: item.categoryName,
-      quantity: item.quantity,
-      unitPrice: roundMoney(item.unitPrice),
-      gstRate: roundMoney(item.effectiveGstRate || item.gstRate || cart.gstRate || 0),
-      lineSubtotal: roundMoney(item.lineSubtotal || item.quantity * item.unitPrice),
-      lineDiscount: roundMoney(item.lineDiscount || 0),
-      taxableAmount: roundMoney(item.taxableAmount || 0),
-      gstAmount: roundMoney(item.gstAmount || 0),
-      lineTotal: roundMoney(item.lineTotal || 0),
+      quantity,
+      unitPrice,
+      gstRate: roundMoney(enforcedGstRate),
+      lineSubtotal,
+      lineDiscount,
+      taxableAmount,
+      gstAmount,
+      lineTotal,
       note: item.note || "",
-    }));
+      };
+    });
 
     const subtotal = roundMoney(cart.subtotal || 0);
     const itemDiscountAmount = roundMoney(cart.itemDiscountAmount || 0);
     const cartDiscountAmount = roundMoney(cart.cartDiscountAmount || 0);
     const discountAmount = roundMoney(cart.discountAmount || 0);
-    const taxableSubtotal = roundMoney(cart.taxableSubtotal || 0);
-    const gstAmount = roundMoney(cart.gstAmount || 0);
-    const total = roundMoney(cart.total || 0);
+    const taxableSubtotal = roundMoney(
+      items.reduce((sum, item) => sum + Number(item.taxableAmount || 0), 0)
+    );
+    const gstAmount = roundMoney(
+      items.reduce((sum, item) => sum + Number(item.gstAmount || 0), 0)
+    );
+    const total = roundMoney(
+      items.reduce((sum, item) => sum + Number(item.lineTotal || 0), 0)
+    );
     const paymentPayload = validatePayments(payload.payments, total);
     const orderType = assertOrderType(payload.orderType || "dinein");
     const deliveryStatus = orderType === "delivery" ? "placed" : "not_required";
@@ -267,7 +286,7 @@ const Order = {
       discountAmount,
       taxableSubtotal,
       gstAmount,
-      gstRate: roundMoney(payload.gstRate ?? cart.gstRate ?? 0),
+      gstRate: roundMoney(enforcedGstRate),
       total,
       payments: paymentPayload.payments,
       amountPaid: paymentPayload.amountPaid,

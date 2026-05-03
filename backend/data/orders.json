@@ -49,7 +49,7 @@
         "lineSubtotal": 30,
         "lineDiscount": 0,
         "taxableAmount": 30,
-        "gstAmount": 5.4,
+        "gstAmount": 1.5,
         "lineTotal": 31.5,
         "note": ""
       }
@@ -59,9 +59,9 @@
     "cartDiscountAmount": 0,
     "discountAmount": 0,
     "taxableSubtotal": 30,
-    "gstAmount": 5.4,
+    "gstAmount": 1.5,
     "gstRate": 5,
-    "total": 35.4,
+    "total": 31.5,
     "payments": [
       {
         "method": "cash",
@@ -70,7 +70,7 @@
       }
     ],
     "amountPaid": 31.5,
-    "paymentStatus": "partially_paid",
+    "paymentStatus": "paid",
     "changeDue": 0,
     "createdBy": null,
     "createdAt": "2026-05-03T08:43:46.191Z",
@@ -129,12 +129,12 @@
         "categoryName": "",
         "quantity": 1,
         "unitPrice": 30,
-        "gstRate": 18,
+        "gstRate": 5,
         "lineSubtotal": 30,
         "lineDiscount": 0,
         "taxableAmount": 30,
-        "gstAmount": 5.4,
-        "lineTotal": 35.4,
+        "gstAmount": 1.5,
+        "lineTotal": 31.5,
         "note": ""
       }
     ],
@@ -143,9 +143,9 @@
     "cartDiscountAmount": 0,
     "discountAmount": 0,
     "taxableSubtotal": 30,
-    "gstAmount": 5.4,
-    "gstRate": 18,
-    "total": 35.4,
+    "gstAmount": 1.5,
+    "gstRate": 5,
+    "total": 31.5,
     "payments": [
       {
         "method": "cash",
@@ -154,7 +154,7 @@
       }
     ],
     "amountPaid": 31.5,
-    "paymentStatus": "partially_paid",
+    "paymentStatus": "paid",
     "changeDue": 0,
     "createdBy": null,
     "createdAt": "2026-05-03T08:50:14.503Z",

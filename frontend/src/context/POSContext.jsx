@@ -337,6 +337,7 @@ export function POSProvider({ children }) {
             sku: item.sku || `demo-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
             price: Number(item.price || 0),
             cost: 0,
+            taxRate: GST_RATE_PERCENT,
             lowStockThreshold: 5,
             unit: "pcs",
           }),
@@ -348,6 +349,20 @@ export function POSProvider({ children }) {
         matched = createData.product;
         byKey.set(`name:${nameKey}`, matched);
         if (matched.sku) byKey.set(`sku:${normalizeLookup(matched.sku)}`, matched);
+      } else if (Number(matched.taxRate ?? matched.gstRate ?? GST_RATE_PERCENT) !== GST_RATE_PERCENT) {
+        try {
+          const patchRes = await fetch(`/api/products/${matched._id}`, {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ taxRate: GST_RATE_PERCENT }),
+          });
+          const patchData = await patchRes.json();
+          if (patchRes.ok && patchData?.product?._id) {
+            matched = patchData.product;
+          }
+        } catch {
+          // keep flow non-blocking; backend cart GST precedence still enforces expected rate.
+        }
       }
 
       resolved.push({

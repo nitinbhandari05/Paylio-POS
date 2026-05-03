@@ -291,7 +291,8 @@ const Cart = {
     const unitPrice = toNumber(payload.unitPrice, product.price);
     const existingItem = cart.items.find((item) => item.productId === product._id);
     const nextItemPatch = {
-      gstRate: toNumber(payload.gstRate, product.taxRate || cart.gstRate || DEFAULT_GST_RATE),
+      // Prefer cart-level GST for consistent POS billing (fallback to product only when cart rate missing).
+      gstRate: toNumber(payload.gstRate, cart.gstRate || product.taxRate || DEFAULT_GST_RATE),
       discountType: payload.discountType || product.discountType || "flat",
       discountValue: toNumber(payload.discountValue, product.discountValue || 0),
       note: payload.note || "",

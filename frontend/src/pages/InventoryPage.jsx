@@ -20,23 +20,15 @@ export default function InventoryPage() {
     lowStockThreshold: "5",
     unit: "pcs",
   });
-  const [recipes, setRecipes] = useState([]);
   const [dailyReport, setDailyReport] = useState(null);
-  const [recipeForm, setRecipeForm] = useState({
-    productId: "",
-    ingredientId: "",
-    ingredientQty: "1",
-    wastagePercent: "0",
-  });
 
   const load = async () => {
     try {
-      const [summaryRes, stockRes, productsRes, categoriesRes, recipesRes, reportRes] = await Promise.all([
+      const [summaryRes, stockRes, productsRes, categoriesRes, reportRes] = await Promise.all([
         fetch("/api/public/inventory/summary"),
         fetch("/api/public/inventory/stock"),
         fetch("/api/products"),
         fetch("/api/categories"),
-        fetch("/api/public/recipes"),
         fetch("/api/public/inventory/daily-report"),
       ]);
 
@@ -44,14 +36,12 @@ export default function InventoryPage() {
       const stockData = await stockRes.json();
       const productsData = await productsRes.json();
       const categoriesData = await categoriesRes.json();
-      const recipesData = await recipesRes.json();
       const reportData = await reportRes.json();
 
       if (summaryRes.ok) setSummary(summaryData.summary || null);
       if (stockRes.ok) setStock(Array.isArray(stockData.stock) ? stockData.stock : []);
       if (productsRes.ok) setProducts(Array.isArray(productsData.products) ? productsData.products : []);
       if (categoriesRes.ok) setCategories(Array.isArray(categoriesData.categories) ? categoriesData.categories : []);
-      if (recipesRes.ok) setRecipes(Array.isArray(recipesData.recipes) ? recipesData.recipes : []);
       if (reportRes.ok) setDailyReport(reportData.report || null);
     } catch {
       // no-op
@@ -150,49 +140,6 @@ export default function InventoryPage() {
       unit: "pcs",
     });
 
-    load();
-  };
-
-  const submitRecipe = async (event) => {
-    event.preventDefault();
-    if (!recipeForm.productId || !recipeForm.ingredientId) {
-      window.alert("Select product and ingredient");
-      return;
-    }
-    if (recipeForm.productId === recipeForm.ingredientId) {
-      window.alert("Product and ingredient cannot be same");
-      return;
-    }
-    const quantity = Number(recipeForm.ingredientQty || 0);
-    if (quantity <= 0) {
-      window.alert("Ingredient quantity must be greater than 0");
-      return;
-    }
-
-    const existing = recipes.find((row) => row.productId === recipeForm.productId);
-    const ingredients = Array.isArray(existing?.ingredients) ? [...existing.ingredients] : [];
-    const idx = ingredients.findIndex((row) => row.itemId === recipeForm.ingredientId);
-    if (idx === -1) {
-      ingredients.push({ itemId: recipeForm.ingredientId, quantity, unit: "unit" });
-    } else {
-      ingredients[idx] = { ...ingredients[idx], quantity };
-    }
-
-    const response = await fetch("/api/public/recipes", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        productId: recipeForm.productId,
-        ingredients,
-        wastagePercent: Number(recipeForm.wastagePercent || 0),
-      }),
-    });
-    const data = await response.json();
-    if (!response.ok) {
-      window.alert(data.message || "Unable to save recipe");
-      return;
-    }
-    setRecipeForm((curr) => ({ ...curr, ingredientQty: "1" }));
     load();
   };
 
@@ -300,47 +247,6 @@ export default function InventoryPage() {
           </select>
           <input type="number" min="1" value={quantity} onChange={(e) => setQuantity(e.target.value)} />
           <button type="submit">Update</button>
-        </form>
-      </article>
-
-      <article className="module-card form-card">
-        <h3>Recipe Mapping (Auto Raw Material Deduction)</h3>
-        <form className="inline-form" onSubmit={submitRecipe}>
-          <select
-            value={recipeForm.productId}
-            onChange={(e) => setRecipeForm((curr) => ({ ...curr, productId: e.target.value }))}
-          >
-            <option value="">Menu Product</option>
-            {products.map((row) => (
-              <option key={row._id} value={row._id}>{row.name}</option>
-            ))}
-          </select>
-          <select
-            value={recipeForm.ingredientId}
-            onChange={(e) => setRecipeForm((curr) => ({ ...curr, ingredientId: e.target.value }))}
-          >
-            <option value="">Raw Ingredient Product</option>
-            {products.map((row) => (
-              <option key={row._id} value={row._id}>{row.name}</option>
-            ))}
-          </select>
-          <input
-            type="number"
-            min="0.01"
-            step="0.01"
-            placeholder="Qty per bill item"
-            value={recipeForm.ingredientQty}
-            onChange={(e) => setRecipeForm((curr) => ({ ...curr, ingredientQty: e.target.value }))}
-          />
-          <input
-            type="number"
-            min="0"
-            step="0.1"
-            placeholder="Wastage %"
-            value={recipeForm.wastagePercent}
-            onChange={(e) => setRecipeForm((curr) => ({ ...curr, wastagePercent: e.target.value }))}
-          />
-          <button type="submit">Save Recipe</button>
         </form>
       </article>
 

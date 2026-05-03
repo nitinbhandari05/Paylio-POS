@@ -8,7 +8,6 @@ import Inventory from "../models/inventory.model.js";
 import User from "../models/user.model.js";
 import Branch from "../models/branch.model.js";
 import Subscription from "../models/subscription.model.js";
-import Recipe from "../models/recipe.model.js";
 import Billing from "../models/billing.model.js";
 import { buildKotText, buildReceiptText, queuePrintJob } from "../utils/print.js";
 import { emitRealtime } from "../utils/realtime.js";
@@ -566,32 +565,6 @@ router.get("/inventory/daily-report", async (req, res) => {
     res.json({ report });
   } catch (error) {
     res.status(500).json({ message: error.message });
-  }
-});
-
-router.get("/recipes", async (req, res) => {
-  try {
-    const recipes = await Recipe.list({
-      outletId: resolveOutlet(req),
-      productId: req.query.productId,
-    });
-    res.json({ recipes });
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
-
-router.post("/recipes", async (req, res) => {
-  try {
-    const recipe = await Recipe.upsert({
-      outletId: resolveOutlet(req),
-      productId: req.body.productId,
-      ingredients: req.body.ingredients,
-      wastagePercent: req.body.wastagePercent,
-    });
-    res.status(201).json({ message: "Recipe saved", recipe });
-  } catch (error) {
-    res.status(400).json({ message: error.message });
   }
 });
 

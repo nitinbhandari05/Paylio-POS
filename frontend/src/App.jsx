@@ -10,7 +10,6 @@ import {
   Settings,
   LifeBuoy,
   HandPlatter,
-  Smartphone,
   LogOut,
   Moon,
   Sun,
@@ -25,7 +24,6 @@ import SettingsPage from "./pages/SettingsPage";
 import WaiterPage from "./pages/WaiterPage";
 import KitchenPage from "./pages/KitchenPage";
 import LoginPage from "./pages/LoginPage";
-import OwnerMobilePage from "./pages/OwnerMobilePage";
 import HelpSupportPage from "./pages/HelpSupportPage";
 import { POSProvider } from "./context/POSContext";
 import logo from "./assets/logo-paylio-pos.png";
@@ -37,7 +35,6 @@ const NAV_ITEMS = [
   { id: "tables", label: "Tables", icon: Armchair },
   { id: "waiter", label: "Waiter", icon: HandPlatter },
   { id: "kitchen", label: "Kitchen", icon: UtensilsCrossed },
-  { id: "owner", label: "Owner Mobile", icon: Smartphone },
   { id: "reports", label: "Reports", icon: FileBarChart2 },
   { id: "finance", label: "Finance", icon: Wallet },
   { id: "support", label: "Help & Support", icon: LifeBuoy },
@@ -53,7 +50,6 @@ function renderPage(activePage, session, dark, toggleDark, logout) {
   if (activePage === "tables") return <TableManagementPage />;
   if (activePage === "waiter") return <WaiterPage session={session} />;
   if (activePage === "kitchen") return <KitchenPage />;
-  if (activePage === "owner") return <OwnerMobilePage session={session} />;
   if (activePage === "reports") return <ReportsPage />;
   if (activePage === "finance") return <ReportsPage title="Finance Reports" />;
   if (activePage === "support") return <HelpSupportPage />;

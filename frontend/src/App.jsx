@@ -1,6 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
 import {
-  LayoutDashboard,
   ScanLine,
   Warehouse,
   Armchair,
@@ -8,19 +7,16 @@ import {
   UtensilsCrossed,
   Settings,
   LifeBuoy,
-  HandPlatter,
   LogOut,
   Moon,
   Sun,
   ShieldCheck,
 } from "lucide-react";
 import POSPage from "./pages/POSPage";
-import AdminPage from "./pages/AdminPage";
 import InventoryPage from "./pages/InventoryPage";
 import TableManagementPage from "./pages/TableManagementPage";
 import ReportsPage from "./pages/ReportsPage";
 import SettingsPage from "./pages/SettingsPage";
-import WaiterPage from "./pages/WaiterPage";
 import KitchenPage from "./pages/KitchenPage";
 import LoginPage from "./pages/LoginPage";
 import HelpSupportPage from "./pages/HelpSupportPage";
@@ -29,10 +25,8 @@ import logo from "./assets/logo-paylio-pos.png";
 
 const NAV_ITEMS = [
   { id: "pos", label: "POS", icon: ScanLine },
-  { id: "admin", label: "Admin", icon: LayoutDashboard },
   { id: "inventory", label: "Inventory", icon: Warehouse },
   { id: "tables", label: "Tables", icon: Armchair },
-  { id: "waiter", label: "Waiter", icon: HandPlatter },
   { id: "kitchen", label: "Kitchen", icon: UtensilsCrossed },
   { id: "reports", label: "Reports", icon: FileBarChart2 },
   { id: "support", label: "Help & Support", icon: LifeBuoy },
@@ -43,10 +37,8 @@ const getAllowedNav = () => NAV_ITEMS.map((item) => item.id);
 
 function renderPage(activePage, session, dark, toggleDark, logout) {
   if (activePage === "pos") return <POSPage />;
-  if (activePage === "admin") return <AdminPage />;
   if (activePage === "inventory") return <InventoryPage />;
   if (activePage === "tables") return <TableManagementPage />;
-  if (activePage === "waiter") return <WaiterPage session={session} />;
   if (activePage === "kitchen") return <KitchenPage />;
   if (activePage === "reports") return <ReportsPage />;
   if (activePage === "support") return <HelpSupportPage />;

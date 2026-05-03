@@ -14,5 +14,21 @@
     "active": true,
     "createdAt": "2026-05-03T08:43:28.341Z",
     "updatedAt": "2026-05-03T08:43:28.341Z"
+  },
+  {
+    "_id": "28ca5383-e3f8-46b9-b1ca-4f584dae8468",
+    "name": "Veg Burger",
+    "sku": "VEG-BURGER",
+    "categoryId": "dcc5a77e-9cb6-4879-ab07-5f30f806e660",
+    "categoryName": "Burger",
+    "description": "",
+    "price": 100,
+    "cost": 100,
+    "taxRate": 5,
+    "unit": "pcs",
+    "lowStockThreshold": 5,
+    "active": true,
+    "createdAt": "2026-05-03T08:58:24.478Z",
+    "updatedAt": "2026-05-03T08:58:24.478Z"
   }
 ]

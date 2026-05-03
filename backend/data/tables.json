@@ -1,1 +1,54 @@
-[]
+[
+  {
+    "_id": "b1f42bcf-b797-4673-9ba5-e7bce85871b1",
+    "outletId": "main",
+    "number": 1,
+    "seats": 4,
+    "status": "occupied",
+    "label": "Table 1",
+    "qrSlug": "main-table-1",
+    "active": true,
+    "notes": "",
+    "createdAt": "2026-05-03T09:00:41.048Z",
+    "updatedAt": "2026-05-03T09:03:51.751Z"
+  },
+  {
+    "_id": "9ebfef84-c9c4-4f2a-95e1-91f911dcce3c",
+    "outletId": "main",
+    "number": 2,
+    "seats": 4,
+    "status": "occupied",
+    "label": "Table 2",
+    "qrSlug": "main-table-2",
+    "active": true,
+    "notes": "",
+    "createdAt": "2026-05-03T09:03:05.722Z",
+    "updatedAt": "2026-05-03T09:03:53.232Z"
+  },
+  {
+    "_id": "4ae7409a-9e30-4929-b5f9-7e99989aa80c",
+    "outletId": "main",
+    "number": 3,
+    "seats": 4,
+    "status": "occupied",
+    "label": "Table 3",
+    "qrSlug": "main-table-3",
+    "active": true,
+    "notes": "",
+    "createdAt": "2026-05-03T09:03:05.724Z",
+    "updatedAt": "2026-05-03T09:03:54.334Z"
+  },
+  {
+    "_id": "0b7ae784-bacb-433c-ad2a-597837e0a98b",
+    "outletId": "main",
+    "number": 4,
+    "seats": 4,
+    "status": "occupied",
+    "label": "Table 4",
+    "qrSlug": "main-table-4",
+    "active": true,
+    "notes": "",
+    "createdAt": "2026-05-03T09:03:05.725Z",
+    "updatedAt": "2026-05-03T09:03:55.152Z"
+  }
+]

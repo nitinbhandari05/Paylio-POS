@@ -6,7 +6,7 @@
     "outletId": "main",
     "orderType": "dinein",
     "cartId": "b38d9fe0-c868-4852-a15f-200257232b14",
-    "status": "accepted",
+    "status": "completed",
     "statusTimeline": [
       {
         "status": "pending",
@@ -16,6 +16,21 @@
       {
         "status": "accepted",
         "at": "2026-05-03T08:43:46.198Z",
+        "by": null
+      },
+      {
+        "status": "preparing",
+        "at": "2026-05-03T08:53:53.872Z",
+        "by": null
+      },
+      {
+        "status": "ready",
+        "at": "2026-05-03T08:53:56.089Z",
+        "by": null
+      },
+      {
+        "status": "completed",
+        "at": "2026-05-03T08:53:59.426Z",
         "by": null
       }
     ],
@@ -74,8 +89,8 @@
     "changeDue": 0,
     "createdBy": null,
     "createdAt": "2026-05-03T08:43:46.191Z",
-    "updatedAt": "2026-05-03T08:43:46.198Z",
-    "completedAt": null,
+    "updatedAt": "2026-05-03T08:53:59.426Z",
+    "completedAt": "2026-05-03T08:53:59.426Z",
     "cancelledAt": null,
     "refundedAt": null,
     "cancelReason": "",
@@ -90,7 +105,7 @@
     "outletId": "main",
     "orderType": "dinein",
     "cartId": "36181e02-d1c7-42a4-90f2-4f2d3e4cb853",
-    "status": "accepted",
+    "status": "completed",
     "statusTimeline": [
       {
         "status": "pending",
@@ -100,6 +115,21 @@
       {
         "status": "accepted",
         "at": "2026-05-03T08:50:14.512Z",
+        "by": null
+      },
+      {
+        "status": "preparing",
+        "at": "2026-05-03T08:53:53.335Z",
+        "by": null
+      },
+      {
+        "status": "ready",
+        "at": "2026-05-03T08:53:55.089Z",
+        "by": null
+      },
+      {
+        "status": "completed",
+        "at": "2026-05-03T08:53:58.626Z",
         "by": null
       }
     ],
@@ -158,8 +188,240 @@
     "changeDue": 0,
     "createdBy": null,
     "createdAt": "2026-05-03T08:50:14.503Z",
-    "updatedAt": "2026-05-03T08:50:14.512Z",
-    "completedAt": null,
+    "updatedAt": "2026-05-03T08:53:58.626Z",
+    "completedAt": "2026-05-03T08:53:58.626Z",
+    "cancelledAt": null,
+    "refundedAt": null,
+    "cancelReason": "",
+    "refundReason": "",
+    "refundNumber": "",
+    "refundAmount": 0
+  },
+  {
+    "_id": "4acb0d31-6695-4f71-a4e3-1fe0a17a31ce",
+    "invoiceNumber": "INV-20260503-0005",
+    "kotNumber": "KOT-20260503-0005",
+    "outletId": "main",
+    "orderType": "dinein",
+    "cartId": "dc465fc4-4e8f-494e-863a-faa2b78511c6",
+    "status": "completed",
+    "statusTimeline": [
+      {
+        "status": "pending",
+        "at": "2026-05-03T09:00:11.024Z",
+        "by": null
+      },
+      {
+        "status": "accepted",
+        "at": "2026-05-03T09:00:11.031Z",
+        "by": null
+      },
+      {
+        "status": "preparing",
+        "at": "2026-05-03T09:03:43.616Z",
+        "by": null
+      },
+      {
+        "status": "ready",
+        "at": "2026-05-03T09:03:45.816Z",
+        "by": null
+      },
+      {
+        "status": "completed",
+        "at": "2026-05-03T09:03:47.852Z",
+        "by": null
+      }
+    ],
+    "deliveryStatus": "not_required",
+    "deliveryTimeline": [],
+    "deliveryAgentId": "",
+    "deliveryAgentName": "",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "deliveryAddress": "",
+    "orderSource": "counter",
+    "integrationSource": "",
+    "externalOrderId": "",
+    "channelMetadata": {},
+    "tableNo": "T2",
+    "waiterName": "Waiter 1",
+    "notes": "",
+    "items": [
+      {
+        "_id": "ef9f2f45-878f-4645-8309-ab8c4e38f412",
+        "productId": "28ca5383-e3f8-46b9-b1ca-4f584dae8468",
+        "name": "Veg Burger",
+        "sku": "VEG-BURGER",
+        "categoryId": "dcc5a77e-9cb6-4879-ab07-5f30f806e660",
+        "categoryName": "Burger",
+        "quantity": 1,
+        "unitPrice": 100,
+        "gstRate": 5,
+        "lineSubtotal": 100,
+        "lineDiscount": 0,
+        "taxableAmount": 100,
+        "gstAmount": 5,
+        "lineTotal": 105,
+        "note": ""
+      },
+      {
+        "_id": "9f351956-2f7b-428b-a19f-bafe6c0b3764",
+        "productId": "2ede59b3-eb55-4239-95c4-c5f4e6a03855",
+        "name": "Masala Tea",
+        "sku": "demo-1777797808317-5r2y",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 30,
+        "gstRate": 5,
+        "lineSubtotal": 30,
+        "lineDiscount": 0,
+        "taxableAmount": 30,
+        "gstAmount": 1.5,
+        "lineTotal": 31.5,
+        "note": ""
+      }
+    ],
+    "subtotal": 130,
+    "itemDiscountAmount": 0,
+    "cartDiscountAmount": 0,
+    "discountAmount": 0,
+    "taxableSubtotal": 130,
+    "gstAmount": 6.5,
+    "gstRate": 5,
+    "total": 136.5,
+    "payments": [
+      {
+        "method": "cash",
+        "amount": 136.5,
+        "reference": ""
+      }
+    ],
+    "amountPaid": 136.5,
+    "paymentStatus": "paid",
+    "changeDue": 0,
+    "createdBy": null,
+    "createdAt": "2026-05-03T09:00:11.021Z",
+    "updatedAt": "2026-05-03T09:03:47.852Z",
+    "completedAt": "2026-05-03T09:03:47.852Z",
+    "cancelledAt": null,
+    "refundedAt": null,
+    "cancelReason": "",
+    "refundReason": "",
+    "refundNumber": "",
+    "refundAmount": 0
+  },
+  {
+    "_id": "850af071-0139-4fff-8bac-6ecfb3854623",
+    "invoiceNumber": "INV-20260503-0006",
+    "kotNumber": "KOT-20260503-0006",
+    "outletId": "main",
+    "orderType": "dinein",
+    "cartId": "7084dbee-8ab5-48e4-94a4-9cd6650c32c8",
+    "status": "completed",
+    "statusTimeline": [
+      {
+        "status": "pending",
+        "at": "2026-05-03T09:03:35.871Z",
+        "by": null
+      },
+      {
+        "status": "accepted",
+        "at": "2026-05-03T09:03:35.879Z",
+        "by": null
+      },
+      {
+        "status": "preparing",
+        "at": "2026-05-03T09:03:42.818Z",
+        "by": null
+      },
+      {
+        "status": "ready",
+        "at": "2026-05-03T09:03:44.933Z",
+        "by": null
+      },
+      {
+        "status": "completed",
+        "at": "2026-05-03T09:03:46.867Z",
+        "by": null
+      }
+    ],
+    "deliveryStatus": "not_required",
+    "deliveryTimeline": [],
+    "deliveryAgentId": "",
+    "deliveryAgentName": "",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "deliveryAddress": "",
+    "orderSource": "counter",
+    "integrationSource": "",
+    "externalOrderId": "",
+    "channelMetadata": {},
+    "tableNo": "T4",
+    "waiterName": "Waiter 1",
+    "notes": "",
+    "items": [
+      {
+        "_id": "e4c016f4-2439-4d46-be0f-5eb7c4d6d940",
+        "productId": "2ede59b3-eb55-4239-95c4-c5f4e6a03855",
+        "name": "Masala Tea",
+        "sku": "demo-1777797808317-5r2y",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 30,
+        "gstRate": 5,
+        "lineSubtotal": 30,
+        "lineDiscount": 0,
+        "taxableAmount": 30,
+        "gstAmount": 1.5,
+        "lineTotal": 31.5,
+        "note": ""
+      },
+      {
+        "_id": "4a447b59-797b-4d05-a1e1-61e4e7c5c7d8",
+        "productId": "28ca5383-e3f8-46b9-b1ca-4f584dae8468",
+        "name": "Veg Burger",
+        "sku": "VEG-BURGER",
+        "categoryId": "dcc5a77e-9cb6-4879-ab07-5f30f806e660",
+        "categoryName": "Burger",
+        "quantity": 1,
+        "unitPrice": 100,
+        "gstRate": 5,
+        "lineSubtotal": 100,
+        "lineDiscount": 0,
+        "taxableAmount": 100,
+        "gstAmount": 5,
+        "lineTotal": 105,
+        "note": ""
+      }
+    ],
+    "subtotal": 130,
+    "itemDiscountAmount": 0,
+    "cartDiscountAmount": 0,
+    "discountAmount": 0,
+    "taxableSubtotal": 130,
+    "gstAmount": 6.5,
+    "gstRate": 5,
+    "total": 136.5,
+    "payments": [
+      {
+        "method": "cash",
+        "amount": 136.5,
+        "reference": ""
+      }
+    ],
+    "amountPaid": 136.5,
+    "paymentStatus": "paid",
+    "changeDue": 0,
+    "createdBy": null,
+    "createdAt": "2026-05-03T09:03:35.868Z",
+    "updatedAt": "2026-05-03T09:03:46.867Z",
+    "completedAt": "2026-05-03T09:03:46.867Z",
     "cancelledAt": null,
     "refundedAt": null,
     "cancelReason": "",

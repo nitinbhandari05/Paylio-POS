@@ -18,5 +18,25 @@
     "status": "queued",
     "createdAt": "2026-05-03T08:50:14.514Z",
     "updatedAt": "2026-05-03T08:50:14.514Z"
+  },
+  {
+    "_id": "06bd35f8-b97c-4334-a81b-8e10fb630a3d",
+    "type": "receipt",
+    "orderId": "4acb0d31-6695-4f71-a4e3-1fe0a17a31ce",
+    "content": "Invoice INV-20260503-0005\nKOT KOT-20260503-0005\nCustomer Walk-in\nPhone -\n\n1 x Veg Burger @ 100 = 105\n1 x Masala Tea @ 30 = 31.5\n\nSubtotal: 130\nDiscount: 0\nGST: 6.5\nTotal: 136.5\nPaid: 136.5\nChange: 0\n\nPayments:\nCASH: 136.5",
+    "copies": 1,
+    "status": "queued",
+    "createdAt": "2026-05-03T09:00:11.032Z",
+    "updatedAt": "2026-05-03T09:00:11.032Z"
+  },
+  {
+    "_id": "ceb1fdd2-e785-4239-b826-1aafd5d0e470",
+    "type": "receipt",
+    "orderId": "850af071-0139-4fff-8bac-6ecfb3854623",
+    "content": "Invoice INV-20260503-0006\nKOT KOT-20260503-0006\nCustomer Walk-in\nPhone -\n\n1 x Masala Tea @ 30 = 31.5\n1 x Veg Burger @ 100 = 105\n\nSubtotal: 130\nDiscount: 0\nGST: 6.5\nTotal: 136.5\nPaid: 136.5\nChange: 0\n\nPayments:\nCASH: 136.5",
+    "copies": 1,
+    "status": "queued",
+    "createdAt": "2026-05-03T09:03:35.880Z",
+    "updatedAt": "2026-05-03T09:03:35.880Z"
   }
 ]

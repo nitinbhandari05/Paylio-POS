@@ -1,1 +1,10 @@
-[]
+[
+  {
+    "_id": "dcc5a77e-9cb6-4879-ab07-5f30f806e660",
+    "name": "Burger",
+    "slug": "burger",
+    "description": "",
+    "createdAt": "2026-05-03T08:58:16.842Z",
+    "updatedAt": "2026-05-03T08:58:16.842Z"
+  }
+]

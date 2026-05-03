@@ -147,12 +147,12 @@ router.post("/orders", async (req, res) => {
 
     const orderType = String(req.body.orderType || "pickup").toLowerCase();
     let table = null;
-    if (orderType === "qr_table") {
+    if (orderType === "qr_table" || orderType === "dinein") {
       table = await Table.findOne({
         number: Number(req.body.tableNo || req.body.tableNumber),
         outletId,
       });
-      if (!table) {
+      if (!table && orderType === "qr_table") {
         return res.status(400).json({ message: "Valid table number is required for qr_table" });
       }
     }
@@ -505,6 +505,83 @@ router.get("/tables", async (req, res) => {
   const outletId = resolveOutlet(req);
   const tables = await Table.list({ outletId });
   res.json({ outletId, tables });
+});
+
+router.post("/tables", async (req, res) => {
+  try {
+    const table = await Table.create({
+      outletId: resolveOutlet(req),
+      number: req.body.number,
+      seats: req.body.seats,
+      label: req.body.label,
+      notes: req.body.notes,
+      active: req.body.active,
+    });
+    res.status(201).json({ message: "Table created", table });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
+router.post("/tables/bulk", async (req, res) => {
+  try {
+    const startNumber = Number(req.body.startNumber);
+    const endNumber = Number(req.body.endNumber);
+    const seats = Number(req.body.seats || 4);
+    const outletId = resolveOutlet(req);
+
+    if (!Number.isFinite(startNumber) || !Number.isFinite(endNumber) || startNumber <= 0 || endNumber <= 0) {
+      return res.status(400).json({ message: "Valid startNumber and endNumber are required" });
+    }
+    if (endNumber < startNumber) {
+      return res.status(400).json({ message: "endNumber must be greater than or equal to startNumber" });
+    }
+
+    const created = [];
+    const skipped = [];
+    for (let number = startNumber; number <= endNumber; number += 1) {
+      try {
+        const table = await Table.create({
+          outletId,
+          number,
+          seats,
+          label: `Table ${number}`,
+          notes: req.body.notes || "",
+          active: true,
+        });
+        created.push(table);
+      } catch {
+        skipped.push(number);
+      }
+    }
+
+    res.status(201).json({
+      message: "Bulk table creation completed",
+      createdCount: created.length,
+      skippedCount: skipped.length,
+      skipped,
+      tables: created,
+    });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
+router.patch("/tables/:tableId", async (req, res) => {
+  try {
+    const table = await Table.update(req.params.tableId, {
+      seats: req.body.seats,
+      label: req.body.label,
+      notes: req.body.notes,
+      active: req.body.active,
+    });
+    if (!table) {
+      return res.status(404).json({ message: "Table not found" });
+    }
+    res.json({ message: "Table updated", table });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
 });
 
 router.patch("/tables/:tableId/status", async (req, res) => {

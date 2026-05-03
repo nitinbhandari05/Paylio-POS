@@ -1,15 +1,1 @@
-[
-  {
-    "_id": "sub-main",
-    "organizationId": "org-main",
-    "planId": "growth",
-    "status": "active",
-    "billingCycle": "monthly",
-    "autoRenew": true,
-    "currentPeriodStart": "2026-04-01T00:00:00.000Z",
-    "currentPeriodEnd": "2026-04-30T23:59:59.000Z",
-    "trialEndsAt": "2026-04-15T23:59:59.000Z",
-    "updatedAt": "2026-04-21T00:00:00.000Z",
-    "createdAt": "2026-04-01T00:00:00.000Z"
-  }
-]
+[]

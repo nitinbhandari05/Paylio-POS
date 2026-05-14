@@ -258,5 +258,39 @@
     "createdBy": null,
     "createdAt": "2026-05-14T08:18:32.473Z",
     "updatedAt": "2026-05-14T08:18:32.473Z"
+  },
+  {
+    "_id": "d4464b69-4172-41fe-851c-7636411600bf",
+    "status": "open",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 5,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [],
+    "createdBy": null,
+    "createdAt": "2026-05-14T08:24:17.725Z",
+    "updatedAt": "2026-05-14T08:24:17.725Z"
+  },
+  {
+    "_id": "4644ef57-3dc4-4c0d-88ce-94150e655298",
+    "status": "open",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 5,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [],
+    "createdBy": null,
+    "createdAt": "2026-05-14T08:24:17.759Z",
+    "updatedAt": "2026-05-14T08:24:17.759Z"
   }
 ]

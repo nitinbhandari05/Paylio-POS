@@ -9,3 +9,5 @@ export const registerValidator = [
 ];
 
 export const loginValidator = [body("email").isEmail().normalizeEmail(), body("password").notEmpty()];
+
+export const pinLoginValidator = [body("pin").matches(/^\d{4,6}$/).withMessage("PIN must be 4 to 6 digits")];

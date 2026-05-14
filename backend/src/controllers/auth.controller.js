@@ -12,6 +12,11 @@ export const login = asyncHandler(async (req, res) => {
   successResponse(res, data, "Login successful");
 });
 
+export const loginWithPin = asyncHandler(async (req, res) => {
+  const data = await authService.loginWithPin(req.body);
+  successResponse(res, data, "PIN login successful");
+});
+
 export const refreshToken = asyncHandler(async (req, res) => {
   const data = await authService.refresh(req.body.refreshToken);
   successResponse(res, data, "Token refreshed");

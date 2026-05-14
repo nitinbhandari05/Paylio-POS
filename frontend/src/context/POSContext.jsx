@@ -339,6 +339,7 @@ export function POSProvider({ children }) {
             name: item.name,
             sku: item.sku || `demo-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
             price: Number(item.price || 0),
+            stock: 999,
             costPrice: 0,
             taxPercentage: GST_RATE_PERCENT,
             lowStockThreshold: 5,

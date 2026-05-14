@@ -37,8 +37,12 @@ export const authService = {
     const user = await User.create(payload);
     return sanitizeUser(user);
   },
-  async login({ email, password }) {
-    const user = await User.findOne({ email: String(email).toLowerCase() }).select("+password");
+  async login({ email, phone, password }) {
+    const identifier = String(email || phone || "").trim();
+    const query = identifier.includes("@")
+      ? { email: identifier.toLowerCase() }
+      : { $or: [{ email: identifier.toLowerCase() }, { phone: identifier }] };
+    const user = await User.findOne(query).select("+password");
     if (!user || !(await user.comparePassword(password))) throw new AppError("Invalid credentials", 401);
     if (!user.isActive) throw new AppError("User account is inactive", 403);
     return issueTokens(user);

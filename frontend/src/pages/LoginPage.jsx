@@ -120,7 +120,8 @@ export default function LoginPage({ onLogin }) {
       const data = await response.json();
       if (!response.ok) throw new Error(data.message || "Unable to send OTP");
       setRegisterOtpSent(true);
-      window.alert(data.debugOtp ? `OTP sent. Dev code: ${data.debugOtp}` : "OTP sent successfully");
+      const debugOtp = data.debugOtp || data.data?.debugOtp;
+      window.alert(debugOtp ? `OTP sent. Dev code: ${debugOtp}` : "OTP sent successfully");
     } catch (error) {
       window.alert(error.message || "Unable to send OTP");
     } finally {
@@ -171,7 +172,7 @@ export default function LoginPage({ onLogin }) {
           phone,
           password: registerForm.password,
           pin: registerForm.pin.trim(),
-          role: "user",
+          role: "manager",
           otpChannel: registerForm.otpChannel,
           otpCode: registerForm.otpCode.trim(),
         }),
@@ -225,7 +226,8 @@ export default function LoginPage({ onLogin }) {
       const data = await response.json();
       if (!response.ok) throw new Error(data.message || "Unable to send OTP");
       setForgotOtpSent(true);
-      window.alert(data.debugOtp ? `OTP sent. Dev code: ${data.debugOtp}` : "OTP sent successfully");
+      const debugOtp = data.debugOtp || data.data?.debugOtp;
+      window.alert(debugOtp ? `OTP sent. Dev code: ${debugOtp}` : "OTP sent successfully");
     } catch (error) {
       window.alert(error.message || "Unable to send OTP");
     } finally {

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { authFetch } from "../lib/api.js";
 
 export default function InventoryPage() {
   const [summary, setSummary] = useState(null);
@@ -27,21 +28,21 @@ export default function InventoryPage() {
       const [summaryRes, stockRes, productsRes, categoriesRes, reportRes] = await Promise.all([
         fetch("/api/public/inventory/summary"),
         fetch("/api/public/inventory/stock"),
-        fetch("/api/products"),
-        fetch("/api/categories"),
+        authFetch("/api/products"),
+        authFetch("/api/categories"),
         fetch("/api/public/inventory/daily-report"),
       ]);
 
       const summaryData = await summaryRes.json();
       const stockData = await stockRes.json();
-      const productsData = await productsRes.json();
-      const categoriesData = await categoriesRes.json();
+      const productsData = productsRes;
+      const categoriesData = categoriesRes;
       const reportData = await reportRes.json();
 
       if (summaryRes.ok) setSummary(summaryData.summary || null);
       if (stockRes.ok) setStock(Array.isArray(stockData.stock) ? stockData.stock : []);
-      if (productsRes.ok) setProducts(Array.isArray(productsData.products) ? productsData.products : []);
-      if (categoriesRes.ok) setCategories(Array.isArray(categoriesData.categories) ? categoriesData.categories : []);
+      setProducts(Array.isArray(productsData.products) ? productsData.products : Array.isArray(productsData.data) ? productsData.data : []);
+      setCategories(Array.isArray(categoriesData.categories) ? categoriesData.categories : Array.isArray(categoriesData.data) ? categoriesData.data : []);
       if (reportRes.ok) setDailyReport(reportData.report || null);
     } catch {
       // no-op
@@ -80,18 +81,16 @@ export default function InventoryPage() {
       return;
     }
 
-    const response = await fetch("/api/categories", {
+    try {
+      await authFetch("/api/categories", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         name: newCategory.name.trim(),
         description: newCategory.description.trim(),
       }),
-    });
-
-    const data = await response.json();
-    if (!response.ok) {
-      window.alert(data.message || "Unable to create category");
+      });
+    } catch (error) {
+      window.alert(error.message || "Unable to create category");
       return;
     }
 
@@ -110,23 +109,22 @@ export default function InventoryPage() {
       return;
     }
 
-    const response = await fetch("/api/products", {
+    try {
+      await authFetch("/api/products", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         name: newProduct.name.trim(),
         sku: newProduct.sku.trim() || undefined,
         categoryId: newProduct.categoryId || "",
         price: Number(newProduct.price || 0),
-        cost: Number(newProduct.cost || 0),
+        costPrice: Number(newProduct.cost || 0),
+        taxPercentage: 5,
+        stock: 0,
         lowStockThreshold: Number(newProduct.lowStockThreshold || 5),
-        unit: newProduct.unit || "pcs",
       }),
-    });
-
-    const data = await response.json();
-    if (!response.ok) {
-      window.alert(data.message || "Unable to create product");
+      });
+    } catch (error) {
+      window.alert(error.message || "Unable to create product");
       return;
     }
 

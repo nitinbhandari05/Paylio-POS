@@ -1,5 +1,15 @@
 import { Router } from "express";
-import { login, loginWithPin, logout, profile, refreshToken, register } from "../controllers/auth.controller.js";
+import {
+  login,
+  loginWithPin,
+  logout,
+  profile,
+  refreshToken,
+  register,
+  requestForgotPasswordOtp,
+  requestRegisterOtp,
+  resetPasswordWithOtp,
+} from "../controllers/auth.controller.js";
 import { protect } from "../middleware/auth.middleware.js";
 import { validateRequest } from "../middleware/error.middleware.js";
 import { loginValidator, pinLoginValidator, registerValidator } from "../validators/auth.validator.js";
@@ -7,8 +17,11 @@ import { loginValidator, pinLoginValidator, registerValidator } from "../validat
 const router = Router();
 
 router.post("/register", registerValidator, validateRequest, register);
+router.post("/register/request-otp", requestRegisterOtp);
 router.post("/login", loginValidator, validateRequest, login);
 router.post("/pin-login", pinLoginValidator, validateRequest, loginWithPin);
+router.post("/forgot-password/request-otp", requestForgotPasswordOtp);
+router.post("/forgot-password/reset", resetPasswordWithOtp);
 router.post("/refresh-token", refreshToken);
 router.post("/logout", protect, logout);
 router.get("/profile", protect, profile);

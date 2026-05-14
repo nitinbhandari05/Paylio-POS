@@ -10,11 +10,11 @@ const router = Router();
 router.get("/low-stock", protect, lowStockProducts);
 router.get("/search", protect, listProducts);
 router.route("/")
-  .post(protect, authorize("admin", "manager"), upload.array("images", 5), productValidator, validateRequest, createProduct)
+  .post(protect, authorize("admin", "manager", "cashier"), upload.array("images", 5), productValidator, validateRequest, createProduct)
   .get(protect, listProducts);
 router.route("/:id")
   .get(protect, mongoIdParam(), validateRequest, getProduct)
-  .patch(protect, authorize("admin", "manager"), upload.array("images", 5), mongoIdParam(), validateRequest, updateProduct)
+  .patch(protect, authorize("admin", "manager", "cashier"), upload.array("images", 5), mongoIdParam(), validateRequest, updateProduct)
   .delete(protect, authorize("admin"), mongoIdParam(), validateRequest, deleteProduct);
 
 export default router;

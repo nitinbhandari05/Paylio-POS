@@ -1,5 +1,6 @@
 import crypto from "node:crypto";
 import Product from "../models/Product.js";
+import Category from "../models/Category.js";
 import { cacheService } from "./cache.service.js";
 import { fileService } from "./file.service.js";
 import { getPagination, paginationMeta } from "../utils/pagination.js";
@@ -7,14 +8,33 @@ import { AppError } from "../utils/AppError.js";
 
 const makeBarcode = () => crypto.randomInt(100000000000, 999999999999).toString();
 const normalizeSort = (sort = "-createdAt") => String(sort).replace(/,/g, " ");
+const makeSku = (name) =>
+  `${String(name || "ITEM")
+    .trim()
+    .toUpperCase()
+    .replace(/[^A-Z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 24) || "ITEM"}-${crypto.randomInt(1000, 9999)}`;
+
+const resolveCategoryId = async (categoryId) => {
+  if (categoryId) return categoryId;
+  const category = await Category.findOneAndUpdate(
+    { name: "Uncategorized" },
+    { name: "Uncategorized", description: "Default category for synced POS items" },
+    { upsert: true, new: true, setDefaultsOnInsert: true }
+  );
+  return category._id;
+};
 
 export const productService = {
   async create(payload, files = [], userId) {
     const images = [];
     for (const file of files) images.push(await fileService.uploadImage(file));
+    const categoryId = await resolveCategoryId(payload.categoryId);
     const product = await Product.create({
       ...payload,
-      sku: String(payload.sku).toUpperCase(),
+      categoryId,
+      sku: String(payload.sku || makeSku(payload.name)).toUpperCase(),
       barcode: payload.barcode || makeBarcode(),
       images: images.filter(Boolean),
       createdBy: userId,

@@ -4,8 +4,8 @@ export const mongoIdParam = (name = "id") => [param(name).isMongoId()];
 
 export const productValidator = [
   body("name").trim().notEmpty(),
-  body("sku").trim().notEmpty(),
-  body("categoryId").isMongoId(),
+  body("sku").optional({ values: "falsy" }).trim(),
+  body("categoryId").optional({ values: "falsy" }).isMongoId(),
   body("price").isFloat({ min: 0 }),
   body("costPrice").optional().isFloat({ min: 0 }),
   body("taxPercentage").optional().isFloat({ min: 0 }),

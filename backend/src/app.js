@@ -13,6 +13,7 @@ import inventoryRoutes from "./routes/inventory.route.js";
 import reportRoutes from "./routes/report.route.js";
 import dashboardRoutes from "./routes/dashboard.route.js";
 import publicOrderRoutes from "./routes/public-order.route.js";
+import saasRoutes from "./routes/saas.route.js";
 import { apiLimiter, corsMiddleware, securityMiddleware } from "./middleware/security.middleware.js";
 import { errorHandler, notFoundHandler } from "./middleware/error.middleware.js";
 import { swaggerSpec } from "./config/swagger.js";
@@ -43,6 +44,7 @@ app.use("/api/payments", paymentRoutes);
 app.use("/api/inventory", inventoryRoutes);
 app.use("/api/reports", reportRoutes);
 app.use("/api/dashboard", dashboardRoutes);
+app.use("/api/saas", saasRoutes);
 
 app.use(notFoundHandler);
 app.use(errorHandler);

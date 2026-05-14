@@ -29,7 +29,7 @@ const issueTokens = async (user) => {
     refreshTokens: [
       ...refreshTokens,
       {
-    token: refreshToken,
+        token: refreshToken,
         expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
       },
     ],
@@ -46,7 +46,8 @@ export const authService = {
     const identifier = String(email || phone || "").trim();
     const user = identifier.includes("@")
       ? await User.findOne({ email: identifier.toLowerCase() })
-      : (await User.findOne({ phone: identifier })) || (await User.findOne({ email: identifier.toLowerCase() }));
+      : (await User.findOne({ phone: identifier })) ||
+        (await User.findOne({ email: identifier.toLowerCase() }));
     if (!user || user.password !== password) throw new AppError("Invalid credentials", 401);
     if (user.active === false || user.isActive === false) throw new AppError("User account is inactive", 403);
     return issueTokens(user);

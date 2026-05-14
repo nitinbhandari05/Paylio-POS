@@ -5,9 +5,9 @@
     "productId": "28ca5383-e3f8-46b9-b1ca-4f584dae8468",
     "productName": "Veg Burger",
     "sku": "VEG-BURGER",
-    "quantity": 100,
+    "quantity": 99,
     "lowStockThreshold": 5,
-    "updatedAt": "2026-05-14T12:47:38.690Z",
+    "updatedAt": "2026-05-14T17:23:15.189Z",
     "createdAt": "2026-05-14T12:47:38.687Z"
   },
   {
@@ -16,9 +16,9 @@
     "productId": "2ede59b3-eb55-4239-95c4-c5f4e6a03855",
     "productName": "Masala Tea",
     "sku": "demo-1777797808317-5r2y",
-    "quantity": 100,
+    "quantity": 99,
     "lowStockThreshold": 5,
-    "updatedAt": "2026-05-14T12:47:43.651Z",
+    "updatedAt": "2026-05-14T17:23:15.187Z",
     "createdAt": "2026-05-14T12:47:43.650Z"
   }
 ]

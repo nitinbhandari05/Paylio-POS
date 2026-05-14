@@ -163,5 +163,35 @@
     "createdBy": null,
     "createdAt": "2026-05-14T12:47:43.654Z",
     "updatedAt": "2026-05-14T12:47:43.654Z"
+  },
+  {
+    "_id": "eaab1541-293e-441c-8b3b-071a355673fc",
+    "outletId": "main",
+    "productId": "2ede59b3-eb55-4239-95c4-c5f4e6a03855",
+    "productName": "Masala Tea",
+    "sku": "demo-1777797808317-5r2y",
+    "type": "out",
+    "quantity": 1,
+    "beforeStock": 100,
+    "afterStock": 99,
+    "note": "Order sale INV-20260514-0001",
+    "createdBy": null,
+    "createdAt": "2026-05-14T17:23:15.188Z",
+    "updatedAt": "2026-05-14T17:23:15.188Z"
+  },
+  {
+    "_id": "06315d6f-6cbc-4ad9-8567-715db89c565c",
+    "outletId": "main",
+    "productId": "28ca5383-e3f8-46b9-b1ca-4f584dae8468",
+    "productName": "Veg Burger",
+    "sku": "VEG-BURGER",
+    "type": "out",
+    "quantity": 1,
+    "beforeStock": 100,
+    "afterStock": 99,
+    "note": "Order sale INV-20260514-0001",
+    "createdBy": null,
+    "createdAt": "2026-05-14T17:23:15.189Z",
+    "updatedAt": "2026-05-14T17:23:15.189Z"
   }
 ]

@@ -1,1 +1,118 @@
-[]
+[
+  {
+    "_id": "56f14577-7afe-4004-8f7a-b09c91f4d5ec",
+    "invoiceNumber": "INV-20260514-0001",
+    "kotNumber": "KOT-20260514-0001",
+    "outletId": "main",
+    "orderType": "dinein",
+    "cartId": "8b81a11d-38b4-409a-b87d-d422b0b08f2f",
+    "status": "completed",
+    "statusTimeline": [
+      {
+        "status": "pending",
+        "at": "2026-05-14T17:23:15.186Z",
+        "by": null
+      },
+      {
+        "status": "accepted",
+        "at": "2026-05-14T17:23:15.193Z",
+        "by": null
+      },
+      {
+        "status": "preparing",
+        "at": "2026-05-14T17:23:27.283Z",
+        "by": null
+      },
+      {
+        "status": "ready",
+        "at": "2026-05-14T17:23:33.337Z",
+        "by": null
+      },
+      {
+        "status": "completed",
+        "at": "2026-05-14T17:23:39.201Z",
+        "by": null
+      }
+    ],
+    "deliveryStatus": "not_required",
+    "deliveryTimeline": [],
+    "deliveryAgentId": "",
+    "deliveryAgentName": "",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "deliveryAddress": "",
+    "orderSource": "counter",
+    "integrationSource": "",
+    "externalOrderId": "",
+    "channelMetadata": {},
+    "tableNo": "T1",
+    "waiterName": "Waiter 1",
+    "notes": "",
+    "items": [
+      {
+        "_id": "b464c6e3-e5d9-40eb-a71a-404de3267c0c",
+        "productId": "2ede59b3-eb55-4239-95c4-c5f4e6a03855",
+        "name": "Masala Tea",
+        "sku": "demo-1777797808317-5r2y",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 30,
+        "gstRate": 5,
+        "lineSubtotal": 30,
+        "lineDiscount": 0,
+        "taxableAmount": 30,
+        "gstAmount": 1.5,
+        "lineTotal": 31.5,
+        "note": ""
+      },
+      {
+        "_id": "28e2d957-5907-43b9-802b-c7119136700c",
+        "productId": "28ca5383-e3f8-46b9-b1ca-4f584dae8468",
+        "name": "Veg Burger",
+        "sku": "VEG-BURGER",
+        "categoryId": "dcc5a77e-9cb6-4879-ab07-5f30f806e660",
+        "categoryName": "Burger",
+        "quantity": 1,
+        "unitPrice": 100,
+        "gstRate": 5,
+        "lineSubtotal": 100,
+        "lineDiscount": 0,
+        "taxableAmount": 100,
+        "gstAmount": 5,
+        "lineTotal": 105,
+        "note": ""
+      }
+    ],
+    "subtotal": 130,
+    "itemDiscountAmount": 0,
+    "cartDiscountAmount": 0,
+    "discountAmount": 0,
+    "taxableSubtotal": 130,
+    "gstAmount": 6.5,
+    "gstRate": 5,
+    "total": 136.5,
+    "payments": [
+      {
+        "method": "cash",
+        "amount": 136.5,
+        "reference": ""
+      }
+    ],
+    "amountPaid": 136.5,
+    "paymentStatus": "paid",
+    "changeDue": 0,
+    "createdBy": null,
+    "createdAt": "2026-05-14T17:23:15.181Z",
+    "updatedAt": "2026-05-14T17:23:39.201Z",
+    "completedAt": "2026-05-14T17:23:39.201Z",
+    "cancelledAt": null,
+    "refundedAt": null,
+    "cancelReason": "",
+    "refundReason": "",
+    "refundNumber": "",
+    "refundAmount": 0
+  }
+]

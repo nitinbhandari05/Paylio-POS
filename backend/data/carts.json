@@ -1,1 +1,50 @@
-[]
+[
+  {
+    "_id": "8b81a11d-38b4-409a-b87d-d422b0b08f2f",
+    "status": "closed",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 5,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [
+      {
+        "_id": "f0416630-2e08-4649-ab35-299194d232ec",
+        "productId": "2ede59b3-eb55-4239-95c4-c5f4e6a03855",
+        "name": "Masala Tea",
+        "sku": "demo-1777797808317-5r2y",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 30,
+        "cost": 0,
+        "gstRate": 5,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      },
+      {
+        "_id": "79afa93b-e415-47f9-b5c0-56f305c45e9e",
+        "productId": "28ca5383-e3f8-46b9-b1ca-4f584dae8468",
+        "name": "Veg Burger",
+        "sku": "VEG-BURGER",
+        "categoryId": "dcc5a77e-9cb6-4879-ab07-5f30f806e660",
+        "categoryName": "Burger",
+        "quantity": 1,
+        "unitPrice": 100,
+        "cost": 100,
+        "gstRate": 5,
+        "discountType": "flat",
+        "discountValue": 0,
+        "note": ""
+      }
+    ],
+    "createdBy": null,
+    "createdAt": "2026-05-14T17:23:15.168Z",
+    "updatedAt": "2026-05-14T17:23:15.191Z"
+  }
+]

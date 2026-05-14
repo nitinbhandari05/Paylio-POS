@@ -15,13 +15,17 @@
     "isHeadOffice": false,
     "active": true,
     "createdAt": "2026-05-14T12:46:50.114Z",
-    "updatedAt": "2026-05-14T12:46:50.131Z",
+    "updatedAt": "2026-05-14T17:21:20.675Z",
     "refreshTokens": [
       {
         "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjcxMDkxMGY5LTE0MzYtNDhhNi05NmE3LTVmZWQ2NzMxNTE3MiIsInRva2VuSWQiOiIwZDEyNjYyYy0xMzIyLTQzZGEtYTdmMi1kNDRiOTczYzI0YWYiLCJpYXQiOjE3Nzg3NjI4MTAsImV4cCI6MTc3OTM2NzYxMH0.f8V3e63VNUZeM16LCd0Bd7wZleB2guzc-0We879rYE0",
         "expiresAt": "2026-05-21T12:46:50.131Z"
+      },
+      {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjcxMDkxMGY5LTE0MzYtNDhhNi05NmE3LTVmZWQ2NzMxNTE3MiIsInRva2VuSWQiOiIzYzE4MDU4My03OGNjLTQzNDYtYTcwNC0xMGM1ZDA5MzRlYzEiLCJpYXQiOjE3Nzg3NzkyODAsImV4cCI6MTc3OTM4NDA4MH0.Ai33XrU6x2P4WdsDq2gAcAIiUwvoxC5Ibd9NyAs4P5E",
+        "expiresAt": "2026-05-21T17:21:20.674Z"
       }
     ],
-    "lastLogin": "2026-05-14T12:46:50.131Z"
+    "lastLogin": "2026-05-14T17:21:20.674Z"
   }
 ]

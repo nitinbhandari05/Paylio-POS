@@ -233,3 +233,4 @@
 {"database":"pos-app","level":"info","message":"MongoDB connected","timestamp":"2026-05-14T08:34:12.897Z"}
 {"level":"warn","message":"Redis is not configured; BullMQ workers are disabled","timestamp":"2026-05-14T08:34:12.899Z"}
 {"level":"info","message":"Server running at http://127.0.0.1:3001/","timestamp":"2026-05-14T08:34:12.902Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [14/May/2026:08:35:51 +0000] \"GET /health HTTP/1.1\" 200 41 \"-\" \"-\"","timestamp":"2026-05-14T08:35:51.772Z"}

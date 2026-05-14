@@ -1,51 +1,17 @@
-import express from "express";
-import Category from "../models/category.model.js";
+import { Router } from "express";
+import Category from "../models/Category.js";
+import { makeCrudController } from "../controllers/crud.controller.js";
+import { authorize, protect } from "../middleware/auth.middleware.js";
+import { validateRequest } from "../middleware/error.middleware.js";
+import { mongoIdParam } from "../validators/common.validator.js";
 
-const router = express.Router();
+const router = Router();
+const controller = makeCrudController(Category, "Category");
 
-router.get("/", async (_req, res) => {
-  const categories = await Category.list();
-  res.json({ categories });
-});
-
-router.get("/:id", async (req, res) => {
-  const category = await Category.findOne({ _id: req.params.id });
-  if (!category) {
-    return res.status(404).json({ message: "Category not found" });
-  }
-
-  res.json({ category });
-});
-
-router.post("/", async (req, res) => {
-  try {
-    const category = await Category.create(req.body);
-    res.status(201).json({ message: "Category created", category });
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
-});
-
-router.patch("/:id", async (req, res) => {
-  try {
-    const category = await Category.update(req.params.id, req.body);
-    if (!category) {
-      return res.status(404).json({ message: "Category not found" });
-    }
-
-    res.json({ message: "Category updated", category });
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
-});
-
-router.delete("/:id", async (req, res) => {
-  const removed = await Category.remove(req.params.id);
-  if (!removed) {
-    return res.status(404).json({ message: "Category not found" });
-  }
-
-  res.json({ message: "Category deleted" });
-});
+router.route("/").post(protect, authorize("admin", "manager"), controller.create).get(protect, controller.list);
+router.route("/:id")
+  .get(protect, mongoIdParam(), validateRequest, controller.get)
+  .patch(protect, authorize("admin", "manager"), mongoIdParam(), validateRequest, controller.update)
+  .delete(protect, authorize("admin"), mongoIdParam(), validateRequest, controller.remove);
 
 export default router;

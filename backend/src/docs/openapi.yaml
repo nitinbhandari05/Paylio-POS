@@ -1,0 +1,18 @@
+paths:
+  /api/auth/login:
+    post:
+      summary: Login with email and password
+      responses:
+        "200":
+          description: JWT access and refresh tokens
+  /api/products:
+    get:
+      summary: List products with search, filter, sort, and pagination
+    post:
+      summary: Create a product with optional Cloudinary image upload
+  /api/orders:
+    post:
+      summary: Create order, calculate tax/discount, deduct inventory, and enqueue invoice email
+  /api/payments/webhook:
+    post:
+      summary: Mock Razorpay-style payment webhook

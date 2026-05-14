@@ -1,1 +1,62 @@
-[]
+[
+  {
+    "_id": "23584848-1db7-4148-938e-dead1aa9aff5",
+    "organizationId": "org-main",
+    "planId": "growth",
+    "planName": "Growth",
+    "amount": 1999,
+    "currency": "INR",
+    "status": "paid",
+    "paymentMethod": "upi",
+    "createdAt": "2026-05-14T07:30:21.732Z",
+    "dueAt": "2026-05-14T07:30:21.732Z"
+  },
+  {
+    "_id": "0aa74744-901d-49e5-9c45-9657eca503e4",
+    "organizationId": "org-main",
+    "planId": "growth",
+    "planName": "Growth",
+    "amount": 1999,
+    "currency": "INR",
+    "status": "paid",
+    "paymentMethod": "upi",
+    "createdAt": "2026-05-14T07:30:22.382Z",
+    "dueAt": "2026-05-14T07:30:22.382Z"
+  },
+  {
+    "_id": "3819aa90-64e6-477b-968a-d6a87faa6807",
+    "organizationId": "org-main",
+    "planId": "growth",
+    "planName": "Growth",
+    "amount": 1999,
+    "currency": "INR",
+    "status": "paid",
+    "paymentMethod": "upi",
+    "createdAt": "2026-05-14T07:30:22.899Z",
+    "dueAt": "2026-05-14T07:30:22.899Z"
+  },
+  {
+    "_id": "72415232-a2ff-4d73-87c8-d4c013970312",
+    "organizationId": "org-main",
+    "planId": "growth",
+    "planName": "Growth",
+    "amount": 1999,
+    "currency": "INR",
+    "status": "paid",
+    "paymentMethod": "upi",
+    "createdAt": "2026-05-14T07:30:23.382Z",
+    "dueAt": "2026-05-14T07:30:23.382Z"
+  },
+  {
+    "_id": "724081df-764f-49b1-a5a1-1810a0410bab",
+    "organizationId": "org-main",
+    "planId": "growth",
+    "planName": "Growth",
+    "amount": 1999,
+    "currency": "INR",
+    "status": "paid",
+    "paymentMethod": "upi",
+    "createdAt": "2026-05-14T07:30:23.849Z",
+    "dueAt": "2026-05-14T07:30:23.849Z"
+  }
+]

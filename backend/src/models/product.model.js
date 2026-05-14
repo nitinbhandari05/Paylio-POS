@@ -84,11 +84,13 @@ const Product = {
       categoryName,
       description: payload.description || "",
       price: toNumber(payload.price, 0),
-      cost: toNumber(payload.cost, 0),
-      taxRate: toNumber(payload.taxRate ?? payload.gstRate, DEFAULT_GST_RATE),
+      cost: toNumber(payload.cost ?? payload.costPrice, 0),
+      taxRate: toNumber(payload.taxRate ?? payload.gstRate ?? payload.taxPercentage, DEFAULT_GST_RATE),
+      stock: toNumber(payload.stock, 0),
       unit: payload.unit || "pcs",
       lowStockThreshold: toNumber(payload.lowStockThreshold, 5),
       active: payload.active !== undefined ? Boolean(payload.active) : true,
+      images: Array.isArray(payload.images) ? payload.images : [],
       createdAt: now,
       updatedAt: now,
     };
@@ -148,14 +150,17 @@ const Product = {
     if (payload.price !== undefined) {
       products[index].price = toNumber(payload.price, products[index].price);
     }
-    if (payload.cost !== undefined) {
-      products[index].cost = toNumber(payload.cost, products[index].cost);
+    if (payload.cost !== undefined || payload.costPrice !== undefined) {
+      products[index].cost = toNumber(payload.cost ?? payload.costPrice, products[index].cost);
     }
-    if (payload.taxRate !== undefined || payload.gstRate !== undefined) {
+    if (payload.taxRate !== undefined || payload.gstRate !== undefined || payload.taxPercentage !== undefined) {
       products[index].taxRate = toNumber(
-        payload.taxRate ?? payload.gstRate,
+        payload.taxRate ?? payload.gstRate ?? payload.taxPercentage,
         products[index].taxRate
       );
+    }
+    if (payload.stock !== undefined) {
+      products[index].stock = toNumber(payload.stock, products[index].stock);
     }
     if (payload.unit !== undefined) {
       products[index].unit = payload.unit || "pcs";
@@ -168,6 +173,10 @@ const Product = {
     }
     if (payload.active !== undefined) {
       products[index].active = Boolean(payload.active);
+    }
+    if (payload.images !== undefined) {
+      const images = Array.isArray(products[index].images) ? products[index].images : [];
+      products[index].images = images.concat(Array.isArray(payload.images) ? payload.images : []);
     }
 
     products[index].updatedAt = new Date().toISOString();

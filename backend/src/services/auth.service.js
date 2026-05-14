@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import crypto from "node:crypto";
-import User from "../models/User.js";
+import User from "../models/user.model.js";
 import { env } from "../config/env.js";
 import { AppError } from "../utils/AppError.js";
 
@@ -13,7 +13,7 @@ const signRefreshToken = (user) =>
   });
 
 const sanitizeUser = (user) => {
-  const safeUser = user.toObject();
+  const safeUser = { ...user };
   delete safeUser.password;
   delete safeUser.pin;
   delete safeUser.refreshTokens;
@@ -23,13 +23,18 @@ const sanitizeUser = (user) => {
 const issueTokens = async (user) => {
   const accessToken = signAccessToken(user);
   const refreshToken = signRefreshToken(user);
-  user.lastLogin = new Date();
-  user.refreshTokens.push({
+  const refreshTokens = Array.isArray(user.refreshTokens) ? user.refreshTokens : [];
+  const updated = await User.update(user._id, {
+    lastLogin: new Date().toISOString(),
+    refreshTokens: [
+      ...refreshTokens,
+      {
     token: refreshToken,
-    expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+        expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
+      },
+    ],
   });
-  await user.save();
-  return { user: sanitizeUser(user), accessToken, refreshToken };
+  return { user: sanitizeUser(updated || user), accessToken, refreshToken };
 };
 
 export const authService = {
@@ -39,12 +44,11 @@ export const authService = {
   },
   async login({ email, phone, password }) {
     const identifier = String(email || phone || "").trim();
-    const query = identifier.includes("@")
-      ? { email: identifier.toLowerCase() }
-      : { $or: [{ email: identifier.toLowerCase() }, { phone: identifier }] };
-    const user = await User.findOne(query).select("+password");
-    if (!user || !(await user.comparePassword(password))) throw new AppError("Invalid credentials", 401);
-    if (!user.isActive) throw new AppError("User account is inactive", 403);
+    const user = identifier.includes("@")
+      ? await User.findOne({ email: identifier.toLowerCase() })
+      : (await User.findOne({ phone: identifier })) || (await User.findOne({ email: identifier.toLowerCase() }));
+    if (!user || user.password !== password) throw new AppError("Invalid credentials", 401);
+    if (user.active === false || user.isActive === false) throw new AppError("User account is inactive", 403);
     return issueTokens(user);
   },
   async loginWithPin({ pin }) {
@@ -52,9 +56,9 @@ export const authService = {
       throw new AppError("PIN must be 4 to 6 digits", 400);
     }
 
-    const users = await User.find({ isActive: true, pin: { $exists: true, $ne: "" } }).select("+pin");
-    for (const user of users) {
-      if (await user.comparePin(pin)) {
+    const users = await User.list();
+    for (const user of users.filter((item) => item.active !== false && item.isActive !== false && item.pin)) {
+      if (String(user.pin) === String(pin)) {
         return issueTokens(user);
       }
     }
@@ -63,11 +67,14 @@ export const authService = {
   },
   async refresh(refreshToken) {
     const decoded = jwt.verify(refreshToken, env.jwtRefreshSecret);
-    const user = await User.findOne({ _id: decoded.id, "refreshTokens.token": refreshToken });
-    if (!user || !user.isActive) throw new AppError("Invalid refresh token", 401);
+    const user = await User.findOne({ _id: decoded.id });
+    const hasRefreshToken = (user?.refreshTokens || []).some((item) => item.token === refreshToken);
+    if (!user || user.active === false || user.isActive === false || !hasRefreshToken) {
+      throw new AppError("Invalid refresh token", 401);
+    }
     return { accessToken: signAccessToken(user) };
   },
   async logout(userId, refreshToken) {
-    await User.findByIdAndUpdate(userId, { $pull: { refreshTokens: { token: refreshToken } } });
+    await User.removeRefreshToken(userId, refreshToken);
   },
 };

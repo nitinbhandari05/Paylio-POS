@@ -5,10 +5,12 @@ export const mongoIdParam = (name = "id") => [param(name).isMongoId()];
 export const productValidator = [
   body("name").trim().notEmpty(),
   body("sku").optional({ values: "falsy" }).trim(),
-  body("categoryId").optional({ values: "falsy" }).isMongoId(),
+  body("categoryId").optional({ values: "falsy" }).isString(),
   body("price").isFloat({ min: 0 }),
   body("costPrice").optional().isFloat({ min: 0 }),
+  body("cost").optional().isFloat({ min: 0 }),
   body("taxPercentage").optional().isFloat({ min: 0 }),
+  body("taxRate").optional().isFloat({ min: 0 }),
   body("stock").optional().isInt({ min: 0 }),
 ];
 

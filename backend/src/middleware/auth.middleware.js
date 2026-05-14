@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import User from "../models/User.js";
+import User from "../models/user.model.js";
 import { env } from "../config/env.js";
 import { AppError } from "../utils/AppError.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
@@ -10,9 +10,12 @@ export const protect = asyncHandler(async (req, _res, next) => {
   if (!token) throw new AppError("Authentication token required", 401);
 
   const decoded = jwt.verify(token, env.jwtSecret);
-  const user = await User.findById(decoded.id).select("-password -refreshTokens");
-  if (!user || !user.isActive) throw new AppError("User is inactive or not found", 401);
-  req.user = user;
+  const user = await User.findOne({ _id: decoded.id });
+  if (!user || user.active === false || user.isActive === false) {
+    throw new AppError("User is inactive or not found", 401);
+  }
+  const { password, pin, refreshTokens, ...safeUser } = user;
+  req.user = safeUser;
   next();
 });
 

@@ -1,6 +1,6 @@
 import { authService } from "../services/auth.service.js";
 import OtpToken from "../models/otp-token.model.js";
-import User from "../models/User.js";
+import User from "../models/user.model.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { successResponse } from "../utils/apiResponse.js";
 import { AppError } from "../utils/AppError.js";
@@ -61,8 +61,7 @@ export const resetPasswordWithOtp = asyncHandler(async (req, res) => {
   });
   const user = await User.findOne(channel === "phone" ? { phone: target } : { email: target });
   if (!user) throw new AppError("User not found", 404);
-  user.password = req.body.newPassword;
-  await user.save();
+  await User.update(user._id, { password: req.body.newPassword });
   successResponse(res, null, "Password reset successful");
 });
 

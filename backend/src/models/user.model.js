@@ -109,6 +109,26 @@ const User = {
     }
     if (payload.isHeadOffice !== undefined) users[index].isHeadOffice = Boolean(payload.isHeadOffice);
     if (payload.active !== undefined) users[index].active = Boolean(payload.active);
+    if (payload.refreshTokens !== undefined) {
+      users[index].refreshTokens = Array.isArray(payload.refreshTokens) ? payload.refreshTokens : [];
+    }
+    if (payload.lastLogin !== undefined) users[index].lastLogin = payload.lastLogin;
+    users[index].updatedAt = new Date().toISOString();
+
+    await store.write(users);
+    return users[index];
+  },
+
+  removeRefreshToken: async (id, refreshToken) => {
+    const users = await store.read();
+    const index = users.findIndex((item) => item._id === String(id));
+    if (index === -1) {
+      return null;
+    }
+
+    users[index].refreshTokens = (users[index].refreshTokens || []).filter(
+      (item) => item.token !== refreshToken
+    );
     users[index].updatedAt = new Date().toISOString();
 
     await store.write(users);

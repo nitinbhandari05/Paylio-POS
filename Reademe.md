@@ -1,36 +1,26 @@
 # Paylio POS
 
-Paylio POS is a full-stack restaurant billing and operations platform built with React + Vite (frontend) and Node.js + Express (backend).
+Paylio POS is a full-stack restaurant billing and operations app built with React + Vite on the frontend and Node.js + Express on the backend.
 
-It focuses on fast billing, clean table operations, inventory flow, and daily business visibility.
+The local development setup uses JSON files in `backend/data/*.json` as the active app datastore. MongoDB can still be configured, but the server now continues to run if MongoDB is unavailable.
 
 ## Tech Stack
 
-- Frontend: React, Vite
-- Backend: Node.js, Express
-- Realtime: Socket.IO hooks
-- Data: JSON file store (`backend/data/*.json`)
-- Optional DB: MongoDB connection (graceful fallback if unavailable)
+- Frontend: React, Vite, Tailwind CSS, lucide-react
+- Backend: Node.js, Express, Socket.IO
+- Local data: JSON file store in `backend/data`
+- Optional services: MongoDB, Redis/BullMQ, Cloudinary, SMTP
 
-## Current Core Features
+## Features
 
-- POS billing (dine-in / takeaway / delivery)
-- Cart, split payments, hold/split bill actions
+- POS billing for dine-in, takeaway, delivery, and pickup orders
+- Cart management, discounts, split payments, held orders, and bill preview
 - GST calculation standardized to 5%
-- Table management:
-  - status update (`free`, `occupied`, `reserved`, `cleaning`)
-  - auto-occupy on dine-in order save
-  - bulk table creation
-  - table notes, active/inactive toggle
-- Inventory:
-  - product/category management
-  - stock in/out movement
-  - daily stock report
-- Reports:
-  - sales, tax, refunds, net sales
-  - payment mix
-  - daily snapshot + hourly revenue
-- Auth flows (login/register/OTP routes available in backend)
+- Table management with bulk creation, statuses, notes, and active/inactive toggle
+- Kitchen display board and order status updates
+- Inventory product/category management and stock movement tracking
+- Reports for sales, tax, refunds, net sales, payment mix, and activity
+- Auth flows for login, PIN login, registration OTP, password reset, token refresh, and logout
 
 ## Project Structure
 
@@ -38,51 +28,59 @@ It focuses on fast billing, clean table operations, inventory flow, and daily bu
 Paylio POS/
 ├─ backend/
 │  ├─ src/
-│  │  ├─ routes/
+│  │  ├─ config/
+│  │  ├─ controllers/
+│  │  ├─ middleware/
 │  │  ├─ models/
-│  │  ├─ middlewares/
+│  │  ├─ routes/
+│  │  ├─ services/
 │  │  ├─ utils/
 │  │  ├─ app.js
-│  │  └─ index.js
+│  │  └─ server.js
 │  ├─ data/
+│  ├─ .env.example
 │  └─ package.json
 ├─ frontend/
 │  ├─ src/
-│  │  ├─ pages/
-│  │  ├─ components/
-│  │  ├─ context/
-│  │  └─ app/
+│  ├─ index.html
+│  ├─ vite.config.js
 │  └─ package.json
-├─ .env
-└─ .env.sample
+├─ .env.sample
+└─ Reademe.md
 ```
 
 ## Prerequisites
 
-- Node.js 18+ (recommended: 20+)
+- Node.js 18+; Node 20+ is recommended
 - npm
+- MongoDB is optional for local JSON-store development
+- Redis is optional; without Redis, BullMQ workers are disabled
 
-## Environment Variables
+## Environment
 
-Root `.env` (and `.env.sample`) contains:
+Create a root `.env` from `.env.sample` and a backend `.env` from `backend/.env.example` when needed.
+
+Important values:
 
 ```env
+HOST=127.0.0.1
 PORT=3001
 MONGO_URI=mongodb://127.0.0.1:27017/pos-app
 GST_RATE=5
-ACCESS_TOKEN_SECRET=...
-ACCESS_TOKEN_EXPIRY=1d
-REFRESH_TOKEN_SECRET=...
-REFRESH_TOKEN_EXPIRY=10d
+JWT_SECRET=replace-with-long-random-secret
+JWT_REFRESH_SECRET=replace-with-long-random-refresh-secret
+CORS_ORIGINS=http://127.0.0.1:5173,http://localhost:5173
 ```
 
 Notes:
-- `GST_RATE` is set to `5` for app-wide tax behavior.
-- Mongo is optional for this setup; JSON file store is actively used.
 
-## Install & Run
+- `GST_RATE=5` keeps POS and reports aligned.
+- `MONGO_URI` can point to a local or Docker Mongo instance, but the app can run without Mongo for local JSON-store usage.
+- `REDIS_URL` is only required for background queue workers.
 
-### 1) Backend
+## Install And Run
+
+Start the backend:
 
 ```bash
 cd backend
@@ -90,10 +88,13 @@ npm install
 npm run dev
 ```
 
-Expected:
-- `Server running at http://127.0.0.1:3001/`
+Expected backend URL:
 
-### 2) Frontend
+```txt
+http://127.0.0.1:3001/
+```
+
+Start the frontend in another terminal:
 
 ```bash
 cd frontend
@@ -101,29 +102,64 @@ npm install
 npm run dev
 ```
 
-Frontend runs at:
-- `http://127.0.0.1:5173`
+Expected frontend URL:
 
-Vite proxy forwards `/api/*` to backend `http://127.0.0.1:3001`.
+```txt
+http://127.0.0.1:5173/
+```
 
-## Build
+The Vite dev server proxies `/api/*` to `http://127.0.0.1:3001`.
 
-Frontend production build:
+## Verification
+
+Backend health:
+
+```bash
+curl http://127.0.0.1:3001/health
+```
+
+Frontend build:
 
 ```bash
 cd frontend
 npm run build
 ```
 
-## Data Reset (JSON Store)
+Backend tests:
 
-Data is stored in:
-- `backend/data/*.json`
+```bash
+cd backend
+npm test
+```
 
-To reset non-user data quickly:
-- keep `users.json`
-- reset others to `[]`
-- set `counters.json` to:
+## Data Store
+
+Local app data lives in `backend/data/*.json`.
+
+Keep these starter files populated so the app has a useful demo catalog:
+
+- `categories.json`
+- `products.json`
+- `inventory.json`
+- `tables.json`
+
+Transient business/runtime files can be reset to `[]` during cleanup:
+
+- `billing-invoices.json`
+- `carts.json`
+- `customers.json`
+- `delivery-agents.json`
+- `orders.json`
+- `organizations.json`
+- `otps.json`
+- `outlet-stock.json`
+- `print-jobs.json`
+- `promo-codes.json`
+- `recipes.json`
+- `subscriptions.json`
+- `users.json`
+
+Reset `counters.json` to:
 
 ```json
 {
@@ -133,39 +169,70 @@ To reset non-user data quickly:
 }
 ```
 
+## Generated Files
+
+These are generated or local-only and should not be committed:
+
+- `node_modules/`
+- `frontend/dist/`
+- `backend/logs/`
+- `.DS_Store`
+- `.env`
+- `backend/.env`
+
 ## Common Issues
 
-### Vite proxy error `ECONNREFUSED 127.0.0.1:3001`
+### Vite proxy error: ECONNREFUSED 127.0.0.1:3001
 
-Backend is not running on port 3001.
+The frontend is running but the backend is not.
 
 Fix:
-1. Start backend (`cd backend && npm run dev`)
-2. Verify health:
-   - `curl http://127.0.0.1:3001/health`
 
-### Tax mismatch between POS and reports
+```bash
+cd backend
+npm run dev
+```
 
-Ensure:
-- `.env` has `GST_RATE=5`
-- backend restarted after `.env` changes
-- historical orders are recalculated if they were created with old tax rates
+Then check:
 
-## API Highlights (Public)
+```bash
+curl http://127.0.0.1:3001/health
+```
 
+### Port 3001 is already in use
+
+Another backend process is already running. Stop the existing process or change `PORT` in the backend environment file.
+
+### MongoDB unavailable warning
+
+For local development this is non-fatal. The app continues using `backend/data/*.json`.
+
+### Redis is not configured warning
+
+This is non-fatal unless you need BullMQ background workers.
+
+## API Highlights
+
+- `GET /health`
+- `POST /api/auth/login`
+- `POST /api/auth/pin-login`
+- `POST /api/auth/register`
+- `POST /api/auth/refresh-token`
 - `GET /api/public/menu`
 - `POST /api/public/orders`
 - `GET /api/public/orders`
 - `GET /api/public/orders/summary`
 - `GET /api/public/tables`
 - `POST /api/public/tables`
-- `POST /api/public/tables/bulk`
-- `PATCH /api/public/tables/:tableId`
 - `PATCH /api/public/tables/:tableId/status`
 - `GET /api/public/inventory/summary`
 - `GET /api/public/inventory/daily-report`
 - `GET /api/public/reports/overview`
+- `GET /api/products`
+- `POST /api/products`
+- `GET /api/categories`
+- `POST /api/categories`
 
 ## License
 
-Private/internal project (add license details if needed).
+Private/internal project.

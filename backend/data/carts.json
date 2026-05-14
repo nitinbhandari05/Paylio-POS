@@ -241,5 +241,22 @@
     "createdBy": null,
     "createdAt": "2026-05-03T09:03:35.856Z",
     "updatedAt": "2026-05-03T09:03:35.877Z"
+  },
+  {
+    "_id": "cd87da07-7fca-4de9-8b9f-0bf794600a19",
+    "status": "open",
+    "outletId": "main",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "notes": "",
+    "gstRate": 5,
+    "discountType": "flat",
+    "discountValue": 0,
+    "items": [],
+    "createdBy": null,
+    "createdAt": "2026-05-14T08:18:32.473Z",
+    "updatedAt": "2026-05-14T08:18:32.473Z"
   }
 ]

@@ -79,12 +79,16 @@ export default function App() {
     if (payload?.token) {
       localStorage.setItem("paylio-token", payload.token);
     }
+    if (payload?.refreshToken) {
+      localStorage.setItem("paylio-refresh-token", payload.refreshToken);
+    }
   };
 
   const logout = () => {
     setSession(null);
     localStorage.removeItem("paylio-session");
     localStorage.removeItem("paylio-token");
+    localStorage.removeItem("paylio-refresh-token");
   };
 
   const allowedNavIds = useMemo(() => getAllowedNav(), []);

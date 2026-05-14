@@ -12,6 +12,7 @@ import paymentRoutes from "./routes/payment.route.js";
 import inventoryRoutes from "./routes/inventory.route.js";
 import reportRoutes from "./routes/report.route.js";
 import dashboardRoutes from "./routes/dashboard.route.js";
+import publicOrderRoutes from "./routes/public-order.route.js";
 import { apiLimiter, corsMiddleware, securityMiddleware } from "./middleware/security.middleware.js";
 import { errorHandler, notFoundHandler } from "./middleware/error.middleware.js";
 import { swaggerSpec } from "./config/swagger.js";
@@ -31,6 +32,7 @@ app.get("/", (_req, res) => res.json({ success: true, message: "Smart POS API Ru
 app.get("/health", (_req, res) => res.json({ ok: true, service: "smart-pos-backend" }));
 app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
+app.use("/api/public", publicOrderRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/products", productRoutes);

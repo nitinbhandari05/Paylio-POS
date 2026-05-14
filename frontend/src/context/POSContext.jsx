@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useEffect, useMemo, useState } from "react";
+import { authFetch } from "../lib/api.js";
 
 const POSContext = createContext(null);
 
@@ -302,9 +303,12 @@ export function POSProvider({ children }) {
 
     let catalog = [];
     try {
-      const listRes = await fetch("/api/products");
-      const listData = await listRes.json();
-      catalog = Array.isArray(listData.products) ? listData.products : [];
+      const listData = await authFetch("/api/products");
+      catalog = Array.isArray(listData.products)
+        ? listData.products
+        : Array.isArray(listData.data)
+          ? listData.data
+          : [];
     } catch {
       // handled by create fallback below
     }
@@ -329,36 +333,33 @@ export function POSProvider({ children }) {
       let matched = byKey.get(`sku:${skuKey}`) || byKey.get(`name:${nameKey}`);
 
       if (!matched) {
-        const createRes = await fetch("/api/products", {
+        const createData = await authFetch("/api/products", {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             name: item.name,
             sku: item.sku || `demo-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
             price: Number(item.price || 0),
-            cost: 0,
-            taxRate: GST_RATE_PERCENT,
+            costPrice: 0,
+            taxPercentage: GST_RATE_PERCENT,
             lowStockThreshold: 5,
-            unit: "pcs",
           }),
         });
-        const createData = await createRes.json();
-        if (!createRes.ok || !createData?.product?._id) {
+        const createdProduct = createData?.product || createData?.data;
+        if (!createdProduct?._id) {
           throw new Error(createData.message || `Unable to sync product "${item.name}"`);
         }
-        matched = createData.product;
+        matched = createdProduct;
         byKey.set(`name:${nameKey}`, matched);
         if (matched.sku) byKey.set(`sku:${normalizeLookup(matched.sku)}`, matched);
       } else if (Number(matched.taxRate ?? matched.gstRate ?? GST_RATE_PERCENT) !== GST_RATE_PERCENT) {
         try {
-          const patchRes = await fetch(`/api/products/${matched._id}`, {
+          const patchData = await authFetch(`/api/products/${matched._id}`, {
             method: "PATCH",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ taxRate: GST_RATE_PERCENT }),
+            body: JSON.stringify({ taxPercentage: GST_RATE_PERCENT }),
           });
-          const patchData = await patchRes.json();
-          if (patchRes.ok && patchData?.product?._id) {
-            matched = patchData.product;
+          const updatedProduct = patchData?.product || patchData?.data;
+          if (updatedProduct?._id) {
+            matched = updatedProduct;
           }
         } catch {
           // keep flow non-blocking; backend cart GST precedence still enforces expected rate.
@@ -426,9 +427,15 @@ export function POSProvider({ children }) {
     } catch (error) {
       const message = String(error?.message || "");
       const isStockError = /insufficient stock/i.test(message);
+      const isAuthError = /jwt expired|token expired|session expired|authentication token|required|invalid token/i.test(message);
       const isValidationError =
         isStockError ||
         /product not found|quantity must be|invalid|unsupported|payment amount/i.test(message);
+
+      if (isAuthError) {
+        window.alert(message || "Session expired. Please login again.");
+        return;
+      }
 
       if (isValidationError) {
         window.alert(message || "Unable to save order");

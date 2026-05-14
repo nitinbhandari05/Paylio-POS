@@ -41,15 +41,22 @@ export default function LoginPage({ onLogin }) {
     newPassword: "",
   });
 
-  const normalizeSession = (data) => ({
-    name: data.user?.name || "Staff",
-    role: "user",
-    token: data.token,
-    outletId: data.user?.outletId || "main",
-    organizationId: data.user?.organizationId || "org-main",
-    accessibleOutletIds: data.user?.accessibleOutletIds || [data.user?.outletId || "main"],
-    loginAt: new Date().toISOString(),
-  });
+  const normalizeSession = (responseData) => {
+    const payload = responseData?.data || responseData || {};
+    const user = payload.user || responseData?.user || {};
+    const token = payload.accessToken || payload.token || responseData?.accessToken || responseData?.token || "";
+
+    return {
+      name: user.name || "Staff",
+      role: user.role || "cashier",
+      token,
+      refreshToken: payload.refreshToken || responseData?.refreshToken || "",
+      outletId: user.outletId || "main",
+      organizationId: user.organizationId || "org-main",
+      accessibleOutletIds: user.accessibleOutletIds || [user.outletId || "main"],
+      loginAt: new Date().toISOString(),
+    };
+  };
 
   const submitLogin = async (event) => {
     event.preventDefault();

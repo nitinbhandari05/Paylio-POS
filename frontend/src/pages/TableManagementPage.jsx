@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
+import { apiFetch } from "../lib/api.js";
 
 const STATUSES = ["free", "occupied", "reserved", "cleaning"];
 
@@ -15,7 +16,7 @@ export default function TableManagementPage() {
 
   const load = async () => {
     try {
-      const response = await fetch("/api/public/tables");
+      const response = await apiFetch("/api/public/tables");
       const data = await response.json();
       if (!response.ok) throw new Error(data.message || "Failed to load tables");
       setTables(Array.isArray(data.tables) ? data.tables : []);
@@ -29,7 +30,7 @@ export default function TableManagementPage() {
   }, []);
 
   const updateStatus = async (tableId, status) => {
-    const response = await fetch(`/api/public/tables/${tableId}/status`, {
+    const response = await apiFetch(`/api/public/tables/${tableId}/status`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ status }),
@@ -50,7 +51,7 @@ export default function TableManagementPage() {
       window.alert("Table number is required");
       return;
     }
-    const response = await fetch("/api/public/tables", {
+    const response = await apiFetch("/api/public/tables", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -72,7 +73,7 @@ export default function TableManagementPage() {
 
   const createBulkTables = async (event) => {
     event.preventDefault();
-    const response = await fetch("/api/public/tables/bulk", {
+    const response = await apiFetch("/api/public/tables/bulk", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -102,7 +103,7 @@ export default function TableManagementPage() {
   };
 
   const saveEdit = async (tableId) => {
-    const response = await fetch(`/api/public/tables/${tableId}`, {
+    const response = await apiFetch(`/api/public/tables/${tableId}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -253,7 +254,7 @@ export default function TableManagementPage() {
               <button onClick={() => updateStatus(table._id, "free")}>Release Table</button>
               <button
                 onClick={async () => {
-                  const response = await fetch(`/api/public/tables/${table._id}`, {
+                  const response = await apiFetch(`/api/public/tables/${table._id}`, {
                     method: "PATCH",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ active: table.active === false }),

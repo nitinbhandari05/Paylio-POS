@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { apiFetch } from "../lib/api.js";
 
 const NEXT_STATUS = {
   accepted: "preparing",
@@ -11,7 +12,7 @@ export default function WaiterPage({ session }) {
 
   const load = async () => {
     try {
-      const response = await fetch("/api/public/orders?limit=100");
+      const response = await apiFetch("/api/public/orders?limit=100");
       const data = await response.json();
       if (!response.ok) throw new Error(data.message || "Failed");
       const all = Array.isArray(data.orders) ? data.orders : [];
@@ -34,7 +35,7 @@ export default function WaiterPage({ session }) {
   const update = async (order) => {
     const next = NEXT_STATUS[order.status];
     if (!next) return;
-    const response = await fetch(`/api/public/orders/${order._id}/status`, {
+    const response = await apiFetch(`/api/public/orders/${order._id}/status`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ status: next }),

@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
+import { apiFetch } from "../lib/api.js";
 
 const money = (value) =>
   new Intl.NumberFormat("en-IN", {
@@ -67,7 +68,7 @@ export default function AdminPage() {
       setLoading(true);
       setError("");
 
-      const ordersRes = await fetch("/api/public/orders?limit=100");
+      const ordersRes = await apiFetch("/api/public/orders?limit=100");
       const ordersData = await parseJsonSafe(ordersRes);
 
       if (!ordersRes.ok) {
@@ -77,7 +78,7 @@ export default function AdminPage() {
       const liveOrders = Array.isArray(ordersData.orders) ? ordersData.orders : [];
       setOrders(liveOrders);
 
-      const summaryRes = await fetch("/api/public/orders/summary");
+      const summaryRes = await apiFetch("/api/public/orders/summary");
       const summaryData = await parseJsonSafe(summaryRes);
 
       if (summaryRes.ok && summaryData.summary) {

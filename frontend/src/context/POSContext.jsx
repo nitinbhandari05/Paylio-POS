@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useMemo, useState } from "react";
-import { authFetch } from "../lib/api.js";
+import { apiFetch, authFetch } from "../lib/api.js";
 
 const POSContext = createContext(null);
 
@@ -69,7 +69,7 @@ export function POSProvider({ children }) {
     const pending = [];
     for (const row of current) {
       try {
-        const response = await fetch("/api/public/orders", {
+        const response = await apiFetch("/api/public/orders", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(row.payload),
@@ -87,7 +87,7 @@ export function POSProvider({ children }) {
 
   const loadCatalog = async () => {
     try {
-      const menuRes = await fetch("/api/public/menu");
+      const menuRes = await apiFetch("/api/public/menu");
 
       const menuData = await menuRes.json();
       const menu = Array.isArray(menuData.menu) ? menuData.menu : [];
@@ -396,7 +396,7 @@ export function POSProvider({ children }) {
       resolvedItems = await resolveBackendItems(cartItems);
       setCartItems(resolvedItems);
 
-      const response = await fetch("/api/public/orders", {
+      const response = await apiFetch("/api/public/orders", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { apiFetch } from "../lib/api.js";
 
 const money = (value) =>
   new Intl.NumberFormat("en-IN", {
@@ -18,11 +19,11 @@ export default function ReportsPage({ title = "Reports" }) {
   const load = async () => {
     try {
       const [overviewRes, staffRes, outletRes, crmRes, aiRes] = await Promise.all([
-        fetch("/api/public/reports/overview"),
-        fetch("/api/public/reports/staff-activity"),
-        fetch("/api/public/reports/outlet-comparison"),
-        fetch("/api/public/crm/summary"),
-        fetch("/api/public/ai/analytics"),
+        apiFetch("/api/public/reports/overview"),
+        apiFetch("/api/public/reports/staff-activity"),
+        apiFetch("/api/public/reports/outlet-comparison"),
+        apiFetch("/api/public/crm/summary"),
+        apiFetch("/api/public/ai/analytics"),
       ]);
       const overviewData = await overviewRes.json();
       const staffData = await staffRes.json();

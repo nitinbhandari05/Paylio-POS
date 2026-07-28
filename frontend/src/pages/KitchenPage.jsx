@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
+import { apiFetch } from "../lib/api.js";
 
 const STAGES = ["pending", "accepted", "preparing", "ready"];
 const NEXT_STATUS = {
@@ -21,7 +22,7 @@ export default function KitchenPage() {
 
   const load = async () => {
     try {
-      const response = await fetch("/api/public/kitchen/board");
+      const response = await apiFetch("/api/public/kitchen/board");
       const data = await response.json();
       if (!response.ok) throw new Error(data.message || "Kitchen fetch failed");
       setOrders(Array.isArray(data.orders) ? data.orders : []);
@@ -50,7 +51,7 @@ export default function KitchenPage() {
     const next = NEXT_STATUS[order.status];
     if (!next) return;
 
-    const response = await fetch(`/api/public/orders/${order._id}/status`, {
+    const response = await apiFetch(`/api/public/orders/${order._id}/status`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ status: next }),

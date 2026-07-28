@@ -5,13 +5,18 @@ import { fileURLToPath } from "node:url";
 const scriptsDir = dirname(fileURLToPath(import.meta.url));
 const frontendDir = resolve(scriptsDir, "..");
 const backendDir = resolve(frontendDir, "..", "backend");
-const backendHealthUrl = "http://127.0.0.1:3001/health";
+const backendBaseUrl = String(process.env.VITE_API_URL || "").trim().replace(/\/+$/, "");
+const backendHealthUrl = backendBaseUrl ? new URL("/health", `${backendBaseUrl}/`).toString() : "";
 const npmCommand = process.platform === "win32" ? "npm.cmd" : "npm";
 
 let backendProcess = null;
 let viteProcess = null;
 
 const isBackendRunning = async () => {
+  if (!backendHealthUrl) {
+    return false;
+  }
+
   try {
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 1500);

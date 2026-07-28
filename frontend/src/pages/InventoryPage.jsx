@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { authFetch } from "../lib/api.js";
+import { apiFetch, authFetch } from "../lib/api.js";
 
 export default function InventoryPage() {
   const [summary, setSummary] = useState(null);
@@ -26,11 +26,11 @@ export default function InventoryPage() {
   const load = async () => {
     try {
       const [summaryRes, stockRes, productsRes, categoriesRes, reportRes] = await Promise.all([
-        fetch("/api/public/inventory/summary"),
-        fetch("/api/public/inventory/stock"),
+        apiFetch("/api/public/inventory/summary"),
+        apiFetch("/api/public/inventory/stock"),
         authFetch("/api/products"),
         authFetch("/api/categories"),
-        fetch("/api/public/inventory/daily-report"),
+        apiFetch("/api/public/inventory/daily-report"),
       ]);
 
       const summaryData = await summaryRes.json();
@@ -60,7 +60,7 @@ export default function InventoryPage() {
       return;
     }
 
-    const response = await fetch("/api/public/inventory/movement", {
+    const response = await apiFetch("/api/public/inventory/movement", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ productId, quantity: Number(quantity || 0), type }),

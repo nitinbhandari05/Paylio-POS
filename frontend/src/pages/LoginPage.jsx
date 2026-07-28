@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { apiFetch } from "../lib/api.js";
 import logo from "../assets/logo.svg";
 import loginHeroImage from "../assets/login-hero.png";
 
@@ -77,7 +78,7 @@ export default function LoginPage({ onLogin }) {
         ? { phone: identifier, password: loginForm.password }
         : { email: identifier.toLowerCase(), password: loginForm.password };
 
-      const response = await fetch(usePin ? "/api/auth/pin-login" : "/api/auth/login", {
+      const response = await apiFetch(usePin ? "/api/auth/pin-login" : "/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(usePin ? { pin: loginForm.pin.trim() } : loginPayload),
@@ -112,7 +113,7 @@ export default function LoginPage({ onLogin }) {
 
     try {
       setLoading(true);
-      const response = await fetch("/api/auth/register/request-otp", {
+      const response = await apiFetch("/api/auth/register/request-otp", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(channel === "phone" ? { channel, phone: target } : { channel, email: target }),
@@ -163,7 +164,7 @@ export default function LoginPage({ onLogin }) {
 
     try {
       setLoading(true);
-      const registerRes = await fetch("/api/auth/register", {
+      const registerRes = await apiFetch("/api/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -182,7 +183,7 @@ export default function LoginPage({ onLogin }) {
         throw new Error(registerData.message || "Registration failed");
       }
 
-      const loginRes = await fetch("/api/auth/login", {
+      const loginRes = await apiFetch("/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(usePhone ? { phone, password: registerForm.password } : { email, password: registerForm.password }),
@@ -214,7 +215,7 @@ export default function LoginPage({ onLogin }) {
 
     try {
       setLoading(true);
-      const response = await fetch("/api/auth/forgot-password/request-otp", {
+      const response = await apiFetch("/api/auth/forgot-password/request-otp", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(
@@ -248,7 +249,7 @@ export default function LoginPage({ onLogin }) {
 
     try {
       setLoading(true);
-      const response = await fetch("/api/auth/forgot-password/reset", {
+      const response = await apiFetch("/api/auth/forgot-password/reset", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

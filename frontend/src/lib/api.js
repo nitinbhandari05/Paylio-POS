@@ -1,3 +1,14 @@
+const normalizeBaseUrl = (value) => String(value || "").trim().replace(/\/+$/, "");
+export const API_BASE_URL = normalizeBaseUrl(import.meta.env.VITE_API_URL);
+
+export const apiUrl = (path = "") => {
+  const normalizedPath = String(path || "");
+  const route = normalizedPath.startsWith("/") ? normalizedPath : `/${normalizedPath}`;
+  return API_BASE_URL ? new URL(route, `${API_BASE_URL}/`).toString() : route;
+};
+
+export const apiFetch = (path, options = {}) => fetch(apiUrl(path), options);
+
 const parseJsonSafe = async (response) => {
   const text = await response.text();
   try {
@@ -32,7 +43,7 @@ const refreshAccessToken = async () => {
     throw new Error("Session expired. Please login again.");
   }
 
-  const response = await fetch("/api/auth/refresh-token", {
+  const response = await apiFetch("/api/auth/refresh-token", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ refreshToken }),
@@ -66,7 +77,7 @@ export const authFetch = async (url, options = {}, retry = true) => {
     headers.Authorization = `Bearer ${token}`;
   }
 
-  const response = await fetch(url, { ...options, headers });
+  const response = await apiFetch(url, { ...options, headers });
   const data = await parseJsonSafe(response);
 
   if (!response.ok && retry && isExpiredTokenError(response, data)) {

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { apiFetch } from "../lib/api.js";
 
 const normalizeRole = (role) => {
   const base = String(role || "").trim().toLowerCase().replace(/[_-]+/g, " ");
@@ -56,8 +57,8 @@ export default function SettingsPage({ session, dark, onToggleDark, onLogout }) 
   const loadOps = async () => {
     try {
       const [intRes, invRes] = await Promise.all([
-        fetch("/api/public/integrations/status"),
-        fetch("/api/public/saas/billing/invoices?organizationId=org-main"),
+        apiFetch("/api/public/integrations/status"),
+        apiFetch("/api/public/saas/billing/invoices?organizationId=org-main"),
       ]);
       const intData = await intRes.json();
       const invData = await invRes.json();
@@ -70,7 +71,7 @@ export default function SettingsPage({ session, dark, onToggleDark, onLogout }) 
   };
 
   const syncZomato = async () => {
-    const response = await fetch("/api/public/integrations/sync-orders", {
+    const response = await apiFetch("/api/public/integrations/sync-orders", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ provider: "zomato", limit: 8 }),
@@ -81,7 +82,7 @@ export default function SettingsPage({ session, dark, onToggleDark, onLogout }) 
   };
 
   const testPaymentGateway = async () => {
-    const intentRes = await fetch("/api/public/payments/create-intent", {
+    const intentRes = await apiFetch("/api/public/payments/create-intent", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ amount: 499, method: "upi" }),
@@ -91,7 +92,7 @@ export default function SettingsPage({ session, dark, onToggleDark, onLogout }) 
       setOpsMessage(intentData.message || "Payment intent failed");
       return;
     }
-    const verifyRes = await fetch("/api/public/payments/verify", {
+    const verifyRes = await apiFetch("/api/public/payments/verify", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ intentId: intentData.intentId }),
@@ -101,7 +102,7 @@ export default function SettingsPage({ session, dark, onToggleDark, onLogout }) 
   };
 
   const runSaasCheckout = async () => {
-    const response = await fetch("/api/public/saas/billing/checkout", {
+    const response = await apiFetch("/api/public/saas/billing/checkout", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

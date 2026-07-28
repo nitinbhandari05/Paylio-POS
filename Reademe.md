@@ -197,11 +197,11 @@ If you use Docker, build from the repo root with the top-level `Dockerfile`.
 
 ### Vercel Frontend Deploy
 
-For the cleanest Vercel setup, set the project Root Directory to `frontend`.
+Set the Vercel project Root Directory to `frontend`.
 
-The frontend app includes its own [`frontend/vercel.json`](frontend/vercel.json) with the Vite build and output directory, so Vercel will publish the static SPA from `frontend/dist`.
+The frontend app includes its own [`frontend/vercel.json`](frontend/vercel.json) with the Vite build and output directory, so Vercel will publish the static SPA from `frontend/dist` and will not look for a backend entry file in the repository root.
 
-If you keep the Vercel project at the repository root, the root [`vercel.json`](vercel.json) is configured to build the frontend workspace and publish `frontend/dist`.
+Add `VITE_API_URL` in the frontend environment settings and point it to the deployed backend URL.
 
 ### Render Backend Deploy
 

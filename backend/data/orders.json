@@ -114,5 +114,106 @@
     "refundReason": "",
     "refundNumber": "",
     "refundAmount": 0
+  },
+  {
+    "_id": "453ee9ee-dab1-4496-90d5-b752559debdb",
+    "invoiceNumber": "INV-20260522-0001",
+    "kotNumber": "KOT-20260522-0001",
+    "outletId": "main",
+    "orderType": "dinein",
+    "cartId": "2f5a7983-a8d3-4e4a-aedc-13aa19d3f053",
+    "status": "accepted",
+    "statusTimeline": [
+      {
+        "status": "pending",
+        "at": "2026-05-22T07:13:32.854Z",
+        "by": null
+      },
+      {
+        "status": "accepted",
+        "at": "2026-05-22T07:13:32.861Z",
+        "by": null
+      }
+    ],
+    "deliveryStatus": "not_required",
+    "deliveryTimeline": [],
+    "deliveryAgentId": "",
+    "deliveryAgentName": "",
+    "customerId": "",
+    "customerName": "Walk-in",
+    "customerPhone": "",
+    "customerEmail": "",
+    "deliveryAddress": "",
+    "orderSource": "counter",
+    "integrationSource": "",
+    "externalOrderId": "",
+    "channelMetadata": {},
+    "tableNo": "T1",
+    "waiterName": "Waiter 1",
+    "notes": "",
+    "items": [
+      {
+        "_id": "fab663ca-7428-43a1-9635-349d7fc1fef9",
+        "productId": "2ede59b3-eb55-4239-95c4-c5f4e6a03855",
+        "name": "Masala Tea",
+        "sku": "demo-1777797808317-5r2y",
+        "categoryId": "",
+        "categoryName": "",
+        "quantity": 1,
+        "unitPrice": 30,
+        "gstRate": 5,
+        "lineSubtotal": 30,
+        "lineDiscount": 0,
+        "taxableAmount": 30,
+        "gstAmount": 1.5,
+        "lineTotal": 31.5,
+        "note": ""
+      },
+      {
+        "_id": "1833810b-6e24-4866-834e-287c73200468",
+        "productId": "28ca5383-e3f8-46b9-b1ca-4f584dae8468",
+        "name": "Veg Burger",
+        "sku": "VEG-BURGER",
+        "categoryId": "dcc5a77e-9cb6-4879-ab07-5f30f806e660",
+        "categoryName": "Burger",
+        "quantity": 1,
+        "unitPrice": 100,
+        "gstRate": 5,
+        "lineSubtotal": 100,
+        "lineDiscount": 0,
+        "taxableAmount": 100,
+        "gstAmount": 5,
+        "lineTotal": 105,
+        "note": ""
+      }
+    ],
+    "subtotal": 130,
+    "itemDiscountAmount": 0,
+    "cartDiscountAmount": 0,
+    "discountAmount": 0,
+    "taxableSubtotal": 130,
+    "gstAmount": 6.5,
+    "gstRate": 5,
+    "total": 136.5,
+    "payments": [
+      {
+        "method": "cash",
+        "amount": 136.5,
+        "reference": ""
+      }
+    ],
+    "amountPaid": 136.5,
+    "paymentStatus": "paid",
+    "changeDue": 0,
+    "createdBy": null,
+    "createdAt": "2026-05-22T07:13:32.848Z",
+    "updatedAt": "2026-05-22T07:13:32.861Z",
+    "completedAt": null,
+    "cancelledAt": null,
+    "refundedAt": null,
+    "cancelReason": "",
+    "refundReason": "",
+    "refundNumber": "",
+    "refundAmount": 0
   }
 ]

@@ -8,5 +8,15 @@
     "status": "queued",
     "createdAt": "2026-05-14T17:23:15.196Z",
     "updatedAt": "2026-05-14T17:23:15.196Z"
+  },
+  {
+    "_id": "91de64f2-f41a-44ff-aa21-db6777ac696a",
+    "type": "receipt",
+    "orderId": "453ee9ee-dab1-4496-90d5-b752559debdb",
+    "content": "Invoice INV-20260522-0001\nKOT KOT-20260522-0001\nCustomer Walk-in\nPhone -\n\n1 x Masala Tea @ 30 = 31.5\n1 x Veg Burger @ 100 = 105\n\nSubtotal: 130\nDiscount: 0\nGST: 6.5\nTotal: 136.5\nPaid: 136.5\nChange: 0\n\nPayments:\nCASH: 136.5",
+    "copies": 1,
+    "status": "queued",
+    "createdAt": "2026-05-22T07:13:32.862Z",
+    "updatedAt": "2026-05-22T07:13:32.862Z"
   }
 ]

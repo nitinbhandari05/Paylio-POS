@@ -185,21 +185,29 @@ These are generated or local-only and should not be committed:
 
 Recommended production setup:
 
-1. Set `NODE_ENV=production`.
-2. Set `HOST=0.0.0.0` on the backend host.
-3. Provide strong `JWT_SECRET`, `JWT_REFRESH_SECRET`, and `CORS_ORIGINS`.
-4. Build the frontend with `npm run build` from the repo root.
-5. Start the backend with `npm run start` from the repo root.
+1. Deploy the frontend on Vercel as a static Vite app.
+2. Deploy the backend separately on Render or Railway.
+3. Set `NODE_ENV=production`, `JWT_SECRET`, `JWT_REFRESH_SECRET`, and `CORS_ORIGINS` on the backend.
+4. Point `CORS_ORIGINS` at the live Vercel domain.
+5. Point the frontend API base to the live backend URL if you add a custom API host later.
 
-The Express app serves `frontend/dist` automatically in production, so one backend service can host the API and the UI together.
+The Express app can still serve `frontend/dist` automatically in production if you choose a single-service deployment, but the recommended setup is separate frontend and backend services.
 
 If you use Docker, build from the repo root with the top-level `Dockerfile`.
 
 ### Vercel Frontend Deploy
 
-For Vercel, set the project Root Directory to `frontend`.
+For the cleanest Vercel setup, set the project Root Directory to `frontend`.
 
 The frontend app includes its own [`frontend/vercel.json`](frontend/vercel.json) with the Vite build and output directory, so Vercel will publish the static SPA from `frontend/dist`.
+
+If you keep the Vercel project at the repository root, the root [`vercel.json`](vercel.json) is configured to build the frontend workspace and publish `frontend/dist`.
+
+### Render Backend Deploy
+
+Use the included [`render.yaml`](render.yaml) for the backend service.
+
+Set the backend service root to `backend`, the start command to `npm start`, and add live environment variables for your database, JWT secrets, and frontend CORS origin.
 
 ## Common Issues
 

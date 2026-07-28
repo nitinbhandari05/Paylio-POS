@@ -80,21 +80,7 @@ Notes:
 
 ## Install And Run
 
-Start the backend:
-
-```bash
-cd backend
-npm install
-npm run dev
-```
-
-Expected backend URL:
-
-```txt
-http://127.0.0.1:3001/
-```
-
-Start the frontend in another terminal:
+Start the frontend:
 
 ```bash
 cd frontend
@@ -108,7 +94,22 @@ Expected frontend URL:
 http://127.0.0.1:5173/
 ```
 
+The frontend dev command now starts the backend automatically if it is not already running.
 The Vite dev server proxies `/api/*` to `http://127.0.0.1:3001`.
+
+If you prefer to run the backend separately:
+
+```bash
+cd backend
+npm install
+npm run dev
+```
+
+Expected backend URL:
+
+```txt
+http://127.0.0.1:3001/
+```
 
 ## Verification
 

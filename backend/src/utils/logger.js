@@ -1,5 +1,13 @@
+import { mkdirSync } from "node:fs";
+import { dirname, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 import winston from "winston";
 import { isProduction } from "../config/env.js";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const logsDir = resolve(__dirname, "../../logs");
+mkdirSync(logsDir, { recursive: true });
 
 const format = winston.format.combine(
   winston.format.timestamp(),

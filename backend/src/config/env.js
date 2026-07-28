@@ -14,18 +14,36 @@ const toArray = (value, fallback = []) =>
     .map((item) => item.trim())
     .filter(Boolean) || fallback;
 
+const nodeEnv = process.env.NODE_ENV || "development";
+const productionMode = nodeEnv === "production";
+const requiredInProduction = (value, name) => {
+  if (productionMode && !String(value || "").trim()) {
+    throw new Error(`${name} is required in production`);
+  }
+  return value;
+};
+
+const corsOriginsRaw = process.env.CORS_ORIGINS || process.env.CLIENT_URL;
+const corsOrigins = corsOriginsRaw ? toArray(corsOriginsRaw) : (productionMode ? [] : ["*"]);
+if (productionMode && corsOrigins.length === 0) {
+  throw new Error("CORS_ORIGINS or CLIENT_URL is required in production");
+}
+
 export const env = {
-  nodeEnv: process.env.NODE_ENV || "development",
+  nodeEnv,
   port: Number(process.env.PORT || 3001),
-  host: process.env.HOST || "127.0.0.1",
+  host: productionMode ? process.env.HOST || "0.0.0.0" : "127.0.0.1",
   mongoUri: process.env.MONGO_URI || "mongodb://127.0.0.1:27017/smart-pos",
   redisUrl: process.env.REDIS_URL || "",
-  jwtSecret: process.env.JWT_SECRET || process.env.ACCESS_TOKEN_SECRET || "change-me",
+  jwtSecret: requiredInProduction(process.env.JWT_SECRET || process.env.ACCESS_TOKEN_SECRET, "JWT_SECRET"),
   jwtRefreshSecret:
-    process.env.JWT_REFRESH_SECRET || process.env.REFRESH_TOKEN_SECRET || "change-me-refresh",
+    requiredInProduction(
+      process.env.JWT_REFRESH_SECRET || process.env.REFRESH_TOKEN_SECRET,
+      "JWT_REFRESH_SECRET"
+    ),
   jwtExpiresIn: process.env.JWT_EXPIRES_IN || process.env.ACCESS_TOKEN_EXPIRY || "15m",
   jwtRefreshExpiresIn: process.env.JWT_REFRESH_EXPIRES_IN || "7d",
-  corsOrigins: toArray(process.env.CORS_ORIGINS || process.env.CLIENT_URL || "*"),
+  corsOrigins,
   cloudinary: {
     cloudName: process.env.CLOUDINARY_CLOUD_NAME || "",
     apiKey: process.env.CLOUDINARY_API_KEY || "",

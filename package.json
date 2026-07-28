@@ -1,0 +1,17 @@
+{
+  "name": "paylio-pos",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace frontend",
+    "build": "npm run build --workspace frontend",
+    "start": "npm run start --workspace backend",
+    "test": "npm run test --workspace backend"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

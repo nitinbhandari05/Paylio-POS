@@ -26,6 +26,8 @@ The local development setup uses JSON files in `backend/data/*.json` as the acti
 
 ```txt
 Paylio POS/
+├─ package.json
+├─ Dockerfile
 ├─ backend/
 │  ├─ src/
 │  │  ├─ config/
@@ -80,10 +82,9 @@ Notes:
 
 ## Install And Run
 
-Start the frontend:
+Start everything from the repo root:
 
 ```bash
-cd frontend
 npm install
 npm run dev
 ```
@@ -94,8 +95,8 @@ Expected frontend URL:
 http://127.0.0.1:5173/
 ```
 
-The frontend dev command now starts the backend automatically if it is not already running.
-The Vite dev server proxies `/api/*` to `http://127.0.0.1:3001`.
+The root `npm run dev` command starts the frontend and auto-launches the backend if needed.
+The frontend dev server proxies `/api/*` to `http://127.0.0.1:3001`.
 
 If you prefer to run the backend separately:
 
@@ -122,7 +123,6 @@ curl http://127.0.0.1:3001/health
 Frontend build:
 
 ```bash
-cd frontend
 npm run build
 ```
 
@@ -180,6 +180,20 @@ These are generated or local-only and should not be committed:
 - `.DS_Store`
 - `.env`
 - `backend/.env`
+
+## Deployment
+
+Recommended production setup:
+
+1. Set `NODE_ENV=production`.
+2. Set `HOST=0.0.0.0` on the backend host.
+3. Provide strong `JWT_SECRET`, `JWT_REFRESH_SECRET`, and `CORS_ORIGINS`.
+4. Build the frontend with `npm run build` from the repo root.
+5. Start the backend with `npm run start` from the repo root.
+
+The Express app serves `frontend/dist` automatically in production, so one backend service can host the API and the UI together.
+
+If you use Docker, build from the repo root with the top-level `Dockerfile`.
 
 ## Common Issues
 

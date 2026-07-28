@@ -195,6 +195,12 @@ The Express app serves `frontend/dist` automatically in production, so one backe
 
 If you use Docker, build from the repo root with the top-level `Dockerfile`.
 
+### Vercel Frontend Deploy
+
+For Vercel, set the project Root Directory to `frontend`.
+
+The frontend app includes its own [`frontend/vercel.json`](frontend/vercel.json) with the Vite build and output directory, so Vercel will publish the static SPA from `frontend/dist`.
+
 ## Common Issues
 
 ### Vite proxy error: ECONNREFUSED 127.0.0.1:3001

@@ -5,12 +5,12 @@ import { env } from "../config/env.js";
 
 export const corsMiddleware = cors({
   origin(origin, callback) {
-    if (!origin || env.corsOrigins.includes("*") || env.corsOrigins.includes(origin)) {
+    if (!origin || env.corsAllowAnyOrigin || env.corsOrigins.includes(origin)) {
       return callback(null, true);
     }
     return callback(new Error("Not allowed by CORS"));
   },
-  credentials: true,
+  credentials: !env.corsAllowAnyOrigin,
 });
 
 const sanitizeObject = (value) => {

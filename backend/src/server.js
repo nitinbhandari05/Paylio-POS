@@ -9,7 +9,10 @@ import { logger } from "./utils/logger.js";
 
 const server = http.createServer(app);
 const io = new Server(server, {
-  cors: { origin: env.corsOrigins.includes("*") ? "*" : env.corsOrigins, credentials: true },
+  cors: {
+    origin: env.corsAllowAnyOrigin ? "*" : env.corsOrigins,
+    credentials: !env.corsAllowAnyOrigin,
+  },
 });
 
 initSockets(io);

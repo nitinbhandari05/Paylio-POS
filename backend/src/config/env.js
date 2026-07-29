@@ -23,11 +23,14 @@ const requiredInProduction = (value, name) => {
   return value;
 };
 
-const corsOriginsRaw = process.env.CORS_ORIGINS || process.env.CLIENT_URL;
-const corsOrigins = corsOriginsRaw ? toArray(corsOriginsRaw) : (productionMode ? [] : ["*"]);
-if (productionMode && corsOrigins.length === 0) {
-  throw new Error("CORS_ORIGINS or CLIENT_URL is required in production");
-}
+const corsOriginsRaw =
+  process.env.CORS_ORIGINS ||
+  process.env.CLIENT_URL ||
+  process.env.FRONTEND_URL ||
+  process.env.FRONTEND_ORIGIN ||
+  process.env.APP_URL;
+const corsOrigins = corsOriginsRaw ? toArray(corsOriginsRaw) : ["*"];
+const corsAllowAnyOrigin = corsOrigins.includes("*");
 
 export const env = {
   nodeEnv,
@@ -44,6 +47,7 @@ export const env = {
   jwtExpiresIn: process.env.JWT_EXPIRES_IN || process.env.ACCESS_TOKEN_EXPIRY || "15m",
   jwtRefreshExpiresIn: process.env.JWT_REFRESH_EXPIRES_IN || "7d",
   corsOrigins,
+  corsAllowAnyOrigin,
   cloudinary: {
     cloudName: process.env.CLOUDINARY_CLOUD_NAME || "",
     apiKey: process.env.CLOUDINARY_API_KEY || "",

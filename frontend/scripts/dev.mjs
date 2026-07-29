@@ -1,11 +1,14 @@
 import { spawn } from "node:child_process";
+import net from "node:net";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const scriptsDir = dirname(fileURLToPath(import.meta.url));
 const frontendDir = resolve(scriptsDir, "..");
 const backendDir = resolve(frontendDir, "..", "backend");
-const backendBaseUrl = String(process.env.VITE_API_URL || "").trim().replace(/\/+$/, "");
+const backendBaseUrl =
+  String(process.env.VITE_API_URL || "").trim().replace(/\/+$/, "") ||
+  `http://127.0.0.1:${Number(process.env.PORT || 3001)}`;
 const backendHealthUrl = backendBaseUrl ? new URL("/health", `${backendBaseUrl}/`).toString() : "";
 const npmCommand = process.platform === "win32" ? "npm.cmd" : "npm";
 
@@ -23,6 +26,40 @@ const isBackendRunning = async () => {
     const response = await fetch(backendHealthUrl, { signal: controller.signal });
     clearTimeout(timeout);
     return response.ok;
+  } catch {
+    return false;
+  }
+};
+
+const isPortOpen = (hostname, port) =>
+  new Promise((resolve) => {
+    const socket = net.createConnection({ host: hostname, port });
+
+    const finish = (value) => {
+      socket.destroy();
+      resolve(value);
+    };
+
+    socket.setTimeout(1200);
+    socket.on("connect", () => finish(true));
+    socket.on("timeout", () => finish(false));
+    socket.on("error", () => finish(false));
+  });
+
+const isBackendListening = async () => {
+  if (!backendBaseUrl) {
+    return false;
+  }
+
+  try {
+    const backendUrl = new URL(backendBaseUrl.startsWith("http") ? backendBaseUrl : `http://${backendBaseUrl}`);
+    const port = backendUrl.port ? Number(backendUrl.port) : backendUrl.protocol === "https:" ? 443 : 80;
+
+    if (!backendUrl.hostname || Number.isNaN(port)) {
+      return false;
+    }
+
+    return await isPortOpen(backendUrl.hostname, port);
   } catch {
     return false;
   }
@@ -55,7 +92,7 @@ process.on("SIGTERM", () => {
 });
 
 const run = async () => {
-  const backendAlreadyRunning = await isBackendRunning();
+  const backendAlreadyRunning = (await isBackendRunning()) || (await isBackendListening());
 
   if (!backendAlreadyRunning) {
     backendProcess = startProcess(npmCommand, ["run", "dev"], backendDir);
@@ -68,6 +105,8 @@ const run = async () => {
       }
       process.exit(code ?? 0);
     });
+  } else {
+    console.log(`Backend already running at ${backendBaseUrl}; starting Vite only.`);
   }
 
   viteProcess = startProcess(npmCommand, ["run", "dev:vite"], frontendDir);

@@ -10,7 +10,7 @@
     "seed": "node src/docs/seed.js"
   },
   "engines": {
-    "node": "24.x"
+    "node": "22.x"
   },
   "keywords": [],
   "author": "",

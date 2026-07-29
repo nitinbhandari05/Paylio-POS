@@ -2,10 +2,12 @@ FROM node:22-alpine AS build
 WORKDIR /app
 
 COPY package.json ./
+COPY package-lock.json ./
 COPY frontend/package.json frontend/package.json
+COPY frontend/package-lock.json frontend/package-lock.json
 COPY backend/package.json backend/package.json
 
-RUN npm install
+RUN npm ci --include=optional
 
 COPY . .
 RUN npm run build --workspace frontend
@@ -15,10 +17,12 @@ WORKDIR /app
 ENV NODE_ENV=production
 
 COPY package.json ./
+COPY package-lock.json ./
 COPY frontend/package.json frontend/package.json
+COPY frontend/package-lock.json frontend/package-lock.json
 COPY backend/package.json backend/package.json
 
-RUN npm install --omit=dev --workspace backend
+RUN npm ci --omit=dev --include=optional --workspace backend
 
 COPY backend backend
 COPY --from=build /app/frontend/dist frontend/dist
